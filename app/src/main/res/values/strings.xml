@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">万东CRM</string>
+    <!-- base-->
+    <string name="json_syntax_error">数据格式错误</string>
+    <string name="utils_token_timeout">token无效或者已过期，请重新登录!</string>
+    <string name="cancel">取消</string>
+    <string name="finish">完成</string>
+    <string name="confirm">确定</string>
+
+    <string name="module_company_letter">企信</string>
+
+
+    <string name="module_work">工作</string>
+
+
+    <string name="module_crm">CRM</string>
+
+
+
+    <string name="module_mine">我</string>
+
+</resources>
