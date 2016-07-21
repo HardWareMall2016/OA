@@ -5,24 +5,29 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.wandong.R;
-import com.android.wandong.base.UserInfo;
+import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.beans.OutDoorSignDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentArgs;
 import com.zhan.framework.component.container.FragmentContainerActivity;
+import com.zhan.framework.network.HttpRequestHandler;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.utils.PixelUtils;
+import com.zhan.framework.utils.ToastUtils;
 
 /**
  * 作者：伍岳 on 2016/7/21 13:52
@@ -71,6 +76,12 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
     @ViewInject(id = R.id.img_content)
     LinearLayout mViewContentImgs;
 
+    @ViewInject(id = R.id.btn_submit,click = "OnClick")
+    Button mBtnSubmit;
+
+    //data
+    private int mAbnormal;
+
     public static void launch(Activity activity, String signId) {
         FragmentArgs args = new FragmentArgs();
         args.add(ARG_KEY, signId);
@@ -95,6 +106,13 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("外勤签到");
         mViewRemark.addTextChangedListener(this);
+        mViewRemark.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mViewRemark.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -127,6 +145,8 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
                     Tools.setTextView(mViewRelativeCustomer, result.getEntityInfo().getSignInfo().getAccountName());
                     Tools.setTextView(mViewRemark, result.getEntityInfo().getSignInfo().getRemarks());
                     mViewWordTips.setText(String.format("(%d/200)", mViewRemark.getText().length()));
+
+                    mAbnormal=result.getEntityInfo().getSignInfo().getSignabnormal();
                 }
 
                 mViewContentImgs.removeAllViews();
@@ -165,5 +185,38 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
     @Override
     public void afterTextChanged(Editable s) {
         mViewWordTips.setText(String.format("(%d/200)",mViewRemark.getText().length()));
+    }
+
+    void OnClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_submit:
+                if(isRequestProcessing(ApiUrls.OUTDOOR_SIGN_OUT)){
+                    return;
+                }
+                showRotateProgressDialog("正在签出...",false);
+                HttpRequestParams requestParams = Tools.createHttpRequestParams();
+                requestParams.put("signId", mSignId);
+                requestParams.put("Remarks", mViewRemark.getText().toString());
+                requestParams.put("Address", mViewLocation.getText());
+                requestParams.put("Abnormal",mAbnormal);
+                startFormRequest(ApiUrls.OUTDOOR_SIGN_OUT, requestParams, new HttpRequestHandler(this) {
+                    @Override
+                    public void onRequestFinished(ResultCode resultCode, String result) {
+                        closeRotateProgressDialog();
+                        switch (resultCode){
+                            case success:
+                                BaseResponseBean responseBean=Tools.parseJsonTostError(result,BaseResponseBean.class);
+                                if(responseBean!=null){
+                                    ToastUtils.toast("签出成功！");
+                                    getActivity().finish();
+                                }
+                                break;
+                            default:
+                                ToastUtils.toast(result);
+                                break;
+                        }
+                    }
+                }, HttpRequestUtils.RequestType.POST);
+        }
     }
 }

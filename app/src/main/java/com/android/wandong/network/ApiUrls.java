@@ -42,5 +42,7 @@ public class ApiUrls {
     public static final String OUTDOOR_SIGN_IN_LIST = "MySign/List.ashx";
     //外勤签到-详情
     public static final String OUTDOOR_SIGN_DETAIL = "MySign/Detail.ashx";
+    //外勤签到-签出
+    public static final String OUTDOOR_SIGN_OUT = "MySign/SignOut.ashx";
 
 }
