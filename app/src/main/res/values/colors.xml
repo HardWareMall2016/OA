@@ -8,9 +8,9 @@
     <!-- 标题文本颜色 -->
     <color name="text_color_title">#333333</color>
     <!-- 内容文本颜色 -->
-    <color name="text_color_content">#9390A5</color>
+    <color name="text_color_content">#999999</color>
     <!-- 补充文本颜色 -->
-    <color name="text_color_supplementary">#999999</color>
+    <color name="text_color_supplementary">#D7D7D7</color>
     <!-- 分割线颜色 -->
     <color name="divider_color">#dddddd</color>
 

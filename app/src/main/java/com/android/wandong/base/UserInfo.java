@@ -31,6 +31,7 @@ package com.android.wandong.base;
 public class UserInfo extends BasePersistObject {
     private boolean isLogin =false;
     private String userId;
+    private String loginAccount;
     private String userName;
     private String departId;
     private String departName;
@@ -93,6 +94,13 @@ public class UserInfo extends BasePersistObject {
         this.isLogin = isLogin;
     }
 
+    public String getLoginAccount() {
+        return loginAccount;
+    }
+
+    public void setLoginAccount(String loginAccount) {
+        this.loginAccount = loginAccount;
+    }
     private static UserInfo sUserInfo=null;
 
     public static UserInfo getCurrentUser() {

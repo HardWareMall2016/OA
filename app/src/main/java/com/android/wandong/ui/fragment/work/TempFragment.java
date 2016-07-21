@@ -1,7 +1,9 @@
-package com.android.wandong.network;
+package com.android.wandong.ui.fragment.work;
+import com.android.wandong.R;
+import com.zhan.framework.ui.fragment.ABaseFragment;
 
 /**
- * 作者：伍岳 on 2016/3/7 17:34
+ * 作者：伍岳 on 2016/7/9 21:46
  * 邮箱：wuyue8512@163.com
  * //
  * //         .............................................
@@ -28,19 +30,9 @@ package com.android.wandong.network;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class ApiUrls {
-    /***
-     * 登录注册模块
-     */
-    public static final String LOGIN = "Common/Login.ashx";
-
-
-    /***
-     *  工作模块
-     */
-    //外勤签到-列表
-    public static final String OUTDOOR_SIGN_IN_LIST = "MySign/List.ashx";
-    //外勤签到-详情
-    public static final String OUTDOOR_SIGN_DETAIL = "MySign/Detail.ashx";
-
+public class TempFragment extends ABaseFragment {
+    @Override
+    protected int inflateContentView() {
+        return R.layout.frag_temp;
+    }
 }

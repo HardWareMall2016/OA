@@ -164,6 +164,7 @@ public class LoginFragment extends ABaseFragment {
 
     private void saveUserInfo(LoginResponseBean responseBean){
         UserInfo user = new UserInfo();
+        user.setLoginAccount(mAccount);
         user.setDepartId(responseBean.getEntityInfo().getDepartid());
         user.setDepartName(responseBean.getEntityInfo().getDepartname());
         user.setHeadPortrait(responseBean.getEntityInfo().getNew_headportrait());

@@ -228,6 +228,18 @@ public class Tools {
         return errorMsg;
     }
 
+    public static String verifyResponseResult(BaseResponseBean bean) {
+        String errorMsg = null;
+        if (bean == null) {
+            errorMsg = App.getInstance().getString(R.string.json_syntax_error);
+        } else if (bean.isSuccess()) {
+            errorMsg = null;
+        } else {
+            errorMsg = bean.getMsg();
+        }
+        return errorMsg;
+    }
+
     public static boolean sameDate(Calendar cal, Calendar selectedDate) {
         return cal.get(MONTH) == selectedDate.get(MONTH)
                 && cal.get(YEAR) == selectedDate.get(YEAR)
@@ -374,16 +386,10 @@ public class Tools {
         return sDefAvatarDisplayImageOptions;
     }
 
-    /**
-     * 商品选项
-     *
-     * @return
-     */
-    private static DisplayImageOptions sDefDisplayGoodsImageOptions;
-
-    public static DisplayImageOptions buildDisplayGoodsImgOptions() {
-        if (sDefDisplayGoodsImageOptions == null) {
-            sDefDisplayGoodsImageOptions = new DisplayImageOptions.Builder()
+    private static DisplayImageOptions sDefDisplayImageOptions;
+    public static DisplayImageOptions buildDefDisplayImgOptions() {
+        if (sDefDisplayImageOptions == null) {
+            sDefDisplayImageOptions = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.drawable.def_pic)
                     .showImageForEmptyUri(R.drawable.def_pic)
                     .showImageOnFail(R.drawable.def_pic)
@@ -392,7 +398,7 @@ public class Tools {
                     .considerExifParams(true)
                     .build();
         }
-        return sDefDisplayGoodsImageOptions;
+        return sDefDisplayImageOptions;
     }
 
 
@@ -442,10 +448,10 @@ public class Tools {
         return true;
     }
 
-    private HttpRequestParams createHttpRequestParams() {
+    public static HttpRequestParams createHttpRequestParams() {
         HttpRequestParams requestParams = new HttpRequestParams();
         if (UserInfo.getCurrentUser() != null && UserInfo.getCurrentUser().isLogin()) {
-            requestParams.put("UserName", UserInfo.getCurrentUser().getUserName());
+            requestParams.put("UserName", UserInfo.getCurrentUser().getLoginAccount());
             requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
         }
         return requestParams;

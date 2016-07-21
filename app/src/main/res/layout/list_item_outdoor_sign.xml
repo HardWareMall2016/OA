@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_underline_selector"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <com.zhan.framework.ui.widget.CircleImageView
+        android:id="@+id/headPortrait"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/bg_head_portrait" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/headPortrait"
+        android:singleLine="true"
+        android:text="张某某"
+        android:textColor="@color/text_color_title"
+        android:textSize="@dimen/text_size_large" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/headPortrait"
+        android:singleLine="true"
+        android:text="5月18日 15:15"
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@id/name"
+        android:layout_marginRight="8dp"
+        android:singleLine="true"
+        android:text="外勤签到"
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/sign_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/headPortrait"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="签到时间: 2016年6月1日 13:56"
+        android:textColor="@color/text_color_content"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/sign_time"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/icon"
+        android:maxLines="2"
+        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+        android:textColor="@color/text_color_title"
+        android:textSize="@dimen/text_size_large" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/summary"
+        android:layout_marginTop="8dp"
+        android:background="#F8F8F8"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/headPortrait"
+            android:text="地点：中国上海市晋安区某某地"
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:id="@+id/relative_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="关联客户：上海企线信息科技"
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_normal" />
+    </LinearLayout>
+
+</RelativeLayout>
+
+
