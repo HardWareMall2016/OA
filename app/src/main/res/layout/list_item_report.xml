@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_underline_selector"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/report_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:singleLine="true"
+            android:text="工作报告"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_large" />
+
+        <LinearLayout
+            android:id="@+id/un_reached_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.android.wandong.ui.widget.CircleView xmlns:CircleView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/indicator_un_reached"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                CircleView:draw_color="#FEBF8C"
+                CircleView:round_width="10dp" />
+
+            <TextView
+                android:id="@+id/un_reached_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:singleLine="true"
+                android:text="未点评报告：5"
+                android:textColor="@color/text_color_content"
+                android:textSize="@dimen/text_size_small" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/reached_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.android.wandong.ui.widget.CircleView xmlns:CircleView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/indicator_reached"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                CircleView:draw_color="#FF801A"
+                CircleView:round_width="10dp" />
+
+            <TextView
+                android:id="@+id/reached_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:singleLine="true"
+                android:text="已点评报告：6"
+                android:textColor="@color/text_color_content"
+                android:textSize="@dimen/text_size_small" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.android.wandong.ui.widget.RoundProgressBar xmlns:RoundProgressBar="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/roundProgressBar"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            RoundProgressBar:progress_current="60"
+            RoundProgressBar:progress_max="100"
+            RoundProgressBar:progress_reached_color="#FF801A"
+            RoundProgressBar:progress_round_width="15dp"
+            RoundProgressBar:progress_text_visibility="invisible"
+            RoundProgressBar:progress_unreached_color="#FEBF8C" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/total_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="11"
+            android:textColor="#FF801A"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/total_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:singleLine="true"
+            android:text="报告总数"
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+

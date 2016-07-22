@@ -21,6 +21,11 @@
     <attr name="roundProgressBarStyle" format="reference" />
   </declare-styleable>
 
+  <declare-styleable name="CircleView">
+    <attr name="round_width" format="dimension"/>
+    <attr name="draw_color" format="color"/>
+  </declare-styleable>
+
   <declare-styleable name="wheelview">
     <attr name="gravity">
       <enum name="center" value="17"/>

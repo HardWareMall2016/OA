@@ -51,20 +51,20 @@ public class WorkMain extends AStripTabsFragment {
         item1.setType(OutdoorSignInFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item2=new AStripTabsFragment.StripTabItem();
-        item2.setTitle("工作报告");
-        item2.setType("Type2");
+        item2.setTitle(WorkReportListFragment.TAB_NAME);
+        item2.setType(WorkReportListFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item3=new AStripTabsFragment.StripTabItem();
-        item3.setTitle("公告");
-        item3.setType("Type3");
+        item3.setTitle(AnnouncementFragment.TAB_NAME);
+        item3.setType(AnnouncementFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item4=new AStripTabsFragment.StripTabItem();
-        item4.setTitle("通知");
-        item4.setType("Type4");
+        item4.setTitle(NoticeFragment.TAB_NAME);
+        item4.setType(NoticeFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item5=new AStripTabsFragment.StripTabItem();
-        item5.setTitle("报表");
-        item5.setType("Type5");
+        item5.setTitle(ReportListFragment.TAB_NAME);
+        item5.setType(ReportListFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item6=new AStripTabsFragment.StripTabItem();
         item6.setTitle("合同申请");
@@ -109,6 +109,14 @@ public class WorkMain extends AStripTabsFragment {
     protected Fragment newFragment(StripTabItem bean) {
         if(bean.getType().equals(OutdoorSignInFragment.TAB_TYPE)){
             return new OutdoorSignInFragment();
+        }else  if(bean.getType().equals(WorkReportListFragment.TAB_TYPE)){
+            return new WorkReportListFragment();
+        } else  if(bean.getType().equals(AnnouncementFragment.TAB_TYPE)){
+            return new AnnouncementFragment();
+        }else  if(bean.getType().equals(NoticeFragment.TAB_TYPE)){
+            return new NoticeFragment();
+        }else  if(bean.getType().equals(ReportListFragment.TAB_TYPE)){
+            return new ReportListFragment();
         }
         return new TempFragment();
     }

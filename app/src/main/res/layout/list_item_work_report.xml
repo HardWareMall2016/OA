@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_underline_selector"
+    android:clipChildren="true"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhan.framework.ui.widget.CircleImageView
+            android:id="@+id/headPortrait"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/bg_head_portrait" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/headPortrait"
+            android:singleLine="true"
+            android:text="张某某"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/headPortrait"
+            android:singleLine="true"
+            android:text="5月18日 15:15"
+            android:textColor="@color/text_color_supplementary"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/reporttype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_below="@id/name"
+            android:layout_marginRight="8dp"
+            android:singleLine="true"
+            android:text="日报：未点评"
+            android:textColor="@color/text_color_supplementary"
+            android:textSize="@dimen/text_size_small" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/relative_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="关联客户：上海企线信息科技"
+        android:textColor="#FFBA3E"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="今日工作总结:"
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/worksummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="2"
+        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+        android:textColor="@color/text_color_title"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="明日工作计划："
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="2"
+        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+        android:textColor="@color/text_color_title"
+        android:textSize="@dimen/text_size_normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="工作心得体会："
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="2"
+        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+        android:textColor="@color/text_color_title"
+        android:textSize="@dimen/text_size_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F8F8"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:text="以下为直属领导的点评："
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/icon_occupy"
+            android:drawablePadding="8dp"
+            android:maxLines="2"
+            android:text="谭东：这是一段点评内容。"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:text="6月28 17:27 点评"
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/icon_occupy"
+            android:drawablePadding="8dp"
+            android:maxLines="2"
+            android:text="谭东：这是一段点评内容。"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:text="6月28 17:27 点评"
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="8dp"
+        android:background="@color/divider_color" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp">
+
+        <TextView
+            android:id="@+id/command_or_replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/icon_occupy"
+            android:drawablePadding="8dp"
+            android:text="点评"
+            android:textColor="@color/text_color_content"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/copy_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_main_color_circle_selector"
+            android:drawableLeft="@drawable/icon_occupy"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:paddingLeft="6dp"
+            android:paddingRight="8dp"
+            android:text="抄送范围：张嘉译"
+            android:textColor="@color/main_color"
+            android:textSize="@dimen/text_size_normal" />
+
+    </RelativeLayout>
+</LinearLayout>
+
+
+
+
+

@@ -56,7 +56,7 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
 
     @Override
     protected int inflateContentView() {
-        return R.layout.frag_outdoor_sign_in;
+        return R.layout.frag_work_comm_layout_with_search;
     }
 
     @Override

@@ -451,6 +451,7 @@ public class Tools {
     public static HttpRequestParams createHttpRequestParams() {
         HttpRequestParams requestParams = new HttpRequestParams();
         if (UserInfo.getCurrentUser() != null && UserInfo.getCurrentUser().isLogin()) {
+            requestParams.put("UserId", UserInfo.getCurrentUser().getUserId());
             requestParams.put("UserName", UserInfo.getCurrentUser().getLoginAccount());
             requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
         }

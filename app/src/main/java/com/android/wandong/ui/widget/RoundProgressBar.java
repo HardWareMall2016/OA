@@ -19,30 +19,30 @@ import com.android.wandong.R;
 /**
  * 作者：伍岳 on 2016/5/10 22:11
  * 邮箱：wuyue8512@163.com
- //
- //         .............................................
- //                  美女坐镇                  BUG辟易
- //         .............................................
- //
- //                       .::::.
- //                     .::::::::.
- //                    :::::::::::
- //                 ..:::::::::::'
- //              '::::::::::::'
- //                .::::::::::
- //           '::::::::::::::..
- //                ..::::::::::::.
- //              ``::::::::::::::::
- //               ::::``:::::::::'        .:::.
- //              ::::'   ':::::'       .::::::::.
- //            .::::'      ::::     .:::::::'::::.
- //           .:::'       :::::  .:::::::::' ':::::.
- //          .::'        :::::.:::::::::'      ':::::.
- //         .::'         ::::::::::::::'         ``::::.
- //     ...:::           ::::::::::::'              ``::.
- //    ```` ':.          ':::::::::'                  ::::..
- //                       '.:::::'                    ':'````..
- //
+ * //
+ * //         .............................................
+ * //                  美女坐镇                  BUG辟易
+ * //         .............................................
+ * //
+ * //                       .::::.
+ * //                     .::::::::.
+ * //                    :::::::::::
+ * //                 ..:::::::::::'
+ * //              '::::::::::::'
+ * //                .::::::::::
+ * //           '::::::::::::::..
+ * //                ..::::::::::::.
+ * //              ``::::::::::::::::
+ * //               ::::``:::::::::'        .:::.
+ * //              ::::'   ':::::'       .::::::::.
+ * //            .::::'      ::::     .:::::::'::::.
+ * //           .:::'       :::::  .:::::::::' ':::::.
+ * //          .::'        :::::.:::::::::'      ':::::.
+ * //         .::'         ::::::::::::::'         ``::::.
+ * //     ...:::           ::::::::::::'              ``::.
+ * //    ```` ':.          ':::::::::'                  ::::..
+ * //                       '.:::::'                    ':'````..
+ * //
  */
 public class RoundProgressBar extends View {
     private final String TAG = "RoundProgressBar";
@@ -326,13 +326,13 @@ public class RoundProgressBar extends View {
         mReachedBarPaint.setColor(mReachedBarColor);
         mReachedBarPaint.setStyle(Paint.Style.STROKE);
         mReachedBarPaint.setAntiAlias(true);
-        mReachedBarPaint.setStrokeWidth(10);
+        mReachedBarPaint.setStrokeWidth(mRoundWidth);
 
         mUnreachedBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mUnreachedBarPaint.setColor(mUnreachedBarColor);
         mUnreachedBarPaint.setStyle(Paint.Style.STROKE);
         mUnreachedBarPaint.setAntiAlias(true);
-        mUnreachedBarPaint.setStrokeWidth(10);
+        mUnreachedBarPaint.setStrokeWidth(mRoundWidth);
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(mTextColor);
@@ -397,7 +397,7 @@ public class RoundProgressBar extends View {
 
     public void setUnreachedBarColor(int barColor) {
         this.mUnreachedBarColor = barColor;
-        mUnreachedBarPaint.setColor(mReachedBarColor);
+        mUnreachedBarPaint.setColor(mUnreachedBarColor);
         invalidate();
     }
 
@@ -455,8 +455,8 @@ public class RoundProgressBar extends View {
 
     private ValueAnimator mValueAnimator;
 
-    public void setProgressAnim(int progress,int delay){
-        if(mValueAnimator!=null&&mValueAnimator.isRunning()){
+    public void setProgressAnim(int progress, int delay) {
+        if (mValueAnimator != null && mValueAnimator.isRunning()) {
             mValueAnimator.cancel();
         }
 
@@ -469,7 +469,7 @@ public class RoundProgressBar extends View {
             }
         });
         mValueAnimator.setDuration(600);
-        if(delay>0){
+        if (delay > 0) {
             mValueAnimator.setStartDelay(delay);
         }
         mValueAnimator.start();
