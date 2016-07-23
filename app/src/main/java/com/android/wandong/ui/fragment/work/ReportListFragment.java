@@ -93,9 +93,9 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
             ItemData item = new ItemData();
             item.typeName = "工作报告";
             item.unreachedColor = 0xffFEBF8C;
-            item.reachedTitle = "未点评报告 : ";
+            item.reachedTitle = "已点评报告 : ";
             item.reachedColor = 0xffFF801A;
-            item.unreachedTitle = "已点评报告 : ";
+            item.unreachedTitle = "未点评报告 : ";
             item.unreachedNun = 5;
             item.reachedNum = 6;
             item.progress = 70;
@@ -106,9 +106,9 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
             item = new ItemData();
             item.typeName = "外勤签到";
             item.unreachedColor = 0xffB6D8A3;
-            item.reachedTitle = "未签到 : ";
+            item.reachedTitle = "已签到 : ";
             item.reachedColor = 0xff6DB247;
-            item.unreachedTitle = "已签到 : ";
+            item.unreachedTitle = "未签到 : ";
             item.unreachedNun = 6;
             item.reachedNum = 6;
             item.progress = 50;

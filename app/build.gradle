@@ -28,4 +28,6 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.vajro:MaterialDesignLibrary:1.6'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.github.chrisbanes:PhotoView:1.2.6'
+
 }
