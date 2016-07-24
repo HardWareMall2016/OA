@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_underline_selector"
+    android:padding="8dp">
+
+
+    <com.zhan.framework.ui.widget.CircleImageView
+        android:id="@+id/headPortrait"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/bg_head_portrait" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/headPortrait"
+        android:singleLine="true"
+        android:text="张某某"
+        android:textColor="@color/main_color"
+        android:textSize="@dimen/text_size_large" />
+
+    <TextView
+        android:id="@+id/job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/headPortrait"
+        android:singleLine="true"
+        android:text="销售部-管理员"
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:singleLine="true"
+        android:text="2016/08/12"
+        android:textColor="@color/text_color_supplementary"
+        android:textSize="@dimen/text_size_small" />
+
+
+    <TextView
+        android:id="@+id/relative_customer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headPortrait"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/headPortrait"
+        android:singleLine="true"
+        android:text="点评内容描叙。。。"
+        android:textColor="@color/text_color_content"
+        android:textSize="@dimen/text_size_normal" />
+
+</RelativeLayout>
+
+
+
+
+

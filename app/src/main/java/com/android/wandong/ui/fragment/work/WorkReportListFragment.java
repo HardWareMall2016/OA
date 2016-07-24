@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,6 +71,11 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        WorkReportDetailsFragment.launch(getActivity(),getAdapterItems().get((int)id).id);
+    }
+
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
 
         @ViewInject(id = R.id.headPortrait)
@@ -109,6 +115,6 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
     }
 
     public class ItemData {
-
+        String id;
     }
 }

@@ -42,10 +42,14 @@
     <!-- 主色 -->
     <color name="main_color">#F15353</color>
     <!-- 辅色 -->
-    <color name="sub_color1">#FFC501</color>
+    <color name="sub_color1">#FFB200</color>
     <color name="sub_color2">#F8BC64</color>
     <color name="sub_color3">#17112B</color>
     <color name="sub_color4">#9390A5</color>
     <color name="sub_color5">#FE501B</color>
     <color name="sub_color6">#D3D2DA</color>
+
+    <!-- 日历颜色 -->
+    <color name="grid_bg">#FFFFFFFF</color>
+    <color name="grid_border">#FFC6C6C6</color>
 </resources>
