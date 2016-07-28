@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_underline_selector"
+    android:divider="?android:attr/listDivider"
+    android:minHeight="@dimen/min_height"
+    android:orientation="horizontal"
+    android:showDividers="middle">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="@dimen/min_height"
+        android:text="王二"
+        android:textColor="@color/text_color_content"
+        android:textSize="14sp" />
+
+    <com.android.wandong.ui.widget.CHScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="?android:attr/listDivider"
+            android:minHeight="@dimen/min_height"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="@dimen/min_height"
+                android:text="2016-01-22 12:34"
+                android:textColor="@color/text_color_content"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="@dimen/min_height"
+                android:text="2016-01-23 12:34"
+                android:textColor="@color/text_color_content"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="@dimen/min_height"
+                android:text="上海市 嘉定区  马路镇 马路街 248号"
+                android:textColor="@color/text_color_content"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="@dimen/min_height"
+                android:text="龙辉科技有限公司"
+                android:textColor="@color/text_color_content"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </com.android.wandong.ui.widget.CHScrollView>
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,9 +54,12 @@ import java.util.List;
  * //
  */
 //报表
-public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.ItemData, NoticeResponseBean> {
+public class ReportFormListFragment extends BaseWorkPageFragment<ReportFormListFragment.ItemData, NoticeResponseBean> {
     public static final String TAB_TYPE = "REPORT_LIST";
     public static final String TAB_NAME = "报表";
+
+    //报表类型：工作报告，外勤签到，报销
+    private enum ReportType{WORK_REPORT,OUTDOOR_SIGN,REIMBURSEMENT}
 
 
     @Override
@@ -74,7 +78,7 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
         requestParams.put("PageIndex", getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("new_kind", 2);//类别（1为公告、2为通知）
+        requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
     }
 
     @Override
@@ -91,6 +95,7 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
             }*/
 
             ItemData item = new ItemData();
+            item.reportType=ReportType.WORK_REPORT;
             item.typeName = "工作报告";
             item.unreachedColor = 0xffFEBF8C;
             item.reachedTitle = "已点评报告 : ";
@@ -104,6 +109,7 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
             items.add(item);
 
             item = new ItemData();
+            item.reportType=ReportType.OUTDOOR_SIGN;
             item.typeName = "外勤签到";
             item.unreachedColor = 0xffB6D8A3;
             item.reachedTitle = "已签到 : ";
@@ -117,6 +123,7 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
             items.add(item);
 
             item = new ItemData();
+            item.reportType=ReportType.REIMBURSEMENT;
             item.typeName = "工作报告";
             item.unreachedColor = 0xffFED889;
             item.reachedTitle = "报销已批准 : ";
@@ -128,6 +135,22 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
             item.totalNum = 11;
             item.totalTitle = "费用报销总数";
             items.add(item);
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ItemData data=getAdapterItems().get((int) id);
+        switch (data.reportType){
+            case WORK_REPORT:
+                ReportFormWorkReportFragment.launch(getActivity(), "");
+                break;
+            case OUTDOOR_SIGN:
+                ReportFormOutdoorSignFragment.launch(getActivity(), "");
+                break;
+            case REIMBURSEMENT:
+                ReportFormReimbursement.launch(getActivity());
+                break;
         }
     }
 
@@ -200,6 +223,7 @@ public class ReportListFragment extends BaseWorkPageFragment<ReportListFragment.
 
 
     public class ItemData {
+        ReportType reportType;
         String typeName;
         int unreachedColor;
         String reachedTitle;

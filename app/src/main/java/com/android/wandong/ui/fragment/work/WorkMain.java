@@ -2,7 +2,6 @@ package com.android.wandong.ui.fragment.work;
 import android.support.v4.app.Fragment;
 
 import com.android.wandong.R;
-import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.fragment.AStripTabsFragment;
 
 import java.util.ArrayList;
@@ -63,8 +62,8 @@ public class WorkMain extends AStripTabsFragment {
         item4.setType(NoticeFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item5=new AStripTabsFragment.StripTabItem();
-        item5.setTitle(ReportListFragment.TAB_NAME);
-        item5.setType(ReportListFragment.TAB_TYPE);
+        item5.setTitle(ReportFormListFragment.TAB_NAME);
+        item5.setType(ReportFormListFragment.TAB_TYPE);
 
         AStripTabsFragment.StripTabItem item6=new AStripTabsFragment.StripTabItem();
         item6.setTitle("合同申请");
@@ -115,8 +114,8 @@ public class WorkMain extends AStripTabsFragment {
             return new AnnouncementFragment();
         }else  if(bean.getType().equals(NoticeFragment.TAB_TYPE)){
             return new NoticeFragment();
-        }else  if(bean.getType().equals(ReportListFragment.TAB_TYPE)){
-            return new ReportListFragment();
+        }else  if(bean.getType().equals(ReportFormListFragment.TAB_TYPE)){
+            return new ReportFormListFragment();
         }
         return new TempFragment();
     }
