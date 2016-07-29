@@ -259,8 +259,18 @@ public class RoundProgressBar extends View {
         }
 
         if (mDrawReachedBar) {
-            canvas.drawArc(mRectF, -90, 360 * mCurrentProgress / mMaxProgress,
-                    false, mReachedBarPaint);
+            int startAngle=-90;
+            int sweepAngle=0;
+            if(mReachedProgressArray!=null){
+                for(int i=0;i<mReachedProgressArray.length;i++){
+                    mReachedBarPaint.setColor(mReachedBarColorArray[i]);
+                    sweepAngle= 360 * mReachedProgressArray[i] / mMaxProgress;
+                    canvas.drawArc(mRectF, startAngle,sweepAngle, false, mReachedBarPaint);
+                    startAngle+=sweepAngle;
+                }
+            }else{
+                canvas.drawArc(mRectF, -90, 360 * mCurrentProgress / mMaxProgress, false, mReachedBarPaint);
+            }
         }
 
         /*if (mDrawUnreachedBar) {
@@ -449,6 +459,29 @@ public class RoundProgressBar extends View {
     public void setProgress(int progress) {
         if (progress <= getMax() && progress >= 0) {
             this.mCurrentProgress = progress;
+            postInvalidate();
+        }
+    }
+
+    private int mReachedProgressArray[];
+    private int mReachedBarColorArray[];
+
+    public void setProgress(int reachedProgress[],int reachedBarColor[] ) {
+        if(reachedProgress==null||reachedBarColor==null){
+            Log.e(TAG,"reachedProgress=null or reachedBarColor=null");
+            return;
+        }
+        if(reachedProgress.length!=reachedBarColor.length){
+            Log.e(TAG,"reachedProgress.length not matched reachedBarColor.length");
+            return;
+        }
+        int reachedTotalProgress=0;
+        for(int progress:reachedProgress){
+            reachedTotalProgress+=progress;
+        }
+        if (reachedTotalProgress <= getMax() && reachedTotalProgress >= 0) {
+            mReachedProgressArray=reachedProgress;
+            mReachedBarColorArray=reachedBarColor;
             postInvalidate();
         }
     }

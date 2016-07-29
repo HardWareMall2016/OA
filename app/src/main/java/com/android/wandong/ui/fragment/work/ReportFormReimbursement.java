@@ -16,7 +16,9 @@ import com.android.wandong.R;
 import com.android.wandong.ui.widget.ScrollableViewPager;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.support.inject.ViewInject;
+import com.zhan.framework.ui.activity.BaseActivity;
 import com.zhan.framework.ui.fragment.ABaseFragment;
+import com.zhan.framework.utils.PixelUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,10 +66,23 @@ public class ReportFormReimbursement extends ABaseFragment implements ViewPager.
     }
 
     @Override
+    public void onPrepareSetContentView(BaseActivity activity) {
+        activity.setStatusbarBackgroundColor(Color.BLACK);
+    }
+
+    @Override
+    public void onPrepareActionbarMenu(TextView menu, Activity activity) {
+        super.onPrepareActionbarMenu(menu, activity);
+        if(activity instanceof BaseActivity ){
+            BaseActivity baseActivity=(BaseActivity)activity;
+            baseActivity.setActionbarBackgroundColor(Color.WHITE);
+        }
+    }
+
+    @Override
     protected int inflateContentView() {
         return R.layout.frag_common_view_pager_layout;
     }
-
 
     @Override
     public void onCreateCustomActionbarBar(FrameLayout customerContent, Activity activity) {
@@ -113,9 +128,12 @@ public class ReportFormReimbursement extends ABaseFragment implements ViewPager.
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
+
+        getRootView().setPadding(0, PixelUtils.dp2px(16),0,0);
+
         mViewPager.setCanScroll(false);
         mFragments=new ArrayList<>();
-        mFragments.add(new TempFragment());
+        mFragments.add(new ReportFormCardFragment());
         mFragments.add(new ReportFormReimbursementDetails());
         MyViewPagerAdapter adapter=new MyViewPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(adapter);

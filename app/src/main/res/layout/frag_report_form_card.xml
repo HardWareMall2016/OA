@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@id/layoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_white_small"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:singleLine="true"
+                        android:text="报销进度"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_large" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/icon_occupy" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.android.wandong.ui.widget.CircleView xmlns:CircleView="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/indicator_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        CircleView:draw_color="#FC694D"
+                        CircleView:round_width="16dp" />
+
+                    <TextView
+                        android:id="@+id/title_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/indicator_1"
+                        android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@id/indicator_1"
+                        android:singleLine="true"
+                        android:text="待审批"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/summary_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/title_1"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toRightOf="@id/indicator_1"
+                        android:singleLine="true"
+                        android:text="50000.00元"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_normal" />
+
+
+                    <com.android.wandong.ui.widget.CircleView xmlns:CircleView="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/indicator_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/summary_1"
+                        android:layout_marginTop="8dp"
+                        CircleView:draw_color="#F7C300"
+                        CircleView:round_width="16dp" />
+
+                    <TextView
+                        android:id="@+id/title_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/indicator_2"
+                        android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@id/indicator_2"
+                        android:singleLine="true"
+                        android:text="已完成"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/summary_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/title_2"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toRightOf="@id/indicator_2"
+                        android:singleLine="true"
+                        android:text="50000.00元"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_normal" />
+
+
+                    <com.android.wandong.ui.widget.CircleView xmlns:CircleView="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/indicator_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@id/summary_2"
+                        android:layout_marginTop="8dp"
+                        CircleView:draw_color="#78C750"
+                        CircleView:round_width="16dp" />
+
+                    <TextView
+                        android:id="@+id/title_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/indicator_3"
+                        android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@id/indicator_3"
+                        android:singleLine="true"
+                        android:text="已审批"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/summary_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/title_3"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toRightOf="@id/indicator_3"
+                        android:singleLine="true"
+                        android:text="50000.00元"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <com.android.wandong.ui.widget.RoundProgressBar xmlns:RoundProgressBar="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/roundProgressBar"
+                        android:layout_width="150dip"
+                        android:layout_height="150dip"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        RoundProgressBar:progress_current="60"
+                        RoundProgressBar:progress_max="100"
+                        RoundProgressBar:progress_reached_color="#FF801A"
+                        RoundProgressBar:progress_round_width="30dp"
+                        RoundProgressBar:progress_text_visibility="invisible"
+                        RoundProgressBar:progress_unreached_color="#FEBF8C" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <include
+        android:id="@id/layoutLoading"
+        layout="@layout/comm_lay_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@id/layoutLoadFailed"
+        layout="@layout/comm_lay_loadfailed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@id/layoutEmpty"
+        layout="@layout/comm_lay_emptyview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

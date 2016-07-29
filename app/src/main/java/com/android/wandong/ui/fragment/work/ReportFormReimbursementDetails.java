@@ -127,13 +127,24 @@ public class ReportFormReimbursementDetails extends APullToRefreshListFragment<R
         @Override
         public void bindingView(View convertView) {
             super.bindingView(convertView);
+            //第一次满屏后，向下滑动，有一条数据在开始时未加入
+            final int scrollX =mHeaderScrollPart.getScrollX();
+            if(scrollX != 0) {
+                mScrollPart.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //当listView刷新完成之后，把该条移动到最终位置
+                        mScrollPart.scrollTo(scrollX, 0);
+                    }
+                });
+            }
             mScrollPart.setOnCHScrollChangedListener(ReportFormReimbursementDetails.this);
             mScrollViews.add(mScrollPart);
         }
 
         @Override
         public void bindingData(View convertView, ReportDataItem data) {
-            mScrollPart.setScrollX(mHeaderScrollPart.getScrollX());
+
         }
     }
 
