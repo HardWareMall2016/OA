@@ -5,6 +5,7 @@
     android:background="@drawable/bg_white_underline_selector"
     android:clipChildren="true"
     android:clipToPadding="true"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     android:padding="8dp">
 
@@ -47,7 +48,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/relative_customer"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -57,21 +58,26 @@
         android:textSize="@dimen/text_size_normal" />
 
     <TextView
+        android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:maxLines="2"
         android:text="这里是一段通知内容文字描述，并且显示两行数字。。。。。。"
-        android:textColor="@color/text_color_title"
+        android:textColor="@color/text_color_content"
         android:textSize="@dimen/text_size_normal" />
 
 
-    <ImageView
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/def_pic" />
+    <com.android.wandong.ui.widget.FixGridView
+        android:id="@+id/photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="fill"
+        android:horizontalSpacing="3dip"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dip" />
 
     <View
         android:layout_width="match_parent"
@@ -83,7 +89,7 @@
         android:id="@+id/command_or_replay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon_occupy"
+        android:drawableLeft="@drawable/icon_work_report_message"
         android:drawablePadding="8dp"
         android:gravity="center"
         android:minHeight="48dp"

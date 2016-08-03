@@ -163,7 +163,7 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
                 }
 
                 ImageView imageView = new ImageView(getActivity());
-                imageView.setImageResource(R.drawable.def_pic);
+                imageView.setImageResource(R.drawable.icon_outdoor_sign_add_photo);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(PixelUtils.dp2px(90), PixelUtils.dp2px(90));
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 lp.leftMargin = PixelUtils.dp2px(8);

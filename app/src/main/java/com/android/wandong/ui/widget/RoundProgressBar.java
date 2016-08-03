@@ -262,11 +262,11 @@ public class RoundProgressBar extends View {
             int startAngle=-90;
             int sweepAngle=0;
             if(mReachedProgressArray!=null){
-                for(int i=0;i<mReachedProgressArray.length;i++){
+                for(int i=0;i<mReachedProgressArray.length-1;i++){
                     mReachedBarPaint.setColor(mReachedBarColorArray[i]);
                     sweepAngle= 360 * mReachedProgressArray[i] / mMaxProgress;
                     canvas.drawArc(mRectF, startAngle,sweepAngle, false, mReachedBarPaint);
-                    startAngle+=sweepAngle;
+                    startAngle+=sweepAngle-1;//稍微往前移一度,不然显示有缝隙
                 }
             }else{
                 canvas.drawArc(mRectF, -90, 360 * mCurrentProgress / mMaxProgress, false, mReachedBarPaint);
@@ -482,7 +482,8 @@ public class RoundProgressBar extends View {
         if (reachedTotalProgress <= getMax() && reachedTotalProgress >= 0) {
             mReachedProgressArray=reachedProgress;
             mReachedBarColorArray=reachedBarColor;
-            postInvalidate();
+            //postInvalidate();
+            setUnreachedBarColor(reachedBarColor[reachedBarColor.length-1]);
         }
     }
 

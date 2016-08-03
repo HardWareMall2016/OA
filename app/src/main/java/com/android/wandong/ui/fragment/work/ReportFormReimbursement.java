@@ -131,7 +131,7 @@ public class ReportFormReimbursement extends ABaseFragment implements ViewPager.
 
         getRootView().setPadding(0, PixelUtils.dp2px(16),0,0);
 
-        mViewPager.setCanScroll(false);
+        //mViewPager.setCanScroll(false);
         mFragments=new ArrayList<>();
         mFragments.add(new ReportFormCardFragment());
         mFragments.add(new ReportFormReimbursementDetails());

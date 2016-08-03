@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_white_underline_selector"
     android:paddingBottom="8dp"
+    android:descendantFocusability="blocksDescendants"
     android:paddingTop="8dp">
 
     <com.zhan.framework.ui.widget.CircleImageView

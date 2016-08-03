@@ -180,7 +180,7 @@ public class ReportFormWorkReportFragment extends ABaseTabFragment<ReportFormWor
         ImageView filterIcon=new ImageView(activity);
         filterIcon.setMinimumWidth(PixelUtils.dp2px(40));
         filterIcon.setMinimumHeight(PixelUtils.dp2px(40));
-        filterIcon.setImageResource(R.drawable.icon_occupy);
+        filterIcon.setImageResource(R.drawable.icon_filter);
         filterIcon.setBackgroundResource(R.drawable.default_bg);
 
         menuContent.addView(filterIcon);

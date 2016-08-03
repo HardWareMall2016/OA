@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -24,6 +26,7 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
+import com.zhan.framework.utils.PixelUtils;
 
 import java.util.ArrayList;
 
@@ -92,26 +95,20 @@ public class WorkReportDetailsFragment extends ABaseFragment {
     }
 
     @Override
-    public void onActionBarMenuClick() {
-        WorkReportCalendarFragment.launch(getActivity());
-    }
-
-    @Override
-    public void onPrepareActionbarMenu(TextView menu, final Activity activity) {
-        String html = "<img src='" + R.drawable.icon_occupy + "'/>";
-        Html.ImageGetter imgGetter = new Html.ImageGetter() {
-
+    public void onCreateCustomActionMenu(LinearLayout menuContent, Activity activity) {
+        ImageView btnCalendar=new ImageView(activity);
+        btnCalendar.setMinimumWidth(PixelUtils.dp2px(40));
+        btnCalendar.setMinimumHeight(PixelUtils.dp2px(40));
+        btnCalendar.setImageResource(R.drawable.icon_calendar);
+        btnCalendar.setBackgroundResource(R.drawable.default_bg);
+        btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public Drawable getDrawable(String source) {
-                int id = Integer.parseInt(source);
-                Drawable d = activity.getResources().getDrawable(id);
-                d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-                return d;
+            public void onClick(View v) {
+                WorkReportCalendarFragment.launch(getActivity());
             }
-        };
-        CharSequence charSequence = Html.fromHtml(html, imgGetter, null);
-        menu.setText(charSequence);
-        menu.setBackgroundResource(R.drawable.default_bg);
+        });
+
+        menuContent.addView(btnCalendar);
     }
 
     @Override

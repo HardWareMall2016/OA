@@ -18,6 +18,7 @@ import com.zhan.framework.ui.activity.BaseActivity;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import android.view.ViewGroup.LayoutParams;
 import java.util.ArrayList;
+import java.util.List;
 
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.android.wandong.R;
 import com.android.wandong.beans.OutDoorSignInListResponseBean;
 import com.android.wandong.network.ApiUrls;
-import com.android.wandong.ui.fragment.common.PhotosFragment;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -194,7 +193,11 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
                 mViewAttachmentInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        PhotosFragment.launch(getActivity(), new ArrayList<>(data.AttachmentInfo),position);
+                        OutdoorSignAttachmentsFragment.ParamsBean paramsBean=new OutdoorSignAttachmentsFragment.ParamsBean();
+                        paramsBean.photos=data.AttachmentInfo;
+                        paramsBean.showPos=position;
+                        paramsBean.address=data.Address;
+                        OutdoorSignAttachmentsFragment.launch(getActivity(), paramsBean);
                     }
                 });
             }
@@ -226,7 +229,7 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
         public View getView(int position, View convertView, ViewGroup parent) {
             GridViewHolder holder;
             if(convertView==null){
-                convertView=mInflater.inflate(R.layout.list_item_outdoor_sign_attachment_info,null);
+                convertView=mInflater.inflate(R.layout.list_item_common_attachment,null);
                 holder=new GridViewHolder(convertView);
             }else{
                 holder= (GridViewHolder)convertView.getTag();

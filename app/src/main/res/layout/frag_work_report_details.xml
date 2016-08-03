@@ -81,6 +81,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:drawableLeft="@drawable/icon_work_report_customer"
+                        android:drawablePadding="8dp"
                         android:singleLine="true"
                         android:text="关联客户：上海企线信息科技"
                         android:textColor="#FFBA3E"
@@ -164,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/icon_occupy"
+                        android:drawableLeft="@drawable/icon_work_report_command"
                         android:drawablePadding="8dp"
                         android:maxLines="2"
                         android:text="谭东：这是一段点评内容。"
@@ -185,7 +187,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/icon_occupy"
+                        android:drawableLeft="@drawable/icon_work_report_command"
                         android:drawablePadding="8dp"
                         android:maxLines="2"
                         android:text="谭东：这是一段点评内容。"
@@ -209,7 +211,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="#F8F8F8"
-                    android:minHeight="48dp">
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
 
                     <View
                         android:layout_width="match_parent"
@@ -229,9 +233,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:drawableLeft="@drawable/icon_occupy"
-                        android:drawablePadding="8dp"
-                        android:text="回复 （2）"
+                        android:text="回复（2）"
                         android:textColor="@color/text_color_content"
                         android:textSize="@dimen/text_size_normal" />
 
@@ -242,7 +244,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@drawable/bg_main_color_circle_selector"
-                        android:drawableLeft="@drawable/icon_occupy"
+                        android:drawableLeft="@drawable/icon_work_report_copy_to"
                         android:drawablePadding="8dp"
                         android:gravity="center"
                         android:paddingBottom="4dp"
@@ -284,7 +286,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/icon_occupy" />
+                android:background="@drawable/default_bg"
+                android:src="@drawable/icon_send_msg" />
 
             <EditText
                 android:id="@+id/click_to_input"
