@@ -60,6 +60,21 @@ public class CircleView extends View {
         mPaint.setAntiAlias(true);
     }
 
+    public CircleView(Context context) {
+        super(context);
+        mDrawColor = Color.RED;
+        mRoundWidth = PixelUtils.dp2px(10);
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setColor(mDrawColor);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setAntiAlias(true);
+    }
+
+    public void setRoundWidth(int width){
+        mRoundWidth = width;
+    }
+
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         /*setMeasuredDimension(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));

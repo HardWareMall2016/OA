@@ -33,13 +33,13 @@ public class PageFactory {
         List<Page> pageList = new ArrayList<>();
         //企信
         CompanyLetterMain goodsMain = new CompanyLetterMain();
-        pageList.add(generatePage(goodsMain, R.string.module_company_letter, R.drawable.tab_home_unselect, R.drawable.tab_home_selected));
+        pageList.add(generatePage(goodsMain, R.string.module_company_letter, R.drawable.tab_company_letter_unselect, R.drawable.tab_company_letter_selected));
         //工作
         WorkMain informationMain = new WorkMain();
-        pageList.add(generatePage(informationMain, R.string.module_work, R.drawable.tab_goods_unselect, R.drawable.tab_goods_selected));
+        pageList.add(generatePage(informationMain, R.string.module_work, R.drawable.tab_work_unselect, R.drawable.tab_work_selected));
         //CRM
         CrmMain cartMain = new CrmMain();
-        pageList.add(generatePage(cartMain, R.string.module_crm, R.drawable.tab_cart_unselect, R.drawable.tab_cart_selected));
+        pageList.add(generatePage(cartMain, R.string.module_crm, R.drawable.tab_crm_unselect, R.drawable.tab_crm_selected));
         //我
         MineMain mineMain = new MineMain();
         pageList.add(generatePage(mineMain, R.string.module_mine, R.drawable.tab_me_unselect, R.drawable.tab_me_selected));

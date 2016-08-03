@@ -24,9 +24,9 @@
     <!-- 不可用颜色 -->
     <color name="disable_color">#ff959595</color>
     <!-- 主背景色 -->
-    <color name="main_background">#eeeeee</color>
+    <!--<color name="main_background">#eeeeee</color>-->
     <!-- 次背景色 -->
-    <color name="sub_background">#ff888888</color>
+    <!--<color name="sub_background">#ff888888</color>-->
 
     <color name="transparent">#00000000</color>
     <!-- drawable -->

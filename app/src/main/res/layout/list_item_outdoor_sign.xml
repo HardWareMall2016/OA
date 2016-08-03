@@ -66,24 +66,42 @@
         android:textColor="@color/text_color_content"
         android:textSize="@dimen/text_size_small" />
 
-    <TextView
-        android:id="@+id/summary"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/summary_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@id/sign_time"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_toRightOf="@id/icon"
-        android:maxLines="2"
-        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
-        android:textColor="@color/text_color_title"
-        android:textSize="@dimen/text_size_large" />
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_large" />
+
+        <com.android.wandong.ui.widget.FixGridView
+            android:id="@+id/attachment_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="fill"
+            android:horizontalSpacing="3dip"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="3dip" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/summary"
+        android:layout_below="@id/summary_container"
         android:layout_marginTop="8dp"
         android:background="#F8F8F8"
         android:orientation="vertical"
@@ -94,6 +112,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/headPortrait"
+            android:drawableLeft="@drawable/icon_outdoor_sign_location"
+            android:drawablePadding="8dp"
             android:text="地点：中国上海市晋安区某某地"
             android:textColor="@color/text_color_content"
             android:textSize="@dimen/text_size_normal" />
@@ -103,6 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/icon_outdoor_sign_customer"
+            android:drawablePadding="8dp"
             android:text="关联客户：上海企线信息科技"
             android:textColor="@color/text_color_content"
             android:textSize="@dimen/text_size_normal" />
