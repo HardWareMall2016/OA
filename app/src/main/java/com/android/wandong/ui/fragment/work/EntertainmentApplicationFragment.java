@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.android.wandong.R;
@@ -69,6 +70,11 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
         return new ListItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        EntertainmentApplicationDetailFragment.launch(getActivity());
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{

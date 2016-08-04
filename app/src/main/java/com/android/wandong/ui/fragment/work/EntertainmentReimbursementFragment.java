@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.android.wandong.R;
@@ -9,6 +10,7 @@ import com.android.wandong.network.ApiUrls;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
+import com.zhan.framework.utils.ToastUtils;
 
 import java.util.List;
 
@@ -69,6 +71,11 @@ public class EntertainmentReimbursementFragment extends BaseWorkPageFragment<Ent
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
         return new ListItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        EntertainmentReimbursementDetailFragment.launch(getActivity());
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
