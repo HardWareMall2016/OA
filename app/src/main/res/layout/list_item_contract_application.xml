@@ -10,13 +10,20 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_white_small"
         android:minHeight="48dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/icon_occupy"
+            android:layout_centerVertical="true"
+            android:id="@+id/iamgeView7"/>
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iamgeView7"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
             android:text="鱼跃APP，PC系统开发"
@@ -31,11 +38,7 @@
             android:layout_marginRight="8dp"
             android:src="@drawable/arrow_right_small" />
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/icon_occupy" />
+
 
     </RelativeLayout>
 

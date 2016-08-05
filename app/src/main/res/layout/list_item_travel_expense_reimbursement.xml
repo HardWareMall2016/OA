@@ -25,6 +25,11 @@
                 android:layout_marginLeft="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/icon_occupy" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -32,7 +37,8 @@
                     android:singleLine="true"
                     android:text="出差人:"
                     android:textColor="@color/text_color_content"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:textSize="@dimen/text_size_normal"
+                    android:layout_marginLeft="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -74,11 +80,6 @@
         </RelativeLayout>
 
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/icon_occupy" />
 
     </RelativeLayout>
 

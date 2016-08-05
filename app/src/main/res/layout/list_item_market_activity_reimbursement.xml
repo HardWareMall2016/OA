@@ -16,19 +16,27 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp">
 
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/icon_occupy"
+                android:layout_centerVertical="true"/>
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="60dp"
                 android:singleLine="true"
                 android:text="这是活动名称字段"
                 android:textColor="@color/text_color_title"
-                android:textSize="@dimen/text_size_large" />
+                android:textSize="@dimen/text_size_large"
+                />
 
             <ImageView
+                 android:id="@+id/imageview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -52,11 +60,6 @@
             android:textSize="@dimen/text_size_normal" />
 
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/icon_occupy" />
 
     </RelativeLayout>
 

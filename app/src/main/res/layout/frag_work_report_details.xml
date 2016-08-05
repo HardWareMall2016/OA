@@ -71,31 +71,20 @@
                             android:layout_below="@id/name"
                             android:layout_marginRight="8dp"
                             android:singleLine="true"
-                            android:text="日报-未点评"
+                            android:text="周报-未点评"
                             android:textColor="@color/text_color_supplementary"
                             android:textSize="@dimen/text_size_small" />
                     </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/relative_customer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/icon_work_report_customer"
-                        android:drawablePadding="8dp"
-                        android:singleLine="true"
-                        android:text="关联客户：上海企线信息科技"
-                        android:textColor="#FFBA3E"
-                        android:textSize="@dimen/text_size_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
-                        android:text="今日工作总结:"
+                        android:text="本周工作总结:"
                         android:textColor="@color/text_color_supplementary"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_normal" />
 
                     <TextView
                         android:id="@+id/worksummary"
@@ -103,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:maxLines="2"
-                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+                        android:text="这里是一段文字描述"
                         android:textColor="@color/text_color_title"
                         android:textSize="@dimen/text_size_normal" />
 
@@ -112,16 +101,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
-                        android:text="明日工作计划："
+                        android:text="下周工作计划："
                         android:textColor="@color/text_color_supplementary"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:maxLines="2"
-                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+                        android:text="这里是一段文字描述"
                         android:textColor="@color/text_color_title"
                         android:textSize="@dimen/text_size_normal" />
 
@@ -132,14 +121,14 @@
                         android:singleLine="true"
                         android:text="工作心得体会："
                         android:textColor="@color/text_color_supplementary"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:maxLines="2"
-                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+                        android:text="这里是一段文字描述"
                         android:textColor="@color/text_color_title"
                         android:textSize="@dimen/text_size_normal" />
                 </LinearLayout>
@@ -160,7 +149,7 @@
                         android:singleLine="true"
                         android:text="以下为直属领导的点评："
                         android:textColor="@color/text_color_content"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_large" />
 
                     <TextView
                         android:layout_width="wrap_content"

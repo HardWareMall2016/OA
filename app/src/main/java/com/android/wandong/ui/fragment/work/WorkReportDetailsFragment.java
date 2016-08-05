@@ -91,7 +91,7 @@ public class WorkReportDetailsFragment extends ABaseFragment {
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("日报详情");
+        getActivity().setTitle("工作报告详情");
     }
 
     @Override

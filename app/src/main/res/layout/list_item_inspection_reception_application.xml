@@ -16,11 +16,19 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/icon_occupy"
+                android:id="@+id/iamgeView5"
+                android:layout_centerVertical="true"/>
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_toRightOf="@+id/iamgeView5"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:singleLine="true"
@@ -71,11 +79,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/icon_occupy" />
 
     </RelativeLayout>
 
