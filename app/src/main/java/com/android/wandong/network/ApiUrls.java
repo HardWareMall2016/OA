@@ -51,12 +51,16 @@ public class ApiUrls {
     //报表列表
     //public static final String
     //合同申请列表
-    public static final String CONTRACT_APPLY_LIST = "/ContractApply/List.ashx";
+    public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
 
     //招待申请-列表
     public static final String ENTERTAIN_APPLY_LIST = "EntertainApply/List.ashx";
     //市场活动费申请
     public static final String  COMPAIGN_APPLY_LIST = "Campaign/Apply/List.ashx";
+    //市场活动费报销
+    public static final String  CAMPAIGN_EXPENSE_LIST = "Campaign/Expense/List.ashx";
     //招待申请-招待详情
     public static final String ENTERTAIN_APPLY_DETAIL = "EntertainApply/Detail.ashx";
+    //招待费报销列表
+    public static final String ENTER_TAIN_EXPENSE = "EntertainExpense/List.ashx";
 }
