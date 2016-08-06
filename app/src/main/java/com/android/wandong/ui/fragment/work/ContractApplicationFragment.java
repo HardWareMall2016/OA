@@ -3,6 +3,7 @@ package com.android.wandong.ui.fragment.work;
 import android.view.View;
 import android.widget.ImageView;
 import com.android.wandong.R;
+import com.android.wandong.beans.ContractApplicationResponseBean;
 import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.zhan.framework.network.HttpRequestParams;
@@ -39,7 +40,7 @@ import java.util.List;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class ContractApplicationFragment extends BaseWorkPageFragment<ContractApplicationFragment.ItemData, NoticeResponseBean> {
+public class ContractApplicationFragment extends BaseWorkPageFragment<ContractApplicationFragment.ItemData, ContractApplicationResponseBean> {
     public static final String TAB_TYPE="CONTRACT_APPLICATION";
     public static final String TAB_NAME="合同申请";
 
@@ -47,18 +48,17 @@ public class ContractApplicationFragment extends BaseWorkPageFragment<ContractAp
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
         requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
     }
 
     @Override
     protected String getRequestApiUrl() {
-        return ApiUrls.NOTICE_LIST;
+        return ApiUrls.CONTRACT_APPLY_LIST;
     }
 
     @Override
-    protected void parseResponseBeanToItemDataList(NoticeResponseBean baseResponseBean, List<ItemData> items) {
+    protected void parseResponseBeanToItemDataList(ContractApplicationResponseBean baseResponseBean, List<ItemData> items) {
         if(baseResponseBean.getEntityInfo()!=null){
-            for(int i=0;i<10;i++){
+            for(ContractApplicationResponseBean.EntityInfoBean beanItem:baseResponseBean.getEntityInfo()){
                 ItemData item=new ItemData();
                 items.add(item);
             }

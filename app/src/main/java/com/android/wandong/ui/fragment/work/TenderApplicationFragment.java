@@ -2,10 +2,13 @@ package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.beans.NoticeResponseBean;
+import com.android.wandong.beans.TenderApplicationResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -40,7 +43,7 @@ import java.util.List;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplicationFragment.ItemData, NoticeResponseBean> {
+public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplicationFragment.ItemData, TenderApplicationResponseBean> {
     public static final String TAB_TYPE="TENDER_APPLICATION";
     public static final String TAB_NAME="招投标申请";
 
@@ -48,19 +51,27 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
         requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
     }
 
     @Override
     protected String getRequestApiUrl() {
-        return ApiUrls.NOTICE_LIST;
+        return ApiUrls.TENDER_AUTHORIZATION_APPLY_LIST;
     }
 
     @Override
-    protected void parseResponseBeanToItemDataList(NoticeResponseBean baseResponseBean, List<ItemData> items) {
+    protected void parseResponseBeanToItemDataList(TenderApplicationResponseBean baseResponseBean, List<ItemData> items) {
         if(baseResponseBean.getEntityInfo()!=null){
-            for(int i=0;i<10;i++){
+            for(TenderApplicationResponseBean.EntityInfoBean beanItem:baseResponseBean.getEntityInfo()){
                 ItemData item=new ItemData();
+                item.setTenderAuthorizationId(beanItem.getTenderAuthorizationId());
+                item.setApplyNo(beanItem.getApplyNo());
+                item.setName(beanItem.getName());
+                item.setBidStatus(beanItem.getBidStatus());
+                item.setNumber(beanItem.getNumber());
+                item.setAccountName(beanItem.getAccountName());
+                item.setOwnerName(beanItem.getOwnerName());
+                item.setCreatedOn(beanItem.getCreatedOn());
+                item.setStatus(beanItem.getStatus());
                 items.add(item);
             }
         }
@@ -73,8 +84,16 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
 
+        @ViewInject(id = R.id.ApplyNo)
+        TextView mApplyNo ;
+        @ViewInject(id = R.id.name)
+        TextView mName ;
+        @ViewInject(id = R.id.number)
+        TextView mNumber ;
         @ViewInject(id = R.id.headPortrait)
-        protected ImageView mViewHeadPortrait;
+        ImageView mViewHeadPortrait;
+        @ViewInject(id = R.id.img_status)
+        ImageView mViewStatus ;
 
         @Override
         public int inflateViewId() {
@@ -83,11 +102,94 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
 
         @Override
         public void bindingData(View convertView, ItemData data) {
-
+            mApplyNo.setText(data.getName());
+            mName.setText(data.getOwnerName());
+            mNumber.setText(data.getNumber());
+            AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }
 
     public class ItemData {
+        private String TenderAuthorizationId;
+        private String ApplyNo;
+        private String Name;
+        private int BidStatus;
+        private String Number;
+        private Object AccountName;
+        private String OwnerName;
+        private String CreatedOn;
+        private int Status;
 
+        public String getTenderAuthorizationId() {
+            return TenderAuthorizationId;
+        }
+
+        public void setTenderAuthorizationId(String TenderAuthorizationId) {
+            this.TenderAuthorizationId = TenderAuthorizationId;
+        }
+
+        public String getApplyNo() {
+            return ApplyNo;
+        }
+
+        public void setApplyNo(String ApplyNo) {
+            this.ApplyNo = ApplyNo;
+        }
+
+        public String getName() {
+            return Name;
+        }
+
+        public void setName(String Name) {
+            this.Name = Name;
+        }
+
+        public int getBidStatus() {
+            return BidStatus;
+        }
+
+        public void setBidStatus(int BidStatus) {
+            this.BidStatus = BidStatus;
+        }
+
+        public String getNumber() {
+            return Number;
+        }
+
+        public void setNumber(String Number) {
+            this.Number = Number;
+        }
+
+        public Object getAccountName() {
+            return AccountName;
+        }
+
+        public void setAccountName(Object AccountName) {
+            this.AccountName = AccountName;
+        }
+
+        public String getOwnerName() {
+            return OwnerName;
+        }
+
+        public void setOwnerName(String OwnerName) {
+            this.OwnerName = OwnerName;
+        }
+
+        public String getCreatedOn() {
+            return CreatedOn;
+        }
+
+        public void setCreatedOn(String CreatedOn) {
+            this.CreatedOn = CreatedOn;
+        }
+
+        public int getStatus() {
+            return Status;
+        }
+
+        public void setStatus(int Status) {
+            this.Status = Status;
+        }
     }
 }

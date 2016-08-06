@@ -51,12 +51,11 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
         requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
     }
 
     @Override
     protected String getRequestApiUrl() {
-        return ApiUrls.NOTICE_LIST;
+        return ApiUrls.RECEPTION_LIST;
     }
 
     @Override

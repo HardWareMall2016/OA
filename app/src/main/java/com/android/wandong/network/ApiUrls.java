@@ -48,8 +48,6 @@ public class ApiUrls {
     public static final String WORK_REPORT_LIST = "WorkReport/List.ashx";
     //公告通知-列表
     public static final String NOTICE_LIST = "Notice/Notice/List.ashx";
-    //报表列表
-    //public static final String
     //合同申请列表
     public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
 
@@ -69,4 +67,7 @@ public class ApiUrls {
      public static final String TRAVEL_EXPENSE_LIST = "TravelExpense/List.ashx";
     //考察接待申请_ 列表
      public static final String RECEPTION_LIST = "Reception/List.ashx";
+    //招投标申请_列表
+    public static final String TENDER_AUTHORIZATION_APPLY_LIST = "TenderAuthorizationApply/List.ashx";
+
 }
