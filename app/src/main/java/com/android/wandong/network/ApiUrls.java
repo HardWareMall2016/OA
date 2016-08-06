@@ -53,8 +53,12 @@ public class ApiUrls {
 
     //招待申请-列表
     public static final String ENTERTAIN_APPLY_LIST = "EntertainApply/List.ashx";
+
     //市场活动费申请
     public static final String  COMPAIGN_APPLY_LIST = "Campaign/Apply/List.ashx";
+    //市场活动费申请列表详情
+    public static final String COMPAIGN_APPLY_DETAIL = "Campaign/Apply/Detail.ashx";
+
     //市场活动费报销
     public static final String  CAMPAIGN_EXPENSE_LIST = "Campaign/Expense/List.ashx";
     //招待申请-招待详情
