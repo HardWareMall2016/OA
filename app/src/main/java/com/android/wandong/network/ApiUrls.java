@@ -63,4 +63,10 @@ public class ApiUrls {
     public static final String ENTERTAIN_APPLY_DETAIL = "EntertainApply/Detail.ashx";
     //招待费报销列表
     public static final String ENTER_TAIN_EXPENSE = "EntertainExpense/List.ashx";
+    //专项费报销
+    public static final String  DAILY_EXPENSE_LIST = "DailyExpense/List.ashx";
+    //差旅费报销
+     public static final String TRAVEL_EXPENSE_LIST = "TravelExpense/List.ashx";
+    //考察接待申请_ 列表
+     public static final String RECEPTION_LIST = "Reception/List.ashx";
 }
