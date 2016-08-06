@@ -60,13 +60,13 @@
             android:textSize="@dimen/text_size_small" />
 
         <TextView
-            android:id="@+id/number"
+            android:id="@+id/money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:drawableLeft="@drawable/icon_number"
+            android:drawableLeft="@drawable/icon_money"
             android:drawablePadding="6dp"
-            android:text="数量"
+            android:text="招待费"
             android:textColor="@color/text_color_title"
             android:textSize="@dimen/text_size_small" />
 

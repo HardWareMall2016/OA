@@ -16,6 +16,7 @@ import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -50,6 +51,8 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
     public static final String TAB_TYPE="ENTERTAINMENT_APPLICATION";
     public static final String TAB_NAME="招待费申请";
 
+    private DecimalFormat mMoneyFormat = new DecimalFormat();
+
     private DisplayImageOptions mDisplayImageOptions=Tools.buildDisplayImgOptions(R.drawable.head_portrait_entertain_apply);
 
     @Override
@@ -64,6 +67,8 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
         requestParams.put("BeginDate", "");//开始时间
         requestParams.put("EndDate", "");//结束时间
         */
+
+        mMoneyFormat.applyPattern("###,##0.00元");
     }
 
     @Override
@@ -116,8 +121,8 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
         @ViewInject(id = R.id.name)
         protected TextView mViewName;
 
-        @ViewInject(id = R.id.number)
-        protected TextView mViewNumber;
+        @ViewInject(id = R.id.money)
+        protected TextView mViewMoney;
 
         @ViewInject(id = R.id.time)
         protected TextView mViewTime;
@@ -137,7 +142,7 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
             Tools.setTextView(mViewApplyNo, data.ApplyNo);
             Tools.setTextView(mViewAccountNamet,data.AccountName);
             Tools.setTextView(mViewName,data.OwnerName);
-            Tools.setTextView(mViewNumber, String.valueOf(data.Number));
+            Tools.setTextView(mViewMoney,  mMoneyFormat.format(data.EstimateTotal));
             //Tools.setTextView(mViewApplyNo,data.ApplyNo);
             AuditStatusHelper.setImageViewByStatus(mViewImgStatus,data.Status);
         }
