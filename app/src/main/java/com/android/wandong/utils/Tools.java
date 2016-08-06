@@ -428,6 +428,18 @@ public class Tools {
     }
 
 
+    public static DisplayImageOptions buildDisplayImgOptions(int defPic) {
+        DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(defPic)
+                    .showImageForEmptyUri(defPic)
+                    .showImageOnFail(defPic)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .build();
+        return displayImageOptions;
+    }
+
     public static void removeImgFromCache(String imgUrl) {
         MemoryCacheUtils.removeFromCache(imgUrl, ImageLoader.getInstance().getMemoryCache());
         DiskCacheUtils.removeFromCache(imgUrl, ImageLoader.getInstance().getDiskCache());

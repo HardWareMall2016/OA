@@ -24,6 +24,7 @@
                 android:layout_alignParentLeft="true"
                 android:src="@drawable/icon_occupy"
                 android:layout_centerVertical="true"/>
+
             <TextView
                 android:id="@+id/title"
                 android:layout_toRightOf="@+id/imageView1"
@@ -58,8 +59,6 @@
             android:text="这是招待费申请事由内容描叙，并且只显示一行,如果超出了就省略显示"
             android:textColor="@color/text_color_content"
             android:textSize="@dimen/text_size_normal" />
-
-
 
     </RelativeLayout>
 
