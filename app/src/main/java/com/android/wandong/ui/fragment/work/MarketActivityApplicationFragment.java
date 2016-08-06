@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.android.wandong.R;
+import com.android.wandong.base.UserInfo;
+import com.android.wandong.beans.CompaignListResponseBean;
 import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.zhan.framework.network.HttpRequestParams;
@@ -46,25 +48,29 @@ public class MarketActivityApplicationFragment extends BaseWorkPageFragment<Mark
 
     @Override
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
+        requestParams.put("UserName", UserInfo.getCurrentUser().getUserName());
+        requestParams.put("PassWord",UserInfo.getCurrentUser().getPassword());
         requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
+        requestParams.put("UserId", UserInfo.getCurrentUser().getUserId());
+
     }
 
     @Override
     protected String getRequestApiUrl() {
-        return ApiUrls.NOTICE_LIST;
+        return ApiUrls.COMPAIGN_APPLY_LIST;
     }
 
     @Override
     protected void parseResponseBeanToItemDataList(NoticeResponseBean baseResponseBean, List<ItemData> items) {
-        if(baseResponseBean.getEntityInfo()!=null){
+        //if(baseResponseBean.getEntityInfo()!=null){
             for(int i=0;i<10;i++){
                 ItemData item=new ItemData();
                 items.add(item);
             }
-        }
+       // }
     }
+
 
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
