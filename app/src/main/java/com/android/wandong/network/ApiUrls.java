@@ -57,4 +57,6 @@ public class ApiUrls {
     public static final String ENTERTAIN_APPLY_LIST = "EntertainApply/List.ashx";
     //市场活动费申请
     public static final String  COMPAIGN_APPLY_LIST = "Campaign/Apply/List.ashx";
+    //招待申请-招待详情
+    public static final String ENTERTAIN_APPLY_DETAIL = "EntertainApply/Detail.ashx";
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.android.wandong.R;
 import com.android.wandong.beans.EntertainApplyListResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.android.wandong.utils.Tools;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -98,7 +99,7 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        EntertainmentApplicationDetailFragment.launch(getActivity());
+        EntertainmentApplicationDetailsFragment.launch(getActivity(),getAdapterItems().get((int)id).EntertainId);
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
@@ -138,26 +139,7 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
             Tools.setTextView(mViewName,data.OwnerName);
             Tools.setTextView(mViewNumber, String.valueOf(data.Number));
             //Tools.setTextView(mViewApplyNo,data.ApplyNo);
-            //审批状态1：草稿（暂时没用）2：待审批，3：已审批，4：驳回，5：撤销
-            mViewImgStatus.setVisibility(View.GONE);
-            switch (data.Status){
-                case 1:
-                    break;
-                case 2:
-                    mViewImgStatus.setVisibility(View.VISIBLE);
-                    mViewImgStatus.setImageResource(R.drawable.icon_pending_review);
-                    break;
-                case 3:
-                    mViewImgStatus.setVisibility(View.VISIBLE);
-                    mViewImgStatus.setImageResource(R.drawable.icon_passed);
-                    break;
-                case 4:
-                    mViewImgStatus.setVisibility(View.VISIBLE);
-                    mViewImgStatus.setImageResource(R.drawable.icon_not_passed);
-                    break;
-                case 5:
-                    break;
-            }
+            AuditStatusHelper.setImageViewByStatus(mViewImgStatus,data.Status);
         }
     }
 
