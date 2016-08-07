@@ -93,7 +93,7 @@ public class EntertainmentReimbursementFragment extends BaseWorkPageFragment<Ent
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        EntertainmentReimbursementDetailFragment.launch(getActivity());
+        EntertainmentReimbursementDetailFragment.launch(getActivity(),getAdapterItems().get((int) id).getId());
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{

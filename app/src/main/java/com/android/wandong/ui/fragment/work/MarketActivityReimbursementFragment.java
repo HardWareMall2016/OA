@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -9,6 +10,7 @@ import com.android.wandong.beans.MarketActivityReimbursementResponseBean;
 import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
+import com.android.wandong.ui.fragment.work.Tools.MarketActivityApplicationDetailsFragment;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -86,6 +88,11 @@ public class MarketActivityReimbursementFragment extends BaseWorkPageFragment<Ma
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
         return new ListItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        MarketActivityReimbursementDetailsFragment.launch(getActivity(), getAdapterItems().get((int) id).CampaignId);
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
