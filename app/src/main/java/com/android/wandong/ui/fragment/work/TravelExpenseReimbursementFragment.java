@@ -1,12 +1,15 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.beans.NoticeResponseBean;
+import com.android.wandong.beans.TravelExpenseReimburseContent;
 import com.android.wandong.beans.TravelExpenseReimburseResponseBean;
+import com.android.wandong.beans.TravelExpenseReimbursementDetailsFragment;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.zhan.framework.network.HttpRequestParams;
@@ -81,6 +84,16 @@ public class TravelExpenseReimbursementFragment extends BaseWorkPageFragment<Tra
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
         return new ListItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        TravelExpenseReimburseContent content = new TravelExpenseReimburseContent();
+        content.setAuditStatus(getAdapterItems().get((int) id).getAuditStatus()+"");
+        content.setStepNumber(getAdapterItems().get((int) id).getStepNumber() + "");
+        content.setTravelCostId(getAdapterItems().get((int) id).getTravelCostId());
+        TravelExpenseReimbursementDetailsFragment.launch(getActivity(), content);
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{

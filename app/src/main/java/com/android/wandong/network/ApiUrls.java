@@ -74,8 +74,14 @@ public class ApiUrls {
 
     //专项费报销
     public static final String  DAILY_EXPENSE_LIST = "DailyExpense/List.ashx";
+    //专项费报销详情
+    public static final String DAILY_EXPENSE_DETAIL = "DailyExpense/Detail.ashx";
+
     //差旅费报销
      public static final String TRAVEL_EXPENSE_LIST = "TravelExpense/List.ashx";
+    //差旅费报销详情
+     public static final String TRAVEL_EXPENSE_DETAIL = "TravelExpense/Detail.ashx";
+
     //考察接待申请_ 列表
      public static final String RECEPTION_LIST = "Reception/List.ashx";
     //招投标申请_列表

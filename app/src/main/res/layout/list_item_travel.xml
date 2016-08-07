@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_white_rounded"
+        android:padding="10dp">
+
+        <com.zhan.framework.ui.widget.CircleImageView
+            android:id="@+id/headPortrait"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/bg_head_portrait" />
+
+        <TextView
+            android:id="@+id/return_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/headPortrait"
+            android:text="往返地址"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_small" />
+
+
+        <TextView
+            android:id="@+id/travel_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/return_address"
+            android:layout_alignStart="@id/return_address"
+            android:layout_below="@id/return_address"
+            android:layout_marginTop="8dp"
+            android:text="出差时间"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/travel_tool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_alignLeft="@id/travel_time"
+            android:layout_alignStart="@id/travel_time"
+            android:layout_below="@id/travel_time"
+            android:text="交通工具"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_small" />
+
+        <ImageView
+            android:id="@+id/travel_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_yellow_down" />
+        <LinearLayout
+            android:id="@+id/ll_travel_yincang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignLeft="@id/travel_tool"
+            android:layout_alignStart="@id/travel_tool"
+            android:layout_below="@id/travel_tool"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/travel_Hotel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="住宿费"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/travel_Hotel_butie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="住宿费补贴"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/travel_Meal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="餐补"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_small" />
+                <TextView
+                    android:id="@+id/travel_Meal_butie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="交通补贴"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/travel_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="其他"
+                android:textColor="@color/text_color_title"
+                android:textSize="@dimen/text_size_small" />
+            <TextView
+                android:id="@+id/travel_shiyou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="出差事由："
+                android:textColor="@color/text_color_title"
+                android:textSize="@dimen/text_size_small" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_travel_money"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="报销金额"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="360"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_travel_money"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="出差天数"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="天"
+                        android:layout_gravity="center"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_travel_money"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="报销金额"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="天"
+                        android:layout_gravity="center"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

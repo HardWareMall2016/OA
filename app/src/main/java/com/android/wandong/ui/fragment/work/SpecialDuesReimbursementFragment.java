@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -84,6 +85,11 @@ public class SpecialDuesReimbursementFragment extends BaseWorkPageFragment<Speci
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
         return new ListItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        SpecialDuesReimbursementDetailsFragment.launch(getActivity(), getAdapterItems().get((int) id).Id);
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
