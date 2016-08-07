@@ -118,14 +118,8 @@ public class WorkReportDetailsFragment extends ABaseFragment {
     @ViewInject(id = R.id.dailyWorkContent)
     protected View mViewDailyWorkContent;
 
-    @ViewInject(id = R.id.relative_customer)
-    protected TextView mViewRelativeCustomer;
-
-    @ViewInject(id = R.id.dailyWorkSummaryTitle)
-    protected TextView mViewDailyWorkSummaryTitle;
-
-    @ViewInject(id = R.id.dailyWorkSummary)
-    protected TextView mViewDailyWorkSummary;
+    @ViewInject(id = R.id.relativeCustomer_dailyWorkSummary)
+    protected LinearLayout mViewContentRelativeCustomerDailyWorkSummary;
 
     @ViewInject(id = R.id.nextDayWorkPlanTitle)
     protected TextView mViewNextDayWorkPlanTitle;
@@ -158,6 +152,8 @@ public class WorkReportDetailsFragment extends ABaseFragment {
 
     private String mCommentsContent="";
 
+    private LayoutInflater mInflater;
+
     public static void launch(Activity activity, WorkReportListFragment.ItemData data) {
         FragmentArgs args = new FragmentArgs();
         args.add(ARG_KEY, data);
@@ -179,9 +175,10 @@ public class WorkReportDetailsFragment extends ABaseFragment {
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
+        mInflater=inflater;
         getActivity().setTitle("工作报告详情");
         populateReplyViews();
-
+        
         refreshSendBtnEnable(mViewSendBtn, false);
         mViewClickToInput.addTextChangedListener(mReplyTextWatcher);
         mViewSendBtn.setOnClickListener(mOnSendClickListener);
@@ -417,18 +414,16 @@ public class WorkReportDetailsFragment extends ABaseFragment {
 
         }else if("日报".equals(mReportData.new_reporttype)){
             mViewDailyWorkContent.setVisibility(View.VISIBLE);
-            if(mReportData.newWorkSummary.size()>0){
-                mViewRelativeCustomer.setVisibility(View.VISIBLE);
-                mViewDailyWorkSummaryTitle.setVisibility(View.VISIBLE);
-                mViewDailyWorkSummary.setVisibility(View.VISIBLE);
-
-                Tools.setTextView(mViewRelativeCustomer, String.format("关联客户:%s", mReportData.newWorkSummary.get(0).new_customername));
-                Tools.setTextView(mViewDailyWorkSummary, mReportData.newWorkSummary.get(0).new_workcontent);
-            }else{
-                mViewRelativeCustomer.setVisibility(View.GONE);
-                mViewDailyWorkSummaryTitle.setVisibility(View.GONE);
-                mViewDailyWorkSummary.setVisibility(View.GONE);
-            }
+             mViewContentRelativeCustomerDailyWorkSummary.removeAllViews();
+             if(mReportData.newWorkSummary.size()>0){
+                 for(WorkReportListFragment.NewWorkSummary summary:mReportData.newWorkSummary){
+                     View view= mInflater.inflate(R.layout.item_work_report_relative_cus_daily_summary,mViewContentRelativeCustomerDailyWorkSummary,true);
+                     TextView viewRelativeCustomer= (TextView)view.findViewById(R.id.relative_customer);
+                     TextView viewDailyWorkSummary= (TextView)view.findViewById(R.id.dailyWorkSummary);
+                     Tools.setTextView(viewRelativeCustomer, String.format("关联客户:%s",summary.new_customername));
+                     Tools.setTextView(viewDailyWorkSummary, summary.new_workcontent);
+                 }
+             }
             if(TextUtils.isEmpty(mReportData.new_workplan)){
                 mViewNextDayWorkPlanTitle.setVisibility(View.GONE);
                 mViewNextDayWorkPlan.setVisibility(View.GONE);

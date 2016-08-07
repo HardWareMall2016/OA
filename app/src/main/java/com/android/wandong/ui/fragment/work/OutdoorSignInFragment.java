@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -14,12 +16,14 @@ import com.android.wandong.beans.OutDoorSignInListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
+import com.zhan.framework.utils.PixelUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +61,9 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
     public static final String TAB_TYPE="OUTDOOR_SIGN_IN";
     public static final String TAB_NAME="外勤签到";
 
+    @ViewInject(id = R.id.search_content)
+    protected View mViewContentSearch;
+
     private final static int PAGE_SIZE=10;
 
     private LayoutInflater mInflater;
@@ -70,6 +77,13 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         mInflater=inflater;
+    }
+
+    @Override
+    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
+        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
+        listView.setDividerHeight(PixelUtils.dp2px(16));
+        listView.setPadding(0, -PixelUtils.dp2px(16), 0, 0);
     }
 
     @Override

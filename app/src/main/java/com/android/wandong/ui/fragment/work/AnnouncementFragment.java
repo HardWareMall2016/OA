@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -15,10 +17,12 @@ import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.common.PhotosFragment;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
+import com.zhan.framework.utils.PixelUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +66,14 @@ public class AnnouncementFragment extends BaseWorkPageFragment<AnnouncementFragm
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         mInflater=inflater;
+    }
+
+    @Override
+    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
+        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
+        listView.setDividerHeight(PixelUtils.dp2px(16));
+        LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)mViewContentSearch.getLayoutParams();
+        lp.bottomMargin=0;
     }
 
     @Override
