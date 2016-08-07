@@ -13,18 +13,19 @@
         android:background="@drawable/bg_white_rounded"
         android:padding="10dp">
 
-        <com.zhan.framework.ui.widget.CircleImageView
-            android:id="@+id/headPortrait"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/bg_head_portrait" />
+        <TextView
+            android:id="@+id/head_number"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_round_yellow"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/return_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/headPortrait"
+            android:layout_toRightOf="@id/head_number"
             android:text="往返地址"
             android:textColor="@color/text_color_title"
             android:textSize="@dimen/text_size_small" />
