@@ -276,6 +276,9 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         @ViewInject(id = R.id.ll_travel_yincang)
         LinearLayout mTravelYIncNG ;
 
+        @ViewInject(id = R.id.head_number)
+        TextView mHeadNumber ;
+
         @ViewInject(id = R.id.travel_indicator)
         ImageView mIndicator ;
 
@@ -287,9 +290,11 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         @Override
         public void bindingData(View convertView, final DetailItem data) {
             //ImageLoader.getInstance().displayImage(data.ApprovalTime, headPortrait, Tools.buildDisplayImageOptionsForAvatar());
+            mHeadNumber.setText(getPosition()+1+"");
             mAddress.setText("往返地址："+data.Origin+"-"+data.Destination);
             mTravelTime.setText("出差时间："+data.TravelDays+"天");
             mTravelTool.setText("交通工具：" + data.TrainTicket + "|交通费：" + data.Travel + "");
+
 
             if(data.expand){
                 mTravelYIncNG.setVisibility(View.VISIBLE);
