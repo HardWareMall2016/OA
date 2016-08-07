@@ -42,7 +42,7 @@ public class FixViewPager extends ViewPager {
     public FixViewPager(Context context) {
         super(context);
     }
-    
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int height = 0;
