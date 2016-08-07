@@ -1,10 +1,8 @@
 package com.android.wandong.ui.fragment.work;
 
-import android.graphics.Color;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +19,7 @@ import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,7 +111,10 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        WorkReportDetailsFragment.launch(getActivity(),getAdapterItems().get((int)id).entityId);
+        ItemData data=getAdapterItems().get((int)id);
+        if(!"True".equals(data.new_isrest)){
+            WorkReportDetailsFragment.launch(getActivity(),data);
+        }
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
@@ -312,7 +314,8 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         }
     }
 
-    public class ItemData {
+    public static class ItemData implements Serializable{
+        private static final long serialVersionUID = 6732554588714814444L;
         String entityId;
         String new_workplan;
         String new_workexperience;
@@ -331,10 +334,11 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         String new_isrest;
         String new_replynumber;
 
-        private List<NewWorkSummary> newWorkSummary=new ArrayList<>();
+        List<NewWorkSummary> newWorkSummary=new ArrayList<>();
     }
 
-    public static class NewWorkSummary {
+    public static class NewWorkSummary implements Serializable{
+        private static final long serialVersionUID = -1318979797552104595L;
         String new_customerid;
         String new_customername;
         String new_workcontent;
