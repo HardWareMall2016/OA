@@ -1,4 +1,4 @@
-package com.android.wandong.ui.fragment.work.Tools;
+package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.beans.MarketApplyDetailResponseBean;
+import com.android.wandong.beans.MarketReimburseDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.android.wandong.ui.widget.FixListView;
 import com.android.wandong.utils.Tools;
 import com.zhan.framework.component.container.FragmentArgs;
@@ -30,8 +32,8 @@ import java.util.ArrayList;
 /**
  * Created by ${keke} on 16/8/7.
  */
-public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
-    private final static String ARG_KEY = "market_key";
+public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
+    private final static String ARG_KEY = "market_reimbur_key";
 
     @ViewInject(id = R.id.ApplyNo)
     private TextView mViewApplyNo;//申请单号
@@ -45,8 +47,6 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
     private TextView mViewTime;//时间
     @ViewInject(id = R.id.img_status)
     private ImageView mViewStatus;//审批状态
-    private String mCampaignId;
-
     @ViewInject(id = R.id.listViewApproval)
     private FixListView mListViewApproval;
 
@@ -56,21 +56,22 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
     @ViewInject(id = R.id.ApprovalInformation, click = "OnClick")
     private View mViewApprovalInformation;//审批信息
 
-    private DecimalFormat mMoneyFormat = new DecimalFormat();
+    private String mCampaignId;
 
+    private DecimalFormat mMoneyFormat = new DecimalFormat();
     private Handler mHandler=new Handler();
 
     @Override
     protected int inflateContentView() {
-        return R.layout.frag_market_application_details;
+        return R.layout.frag_market_reimburse_details;
     }
 
-
-    public static void launch(FragmentActivity activity, String entertainApplyId) {
+    public static void launch(FragmentActivity activity, String campaignId) {
         FragmentArgs args = new FragmentArgs();
-        args.add(ARG_KEY, entertainApplyId);
-        FragmentContainerActivity.launch(activity, MarketActivityApplicationDetailsFragment.class, args);
+        args.add(ARG_KEY, campaignId);
+        FragmentContainerActivity.launch(activity, MarketActivityReimbursementDetailsFragment.class, args);
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,27 +88,27 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("市场活动费申请详情");
+        getActivity().setTitle("市场活动费报销详情");
         mMoneyFormat.applyPattern("###,##0.00元");
     }
 
     @Override
     public void requestData() {
         HttpRequestParams requestParams = Tools.createHttpRequestParams();
-        requestParams.put("CampaignId", mCampaignId);
-        startFormRequest(ApiUrls.COMPAIGN_APPLY_DETAIL, requestParams, new BaseHttpRequestTask<MarketApplyDetailResponseBean>() {
+        requestParams.put("CampaignCostId", mCampaignId);
+        startFormRequest(ApiUrls.CAMPAIGN_EXPENSE_DETAIL, requestParams, new BaseHttpRequestTask<MarketReimburseDetailResponseBean>() {
             @Override
-            public MarketApplyDetailResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, MarketApplyDetailResponseBean.class);
+            public MarketReimburseDetailResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, MarketReimburseDetailResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(MarketApplyDetailResponseBean result) {
+            public String verifyResponseResult(MarketReimburseDetailResponseBean result) {
                 return Tools.verifyResponseResult(result);
             }
 
             @Override
-            protected void onSuccess(MarketApplyDetailResponseBean result) {
+            protected void onSuccess(MarketReimburseDetailResponseBean result) {
                 super.onSuccess(result);
                 //这里加正确处理的逻辑就好了
                 if (result != null && result.getEntityInfo() != null) {
@@ -119,8 +120,7 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
         }, HttpRequestUtils.RequestType.POST);
     }
 
-
-    private void populateView(MarketApplyDetailResponseBean result) {
+    private void populateView(MarketReimburseDetailResponseBean result) {
         if (result.getEntityInfo().getDetail() != null) {
             Tools.setTextView(mViewApplyNo, result.getEntityInfo().getDetail().getName());
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getCampaignName()+"(国内展览)");
@@ -131,7 +131,7 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
         }
         ArrayList<ApprovalItem> approvalItems = new ArrayList<>();
         if(result.getEntityInfo().getApproval() != null){
-            for (MarketApplyDetailResponseBean.EntityInfoBean.ApprovalBean bean : result.getEntityInfo().getApproval()) {
+            for (MarketReimburseDetailResponseBean.EntityInfoBean.ApprovalBean bean : result.getEntityInfo().getApproval()) {
                 ApprovalItem item = new ApprovalItem();
                 item.StepNumber = bean.getStepNumber();
                 item.ApprovalTime = bean.getApprovalTime();
@@ -168,7 +168,7 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
                 }
                 break;
         }
-        }
+    }
 
     private class ApprovalItem {
         String StepNumber;
@@ -224,4 +224,5 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
 
         }
     }
+
 }
