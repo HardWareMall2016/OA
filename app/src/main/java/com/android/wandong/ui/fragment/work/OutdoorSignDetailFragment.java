@@ -7,6 +7,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +20,7 @@ import com.android.wandong.R;
 import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.beans.OutDoorSignDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentArgs;
@@ -28,6 +32,9 @@ import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.utils.PixelUtils;
 import com.zhan.framework.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 作者：伍岳 on 2016/7/21 13:52
@@ -57,30 +64,32 @@ import com.zhan.framework.utils.ToastUtils;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatcher {
+public class OutdoorSignDetailFragment extends ABaseFragment {
     private final static String ARG_KEY = "arg_key";
     private String mSignId;
-
-    @ViewInject(id = R.id.location)
-    TextView mViewLocation;
 
     @ViewInject(id = R.id.relative_customer)
     TextView mViewRelativeCustomer;
 
-    @ViewInject(id = R.id.word_tips)
-    TextView mViewWordTips;
+    @ViewInject(id = R.id.sign_in_time)
+    TextView mViewSignInTime;
+
+    @ViewInject(id = R.id.sign_in_address)
+    TextView mViewSignInAddress;
+
+    @ViewInject(id = R.id.sign_out_time)
+    TextView mViewSignOutTime;
+
+    @ViewInject(id = R.id.sign_out_address)
+    TextView mViewSignOutAddress;
 
     @ViewInject(id = R.id.remark)
-    EditText mViewRemark;
+    TextView mViewRemark;
 
-    @ViewInject(id = R.id.img_content)
-    LinearLayout mViewContentImgs;
+    @ViewInject(id = R.id.attachment_info)
+    FixGridView mViewAttachmentInfo;
 
-    @ViewInject(id = R.id.btn_submit,click = "OnClick")
-    Button mBtnSubmit;
-
-    //data
-    private int mAbnormal;
+    private LayoutInflater mInflater;
 
     public static void launch(Activity activity, String signId) {
         FragmentArgs args = new FragmentArgs();
@@ -104,15 +113,8 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("外勤签到");
-        mViewRemark.addTextChangedListener(this);
-        mViewRemark.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                mViewRemark.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
+        mInflater=inflater;
+        getActivity().setTitle("外勤签到详情");
     }
 
     @Override
@@ -137,19 +139,35 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
             }
 
             @Override
-            protected void onSuccess(OutDoorSignDetailResponseBean result) {
+            protected void onSuccess(final OutDoorSignDetailResponseBean result) {
                 super.onSuccess(result);
                 //这里加正确处理的逻辑就好了
                 if (result != null && result.getEntityInfo() != null && result.getEntityInfo().getSignInfo() != null) {
-                    Tools.setTextView(mViewLocation, result.getEntityInfo().getSignInfo().getAddress());
+                    Tools.setTextView(mViewSignInAddress, result.getEntityInfo().getSignInfo().getAddress());
+                    Tools.setTextView(mViewSignOutAddress, result.getEntityInfo().getSignInfo().getSignOutAddress());
                     Tools.setTextView(mViewRelativeCustomer, result.getEntityInfo().getSignInfo().getAccountName());
                     Tools.setTextView(mViewRemark, result.getEntityInfo().getSignInfo().getRemarks());
-                    mViewWordTips.setText(String.format("(%d/200)", mViewRemark.getText().length()));
 
-                    mAbnormal=result.getEntityInfo().getSignInfo().getSignabnormal();
+                    if(result.getEntityInfo().getAttachmentInfo().size()==0){
+                        mViewAttachmentInfo.setVisibility(View.GONE);
+                    }else {
+                        mViewAttachmentInfo.setVisibility(View.VISIBLE);
+                        mViewAttachmentInfo.setAdapter(new GridViewAdapter(result.getEntityInfo().getAttachmentInfo()));
+                        mViewAttachmentInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                OutdoorSignAttachmentsFragment.ParamsBean paramsBean=new OutdoorSignAttachmentsFragment.ParamsBean();
+                                paramsBean.photos=result.getEntityInfo().getAttachmentInfo();
+                                paramsBean.showPos=position;
+                                paramsBean.address=result.getEntityInfo().getSignInfo().getAddress();
+                                OutdoorSignAttachmentsFragment.launch(getActivity(), paramsBean);
+                            }
+                        });
+                    }
                 }
 
-                mViewContentImgs.removeAllViews();
+
+                /*mViewContentImgs.removeAllViews();
 
                 if (result != null && result.getEntityInfo() != null && result.getEntityInfo().getAttachmentInfo() != null) {
                     for (String imgUrl : result.getEntityInfo().getAttachmentInfo()) {
@@ -160,63 +178,54 @@ public class OutdoorSignDetailFragment extends ABaseFragment implements TextWatc
                         lp.leftMargin = PixelUtils.dp2px(8);
                         mViewContentImgs.addView(imageView, lp);
                     }
-                }
-
-                ImageView imageView = new ImageView(getActivity());
-                imageView.setImageResource(R.drawable.icon_outdoor_sign_add_photo);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(PixelUtils.dp2px(90), PixelUtils.dp2px(90));
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                lp.leftMargin = PixelUtils.dp2px(8);
-                mViewContentImgs.addView(imageView, lp);
+                }*/
             }
         }, HttpRequestUtils.RequestType.POST);
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+    private class GridViewAdapter extends BaseAdapter {
+        List<String> mAttachmentInfo=new ArrayList<>();
+        public GridViewAdapter( List<String> attachmentInfo){
+            mAttachmentInfo=attachmentInfo;
+        }
+
+        @Override
+        public int getCount() {
+            return mAttachmentInfo.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mAttachmentInfo.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            GridViewHolder holder;
+            if(convertView==null){
+                convertView=mInflater.inflate(R.layout.list_item_common_attachment,null);
+                holder=new GridViewHolder(convertView);
+            }else{
+                holder= (GridViewHolder)convertView.getTag();
+            }
+
+            ImageLoader.getInstance().displayImage(mAttachmentInfo.get(position), holder.viewAttachment, Tools.buildDefDisplayImgOptions());
+
+            return convertView;
+        }
     }
 
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        mViewWordTips.setText(String.format("(%d/200)",mViewRemark.getText().length()));
-    }
-
-    void OnClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_submit:
-                if(isRequestProcessing(ApiUrls.OUTDOOR_SIGN_OUT)){
-                    return;
-                }
-                showRotateProgressDialog("正在签出...",false);
-                HttpRequestParams requestParams = Tools.createHttpRequestParams();
-                requestParams.put("signId", mSignId);
-                requestParams.put("Remarks", mViewRemark.getText().toString());
-                requestParams.put("Address", mViewLocation.getText());
-                requestParams.put("Abnormal",mAbnormal);
-                startFormRequest(ApiUrls.OUTDOOR_SIGN_OUT, requestParams, new HttpRequestHandler(this) {
-                    @Override
-                    public void onRequestFinished(ResultCode resultCode, String result) {
-                        closeRotateProgressDialog();
-                        switch (resultCode){
-                            case success:
-                                BaseResponseBean responseBean=Tools.parseJsonTostError(result,BaseResponseBean.class);
-                                if(responseBean!=null){
-                                    ToastUtils.toast("签出成功！");
-                                    getActivity().finish();
-                                }
-                                break;
-                            default:
-                                ToastUtils.toast(result);
-                                break;
-                        }
-                    }
-                }, HttpRequestUtils.RequestType.POST);
+    private class GridViewHolder{
+        public ImageView viewAttachment;
+        public GridViewHolder(View convertView){
+            viewAttachment=(ImageView)convertView.findViewById(R.id.attachment);
+            convertView.setTag(this);
         }
     }
 }
