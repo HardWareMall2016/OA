@@ -84,8 +84,13 @@ public class ApiUrls {
 
     //考察接待申请_ 列表
      public static final String RECEPTION_LIST = "Reception/List.ashx";
+    //考察接待申请详情
+     public static final String RECEPTION_DETAIL = "Reception/Detail.ashx";
+
     //招投标申请_列表
     public static final String TENDER_AUTHORIZATION_APPLY_LIST = "TenderAuthorizationApply/List.ashx";
+    //招投标申请详情
+    public static final String TENDER_AUTHORIZATION_APPLY_DETAIL = "TenderAuthorizationApply/Detail.ashx";
 
     //工作报告详情_回复列表
     public static final String WORK_REPORT_GET_REPLY_USERS_LIST = "WorkReport/GetReplyUsersList.ashx ";

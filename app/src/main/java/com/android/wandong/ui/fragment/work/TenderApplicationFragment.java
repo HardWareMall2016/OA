@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -80,6 +81,11 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
         return new ListItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        TenderApplicationDetailsFragment.launch(getActivity(), getAdapterItems().get((int) id).TenderAuthorizationId);
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
