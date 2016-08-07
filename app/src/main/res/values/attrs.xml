@@ -52,7 +52,7 @@
     <!-- 等级 -->
     <attr name="rating" format="float" />
     <!-- 是否是指示器 -->
-    <!--<attr name = "isIndicator" format = "boolean" />-->
+    <attr name = "isIndicator" format = "boolean" />
     <!-- 每个星星的间距 -->
     <attr name="startsPadding" format="dimension" />
     <!-- 是否可用-->

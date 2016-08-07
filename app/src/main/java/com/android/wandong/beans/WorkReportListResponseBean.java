@@ -1,6 +1,5 @@
 package com.android.wandong.beans;
 
-import com.android.wandong.base.BaseRequestBean;
 import com.android.wandong.base.BaseResponseBean;
 
 import java.util.List;
@@ -35,7 +34,6 @@ import java.util.List;
  */
 public class WorkReportListResponseBean extends BaseResponseBean {
 
-
     private int errorcode;
 
     private List<EntityInfoBean> entityInfo;
@@ -62,6 +60,8 @@ public class WorkReportListResponseBean extends BaseResponseBean {
         private String new_workexperience;
         private String new_reporttype;
         private String ownerid;
+        private String new_headportrait;
+        private String new_hyphenateid;
         private String ownername;
         private String createdon;
         private String new_commentpersonid;
@@ -69,10 +69,11 @@ public class WorkReportListResponseBean extends BaseResponseBean {
         private String new_commenttime;
         private String new_commentcontent;
         private String new_scorelabel;
-        private String new_score;
+        private int new_score;
         private String new_isrest;
         private String new_replynumber;
-        private List<?> new_worksummary;
+
+        private List<NewWorksummaryBean> new_worksummary;
 
         public String getEntityId() {
             return entityId;
@@ -112,6 +113,22 @@ public class WorkReportListResponseBean extends BaseResponseBean {
 
         public void setOwnerid(String ownerid) {
             this.ownerid = ownerid;
+        }
+
+        public String getNew_headportrait() {
+            return new_headportrait;
+        }
+
+        public void setNew_headportrait(String new_headportrait) {
+            this.new_headportrait = new_headportrait;
+        }
+
+        public String getNew_hyphenateid() {
+            return new_hyphenateid;
+        }
+
+        public void setNew_hyphenateid(String new_hyphenateid) {
+            this.new_hyphenateid = new_hyphenateid;
         }
 
         public String getOwnername() {
@@ -170,11 +187,11 @@ public class WorkReportListResponseBean extends BaseResponseBean {
             this.new_scorelabel = new_scorelabel;
         }
 
-        public String getNew_score() {
+        public int getNew_score() {
             return new_score;
         }
 
-        public void setNew_score(String new_score) {
+        public void setNew_score(int new_score) {
             this.new_score = new_score;
         }
 
@@ -194,12 +211,42 @@ public class WorkReportListResponseBean extends BaseResponseBean {
             this.new_replynumber = new_replynumber;
         }
 
-        public List<?> getNew_worksummary() {
+        public List<NewWorksummaryBean> getNew_worksummary() {
             return new_worksummary;
         }
 
-        public void setNew_worksummary(List<?> new_worksummary) {
+        public void setNew_worksummary(List<NewWorksummaryBean> new_worksummary) {
             this.new_worksummary = new_worksummary;
+        }
+
+        public static class NewWorksummaryBean {
+            private String new_customerid;
+            private String new_customername;
+            private String new_workcontent;
+
+            public String getNew_customerid() {
+                return new_customerid;
+            }
+
+            public void setNew_customerid(String new_customerid) {
+                this.new_customerid = new_customerid;
+            }
+
+            public String getNew_customername() {
+                return new_customername;
+            }
+
+            public void setNew_customername(String new_customername) {
+                this.new_customername = new_customername;
+            }
+
+            public String getNew_workcontent() {
+                return new_workcontent;
+            }
+
+            public void setNew_workcontent(String new_workcontent) {
+                this.new_workcontent = new_workcontent;
+            }
         }
     }
 }
