@@ -58,6 +58,9 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
     @ViewInject(id = R.id.listViewApproval)
     FixListView mListViewApproval;
 
+
+    private TravelAdapter mTravelAdapter;
+
     private TravelExpenseReimburseContent mContent;
     private String mTravelCostId ;
     private DecimalFormat mMoneyFormat = new DecimalFormat();
@@ -200,7 +203,8 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         }
 
         mListViewApproval.setAdapter(new ApprovalAdapter(approvalItems, getActivity()));
-        mListViewTravel.setAdapter(new TravelAdapter(detailItems, getActivity()));
+        mTravelAdapter=new TravelAdapter(detailItems, getActivity());
+        mListViewTravel.setAdapter(mTravelAdapter);
     }
 
     private class ApprovalItem{
@@ -214,6 +218,7 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
     }
 
     private class DetailItem{
+        boolean expand=false;
         String TravelPaymentId;
         String BeginDate;
         String EndDate;
@@ -280,30 +285,31 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         }
 
         @Override
-        public void bindingData(View convertView, DetailItem data) {
+        public void bindingData(View convertView, final DetailItem data) {
             //ImageLoader.getInstance().displayImage(data.ApprovalTime, headPortrait, Tools.buildDisplayImageOptionsForAvatar());
             mAddress.setText("往返地址："+data.Origin+"-"+data.Destination);
             mTravelTime.setText("出差时间："+data.TravelDays+"天");
-            mTravelTool.setText("交通工具："+data.TrainTicket+"|交通费："+data.Travel+"");
+            mTravelTool.setText("交通工具：" + data.TrainTicket + "|交通费：" + data.Travel + "");
+
+            if(data.expand){
+                mTravelYIncNG.setVisibility(View.VISIBLE);
+                mIndicator.setImageResource(R.drawable.icon_yellow_up);
+            }else{
+                mTravelYIncNG.setVisibility(View.GONE);
+                mIndicator.setImageResource(R.drawable.icon_yellow_down);
+            }
 
             mIndicator.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mTravelYIncNG.getVisibility() == View.GONE){
-                        mTravelYIncNG.setVisibility(View.VISIBLE);
-                        mIndicator.setImageResource(R.drawable.icon_yellow_up);
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                //滚动到底部
-                                ScrollView scrollView = (ScrollView) contentLayout;
-                                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                            }
-                        }, 50);
-                    }else{
-                        mTravelYIncNG.setVisibility(View.GONE);
-                        mIndicator.setImageResource(R.drawable.icon_yellow_down);
-                    }
+                    data.expand=!data.expand;
+                    mTravelAdapter.notifyDataSetChanged();
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListViewTravel.requestLayout();
+                        }
+                    }, 50);
                 }
             });
         }

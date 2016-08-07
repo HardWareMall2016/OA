@@ -24,7 +24,7 @@ public class RatingBar extends LinearLayout{
 	
 	private float mRating=0;
 	
-	//private boolean mIsIndicator;
+	private boolean mIsIndicator;
 	private boolean mEnable;
 	
 	private OnRatingBarChangeListener mOnRatingBarChangeListener;
@@ -55,7 +55,7 @@ public class RatingBar extends LinearLayout{
 
 		mRating=a.getFloat(R.styleable.RatingBar_rating, 0);
 		
-		//mIsIndicator=a.getBoolean(R.styleable.RatingBar_isIndicator, true);
+		mIsIndicator=a.getBoolean(R.styleable.RatingBar_isIndicator, false);
 		mStartsPadding = a.getDimensionPixelSize(R.styleable.RatingBar_startsPadding, mStartsPadding);
 		mEnable=a.getBoolean(R.styleable.RatingBar_enable, true);
 		
@@ -136,9 +136,9 @@ public class RatingBar extends LinearLayout{
 		refreshItems();
 	}
 	
-	/*public void setIsIndicator(boolean isIndicator){
+	public void setIsIndicator(boolean isIndicator){
 		mIsIndicator=isIndicator;
-	}*/
+	}
 	
 	private void refreshItems(){
 		int fullStartIndex=mRating>0?((int) mRating-1):-1;
@@ -169,7 +169,7 @@ public class RatingBar extends LinearLayout{
 	private OnClickListener mOnStartsClickListener=new OnClickListener(){
 		@Override
 		public void onClick(View v) {
-			if(/*!mIsIndicator&&*/mEnable){
+			if(!mIsIndicator&&mEnable){
 				int index=getChildIndex(v);
 				setRating(index+1,true);
 			}else if(mOnDisableClickedListener!=null){
