@@ -41,7 +41,7 @@
         android:textColor="@color/text_color_supplementary"
         android:textSize="@dimen/text_size_small" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         android:singleLine="true"
         android:text="外勤签到"
         android:textColor="@color/text_color_supplementary"
-        android:textSize="@dimen/text_size_small" />
+        android:textSize="@dimen/text_size_small" />-->
 
     <TextView
         android:id="@+id/sign_time"

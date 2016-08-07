@@ -27,67 +27,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:singleLine="true"
-                    android:text="签到时间"
-                    android:textColor="@color/text_color_supplementary"
-                    android:textSize="@dimen/text_size_normal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:singleLine="true"
-                    android:text="2016-04-25 20:34"
-                    android:textColor="@color/text_color_content"
-                    android:textSize="@dimen/text_size_normal" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_small"
-                android:orientation="vertical"
-                android:paddingBottom="16dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:singleLine="true"
-                    android:text="签到地址"
-                    android:textColor="@color/text_color_supplementary"
-                    android:textSize="@dimen/text_size_normal" />
-
-                <TextView
-                    android:id="@+id/location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="签到地址内容描叙,签到地址内容描叙,签到地址内容描叙"
-                    android:textColor="@color/text_color_content"
-                    android:textSize="@dimen/text_size_normal" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_small"
-                android:minHeight="48dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/icon_outdoor_sign_customer"
+                    android:drawablePadding="8dp"
                     android:singleLine="true"
                     android:text="关联客户"
-                    android:textColor="@color/text_color_supplementary"
+                    android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
@@ -97,83 +41,185 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:singleLine="true"
-                    android:text="上海企业在线信息有限公司"
-                    android:textColor="@color/text_color_content"
+                    android:text="客户"
+                    android:textColor="@color/text_color_title"
                     android:textSize="@dimen/text_size_normal" />
 
             </RelativeLayout>
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="签到信息"
+                android:textColor="@color/text_color_content"
+                android:textSize="@dimen/text_size_small" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_small"
-                android:orientation="vertical"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:singleLine="true"
-                    android:text="备注"
-                    android:textColor="@color/text_color_supplementary"
-                    android:textSize="@dimen/text_size_normal" />
-
-                <EditText
-                    android:id="@+id/remark"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/transparent"
-                    android:gravity="start|top"
-                    android:lines="6"
-                    android:maxLength="200"
-                    android:text="备注内容描叙，备注内容描叙,备注内容描叙,备注内容描叙,备注内容描叙"
-                    android:textColor="@color/text_color_content"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:background="@drawable/bg_white_small"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp">
 
-                <TextView
-                    android:id="@+id/word_tips"
-                    android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/icon_sign_in_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_sign_location" />
+
+                    <TextView
+                        android:id="@+id/sign_in_time_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/icon_sign_in_location"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@id/icon_sign_in_location"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="签入时间"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                    <TextView
+                        android:id="@+id/sign_in_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/icon_sign_in_location"
+                        android:layout_alignParentRight="true"
+                        android:text="2016-08-05 14:43"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <TextView
+                        android:id="@+id/sign_in_address_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/sign_in_time_title"
+                        android:layout_below="@id/sign_in_time_title"
+                        android:layout_marginTop="4dp"
+                        android:singleLine="true"
+                        android:text="签入地址"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                    <TextView
+                        android:id="@+id/sign_in_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/sign_in_address_title"
+                        android:layout_alignParentRight="true"
+                        android:text="地址"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_small" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:singleLine="true"
-                    android:text="(21/200)"
-                    android:textColor="@color/text_color_supplementary"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:background="@drawable/bg_white_small"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp">
+
+                    <ImageView
+                        android:id="@+id/icon_sign_out_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_sign_location" />
+
+                    <TextView
+                        android:id="@+id/sign_out_time_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/icon_sign_out_location"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@id/icon_sign_out_location"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="签出时间"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                    <TextView
+                        android:id="@+id/sign_out_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/icon_sign_out_location"
+                        android:layout_alignParentRight="true"
+                        android:text="2016-08-05 14:43"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <TextView
+                        android:id="@+id/sign_out_address_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/sign_out_time_title"
+                        android:layout_below="@id/sign_out_time_title"
+                        android:layout_marginTop="4dp"
+                        android:singleLine="true"
+                        android:text="签出地址"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_small" />
+
+
+                    <TextView
+                        android:id="@+id/sign_out_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/sign_out_address_title"
+                        android:layout_alignParentRight="true"
+                        android:text="地址"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_small" />
+
+                </RelativeLayout>
+
+
             </LinearLayout>
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_small">
-
-                <LinearLayout
-                    android:id="@+id/img_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <Button
-                android:id="@+id/btn_submit"
+            <TextView
+                android:id="@+id/remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_main_color_selector"
-                android:gravity="center"
-                android:minHeight="48dp"
-                android:text="签出"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_normal" />
+                android:background="@drawable/bg_white_small"
+                android:gravity="start|top"
+                android:minHeight="120dp"
+                android:padding="8dp"
+                android:textColor="@color/text_color_title"
+                android:textSize="@dimen/text_size_small" />
+
+            <com.android.wandong.ui.widget.FixGridView
+                android:id="@+id/attachment_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_small"
+                android:gravity="fill"
+                android:horizontalSpacing="4dip"
+                android:numColumns="4"
+                android:padding="8dp"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="4dip" />
+
         </LinearLayout>
     </ScrollView>
-
 
     <include
         android:id="@id/layoutLoading"
