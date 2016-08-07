@@ -17,6 +17,7 @@ import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.AStripTabsFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -292,7 +293,10 @@ public class WorkMain extends AStripTabsFragment implements AdapterView.OnItemCl
         }
     }
 
-    public class WorkCategoryItem extends AStripTabsFragment.StripTabItem {
+    public static class WorkCategoryItem extends AStripTabsFragment.StripTabItem implements Serializable{
+
+        private static final long serialVersionUID = 4445471397225331685L;
+
         private int categoryDrawableRes;
 
         public int getCategoryDrawableRes() {
