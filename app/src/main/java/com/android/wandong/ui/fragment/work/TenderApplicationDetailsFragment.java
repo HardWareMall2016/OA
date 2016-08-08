@@ -11,7 +11,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
-import com.android.wandong.beans.MarketReimburseDetailResponseBean;
 import com.android.wandong.beans.TenderApplicationDetailsResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
