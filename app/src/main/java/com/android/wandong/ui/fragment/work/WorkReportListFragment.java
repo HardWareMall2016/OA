@@ -74,7 +74,9 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
     protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
         super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
         listView.setDividerHeight(PixelUtils.dp2px(16));
-        listView.setPadding(0, -PixelUtils.dp2px(16), 0, 0);
+
+        LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)mViewContentSearch.getLayoutParams();
+        lp.bottomMargin=0;
     }
 
     @Override
