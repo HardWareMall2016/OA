@@ -22,6 +22,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
+import com.zhan.framework.utils.PixelUtils;
 
 import java.util.List;
 
@@ -63,15 +64,13 @@ public class ReportFormListFragment extends BaseWorkPageFragment<ReportFormListF
 
 
     @Override
-    protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
-        super.layoutInit(inflater, savedInstanceSate);
-        mViewContentSearch.setVisibility(View.GONE);
+    public int getListDividerHeight() {
+        return PixelUtils.dp2px(16);
     }
 
     @Override
-    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
-        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
-        pullToRefreshListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+    public boolean showSearchHeader() {
+        return false;
     }
 
     @Override

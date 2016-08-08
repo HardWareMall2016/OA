@@ -1,14 +1,16 @@
 package com.android.wandong.ui.fragment.work;
 
-import android.graphics.Color;
+import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -16,13 +18,17 @@ import com.android.wandong.beans.WorkReportListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.RatingBar;
 import com.android.wandong.utils.Tools;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
+import com.zhan.framework.utils.PixelUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * 作者：伍岳 on 2016/7/22 09:43
@@ -55,6 +61,19 @@ import java.util.List;
 public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListFragment.ItemData,WorkReportListResponseBean> {
     public static final String TAB_TYPE="WORK_REPORT";
     public static final String TAB_NAME="工作报告";
+
+    private LayoutInflater mInflater;
+
+    @Override
+    protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
+        super.layoutInit(inflater, savedInstanceSate);
+        mInflater=inflater;
+    }
+
+    @Override
+    public int getListDividerHeight() {
+        return PixelUtils.dp2px(16);
+    }
 
     @Override
     protected ABaseAdapter.AbstractItemView<ItemData> newItemView() {
@@ -112,7 +131,10 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        WorkReportDetailsFragment.launch(getActivity(),getAdapterItems().get((int)id).entityId);
+        ItemData data=getAdapterItems().get((int)id);
+        if(!"True".equals(data.new_isrest)){
+            WorkReportDetailsFragment.launch(getActivity(),data);
+        }
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
@@ -167,14 +189,8 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         @ViewInject(id = R.id.dailyWorkContent)
         protected View mViewDailyWorkContent;
 
-        @ViewInject(id = R.id.relative_customer)
-        protected TextView mViewRelativeCustomer;
-
-        @ViewInject(id = R.id.dailyWorkSummaryTitle)
-        protected TextView mViewDailyWorkSummaryTitle;
-
-        @ViewInject(id = R.id.dailyWorkSummary)
-        protected TextView mViewDailyWorkSummary;
+        @ViewInject(id = R.id.relativeCustomer_dailyWorkSummary)
+        protected LinearLayout mViewContentRelativeCustomerDailyWorkSummary;
 
         @ViewInject(id = R.id.nextDayWorkPlanTitle)
         protected TextView mViewNextDayWorkPlanTitle;
@@ -277,18 +293,17 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
                 mViewDailyWorkContent.setVisibility(View.VISIBLE);
                 mViewReplayContent.setVisibility(View.VISIBLE);
 
+                mViewContentRelativeCustomerDailyWorkSummary.removeAllViews();
                 if(data.newWorkSummary.size()>0){
-                    mViewRelativeCustomer.setVisibility(View.VISIBLE);
-                    mViewDailyWorkSummaryTitle.setVisibility(View.VISIBLE);
-                    mViewDailyWorkSummary.setVisibility(View.VISIBLE);
-
-                    Tools.setTextView(mViewRelativeCustomer, String.format("关联客户:%s",data.newWorkSummary.get(0).new_customername));
-                    Tools.setTextView(mViewDailyWorkSummary, data.newWorkSummary.get(0).new_workcontent);
-                }else{
-                    mViewRelativeCustomer.setVisibility(View.GONE);
-                    mViewDailyWorkSummaryTitle.setVisibility(View.GONE);
-                    mViewDailyWorkSummary.setVisibility(View.GONE);
+                    for(NewWorkSummary summary:data.newWorkSummary){
+                        View view= mInflater.inflate(R.layout.item_work_report_relative_cus_daily_summary,mViewContentRelativeCustomerDailyWorkSummary,true);
+                        TextView viewRelativeCustomer= (TextView)view.findViewById(R.id.relative_customer);
+                        TextView viewDailyWorkSummary= (TextView)view.findViewById(R.id.dailyWorkSummary);
+                        Tools.setTextView(viewRelativeCustomer, String.format("关联客户:%s",summary.new_customername));
+                        Tools.setTextView(viewDailyWorkSummary, summary.new_workcontent);
+                    }
                 }
+
                 if(TextUtils.isEmpty(data.new_workplan)){
                     mViewNextDayWorkPlanTitle.setVisibility(View.GONE);
                     mViewNextDayWorkPlan.setVisibility(View.GONE);
@@ -312,7 +327,8 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         }
     }
 
-    public class ItemData {
+    public static class ItemData implements Serializable{
+        private static final long serialVersionUID = 6732554588714814444L;
         String entityId;
         String new_workplan;
         String new_workexperience;
@@ -331,10 +347,11 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         String new_isrest;
         String new_replynumber;
 
-        private List<NewWorkSummary> newWorkSummary=new ArrayList<>();
+        List<NewWorkSummary> newWorkSummary=new ArrayList<>();
     }
 
-    public static class NewWorkSummary {
+    public static class NewWorkSummary implements Serializable{
+        private static final long serialVersionUID = -1318979797552104595L;
         String new_customerid;
         String new_customername;
         String new_workcontent;

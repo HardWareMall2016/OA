@@ -19,7 +19,7 @@ public class SingleTopFragmentContainerActivity extends FragmentContainerActivit
      * @param args
      */
     public static void launch(Activity activity, Class<? extends Fragment> clazz, FragmentArgs args) {
-        Intent intent = new Intent(activity, FragmentContainerActivity.class);
+        Intent intent = new Intent(activity, SingleTopFragmentContainerActivity.class);
         intent.putExtra("className", clazz.getName());
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         if (args != null)
@@ -28,7 +28,7 @@ public class SingleTopFragmentContainerActivity extends FragmentContainerActivit
     }
 
     public static void launch(Activity activity, Class<? extends Fragment> clazz, FragmentArgs args,boolean showActionbar) {
-        Intent intent = new Intent(activity, FragmentContainerActivity.class);
+        Intent intent = new Intent(activity, SingleTopFragmentContainerActivity.class);
         intent.putExtra("className", clazz.getName());
         intent.putExtra("showActionbar", showActionbar);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

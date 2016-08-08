@@ -189,38 +189,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/relative_customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawableLeft="@drawable/icon_work_report_customer"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:text="关联客户:客户"
-            android:textColor="#ffFAC034"
-            android:textSize="@dimen/text_size_small" />
-
-        <TextView
-            android:id="@+id/dailyWorkSummaryTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:singleLine="true"
-            android:text="今日工作总结:"
-            android:textColor="@color/text_color_supplementary"
-            android:textSize="@dimen/text_size_small" />
-
-        <TextView
-            android:id="@+id/dailyWorkSummary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:maxLines="2"
-            android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
-            android:textColor="@color/text_color_title"
-            android:textSize="@dimen/text_size_small" />
+        <LinearLayout
+            android:id="@+id/relativeCustomer_dailyWorkSummary"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/nextDayWorkPlanTitle"

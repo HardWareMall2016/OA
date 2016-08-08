@@ -92,4 +92,9 @@ public class ApiUrls {
     //招投标申请详情
     public static final String TENDER_AUTHORIZATION_APPLY_DETAIL = "TenderAuthorizationApply/Detail.ashx";
 
+    //工作报告详情_回复列表
+    public static final String WORK_REPORT_GET_REPLY_USERS_LIST = "WorkReport/GetReplyUsersList.ashx ";
+
+    //工作报告详情_发送消息
+    public static final String WORK_REPORT_SEND_REPLY_CONTENT = "WorkReport/SendReplyContent.ashx ";
 }

@@ -1,16 +1,20 @@
 package com.android.wandong.ui.fragment.work;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
+import com.zhan.framework.utils.PixelUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -48,12 +52,35 @@ import java.util.List;
 public abstract class BaseWorkPageFragment<ItemData, ResponseBean extends BaseResponseBean> extends APullToRefreshListFragment<ItemData> {
     private final static int PAGE_SIZE=10;
 
-    @ViewInject(id = R.id.search_content)
-    protected View mViewContentSearch;
+    /*@ViewInject(id = R.id.search_content)
+    protected View mViewContentSearch;*/
 
     @Override
     protected int inflateContentView() {
         return R.layout.frag_work_comm_layout_with_search;
+    }
+
+    @Override
+    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
+        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
+        listView.setDividerHeight(getListDividerHeight());
+
+        if(showSearchHeader()){
+            View searchHeader=getActivity().getLayoutInflater().inflate(R.layout.layout_work_search_header,null);
+            if(getListDividerHeight()!=0){
+                searchHeader.setPadding(PixelUtils.dp2px(8),PixelUtils.dp2px(0),PixelUtils.dp2px(8),PixelUtils.dp2px(0));
+            }
+
+            mPullToRefreshListView.getRefreshableView().addHeaderView(searchHeader);
+        }
+    }
+
+    public int getListDividerHeight(){
+        return 0;
+    }
+
+    public boolean showSearchHeader(){
+        return true;
     }
 
     @Override

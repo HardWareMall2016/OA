@@ -20,180 +20,236 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <com.zhan.framework.ui.widget.CircleImageView
+                        android:id="@+id/headPortrait"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/bg_head_portrait" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@id/headPortrait"
+                        android:singleLine="true"
+                        android:text="张某某"
+                        android:textColor="@color/text_color_title"
+                        android:textSize="@dimen/text_size_large" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toRightOf="@id/headPortrait"
+                        android:singleLine="true"
+                        android:text="5月18日 15:15"
+                        android:textColor="@color/text_color_supplementary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <TextView
+                        android:id="@+id/reporttype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_below="@id/name"
+                        android:layout_marginRight="8dp"
+                        android:singleLine="true"
+                        android:text="周报－未点评"
+                        android:textColor="@color/text_color_supplementary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.android.wandong.ui.widget.RatingBar xmlns:rating_bar="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/RatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_below="@id/name"
+                        rating_bar:disable_star="@drawable/rating_small_disable"
+                        rating_bar:empty_star="@drawable/rating_small_empty"
+                        rating_bar:full_star="@drawable/rating_small_full"
+                        rating_bar:half_star="@drawable/rating_small_half"
+                        rating_bar:isIndicator="true"
+                        rating_bar:numStars="5"
+                        rating_bar:rating="5"
+                        rating_bar:startsPadding="4dp" />
+                </RelativeLayout>
+
                 <LinearLayout
+                    android:id="@+id/weekWorkContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.zhan.framework.ui.widget.CircleImageView
-                            android:id="@+id/headPortrait"
-                            android:layout_width="46dp"
-                            android:layout_height="46dp"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentTop="true"
-                            android:src="@drawable/bg_head_portrait" />
-
-                        <TextView
-                            android:id="@+id/name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_toRightOf="@id/headPortrait"
-                            android:singleLine="true"
-                            android:text="张某某"
-                            android:textColor="@color/text_color_title"
-                            android:textSize="@dimen/text_size_large" />
-
-                        <TextView
-                            android:id="@+id/time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/name"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_toRightOf="@id/headPortrait"
-                            android:singleLine="true"
-                            android:text="5月18日 15:15"
-                            android:textColor="@color/text_color_supplementary"
-                            android:textSize="@dimen/text_size_small" />
-
-                        <TextView
-                            android:id="@+id/has_comments"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_below="@id/name"
-                            android:layout_marginRight="8dp"
-                            android:singleLine="true"
-                            android:text="周报-未点评"
-                            android:textColor="@color/text_color_supplementary"
-                            android:textSize="@dimen/text_size_small" />
-                    </RelativeLayout>
-
-
                     <TextView
+                        android:id="@+id/weekWorkSummaryTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
                         android:text="本周工作总结:"
                         android:textColor="@color/text_color_supplementary"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
-                        android:id="@+id/worksummary"
+                        android:id="@+id/weekWorkSummary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:maxLines="2"
-                        android:text="这里是一段文字描述"
+                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
                         android:textColor="@color/text_color_title"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
+                        android:id="@+id/nextWeekWorkPlanTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
                         android:text="下周工作计划："
                         android:textColor="@color/text_color_supplementary"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
+                        android:id="@+id/nextWeekWorkPlan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:maxLines="2"
-                        android:text="这里是一段文字描述"
+                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
                         android:textColor="@color/text_color_title"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
+                        android:id="@+id/workExperienceTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
                         android:text="工作心得体会："
                         android:textColor="@color/text_color_supplementary"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
+                        android:id="@+id/workExperience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:maxLines="2"
-                        android:text="这里是一段文字描述"
+                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
                         android:textColor="@color/text_color_title"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F8F8F8"
+                        android:orientation="vertical"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:singleLine="true"
+                            android:text="以下为直属领导的点评："
+                            android:textColor="@color/text_color_content"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:id="@+id/comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:drawableLeft="@drawable/icon_work_report_command"
+                            android:drawablePadding="8dp"
+                            android:maxLines="2"
+                            android:text="谭东：这是一段点评内容。"
+                            android:textColor="@color/text_color_title"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:id="@+id/comment_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:singleLine="true"
+                            android:text="6月28 17:27 点评"
+                            android:textColor="@color/text_color_content"
+                            android:textSize="@dimen/text_size_small" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/dailyWorkContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="#F8F8F8"
                     android:orientation="vertical"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp">
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/relativeCustomer_dailyWorkSummary"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/nextDayWorkPlanTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
-                        android:text="以下为直属领导的点评："
-                        android:textColor="@color/text_color_content"
-                        android:textSize="@dimen/text_size_large" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/icon_work_report_command"
-                        android:drawablePadding="8dp"
-                        android:maxLines="2"
-                        android:text="谭东：这是一段点评内容。"
-                        android:textColor="@color/text_color_title"
-                        android:textSize="@dimen/text_size_normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:singleLine="true"
-                        android:text="6月28 17:27 点评"
-                        android:textColor="@color/text_color_content"
+                        android:text="明日工作计划："
+                        android:textColor="@color/text_color_supplementary"
                         android:textSize="@dimen/text_size_small" />
 
                     <TextView
+                        android:id="@+id/nextDayWorkPlan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:drawableLeft="@drawable/icon_work_report_command"
-                        android:drawablePadding="8dp"
                         android:maxLines="2"
-                        android:text="谭东：这是一段点评内容。"
+                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
                         android:textColor="@color/text_color_title"
-                        android:textSize="@dimen/text_size_normal" />
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
+                        android:id="@+id/dailyWorkExperienceTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="8dp"
                         android:singleLine="true"
-                        android:text="6月28 17:27 点评"
-                        android:textColor="@color/text_color_content"
+                        android:text="工作心得体会："
+                        android:textColor="@color/text_color_supplementary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <TextView
+                        android:id="@+id/dailyWorkExperience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:maxLines="2"
+                        android:text="这里是一段文字描述，并且显示两行数字。。。。。。"
+                        android:textColor="@color/text_color_title"
                         android:textSize="@dimen/text_size_small" />
                 </LinearLayout>
-
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -226,23 +282,23 @@
                         android:textColor="@color/text_color_content"
                         android:textSize="@dimen/text_size_normal" />
 
-                    <TextView
-                        android:id="@+id/copy_to"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_main_color_circle_selector"
-                        android:drawableLeft="@drawable/icon_work_report_copy_to"
-                        android:drawablePadding="8dp"
-                        android:gravity="center"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="6dp"
-                        android:paddingRight="8dp"
-                        android:paddingTop="4dp"
-                        android:text="抄送范围：张嘉译"
-                        android:textColor="@color/main_color"
-                        android:textSize="@dimen/text_size_normal" />
+                    <!-- <TextView
+                         android:id="@+id/copy_to"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentRight="true"
+                         android:layout_centerVertical="true"
+                         android:background="@drawable/bg_main_color_circle_selector"
+                         android:drawableLeft="@drawable/icon_work_report_copy_to"
+                         android:drawablePadding="8dp"
+                         android:gravity="center"
+                         android:paddingBottom="4dp"
+                         android:paddingLeft="6dp"
+                         android:paddingRight="8dp"
+                         android:paddingTop="4dp"
+                         android:text="抄送范围：张嘉译"
+                         android:textColor="@color/main_color"
+                         android:textSize="@dimen/text_size_normal" />-->
                 </RelativeLayout>
 
                 <com.android.wandong.ui.widget.FixListView
@@ -269,6 +325,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:minHeight="48dp"
+            android:orientation="horizontal"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
@@ -280,17 +337,31 @@
 
             <EditText
                 android:id="@+id/click_to_input"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/default_bg"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
-                android:hint="点击输入点评内容"
+                android:hint="点击输入回复内容"
                 android:inputType="none"
                 android:minHeight="48dp"
                 android:textColor="@color/text_color_content"
+                android:textSize="@dimen/text_size_normal" />
+
+            <TextView
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_main_color_circle_selector"
+                android:gravity="center"
+                android:minHeight="30dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="发送"
+                android:textColor="@color/main_color"
                 android:textSize="@dimen/text_size_normal" />
         </LinearLayout>
     </LinearLayout>
