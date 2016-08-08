@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -57,7 +58,7 @@ import java.util.Locale;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class WorkCreateNewWorkDialogHelper {
+public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickListener {
     private Dialog mDialog;
     private Activity mActivity;
 
@@ -78,53 +79,54 @@ public class WorkCreateNewWorkDialogHelper {
 
     private ArrayList<WorkMain.WorkCategoryItem> mTabs;
 
-    private List<ArrayList<WorkMain.WorkCategoryItem>> mPageDataList=new ArrayList<>();
+    private List<ArrayList<WorkMain.WorkCategoryItem>> mPageDataList = new ArrayList<>();
 
     public WorkCreateNewWorkDialogHelper(Activity activity, ArrayList<WorkMain.WorkCategoryItem> tabs) {
         mTabs = tabs;
-        mActivity=activity;
+        mActivity = activity;
         mDialog = new Dialog(activity, R.style.Dialog_Fullscreen);
         View content = activity.getLayoutInflater().inflate(R.layout.dialog_create_work_item, null);
         InjectUtility.initInjectedView(this, content);
         mDialog.setContentView(content);
 
 
-        Calendar calendar=Calendar.getInstance();
-        mTextViewDate.setText(String.format("%02d",calendar.get(Calendar.DAY_OF_MONTH)));
+        Calendar calendar = Calendar.getInstance();
+        mTextViewDate.setText(String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH)));
 
         DateFormat df = new SimpleDateFormat("MMMM", Locale.ENGLISH);
         mTextViewMonth.setText(df.format(new Date()));
     }
 
     public void showDialog() {
-        List<View> listViews=new ArrayList<>();
-        ArrayList<WorkMain.WorkCategoryItem> pageData =new ArrayList<>();
-        for(int i=0;i<mTabs.size();i++){
-            if(i%9==0){
-                pageData=new ArrayList<>();
+        List<View> listViews = new ArrayList<>();
+        ArrayList<WorkMain.WorkCategoryItem> pageData = new ArrayList<>();
+        for (int i = 0; i < mTabs.size(); i++) {
+            if (i % 9 == 0) {
+                pageData = new ArrayList<>();
                 mPageDataList.add(pageData);
             }
             pageData.add(mTabs.get(i));
         }
 
-        for(int i=0;i<mPageDataList.size();i++){
-            FixGridView fixGridView=(FixGridView)mActivity.getLayoutInflater().inflate(R.layout.dialog_create_work_page_layout,null);
-            fixGridView.setAdapter(new GridViewAdapter(mPageDataList.get(i),mActivity));
+        for (int i = 0; i < mPageDataList.size(); i++) {
+            FixGridView fixGridView = (FixGridView) mActivity.getLayoutInflater().inflate(R.layout.dialog_create_work_page_layout, null);
+            fixGridView.setAdapter(new GridViewAdapter(mPageDataList.get(i), mActivity));
+            fixGridView.setOnItemClickListener(this);
             listViews.add(fixGridView);
         }
 
-        for(int i=0;i<mPageDataList.size();i++){
-            CircleView circleView=new CircleView(mActivity);
-            if(i==0){
+        for (int i = 0; i < mPageDataList.size(); i++) {
+            CircleView circleView = new CircleView(mActivity);
+            if (i == 0) {
                 circleView.setDrawColor(0xff996633);
-            }else{
+            } else {
                 circleView.setDrawColor(0xffAAAAAA);
             }
             circleView.setRoundWidth(PixelUtils.dp2px(8));
-            LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
             circleView.setLayoutParams(lp);
-            if(i!=0){
-                lp.leftMargin=PixelUtils.dp2px(8);
+            if (i != 0) {
+                lp.leftMargin = PixelUtils.dp2px(8);
             }
             mContainerIndicator.addView(circleView);
         }
@@ -137,11 +139,11 @@ public class WorkCreateNewWorkDialogHelper {
 
             @Override
             public void onPageSelected(int position) {
-                for(int i=0;i<mContainerIndicator.getChildCount();i++){
-                    CircleView circleView= (CircleView) mContainerIndicator.getChildAt(i);
-                    if(position==i){
+                for (int i = 0; i < mContainerIndicator.getChildCount(); i++) {
+                    CircleView circleView = (CircleView) mContainerIndicator.getChildAt(i);
+                    if (position == i) {
                         circleView.setDrawColor(0xff996633);
-                    }else{
+                    } else {
                         circleView.setDrawColor(0xffAAAAAA);
                     }
                 }
@@ -157,6 +159,41 @@ public class WorkCreateNewWorkDialogHelper {
         mDialog.show();
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        WorkMain.WorkCategoryItem workCategoryItem = mPageDataList.get(mFixViewPager.getCurrentItem()).get(position);
+        if (workCategoryItem.getType().equals(OutdoorSignInFragment.TAB_TYPE)) {
+            OutdoorSignCreateFragment.launch(mActivity);
+        } else if (workCategoryItem.getType().equals(WorkReportListFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(AnnouncementFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(NoticeFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(ReportFormListFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(ContractApplicationFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(TenderApplicationFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(InspectionReceptionApplicationFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(EntertainmentApplicationFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(MarketActivityApplicationFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(TravelExpenseReimbursementFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(SpecialDuesReimbursementFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(EntertainmentReimbursementFragment.TAB_TYPE)) {
+
+        } else if (workCategoryItem.getType().equals(MarketActivityReimbursementFragment.TAB_TYPE)) {
+
+        }
+        mDialog.dismiss();
+    }
+
 
     private class MyViewPagerAdapter extends PagerAdapter {
         private List<View> mListViews;
@@ -166,7 +203,7 @@ public class WorkCreateNewWorkDialogHelper {
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object)   {
+        public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView(mListViews.get(position));//删除页卡
         }
 
@@ -178,16 +215,16 @@ public class WorkCreateNewWorkDialogHelper {
 
         @Override
         public int getCount() {
-            return  mListViews.size();//返回页卡的数量
+            return mListViews.size();//返回页卡的数量
         }
 
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0==arg1;//官方提示这样写
+            return arg0 == arg1;//官方提示这样写
         }
     }
 
-    private class GridViewAdapter extends ABaseAdapter<WorkMain.WorkCategoryItem>{
+    private class GridViewAdapter extends ABaseAdapter<WorkMain.WorkCategoryItem> {
 
         public GridViewAdapter(ArrayList<WorkMain.WorkCategoryItem> datas, Activity context) {
             super(datas, context);
@@ -199,9 +236,9 @@ public class WorkCreateNewWorkDialogHelper {
         }
     }
 
-    private class GridViewItem extends ABaseAdapter.AbstractItemView<WorkMain.WorkCategoryItem>{
+    private class GridViewItem extends ABaseAdapter.AbstractItemView<WorkMain.WorkCategoryItem> {
         @ViewInject(id = R.id.category_item)
-        TextView mViewCategoryItem ;
+        TextView mViewCategoryItem;
 
         @Override
         public int inflateViewId() {
@@ -211,16 +248,16 @@ public class WorkCreateNewWorkDialogHelper {
         @Override
         public void bindingData(View convertView, WorkMain.WorkCategoryItem data) {
             mViewCategoryItem.setText(data.getTitle());
-            mViewCategoryItem.setCompoundDrawablesWithIntrinsicBounds(0,data.getCategoryDrawableRes(),0,0);
+            mViewCategoryItem.setCompoundDrawablesWithIntrinsicBounds(0, data.getCategoryDrawableRes(), 0, 0);
         }
     }
 
     void OnClick(View v) {
         switch (v.getId()) {
             case R.id.close_btn:
-                if(mDialog!=null&&mDialog.isShowing()){
+                if (mDialog != null && mDialog.isShowing()) {
                     mDialog.dismiss();
-                    mDialog=null;
+                    mDialog = null;
                 }
                 break;
         }

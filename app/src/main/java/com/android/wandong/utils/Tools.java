@@ -42,6 +42,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.MONTH;
@@ -123,6 +124,16 @@ public class Tools {
         }
         return date.getTime();
     }*/
+
+    /***
+     * 时间戳转换
+     */
+    public static String parseTimeToMintues(Long time) {
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+        String strTime = format.format(date);
+        return strTime;
+    }
 
     /***
      * 时间戳转换
