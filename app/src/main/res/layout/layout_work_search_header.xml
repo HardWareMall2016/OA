@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="16dp">
+
+    <EditText
+        android:id="@+id/search_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_rounded_with_border_selector"
+        android:drawableLeft="@drawable/search_bg_pressed"
+        android:gravity="center"
+        android:hint="搜索"
+        android:minHeight="40dp" />
+</FrameLayout>
+

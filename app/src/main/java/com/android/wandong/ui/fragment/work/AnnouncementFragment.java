@@ -69,11 +69,8 @@ public class AnnouncementFragment extends BaseWorkPageFragment<AnnouncementFragm
     }
 
     @Override
-    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
-        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
-        listView.setDividerHeight(PixelUtils.dp2px(16));
-        LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)mViewContentSearch.getLayoutParams();
-        lp.bottomMargin=0;
+    public int getListDividerHeight() {
+        return PixelUtils.dp2px(16);
     }
 
     @Override

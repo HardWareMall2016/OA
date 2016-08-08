@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
+        <!--<EditText
             android:id="@+id/search_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:background="@drawable/bg_white_rounded_with_border_selector"
             android:gravity="center"
             android:hint="搜索"
-            android:minHeight="40dp" />
+            android:minHeight="40dp" />-->
 
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             android:id="@+id/pull_refresh_list"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -66,15 +67,12 @@ public class NoticeFragment extends BaseWorkPageFragment<NoticeFragment.ItemData
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         mInflater=inflater;
+
     }
 
     @Override
-    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
-        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
-        listView.setDividerHeight(PixelUtils.dp2px(16));
-
-        LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)mViewContentSearch.getLayoutParams();
-        lp.bottomMargin=0;
+    public int getListDividerHeight() {
+        return PixelUtils.dp2px(16);
     }
 
     @Override

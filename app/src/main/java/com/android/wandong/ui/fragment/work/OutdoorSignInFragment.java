@@ -23,6 +23,7 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
+import com.zhan.framework.ui.fragment.ARefreshFragment;
 import com.zhan.framework.utils.PixelUtils;
 
 import java.util.ArrayList;
@@ -57,14 +58,9 @@ import java.util.List;
  * //
  */
 //外勤签到
-public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSignInFragment.ItemData> {
+public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFragment.ItemData,OutDoorSignInListResponseBean> {
     public static final String TAB_TYPE="OUTDOOR_SIGN_IN";
     public static final String TAB_NAME="外勤签到";
-
-    @ViewInject(id = R.id.search_content)
-    protected View mViewContentSearch;
-
-    private final static int PAGE_SIZE=10;
 
     private LayoutInflater mInflater;
 
@@ -80,12 +76,8 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
     }
 
     @Override
-    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
-        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
-        listView.setDividerHeight(PixelUtils.dp2px(16));
-
-        LinearLayout.LayoutParams lp=(LinearLayout.LayoutParams)mViewContentSearch.getLayoutParams();
-        lp.bottomMargin=0;
+    public int getListDividerHeight() {
+        return PixelUtils.dp2px(16);
     }
 
     @Override
@@ -99,67 +91,51 @@ public class OutdoorSignInFragment extends APullToRefreshListFragment<OutdoorSig
     }
 
     @Override
-    protected void configRefresh(RefreshConfig config) {
-        config.minResultSize=PAGE_SIZE;
+    protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
+        requestParams.put("PageIndex",getNextPage(mode));
+        requestParams.put("PageNumber", getRefreshConfig().minResultSize);
     }
 
     @Override
-    protected void requestData(RefreshMode mode) {
-        HttpRequestParams requestParams= Tools.createHttpRequestParams();
-        requestParams.put("PageIndex",getNextPage(mode));
-        requestParams.put("PageNumber", PAGE_SIZE);
+    protected String getRequestApiUrl() {
+        return ApiUrls.OUTDOOR_SIGN_IN_LIST;
+    }
 
-        startFormRequest(ApiUrls.OUTDOOR_SIGN_IN_LIST, requestParams, new PagingTask<OutDoorSignInListResponseBean>(mode) {
-            @Override
-            public OutDoorSignInListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, OutDoorSignInListResponseBean.class);
-            }
+    @Override
+    protected void parseResponseBeanToItemDataList(OutDoorSignInListResponseBean baseResponseBean, List<ItemData> items) {
+        if(baseResponseBean!=null&&baseResponseBean.getEntityInfo()!=null){
+            for(OutDoorSignInListResponseBean.EntityInfoBean dataItem:baseResponseBean.getEntityInfo()){
+                OutDoorSignInListResponseBean.EntityInfoBean.SignInfoBean signInfoBean=dataItem.getSignInfo();
+                if(signInfoBean==null){
+                    continue;
+                }
+                ItemData item=new ItemData();
+                item.SignId=signInfoBean.getSignId();
+                item.OwnerId=signInfoBean.getOwnerId();
+                item.OwnerName=signInfoBean.getOwnerName();
+                item.Address=signInfoBean.getAddress();
+                item.SignOutAddress=signInfoBean.getSignOutAddress();
+                item.LocationTime=signInfoBean.getLocationTime();
+                item.Latitude=signInfoBean.getLatitude();
+                item.Longitude=signInfoBean.getLongitude();
+                item.AccountId=signInfoBean.getAccountId();
+                item.AccountName=signInfoBean.getAccountName();
+                item.Remarks=signInfoBean.getRemarks();
+                item.SignInTime=signInfoBean.getSignInTime();
+                item.SignOutTime=signInfoBean.getSignOutTime();
+                item.Signabnormal=signInfoBean.getSignabnormal();
+                item.SignInAbnormal=signInfoBean.getSignInAbnormal();
+                item.AbnormalDistance=signInfoBean.getAbnormalDistance();
+                item.PersonalImage=signInfoBean.getPersonalImage();
 
-            @Override
-            public String verifyResponseResult(OutDoorSignInListResponseBean result) {
-                return Tools.verifyResponseResult(result);
-            }
-
-            @Override
-            protected List<ItemData> parseResult(OutDoorSignInListResponseBean baseResponseBean) {
-                List<ItemData> items=new ArrayList<>();
-                if(baseResponseBean!=null&&baseResponseBean.getEntityInfo()!=null){
-                    for(OutDoorSignInListResponseBean.EntityInfoBean dataItem:baseResponseBean.getEntityInfo()){
-                        OutDoorSignInListResponseBean.EntityInfoBean.SignInfoBean signInfoBean=dataItem.getSignInfo();
-                        if(signInfoBean==null){
-                            continue;
-                        }
-                        ItemData item=new ItemData();
-                        item.SignId=signInfoBean.getSignId();
-                        item.OwnerId=signInfoBean.getOwnerId();
-                        item.OwnerName=signInfoBean.getOwnerName();
-                        item.Address=signInfoBean.getAddress();
-                        item.SignOutAddress=signInfoBean.getSignOutAddress();
-                        item.LocationTime=signInfoBean.getLocationTime();
-                        item.Latitude=signInfoBean.getLatitude();
-                        item.Longitude=signInfoBean.getLongitude();
-                        item.AccountId=signInfoBean.getAccountId();
-                        item.AccountName=signInfoBean.getAccountName();
-                        item.Remarks=signInfoBean.getRemarks();
-                        item.SignInTime=signInfoBean.getSignInTime();
-                        item.SignOutTime=signInfoBean.getSignOutTime();
-                        item.Signabnormal=signInfoBean.getSignabnormal();
-                        item.SignInAbnormal=signInfoBean.getSignInAbnormal();
-                        item.AbnormalDistance=signInfoBean.getAbnormalDistance();
-                        item.PersonalImage=signInfoBean.getPersonalImage();
-
-                        List<String> attachmentInfo=dataItem.getAttachmentInfo();
-                        if(attachmentInfo!=null){
-                            item.AttachmentInfo.addAll(attachmentInfo);
-                        }
-
-                        items.add(item);
-                    }
+                List<String> attachmentInfo=dataItem.getAttachmentInfo();
+                if(attachmentInfo!=null){
+                    item.AttachmentInfo.addAll(attachmentInfo);
                 }
 
-                return items;
+                items.add(item);
             }
-        }, HttpRequestUtils.RequestType.POST);
+        }
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
