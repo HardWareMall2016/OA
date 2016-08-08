@@ -1,10 +1,14 @@
 package com.android.wandong.ui.fragment.mine;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
+import com.android.wandong.ui.fragment.login.LoginFragment;
 import com.android.wandong.utils.Tools;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -44,6 +48,9 @@ public class MineMain extends ABaseFragment {
     @ViewInject(id = R.id.headPortrait)
     CircleImageView mViewHeadPortrait;
 
+    @ViewInject(id = R.id.right_menu, click = "OnClick")
+    TextView mViewRightMenu;
+
     @Override
     protected int inflateContentView() {
         return R.layout.frag_mine_main;
@@ -53,5 +60,15 @@ public class MineMain extends ABaseFragment {
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         ImageLoader.getInstance().displayImage(UserInfo.getCurrentUser().getHeadPortrait(), mViewHeadPortrait, Tools.buildDisplayImageOptionsForAvatar());
+    }
+
+    void OnClick(View v) {
+        switch (v.getId()) {
+            case R.id.right_menu:
+                UserInfo.logout();
+                LoginFragment.launch(getActivity());
+                getActivity().finish();
+                break;
+        }
     }
 }
