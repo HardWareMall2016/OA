@@ -24,6 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     /*compile 'com.android.support:design:23.2.1'*/
     compile project(':framework')
+    compile project(':baidusdk')
     compile files('libs/universalimageloader.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.github.vajro:MaterialDesignLibrary:1.6'
