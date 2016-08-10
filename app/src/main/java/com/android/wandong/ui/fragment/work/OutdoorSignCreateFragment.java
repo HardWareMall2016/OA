@@ -14,17 +14,23 @@ import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.App;
+import com.android.wandong.base.BaseResponseBean;
+import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.zhan.framework.component.container.FragmentContainerActivity;
+import com.zhan.framework.network.HttpRequestHandler;
+import com.zhan.framework.network.HttpRequestParams;
+import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
-import com.zhan.framework.ui.fragment.AStripTabsFragment;
 import com.zhan.framework.ui.widget.ActionSheetDialog;
+import com.zhan.framework.utils.ToastUtils;
 
 import java.util.List;
 
@@ -90,6 +96,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
     //Data
     private String mCustomerId;
+    private AddressInfo mAddressInfo;
 
 
     public LocationClient mLocationClient = null;
@@ -131,6 +138,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
     void OnClick(View v) {
         switch (v.getId()) {
             case R.id.address_content:
+                ChooseLocationFragment.launch(getActivity());
                 break;
             case R.id.customer_content:
                 AccountListFragment.launchForResult(this,REQUEST_CODE_CUSTOMER);
@@ -153,7 +161,47 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
                 actionSheetDialog.show();
                 break;
+            case R.id.btn_sign_in:
+                signInRequest();
+                break;
         }
+    }
+
+    private void signInRequest(){
+        if(isRequestProcessing(ApiUrls.MYSIGN_SIGNIN)){
+            return;
+        }
+        HttpRequestParams requestParams=Tools.createHttpRequestParams();
+
+        //DistanceUtil.getDistance()
+
+        requestParams.put("Abnormal",1);
+        requestParams.put("AbnormalDistance",21337.287181);
+        requestParams.put("AccountId", mCustomerId);
+        requestParams.put("Address", mAddressInfo.address);
+        requestParams.put("AttaRelationId", "");
+        requestParams.put("Latitude", mAddressInfo.Latitude);
+        requestParams.put("LocTime",Tools.parseTimeToMintues(System.currentTimeMillis()));
+        requestParams.put("Longitude", mAddressInfo.Longitude);
+        requestParams.put("Remarks", mViewRemark.getText().toString());
+
+        startFormRequest(ApiUrls.MYSIGN_SIGNIN, requestParams, new HttpRequestHandler(this) {
+            @Override
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                switch (resultCode) {
+                    case success:
+                        BaseResponseBean responseBean = Tools.parseJsonTostError(result, BaseResponseBean.class);
+                        if (responseBean != null) {
+                            ToastUtils.toast("签入成功！");
+                            getActivity().finish();
+                        }
+                        break;
+                    default:
+                        ToastUtils.toast(result);
+                        break;
+                }
+            }
+        }, HttpRequestUtils.RequestType.POST);
     }
 
     @Override
@@ -205,12 +253,25 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
             Log.i("BaiduLocationApiDem", "onReceiveLocation");
             List<Poi> list = location.getPoiList();// POI数据
             if (list != null && list.size() > 0 && !TextUtils.isEmpty(list.get(0).getName())) {
-                mViewSignInAddress.setText(list.get(0).getName());
+
+                mAddressInfo=new AddressInfo();
+                mAddressInfo.Latitude=location.getLatitude();
+                mAddressInfo.Longitude=location.getLongitude();
+                mAddressInfo.address=list.get(0).getName();
+
+                mViewSignInAddress.setText(mAddressInfo.address);
                 mViewSignInAddress.setTextColor(0xff333333);
+
                 if(mLocationClient!=null&&mLocationClient.isStarted()){
                     mLocationClient.stop();
                 }
             }
         }
+    }
+
+    private class AddressInfo{
+        double Latitude;
+        double Longitude;
+        String address;
     }
 }

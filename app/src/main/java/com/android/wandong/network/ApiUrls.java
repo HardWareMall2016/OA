@@ -100,4 +100,7 @@ public class ApiUrls {
 
     //获取账户列表
     public static final String ACCOUNT_LIST = "Account/List.ashx";
+
+    //外勤签到-签入
+    public static final String MYSIGN_SIGNIN= "MySign/SignIn.ashx";
 }
