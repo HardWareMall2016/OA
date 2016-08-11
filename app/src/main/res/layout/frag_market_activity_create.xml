@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_white_small"
+                android:minHeight="48dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="8dp"
+                    android:singleLine="true"
+                    android:text="活动名称"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:hint="请填写活动名称"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@null"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/address_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="8dp"
+                    android:singleLine="true"
+                    android:text="费用类型"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableRight="@drawable/icon_arrow_right"
+                    android:singleLine="true"
+                    android:text="国内展览费"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="8dp"
+                    android:singleLine="true"
+                    android:text="金额（元）"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableRight="@drawable/icon_arrow_right"
+                    android:singleLine="true"
+                    android:hint="请填写金额"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@null"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="8dp"
+                    android:singleLine="true"
+                    android:text="费用发生时间"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/market_change_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableRight="@drawable/icon_arrow_right"
+                    android:singleLine="true"
+                    android:hint="请选择时间"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@null"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="备注"
+                android:textColor="@color/text_color_title"
+                android:textSize="@dimen/text_size_normal"
+                android:padding="10dp"
+                android:background="@color/white"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_small"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <EditText
+                    android:id="@+id/remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="start|top"
+                    android:hint="请填写备注内容"
+                    android:maxLength="200"
+                    android:minHeight="140dp"
+                    android:textColor="@color/text_color_title"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/btn_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_main_color_selector"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="确定"
+        android:textColor="@color/text_white_color_selector"
+        android:textSize="@dimen/text_size_large" />
+
+</LinearLayout>
+

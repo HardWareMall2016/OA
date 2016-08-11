@@ -19,6 +19,7 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.utils.PixelUtils;
+import com.zhan.framework.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,6 +186,7 @@ public class ReportFormWorkReportFragment extends ABaseTabFragment<ReportFormWor
 
         menuContent.addView(filterIcon);
     }
+
 
     private void refreshHeaderView(int tabCode) {
         switch (tabCode) {

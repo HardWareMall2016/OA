@@ -46,8 +46,21 @@ public class ApiUrls {
     public static final String OUTDOOR_SIGN_OUT = "MySign/SignOut.ashx";
     //工作报告-列表
     public static final String WORK_REPORT_LIST = "WorkReport/List.ashx";
+
     //公告通知-列表
     public static final String NOTICE_LIST = "Notice/Notice/List.ashx";
+    //新建公告—发布公告
+    public static final String NOTICE_ADD = "Notice/Notice/Add.ashx";
+    //新建公告－公告对象列表
+    public static final String NOTICE_CONTACTS_USER_list = "Contacts/ConvertUserList.ashx";
+    //新建公告－确定公告对象
+    public static final String NOTICE_CONTACTS_USERS = "Contacts/Users.ashx";
+    //新建公告—按组织结构查看列表
+    public static final String CONTACTS_DEPARTMENTS = "Contacts/Departments.ashx";
+    //新建公告－按工作岗位查看列表
+    public static final String CONTACTS_WORKROLES = "Contacts/WorkRoles.ashx";
+
+
     //合同申请列表
     public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
 
@@ -100,4 +113,5 @@ public class ApiUrls {
 
     //获取账户列表
     public static final String ACCOUNT_LIST = "Account/List.ashx";
+
 }

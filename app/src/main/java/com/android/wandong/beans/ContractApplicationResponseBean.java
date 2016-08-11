@@ -10,17 +10,19 @@ import java.util.List;
 public class ContractApplicationResponseBean extends BaseResponseBean {
     /**
      * errorcode : 0
-     * entityInfo : [{"Field1":{"Title":"ID","Name":"ContractId","Value":"785d3330-f552-e611-9aff-085700e64e0f"},"Field2":{"Title":"单据号","Name":"ApplyNo","Value":"HTSQ201607000005"},"Field3":{"Title":"执行状态","Name":"Status","Value":2},"Field4":{"Title":"负责人","Name":"OwnerName","Value":"姓名"},"Field5":{"Title":"合同金额","Name":"ContracTotal","Value":9.9999999E7},"Field6":{}},{"Field1":{"Title":"ID","Name":"ContractId","Value":"7ec96ced-4a52-e611-9aff-085700e64e0f"},"Field2":{"Title":"单据号","Name":"ApplyNo","Value":"HTSQ201607000004"},"Field3":{"Title":"执行状态","Name":"Status","Value":2},"Field4":{"Title":"负责人","Name":"OwnerName","Value":"姓名"},"Field5":{"Title":"合同金额","Name":"ContracTotal","Value":9.9999999E7},"Field6":{}}]
+     * entityInfo : [{"Field1":{"Title":"ID","Name":"ContractId","Value":"643bff6f-f95e-e611-92fc-085700e64e0f"},"Field2":{"Title":"单据号","Name":"ApplyNo","Value":"HTSQ201608000004"},"Field3":{"Title":"执行状态","Name":"Status","Value":2},"Field4":{"Title":"负责人","Name":"OwnerName","Value":"姓名"},"Field5":{"Title":"合同金额","Name":"ContracTotal","Value":90000},"Field6":{},"Field7":{"Title":"合同名称","Name":"ContractName","Value":"mingcheng4"},"Field8":{"Title":"创建时间","Name":"CreatedOn","Value":"/Date(1470833611000)/"}},{"Field1":{"Title":"ID","Name":"ContractId","Value":"3d9c43de-f85e-e611-92fc-085700e64e0f"},"Field2":{"Title":"单据号","Name":"ApplyNo","Value":"HTSQ201608000003"},"Field3":{"Title":"执行状态","Name":"Status","Value":2},"Field4":{"Title":"负责人","Name":"OwnerName","Value":"姓名"},"Field5":{"Title":"合同金额","Name":"ContracTotal","Value":456654},"Field6":{},"Field7":{"Title":"合同名称","Name":"ContractName","Value":"mingcheng"},"Field8":{"Title":"创建时间","Name":"CreatedOn","Value":"/Date(1470833366000)/"}}]
      */
 
     private int errorcode;
     /**
-     * Field1 : {"Title":"ID","Name":"ContractId","Value":"785d3330-f552-e611-9aff-085700e64e0f"}
-     * Field2 : {"Title":"单据号","Name":"ApplyNo","Value":"HTSQ201607000005"}
+     * Field1 : {"Title":"ID","Name":"ContractId","Value":"643bff6f-f95e-e611-92fc-085700e64e0f"}
+     * Field2 : {"Title":"单据号","Name":"ApplyNo","Value":"HTSQ201608000004"}
      * Field3 : {"Title":"执行状态","Name":"Status","Value":2}
      * Field4 : {"Title":"负责人","Name":"OwnerName","Value":"姓名"}
-     * Field5 : {"Title":"合同金额","Name":"ContracTotal","Value":9.9999999E7}
+     * Field5 : {"Title":"合同金额","Name":"ContracTotal","Value":90000}
      * Field6 : {}
+     * Field7 : {"Title":"合同名称","Name":"ContractName","Value":"mingcheng4"}
+     * Field8 : {"Title":"创建时间","Name":"CreatedOn","Value":"/Date(1470833611000)/"}
      */
 
     private List<EntityInfoBean> entityInfo;
@@ -45,14 +47,14 @@ public class ContractApplicationResponseBean extends BaseResponseBean {
         /**
          * Title : ID
          * Name : ContractId
-         * Value : 785d3330-f552-e611-9aff-085700e64e0f
+         * Value : 643bff6f-f95e-e611-92fc-085700e64e0f
          */
 
         private Field1Bean Field1;
         /**
          * Title : 单据号
          * Name : ApplyNo
-         * Value : HTSQ201607000005
+         * Value : HTSQ201608000004
          */
 
         private Field2Bean Field2;
@@ -73,11 +75,25 @@ public class ContractApplicationResponseBean extends BaseResponseBean {
         /**
          * Title : 合同金额
          * Name : ContracTotal
-         * Value : 9.9999999E7
+         * Value : 90000
          */
 
         private Field5Bean Field5;
         private Field6Bean Field6;
+        /**
+         * Title : 合同名称
+         * Name : ContractName
+         * Value : mingcheng4
+         */
+
+        private Field7Bean Field7;
+        /**
+         * Title : 创建时间
+         * Name : CreatedOn
+         * Value : /Date(1470833611000)/
+         */
+
+        private Field8Bean Field8;
 
         public Field1Bean getField1() {
             return Field1;
@@ -125,6 +141,22 @@ public class ContractApplicationResponseBean extends BaseResponseBean {
 
         public void setField6(Field6Bean Field6) {
             this.Field6 = Field6;
+        }
+
+        public Field7Bean getField7() {
+            return Field7;
+        }
+
+        public void setField7(Field7Bean Field7) {
+            this.Field7 = Field7;
+        }
+
+        public Field8Bean getField8() {
+            return Field8;
+        }
+
+        public void setField8(Field8Bean Field8) {
+            this.Field8 = Field8;
         }
 
         public static class Field1Bean {
@@ -251,6 +283,66 @@ public class ContractApplicationResponseBean extends BaseResponseBean {
         }
 
         public static class Field6Bean {
+        }
+
+        public static class Field7Bean {
+            private String Title;
+            private String Name;
+            private String Value;
+
+            public String getTitle() {
+                return Title;
+            }
+
+            public void setTitle(String Title) {
+                this.Title = Title;
+            }
+
+            public String getName() {
+                return Name;
+            }
+
+            public void setName(String Name) {
+                this.Name = Name;
+            }
+
+            public String getValue() {
+                return Value;
+            }
+
+            public void setValue(String Value) {
+                this.Value = Value;
+            }
+        }
+
+        public static class Field8Bean {
+            private String Title;
+            private String Name;
+            private String Value;
+
+            public String getTitle() {
+                return Title;
+            }
+
+            public void setTitle(String Title) {
+                this.Title = Title;
+            }
+
+            public String getName() {
+                return Name;
+            }
+
+            public void setName(String Name) {
+                this.Name = Name;
+            }
+
+            public String getValue() {
+                return Value;
+            }
+
+            public void setValue(String Value) {
+                this.Value = Value;
+            }
         }
     }
 }

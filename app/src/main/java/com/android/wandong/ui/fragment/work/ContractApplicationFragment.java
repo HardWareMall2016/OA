@@ -47,7 +47,7 @@ public class ContractApplicationFragment extends BaseWorkPageFragment<ContractAp
     @Override
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
         requestParams.put("PageIndex",getNextPage(mode));
-        requestParams.put("PageNumber", getRefreshConfig().minResultSize);
+        requestParams.put("PageNumber", 2);
     }
 
     @Override

@@ -2,8 +2,6 @@ package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -19,7 +17,6 @@ import com.android.wandong.ui.widget.FixViewPager;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.InjectUtility;
 import com.zhan.framework.support.inject.ViewInject;
-import com.zhan.framework.ui.fragment.AStripTabsFragment;
 import com.zhan.framework.utils.PixelUtils;
 
 import java.text.DateFormat;
@@ -167,7 +164,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         } else if (workCategoryItem.getType().equals(WorkReportListFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(AnnouncementFragment.TAB_TYPE)) {
-
+            AnnouncementCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(NoticeFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(ReportFormListFragment.TAB_TYPE)) {
@@ -181,7 +178,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         } else if (workCategoryItem.getType().equals(EntertainmentApplicationFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(MarketActivityApplicationFragment.TAB_TYPE)) {
-
+            MarketActivityCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(TravelExpenseReimbursementFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(SpecialDuesReimbursementFragment.TAB_TYPE)) {
