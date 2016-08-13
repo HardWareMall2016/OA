@@ -1,11 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
-/**
- * Created by ${keke} on 16/8/11.
- */
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -28,17 +24,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-
-public class MarketActivityCreateFragment extends ABaseFragment {
+/**
+ * Created by ${keke} on 16/8/12.
+ */
+public class MarketActivityReimburseCreateTwoFragment extends ABaseFragment{
 
     @ViewInject(id = R.id.market_change_data,click = "OnClick")
     TextView mRlChangData;
     @ViewInject(id = R.id.btn_true,click = "OnClick")
     TextView mSure;
     @ViewInject(id = R.id.market_create_money)
-    EditText mCreateMoney;
+    TextView mCreateMoney;
     @ViewInject(id = R.id.market_campaignname)
-    EditText mCampaignName ;
+    TextView mCampaignName ;
     @ViewInject(id = R.id.remark)
     EditText mRemark;
 
@@ -49,16 +47,17 @@ public class MarketActivityCreateFragment extends ABaseFragment {
 
     @Override
     protected int inflateContentView() {
-        return R.layout.frag_market_activity_create;
+        return R.layout.frag_market_activity_reimburse_create;
     }
 
-    public static void launch(Activity mActivity) {
-        FragmentContainerActivity.launch(mActivity, MarketActivityCreateFragment.class, null);
+    public static void launch(FragmentActivity activity) {
+        FragmentContainerActivity.launch(activity, MarketActivityReimburseCreateTwoFragment.class, null);
     }
+
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("市场活动费申请");
+        getActivity().setTitle("市场活动费报销");
 
         initTimePicker();
     }
@@ -170,5 +169,6 @@ public class MarketActivityCreateFragment extends ABaseFragment {
             }
         });
     }
+
 
 }

@@ -34,7 +34,7 @@
                     android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
 
-                <EditText
+                <TextView
                     android:id="@+id/market_campaignname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,11 +74,40 @@
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/icon_arrow_right"
                     android:singleLine="true"
-                    android:text="国内展览费"
+                    android:text="彩页"
                     android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="8dp"
+                    android:singleLine="true"
+                    android:text="数量"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/market_create_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:hint="5"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@null"/>
+            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +127,7 @@
                     android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
 
-                <EditText
+                <TextView
                     android:id="@+id/market_create_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,7 +135,7 @@
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/icon_arrow_right"
                     android:singleLine="true"
-                    android:hint="请填写金额"
+                    android:hint="1234"
                     android:textSize="@dimen/text_size_normal"
                     android:background="@null"/>
             </RelativeLayout>
@@ -137,7 +166,7 @@
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/icon_arrow_right"
                     android:singleLine="true"
-                    android:hint="请选择时间"
+                    android:hint="2016-8-12"
                     android:textSize="@dimen/text_size_normal"
                     android:background="@null"/>
             </RelativeLayout>
