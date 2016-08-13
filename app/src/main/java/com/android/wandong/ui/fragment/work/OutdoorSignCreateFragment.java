@@ -9,29 +9,37 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.App;
 import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.widget.FixGridView;
+import com.android.wandong.utils.ExtendMediaPicker;
 import com.android.wandong.utils.Tools;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
-import com.baidu.mapapi.utils.DistanceUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestHandler;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
+import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.widget.ActionSheetDialog;
 import com.zhan.framework.utils.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,9 +70,9 @@ import java.util.List;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatcher {
+public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatcher, ExtendMediaPicker.OnMediaPickerListener ,AdapterView.OnItemClickListener {
 
-    private static final int REQUEST_CODE_CUSTOMER=100;
+    private static final int REQUEST_CODE_CUSTOMER = 100;
 
     //View
     @ViewInject(id = R.id.sign_in_time)
@@ -91,16 +99,25 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
     @ViewInject(id = R.id.btn_sign_in, click = "OnClick")
     View mBtnSignIn;
 
-    @ViewInject(id = R.id.imgAddPhoto, click = "OnClick")
-    View mBtnAddPhoto;
+    /*@ViewInject(id = R.id.imgAddPhoto, click = "OnClick")
+    View mBtnAddPhoto;*/
+
+    @ViewInject(id = R.id.photos)
+    protected FixGridView mFixGridView;
 
     //Data
     private String mCustomerId;
     private AddressInfo mAddressInfo;
+    private ArrayList<String> mMeidaUri = new ArrayList<>();
 
+    private ExtendMediaPicker mExtendMediaPicker;
 
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
+
+    private AttachmentAdapter mAdapter;
+
+    private LayoutInflater mInflater;
 
     public static void launch(Activity activity) {
         FragmentContainerActivity.launch(activity, OutdoorSignCreateFragment.class, null);
@@ -118,6 +135,17 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
         mLocationClient.start();
         initLocation();
+
+        mExtendMediaPicker = new ExtendMediaPicker(getActivity());
+        mExtendMediaPicker.setOnMediaPickerListener(this);
+
+        mInflater=inflater;
+        //图片,最后一个表示添加
+        mMeidaUri.clear();
+        mMeidaUri.add("add_new");
+        mAdapter = new AttachmentAdapter(mMeidaUri,getActivity());
+        mFixGridView.setAdapter(mAdapter);
+        mFixGridView.setOnItemClickListener(this);
     }
 
     @Override
@@ -127,11 +155,11 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
     @Override
     public void onDestroyView() {
-        if(mLocationClient.isStarted()){
+        if (mLocationClient.isStarted()) {
             mLocationClient.stop();
         }
         mLocationClient.unRegisterLocationListener(myListener);
-        mLocationClient=null;
+        mLocationClient = null;
         super.onDestroyView();
     }
 
@@ -141,25 +169,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
                 ChooseLocationFragment.launch(getActivity());
                 break;
             case R.id.customer_content:
-                AccountListFragment.launchForResult(this,REQUEST_CODE_CUSTOMER);
-                break;
-            case R.id.imgAddPhoto:
-                ActionSheetDialog actionSheetDialog=new ActionSheetDialog(getActivity());
-                actionSheetDialog.builder();
-                actionSheetDialog.addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener(){
-                    @Override
-                    public void onClick(int which) {
-
-                    }
-                });
-                actionSheetDialog.addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener(){
-                    @Override
-                    public void onClick(int which) {
-
-                    }
-                });
-
-                actionSheetDialog.show();
+                AccountListFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
                 break;
             case R.id.btn_sign_in:
                 signInRequest();
@@ -167,21 +177,21 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         }
     }
 
-    private void signInRequest(){
-        if(isRequestProcessing(ApiUrls.MYSIGN_SIGNIN)){
+    private void signInRequest() {
+        if (isRequestProcessing(ApiUrls.MYSIGN_SIGNIN)) {
             return;
         }
-        HttpRequestParams requestParams=Tools.createHttpRequestParams();
+        HttpRequestParams requestParams = Tools.createHttpRequestParams();
 
         //DistanceUtil.getDistance()
 
-        requestParams.put("Abnormal",1);
-        requestParams.put("AbnormalDistance",21337.287181);
+        requestParams.put("Abnormal", 1);
+        requestParams.put("AbnormalDistance", 21337.287181);
         requestParams.put("AccountId", mCustomerId);
         requestParams.put("Address", mAddressInfo.address);
         requestParams.put("AttaRelationId", "");
         requestParams.put("Latitude", mAddressInfo.Latitude);
-        requestParams.put("LocTime",Tools.parseTimeToMintues(System.currentTimeMillis()));
+        requestParams.put("LocTime", Tools.parseTimeToMintues(System.currentTimeMillis()));
         requestParams.put("Longitude", mAddressInfo.Longitude);
         requestParams.put("Remarks", mViewRemark.getText().toString());
 
@@ -209,8 +219,10 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         if (requestCode == REQUEST_CODE_CUSTOMER && resultCode == Activity.RESULT_OK) {
             mViewSignInCustomer.setText(data.getStringExtra(AccountListFragment.KEY_ACCOUNT_NAME));
             mViewSignInCustomer.setTextColor(0xff333333);
-            mCustomerId=data.getStringExtra(AccountListFragment.KEY_ACCOUNT_ID);
+            mCustomerId = data.getStringExtra(AccountListFragment.KEY_ACCOUNT_ID);
         }
+
+        mExtendMediaPicker.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -227,7 +239,6 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
     public void afterTextChanged(Editable s) {
         mViewRemarkLength.setText(String.format("%d/200", 200 - mViewRemark.length()));
     }
-
 
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
@@ -247,6 +258,33 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         mLocationClient.setLocOption(option);
     }
 
+    @Override
+    public void onSelectedMediaChanged(String mediaUri) {
+        mMeidaUri.add(0, mediaUri);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(mMeidaUri.size()-1==position){
+            ActionSheetDialog actionSheetDialog = new ActionSheetDialog(getActivity());
+            actionSheetDialog.builder();
+            actionSheetDialog.addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    mExtendMediaPicker.openSystemCamera(OutdoorSignCreateFragment.this);
+                }
+            });
+            actionSheetDialog.addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    mExtendMediaPicker.openSystemPickImage(OutdoorSignCreateFragment.this);
+                }
+            });
+            actionSheetDialog.show();
+        }
+    }
+
     public class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -254,24 +292,55 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
             List<Poi> list = location.getPoiList();// POI数据
             if (list != null && list.size() > 0 && !TextUtils.isEmpty(list.get(0).getName())) {
 
-                mAddressInfo=new AddressInfo();
-                mAddressInfo.Latitude=location.getLatitude();
-                mAddressInfo.Longitude=location.getLongitude();
-                mAddressInfo.address=list.get(0).getName();
+                mAddressInfo = new AddressInfo();
+                mAddressInfo.Latitude = location.getLatitude();
+                mAddressInfo.Longitude = location.getLongitude();
+                mAddressInfo.address = list.get(0).getName();
 
                 mViewSignInAddress.setText(mAddressInfo.address);
                 mViewSignInAddress.setTextColor(0xff333333);
 
-                if(mLocationClient!=null&&mLocationClient.isStarted()){
+                if (mLocationClient != null && mLocationClient.isStarted()) {
                     mLocationClient.stop();
                 }
             }
         }
     }
 
-    private class AddressInfo{
+    private class AddressInfo {
         double Latitude;
         double Longitude;
         String address;
     }
+
+    private class AttachmentAdapter extends ABaseAdapter<String> {
+        public AttachmentAdapter(ArrayList<String> datas, Activity context) {
+            super(datas, context);
+        }
+
+        @Override
+        protected AbstractItemView<String> newItemView() {
+            return new AttachmentItemView();
+        }
+    }
+
+    private class AttachmentItemView extends ABaseAdapter.AbstractItemView<String> {
+        @ViewInject(id = R.id.attachment)
+        ImageView mViewAttachment;
+
+        @Override
+        public int inflateViewId() {
+            return R.layout.list_item_common_attachment;
+        }
+
+        @Override
+        public void bindingData(View convertView, String data) {
+            if(getPosition()==getSize()-1){
+                ImageLoader.getInstance().displayImage("drawable://" + R.drawable.icon_sign_in_add_photo, mViewAttachment, Tools.buildDefDisplayImgOptions());
+            } else {
+                ImageLoader.getInstance().displayImage("file://"+data, mViewAttachment, Tools.buildDefDisplayImgOptions());
+            }
+        }
+    }
+
 }

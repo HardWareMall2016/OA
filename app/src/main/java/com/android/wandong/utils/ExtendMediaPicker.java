@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -28,23 +27,21 @@ import com.zhan.framework.utils.ToastUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
 /***
-   @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mExtendMediaPicker.onActivityResult(requestCode, resultCode, data);
-   }
-
-   //使用
- pickView.setOnPicturePickerListener(new OnPicturePickerListener() {
-        @Override public void onPictureSelected(String imageUrl) {
-         uploadImage(imageUrl);
-    }
-    });
- pickView.showPickerView();
+ * @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
+ * mExtendMediaPicker.onActivityResult(requestCode, resultCode, data);
+ * }
+ * <p/>
+ * //使用
+ * pickView.setOnPicturePickerListener(new OnPicturePickerListener() {
+ * @Override public void onPictureSelected(String imageUrl) {
+ * uploadImage(imageUrl);
+ * }
+ * });
+ * pickView.showPickerView();
  */
 public class ExtendMediaPicker {
     private static final int REQUEST_CODE_PICK_IMAGE = 2001;
@@ -66,17 +63,14 @@ public class ExtendMediaPicker {
         return imagePath;
     }
 
-
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
-
     public void showPickerView(final Fragment fragment) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         builder.setAdapter(new ArrayAdapter<>(mActivity,
-                android.R.layout.simple_list_item_1, new String[]{"使用相机拍照",
-                "从手机相册选择"}), new OnClickListener() {
+                android.R.layout.simple_list_item_1, new String[]{"使用相机拍照", "从手机相册选择"}), new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
@@ -90,13 +84,13 @@ public class ExtendMediaPicker {
         builder.create().show();
     }
 
-    int resultCOde;
+    int resultCode;
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
-        resultCOde = requestCode;
+        this.resultCode = requestCode;
         switch (requestCode) {
             case REQUEST_CODE_PICK_IMAGE:
                 String path = MediaUtils.getPath(mActivity, data.getData());
@@ -112,18 +106,15 @@ public class ExtendMediaPicker {
     }
 
     @SuppressLint("InlinedApi")
-    private void openSystemPickImage(Fragment fragment) {
+    public void openSystemPickImage(Fragment fragment) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
         photoPickerIntent.setType("image/*");
-        fragment.startActivityForResult(photoPickerIntent,
-                REQUEST_CODE_PICK_IMAGE);
+        fragment.startActivityForResult(photoPickerIntent,REQUEST_CODE_PICK_IMAGE);
     }
 
-    private void openSystemCamera(Fragment fragment) {
-        if (Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED)) {
-            imagePath = Environment.getExternalStorageDirectory()
-                    + File.separator + System.currentTimeMillis() + ".jpg";
+    public void openSystemCamera(Fragment fragment) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            imagePath = Environment.getExternalStorageDirectory() + File.separator + System.currentTimeMillis() + ".jpg";
             File dirPath = new File(imagePath);
             imageUri = Uri.fromFile(dirPath);
 
@@ -136,8 +127,7 @@ public class ExtendMediaPicker {
     }
 
     private File createTempFile() {
-        if (Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED)) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             return new File(Environment.getExternalStorageDirectory(), "image.jpg");
         } else {
             return new File(mActivity.getFilesDir(), "image.jpg");
@@ -148,12 +138,13 @@ public class ExtendMediaPicker {
         if (uri == null)
             return;
         if (mMediaPickerListener != null) {
+            mMediaPickerListener.onSelectedMediaChanged(uri.getPath());
+
             // 控制图片质量
-            try {
+            /*try {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
-                int longSide = options.outHeight > options.outWidth ? options.outHeight
-                        : options.outWidth;
+                int longSide = options.outHeight > options.outWidth ? options.outHeight : options.outWidth;
                 options.inSampleSize = 1;
                 if (longSide < 1000) {
                     options.inSampleSize = 1;
@@ -164,22 +155,20 @@ public class ExtendMediaPicker {
                 }
                 // 解析图片
                 options.inJustDecodeBounds = false;
-                Bitmap bmp = BitmapFactory.decodeFile(uri.getPath(), options).copy(
-                        Bitmap.Config.ARGB_8888, true);
+                Bitmap bmp = BitmapFactory.decodeFile(uri.getPath(), options).copy(Bitmap.Config.ARGB_8888, true);
                 // 自动旋转规避
                 int degree = getBitmapDegree(uri.getPath());
                 if (degree != 0) {
                     Matrix matrix = new Matrix();
                     matrix.postRotate(degree);
-                    bmp = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(),
-                            bmp.getHeight(), matrix, true);
+                    bmp = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
                 }
                 if (bmp != null) {
                     OutputStream out = new FileOutputStream(uri.getPath() + "send");
                     bmp.compress(CompressFormat.JPEG, 100, out);
                     out.close();
 
-                    /*if (REQUEST_CODE_TAKE_PHOTO == resultCOde) {//拍照才保存到相册
+                    *//*if (REQUEST_CODE_TAKE_PHOTO == resultCode) {//拍照才保存到相册
                         String fname = DateFormat.format("yyyyMMddhhmmss", new Date()).toString();
 
                         String otherFilePath = insertImage(mActivity.getContentResolver(), bmp, fname, "");
@@ -205,13 +194,13 @@ public class ExtendMediaPicker {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                    }*/
+                    }*//*
 
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            mMediaPickerListener.onSelectedMediaChanged(uri.getPath() + "send");
+            mMediaPickerListener.onSelectedMediaChanged(uri.getPath() + "send");*/
             return;
         }
     }
@@ -220,8 +209,7 @@ public class ExtendMediaPicker {
         if (null == uri) {
             return null;
         }
-        Cursor c = context.getContentResolver().query(uri, null, null, null,
-                null);
+        Cursor c = context.getContentResolver().query(uri, null, null, null, null);
         String filePath = null;
         if (null == c) {
             throw new IllegalArgumentException("Query on " + uri + " returns null result.");
@@ -254,8 +242,7 @@ public class ExtendMediaPicker {
         String stringUrl = null; /* value to be returned */
 
         try {
-            url = cr.insert(Images.Media.EXTERNAL_CONTENT_URI,
-                    values);
+            url = cr.insert(Images.Media.EXTERNAL_CONTENT_URI, values);
 
             if (source != null) {
                 OutputStream imageOut = cr.openOutputStream(url);
@@ -268,8 +255,7 @@ public class ExtendMediaPicker {
 
                 long id = ContentUris.parseId(url);
                 // Wait until MINI_KIND thumbnail is generated.
-                Bitmap miniThumb = Images.Thumbnails.getThumbnail(cr, id,
-                        Images.Thumbnails.MINI_KIND, null);
+                Bitmap miniThumb = Images.Thumbnails.getThumbnail(cr, id, Images.Thumbnails.MINI_KIND, null);
                 // This is for backward compatibility.
                 Bitmap microThumb = StoreThumbnail(cr, miniThumb, id, 50F,
                         50F, Images.Thumbnails.MICRO_KIND);
@@ -301,8 +287,7 @@ public class ExtendMediaPicker {
 
         matrix.setScale(scaleX, scaleY);
 
-        Bitmap thumb = Bitmap.createBitmap(source, 0, 0, source.getWidth(),
-                source.getHeight(), matrix, true);
+        Bitmap thumb = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 
         ContentValues values = new ContentValues(4);
         values.put(Images.Thumbnails.KIND, kind);
@@ -330,8 +315,7 @@ public class ExtendMediaPicker {
     }
 
 
-    public static String getDataColumn(Context context, Uri uri,
-                                       String selection, String[] selectionArgs) {
+    public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         final String column = "_data";
         final String[] projection = {column};
