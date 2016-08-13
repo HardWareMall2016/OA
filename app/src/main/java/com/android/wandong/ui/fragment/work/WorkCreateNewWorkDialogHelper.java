@@ -174,7 +174,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         } else if (workCategoryItem.getType().equals(TenderApplicationFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(InspectionReceptionApplicationFragment.TAB_TYPE)) {
-
+            InspectionReceptionApplicationCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(EntertainmentApplicationFragment.TAB_TYPE)) {
             EntertainmentApplicationCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(MarketActivityApplicationFragment.TAB_TYPE)) {
@@ -184,7 +184,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         } else if (workCategoryItem.getType().equals(SpecialDuesReimbursementFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(EntertainmentReimbursementFragment.TAB_TYPE)) {
-
+            //EntertainmentReimbursementCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(MarketActivityReimbursementFragment.TAB_TYPE)) {
             MarketActivityReimburseCreateFragment.launch(mActivity);
         }
