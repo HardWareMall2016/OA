@@ -20,7 +20,6 @@ import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
-import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
 import com.zhan.framework.utils.PixelUtils;
 import com.zhan.framework.utils.ToastUtils;
@@ -29,41 +28,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 作者：伍岳 on 2016/8/9 23:07
- * 邮箱：wuyue8512@163.com
- * //
- * //         .............................................
- * //                  美女坐镇                  BUG辟易
- * //         .............................................
- * //
- * //                       .::::.
- * //                     .::::::::.
- * //                    :::::::::::
- * //                 ..:::::::::::'
- * //              '::::::::::::'
- * //                .::::::::::
- * //           '::::::::::::::..
- * //                ..::::::::::::.
- * //              ``::::::::::::::::
- * //               ::::``:::::::::'        .:::.
- * //              ::::'   ':::::'       .::::::::.
- * //            .::::'      ::::     .:::::::'::::.
- * //           .:::'       :::::  .:::::::::' ':::::.
- * //          .::'        :::::.:::::::::'      ':::::.
- * //         .::'         ::::::::::::::'         ``::::.
- * //     ...:::           ::::::::::::'              ``::.
- * //    ```` ':.          ':::::::::'                  ::::..
- * //                       '.:::::'                    ':'````..
- * //
+ * Created by ${keke} on 16/8/13.
  */
-public class AccountListFragment extends APullToRefreshListFragment<AccountListFragment.AccountInfo> {
+public class EntertainmentApplicationListFragment extends APullToRefreshListFragment<EntertainmentApplicationListFragment.AccountInfo> {
     public static String KEY_ACCOUNT_NAME="account_name";
     public static String KEY_ACCOUNT_ID="account_id";
 
     private int mSelectedPos=-1;
 
-    public static void launchForResult(ABaseFragment from, int requestCode) {
-        FragmentContainerActivity.launchForResult(from, AccountListFragment.class, null, requestCode);
+    public static void launchForResult(EntertainmentApplicationCreateFragment from, int requestCode) {
+        FragmentContainerActivity.launchForResult(from, EntertainmentApplicationListFragment.class, null, requestCode);
     }
 
     @Override
@@ -115,7 +89,7 @@ public class AccountListFragment extends APullToRefreshListFragment<AccountListF
     }
 
     @Override
-    protected ABaseAdapter.AbstractItemView<AccountInfo> newItemView() {
+    protected ABaseAdapter.AbstractItemView<EntertainmentApplicationListFragment.AccountInfo> newItemView() {
         return new ItemView();
     }
 
@@ -126,7 +100,7 @@ public class AccountListFragment extends APullToRefreshListFragment<AccountListF
             mSelectedPos=-1;
         }
 
-        HttpRequestParams requestParams=Tools.createHttpRequestParams();
+        HttpRequestParams requestParams= Tools.createHttpRequestParams();
         requestParams.put("PageIndex", getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
 
@@ -166,14 +140,6 @@ public class AccountListFragment extends APullToRefreshListFragment<AccountListF
         }, HttpRequestUtils.RequestType.POST);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(mSelectedPos!=id){
-            mSelectedPos= (int) id;
-            notifyDataSetChanged();
-        }
-    }
-
     private class ItemView extends ABaseAdapter.AbstractItemView<AccountInfo>{
         @ViewInject(id = R.id.AccountName)
         TextView mViewAccountName ;
@@ -196,7 +162,13 @@ public class AccountListFragment extends APullToRefreshListFragment<AccountListF
             }
         }
     }
-
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(mSelectedPos!=id){
+            mSelectedPos= (int) id;
+            notifyDataSetChanged();
+        }
+    }
     public class AccountInfo{
         String AccountId;
         String Name;

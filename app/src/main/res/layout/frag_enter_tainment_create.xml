@@ -35,6 +35,7 @@
                     android:textSize="14dp"/>
 
                 <TextView
+                    android:id="@+id/create_enter_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -160,6 +161,7 @@
                         android:textSize="14dp"/>
 
                     <TextView
+                        android:id="@+id/market_change_province"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
