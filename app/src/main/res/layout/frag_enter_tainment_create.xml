@@ -31,16 +31,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="单位名称" />
+                    android:text="单位名称"
+                    android:textSize="14dp"/>
 
                 <TextView
+                    android:id="@+id/create_enter_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/arrow_right_small"
                     android:gravity="center"
-                    android:text="请选择客户单位" />
+                    android:text="请选择客户单位"
+                    android:textSize="14dp"
+                    android:textColor="@color/text_color_content"/>
 
             </RelativeLayout>
 
@@ -54,16 +58,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="招待人数" />
+                    android:text="招待人数"
+                    android:textSize="14dp"/>
 
-                <TextView
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:drawableRight="@drawable/arrow_right_small"
                     android:gravity="center"
-                    android:text="请填写招待人数" />
+                    android:hint="请填写招待人数"
+                    android:background="@null"
+                    android:textSize="14dp"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:layout_marginRight="20dp"/>
 
             </RelativeLayout>
 
@@ -76,16 +85,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="招待时间" />
+                    android:text="招待时间"
+                    android:textSize="14dp"/>
 
                 <TextView
+                    android:id="@+id/tainment_creat_chang_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/arrow_right_small"
                     android:gravity="center"
-                    android:text="请选择招待时间" />
+                    android:text="请选择招待时间"
+                    android:textSize="14dp"
+                    android:textColor="@color/text_color_content"/>
             </RelativeLayout>
 
 
@@ -98,7 +111,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="招待事由" />
+                    android:text="招待事由"
+                    android:textSize="14dp"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -143,16 +157,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="发生省份" />
+                        android:text="发生省份"
+                        android:textSize="14dp"/>
 
                     <TextView
+                        android:id="@+id/market_change_province"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawableRight="@drawable/arrow_right_small"
                         android:gravity="center"
-                        android:text="请选择省份" />
+                        android:text="请选择省份"
+                        android:textSize="14dp"
+                        android:textColor="@color/text_color_content"/>
 
                 </RelativeLayout>
 
@@ -166,7 +184,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="申请单元" />
+                        android:text="申请单元"
+                        android:textSize="14dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -175,7 +194,9 @@
                         android:layout_centerVertical="true"
                         android:drawableRight="@drawable/arrow_right_small"
                         android:gravity="center"
-                        android:text="请选择单元" />
+                        android:text="请选择单元"
+                        android:textSize="14dp"
+                        android:textColor="@color/text_color_content"/>
 
                 </RelativeLayout>
 
@@ -188,7 +209,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="预计总费用" />
+                        android:text="预计总费用"
+                        android:textSize="14dp"/>
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -196,10 +218,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@null"
-                        android:textSize="@dimen/text_size_normal"
+                        android:textSize="14dp"
                         android:hint="请填写总费用"
+                        android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_supplementary" />
+                        android:textColorHint="@color/text_color_content" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

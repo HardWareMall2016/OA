@@ -126,7 +126,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("外勤签到");
+        getActivity().setTitle("新建外勤签到");
         mViewRemark.addTextChangedListener(this);
         mViewSignInTime.setText(Tools.parseTimeToMintues(System.currentTimeMillis()));
 
