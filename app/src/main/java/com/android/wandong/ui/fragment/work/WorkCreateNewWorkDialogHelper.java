@@ -281,7 +281,6 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
             case R.id.close_btn:
                 if (mDialog != null && mDialog.isShowing()) {
                     mDialog.dismiss();
-                    mDialog = null;
                 }
                 break;
         }
