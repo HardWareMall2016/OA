@@ -146,7 +146,21 @@
                     android:textSize="@dimen/text_size_small" />
             </LinearLayout>
 
-            <HorizontalScrollView
+
+            <com.android.wandong.ui.widget.FixGridView
+                android:id="@+id/photos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_small"
+                android:gravity="fill"
+                android:horizontalSpacing="16dip"
+                android:numColumns="3"
+                android:padding="16dp"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="8dip" />
+
+
+            <!--<HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_small"
@@ -166,7 +180,7 @@
                         android:background="@drawable/default_bg"
                         android:src="@drawable/icon_sign_in_add_photo" />
                 </LinearLayout>
-            </HorizontalScrollView>
+            </HorizontalScrollView>-->
         </LinearLayout>
     </ScrollView>
 
