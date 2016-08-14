@@ -6,10 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
-import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.beans.TravelExpenseReimburseContent;
 import com.android.wandong.beans.TravelExpenseReimburseResponseBean;
-import com.android.wandong.beans.TravelExpenseReimbursementDetailsFragment;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.zhan.framework.network.HttpRequestParams;

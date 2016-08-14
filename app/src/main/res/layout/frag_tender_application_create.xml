@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_white_small"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="项目名称"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:id="@+id/inspection_company_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:hint="请填写项目名称"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="招标编号"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请填写招标编号"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="客户"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tender_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:text="请选择客户"
+                    android:drawableRight="@drawable/arrow_right_small"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="省份"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tender_change_province"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请选择省份"
+                    android:drawableRight="@drawable/arrow_right_small"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="地级市"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请填写地级市"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="产品线"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tender_change_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:text="请选择产品线"
+                    android:drawableRight="@drawable/arrow_right_small"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="投标产品"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tender_change_bidproduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:text="请选择投标产品"
+                    android:drawableRight="@drawable/arrow_right_small"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="投标设备数"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请填写设备数"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="开标时间"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tender_change_bidtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:text="请选择开标时间"
+                    android:drawableRight="@drawable/arrow_right_small"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="招标代理机构"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请填写招标代理机构"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="被授权单位名称"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请填写单位名称"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="招标信息网址"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请填写网站"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_main_color_selector"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="提交"
+        android:textColor="@color/text_white_color_selector"
+        android:textSize="@dimen/text_size_large" />
+
+</LinearLayout>
+

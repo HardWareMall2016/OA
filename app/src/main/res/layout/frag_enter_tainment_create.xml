@@ -203,13 +203,14 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:background="@drawable/bg_white_underline_selector">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="预计总费用"
+                        android:text="预计餐费"
                         android:textSize="14dp"/>
 
                     <EditText
@@ -219,7 +220,132 @@
                         android:layout_centerVertical="true"
                         android:background="@null"
                         android:textSize="14dp"
-                        android:hint="请填写总费用"
+                        android:hint="请填写餐费"
+                        android:layout_marginRight="8dp"
+                        android:textColor="@color/text_color_content"
+                        android:textColorHint="@color/text_color_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_white_underline_selector">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="预计会议住宿费"
+                        android:textSize="14dp"/>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:textSize="14dp"
+                        android:hint="请填写会议住宿费"
+                        android:layout_marginRight="8dp"
+                        android:textColor="@color/text_color_content"
+                        android:textColorHint="@color/text_color_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_white_underline_selector">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="预计办公用品费"
+                        android:textSize="14dp"/>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:textSize="14dp"
+                        android:hint="请填写办公用品费"
+                        android:layout_marginRight="8dp"
+                        android:textColor="@color/text_color_content"
+                        android:textColorHint="@color/text_color_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_white_underline_selector">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="预计交通费"
+                        android:textSize="14dp"/>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:textSize="14dp"
+                        android:hint="请填写交通费"
+                        android:layout_marginRight="8dp"
+                        android:textColor="@color/text_color_content"
+                        android:textColorHint="@color/text_color_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_white_underline_selector">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="预计礼品费"
+                        android:textSize="14dp"/>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:textSize="14dp"
+                        android:hint="请填写礼品费"
+                        android:layout_marginRight="8dp"
+                        android:textColor="@color/text_color_content"
+                        android:textColorHint="@color/text_color_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="预计费用合计"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:textSize="14dp"
+                        android:text="0"
                         android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
                         android:textColorHint="@color/text_color_content" />
@@ -235,7 +361,7 @@
             android:background="@drawable/bg_main_color_selector"
             android:gravity="center"
             android:minHeight="48dp"
-            android:text="确定"
+            android:text="提交"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_normal" />
 

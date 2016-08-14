@@ -172,7 +172,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         } else if (workCategoryItem.getType().equals(ContractApplicationFragment.TAB_TYPE)) {
 
         } else if (workCategoryItem.getType().equals(TenderApplicationFragment.TAB_TYPE)) {
-
+            TenderApplicationCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(InspectionReceptionApplicationFragment.TAB_TYPE)) {
             InspectionReceptionApplicationCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(EntertainmentApplicationFragment.TAB_TYPE)) {
@@ -180,11 +180,11 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         } else if (workCategoryItem.getType().equals(MarketActivityApplicationFragment.TAB_TYPE)) {
             MarketActivityCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(TravelExpenseReimbursementFragment.TAB_TYPE)) {
-
+            TravelExpenseReimbursementCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(SpecialDuesReimbursementFragment.TAB_TYPE)) {
-
+            SpecialDuesReimbursementCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(EntertainmentReimbursementFragment.TAB_TYPE)) {
-            //EntertainmentReimbursementCreateFragment.launch(mActivity);
+            EntertainmentReimbursementCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(MarketActivityReimbursementFragment.TAB_TYPE)) {
             MarketActivityReimburseCreateFragment.launch(mActivity);
         }

@@ -1,4 +1,4 @@
-package com.android.wandong.beans;
+package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
+import com.android.wandong.beans.TravelExpenseReimburseContent;
+import com.android.wandong.beans.TravelExpenseReimburseDetailsResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.FixListView;
 import com.android.wandong.utils.Tools;
@@ -28,7 +30,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * Created by ${keke} on 16/8/7.
+ * Created by ${keke} on 16/8/14.
  */
 public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
     private final static String ARG_KEY = "travel_reimbur_key";
@@ -365,3 +367,4 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         }
     }
 }
+
