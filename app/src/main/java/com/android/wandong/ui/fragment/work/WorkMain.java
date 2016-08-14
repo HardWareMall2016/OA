@@ -70,6 +70,8 @@ public class WorkMain extends AStripTabsFragment implements AdapterView.OnItemCl
 
     private CategoryAdapter mAdapter;
 
+    private WorkCreateNewWorkDialogHelper mWorkCreateNewWorkDialogHelper;
+
     @Override
     protected int inflateContentView() {
         return R.layout.frag_work_main;
@@ -175,6 +177,7 @@ public class WorkMain extends AStripTabsFragment implements AdapterView.OnItemCl
         mAdapter = new CategoryAdapter(mTabs, getActivity());
         mGridView.setAdapter(mAdapter);
         mGridView.setOnItemClickListener(this);
+        mWorkCreateNewWorkDialogHelper = new WorkCreateNewWorkDialogHelper(getActivity(), mTabs);
     }
 
     @Override
@@ -214,8 +217,7 @@ public class WorkMain extends AStripTabsFragment implements AdapterView.OnItemCl
     void OnClick(View v) {
         switch (v.getId()) {
             case R.id.nav_add:
-                WorkCreateNewWorkDialogHelper workCreateNewWorkDialogHelper = new WorkCreateNewWorkDialogHelper(getActivity(), mTabs);
-                workCreateNewWorkDialogHelper.showDialog();
+                mWorkCreateNewWorkDialogHelper.showDialog();
                 break;
             case R.id.filter:
                 break;

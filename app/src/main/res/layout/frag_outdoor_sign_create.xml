@@ -154,7 +154,7 @@
                 android:background="@drawable/bg_white_small"
                 android:gravity="fill"
                 android:horizontalSpacing="16dip"
-                android:numColumns="3"
+                android:numColumns="4"
                 android:padding="16dp"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="8dip" />

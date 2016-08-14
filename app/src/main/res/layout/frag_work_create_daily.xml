@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_white_small"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/divider_color" />
+
+                <RelativeLayout
+                    android:id="@+id/address_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_underline_selector"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:drawableLeft="@drawable/icon_add_small"
+                        android:drawablePadding="8dp"
+                        android:singleLine="true"
+                        android:text="关联客户"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/sign_in_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:drawableRight="@drawable/icon_arrow_right"
+                        android:singleLine="true"
+                        android:text="请选择关联用户"
+                        android:textColor="@color/text_color_supplementary"
+                        android:textSize="@dimen/text_size_normal" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:text="今日工作总结"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/today_work_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="start|top"
+                    android:hint="请填写今日工作总结"
+                    android:minHeight="120dp"
+                    android:padding="8dp"
+                    android:textColor="@color/text_color_title"
+                    android:textColorHint="@color/text_color_supplementary"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_white_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:text="明日工作计划"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/tomorrow_work_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="start|top"
+                    android:hint="请填写明日工作计划"
+                    android:minHeight="120dp"
+                    android:padding="8dp"
+                    android:textColor="@color/text_color_title"
+                    android:textColorHint="@color/text_color_supplementary"
+                    android:textSize="@dimen/text_size_small" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/divider_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:text="工作心得体会"
+                    android:textColor="@color/text_color_content"
+                    android:textSize="@dimen/text_size_small" />
+
+                <EditText
+                    android:id="@+id/workExperience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:gravity="start|top"
+                    android:hint="请填写工作心得体会"
+                    android:minHeight="120dp"
+                    android:padding="8dp"
+                    android:textColor="@color/text_color_title"
+                    android:textColorHint="@color/text_color_supplementary"
+                    android:textSize="@dimen/text_size_small" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/divider_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_underline_selector"
+                    android:minHeight="48dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_main_color_circle_selector"
+                        android:drawableLeft="@drawable/icon_csfw"
+                        android:drawablePadding="8dp"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:singleLine="true"
+                        android:text="抄送范围"
+                        android:textColor="@color/main_color"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:drawableRight="@drawable/icon_arrow_right"
+                        android:singleLine="true"
+                        android:text="已选择0人"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal" />
+                </RelativeLayout>
+
+                <com.android.wandong.ui.widget.FixGridView
+                    android:id="@+id/people"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="fill"
+                    android:horizontalSpacing="16dip"
+                    android:numColumns="4"
+                    android:padding="16dp"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="8dip" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_main_color_selector"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="提交"
+        android:textColor="@color/text_white_color_selector"
+        android:textSize="@dimen/text_size_large" />
+</LinearLayout>

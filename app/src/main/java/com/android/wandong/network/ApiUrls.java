@@ -118,4 +118,6 @@ public class ApiUrls {
 
     //外勤签到-签入
     public static final String MYSIGN_SIGNIN= "MySign/SignIn.ashx";
+    //外勤签到-签出
+    public static final String MYSIGN_SIGN_OUT= "MySign/SignOut.ashx";
 }

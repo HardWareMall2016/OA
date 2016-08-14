@@ -17,6 +17,7 @@ import com.android.wandong.ui.widget.FixViewPager;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.InjectUtility;
 import com.zhan.framework.support.inject.ViewInject;
+import com.zhan.framework.ui.widget.ActionSheetDialog;
 import com.zhan.framework.utils.PixelUtils;
 
 import java.text.DateFormat;
@@ -92,9 +93,36 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
 
         DateFormat df = new SimpleDateFormat("MMMM", Locale.ENGLISH);
         mTextViewMonth.setText(df.format(new Date()));
+
+        mFixViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int i = 0; i < mContainerIndicator.getChildCount(); i++) {
+                    CircleView circleView = (CircleView) mContainerIndicator.getChildAt(i);
+                    if (position == i) {
+                        circleView.setDrawColor(0xff996633);
+                    } else {
+                        circleView.setDrawColor(0xffAAAAAA);
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public void showDialog() {
+        mPageDataList.clear();
+        mContainerIndicator.removeAllViews();
+
         List<View> listViews = new ArrayList<>();
         ArrayList<WorkMain.WorkCategoryItem> pageData = new ArrayList<>();
         for (int i = 0; i < mTabs.size(); i++) {
@@ -128,30 +156,6 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
             mContainerIndicator.addView(circleView);
         }
 
-        mFixViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                for (int i = 0; i < mContainerIndicator.getChildCount(); i++) {
-                    CircleView circleView = (CircleView) mContainerIndicator.getChildAt(i);
-                    if (position == i) {
-                        circleView.setDrawColor(0xff996633);
-                    } else {
-                        circleView.setDrawColor(0xffAAAAAA);
-                    }
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
         mFixViewPager.setAdapter(new MyViewPagerAdapter(listViews));
         mDialog.show();
     }
@@ -162,7 +166,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         if (workCategoryItem.getType().equals(OutdoorSignInFragment.TAB_TYPE)) {
             OutdoorSignCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(WorkReportListFragment.TAB_TYPE)) {
-
+            showWorkReportDialog();
         } else if (workCategoryItem.getType().equals(AnnouncementFragment.TAB_TYPE)) {
             AnnouncementCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(NoticeFragment.TAB_TYPE)) {
@@ -191,6 +195,29 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         mDialog.dismiss();
     }
 
+    private void showWorkReportDialog(){
+        ActionSheetDialog actionSheetDialog = new ActionSheetDialog(mActivity);
+        actionSheetDialog.builder();
+        actionSheetDialog.addSheetItem("写日报", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+            @Override
+            public void onClick(int which) {
+                WorkReportCreateDaily.launch(mActivity);
+            }
+        });
+        actionSheetDialog.addSheetItem("写周报", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+            @Override
+            public void onClick(int which) {
+                WorkReportCreateWeekly.launch(mActivity);
+            }
+        });
+        actionSheetDialog.addSheetItem("今日休息", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+            @Override
+            public void onClick(int which) {
+
+            }
+        });
+        actionSheetDialog.show();
+    }
 
     private class MyViewPagerAdapter extends PagerAdapter {
         private List<View> mListViews;

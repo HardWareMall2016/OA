@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,12 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        OutdoorSignDetailFragment.launch(getActivity(),getAdapterItems().get((int)id).SignId);
+        ItemData itemData=getAdapterItems().get((int)id);
+        if(TextUtils.isEmpty(itemData.SignOutAddress)){
+            OutdoorSignEditFragment.launch(getActivity(),itemData.SignId);
+        }else{
+            OutdoorSignDetailFragment.launch(getActivity(),itemData.SignId);
+        }
     }
 
     @Override
@@ -164,6 +170,9 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
         @ViewInject(id = R.id.attachment_info)
         protected FixGridView mViewAttachmentInfo;
 
+        @ViewInject(id = R.id.status)
+        protected TextView mViewStatus;
+
         @Override
         public int inflateViewId() {
             return R.layout.list_item_outdoor_sign;
@@ -176,6 +185,11 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
             Tools.setTextView(mViewLocation,"地点："+data.Address);
             Tools.setTextView(mViewRelativeCustomer,"关联客户："+data.AccountName);
             Tools.setTextView(mViewSummary,data.Remarks);
+            if(TextUtils.isEmpty(data.SignOutAddress)){
+                mViewStatus.setVisibility(View.VISIBLE);
+            }else{
+                mViewStatus.setVisibility(View.GONE);
+            }
 
             if(data.AttachmentInfo.size()==0){
                 mViewAttachmentInfo.setVisibility(View.GONE);
