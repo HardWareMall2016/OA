@@ -1,11 +1,13 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,12 +27,11 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
-import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
-import com.baidu.mapapi.search.poi.PoiDetailResult;
-import com.baidu.mapapi.search.poi.PoiIndoorResult;
-import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
-import com.baidu.mapapi.search.poi.PoiResult;
-import com.baidu.mapapi.search.poi.PoiSearch;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -68,7 +69,11 @@ import java.util.List;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSearchResultListener {
+public class ChooseLocationFragment extends ABaseFragment implements OnGetGeoCoderResultListener ,AdapterView.OnItemClickListener {
+    public static String KEY_LATITUDE="Latitude";
+    public static String KEY_LONGITUDE="Longitude";
+    public static String KEY_ADDRESS="Address";
+
     @ViewInject(id = R.id.bmapView)
     MapView mMapView;
 
@@ -77,13 +82,18 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
     @ViewInject(id = R.id.addressList)
     ListView mViewAddressList;
 
+    ArrayList<PoiInfo> mAddressInfoList = new ArrayList<>();
+
+
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
 
     boolean isFirstLoc = true;
 
-    public static void launch(Activity activity){
-        FragmentContainerActivity.launch(activity, ChooseLocationFragment.class, null);
+    GeoCoder mSearch = null; // 搜索模块，也可去掉地图模块独立使用
+
+    public static void launchForResult(ABaseFragment from, int requestCode) {
+        FragmentContainerActivity.launchForResult(from, ChooseLocationFragment.class, null, requestCode);
     }
 
     @Override
@@ -97,15 +107,19 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
 
         getActivity().setTitle("选择地址");
 
-        mBaiduMap=mMapView.getMap();
+        mAddressInfoList.clear();
+        mViewAddressList.setOnItemClickListener(this);
+
+        mBaiduMap = mMapView.getMap();
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
 
         mLocationClient = new LocationClient(App.getInstance());     //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
-
         mLocationClient.start();
         initLocation();
+        mSearch = GeoCoder.newInstance();
+        mSearch.setOnGetGeoCodeResultListener(this);
     }
 
     @Override
@@ -125,15 +139,18 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(mLocationClient.isStarted()){
+        if (mLocationClient.isStarted()) {
             mLocationClient.stop();
         }
         mLocationClient.unRegisterLocationListener(myListener);
-        mLocationClient=null;
+        mLocationClient = null;
 
         mBaiduMap.setMyLocationEnabled(false);
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
+
+        //释放该地理编码查询对象
+        mSearch.destroy();
     }
 
     private void initLocation() {
@@ -154,6 +171,35 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
         mLocationClient.setLocOption(option);
     }
 
+    @Override
+    public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+
+    }
+
+    @Override
+    public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+        if (reverseGeoCodeResult == null || reverseGeoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+            ToastUtils.toast("抱歉，未能找到结果");
+            return;
+        }
+        if (reverseGeoCodeResult.getPoiList() != null && reverseGeoCodeResult.getPoiList().size() > 0) {
+            mAddressInfoList.clear();
+            mAddressInfoList.addAll(reverseGeoCodeResult.getPoiList());
+            mViewAddressList.setAdapter(new AddressAdapter(mAddressInfoList, getActivity()));
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        PoiInfo poiInfo=mAddressInfoList.get(position);
+        Intent intent=new Intent();
+        intent.putExtra(KEY_LATITUDE,poiInfo.location.latitude);
+        intent.putExtra(KEY_LONGITUDE,poiInfo.location.longitude);
+        intent.putExtra(KEY_ADDRESS,poiInfo.name);
+        getActivity().setResult(Activity.RESULT_OK, intent);
+        getActivity().finish();
+    }
+
     public class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -162,6 +208,9 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
                 return;
             }
 
+            if(location==null){
+                return;
+            }
             List<Poi> list = location.getPoiList();// POI数据
             if (list != null && list.size() > 0 && !TextUtils.isEmpty(list.get(0).getName())) {
 
@@ -177,59 +226,15 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
 
                 mBaiduMap.setMyLocationData(locData);
 
-                if(mLocationClient!=null&&mLocationClient.isStarted()){
+                if (mLocationClient != null && mLocationClient.isStarted()) {
                     mLocationClient.stop();
                 }
-
-                searchNeayBy(curLatLng);
+                mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(curLatLng));
             }
         }
     }
 
-    PoiSearch mPoiSearch;
-    private void searchNeayBy(LatLng curLatLng){
-
-        // POI初始化搜索模块，注册搜索事件监听
-        mPoiSearch = PoiSearch.newInstance();
-        mPoiSearch.setOnGetPoiSearchResultListener(this);
-        PoiNearbySearchOption poiNearbySearchOption = new PoiNearbySearchOption();
-
-        poiNearbySearchOption.keyword("公司");
-        poiNearbySearchOption.location(curLatLng);
-        poiNearbySearchOption.radius(100);  // 检索半径，单位是米
-        poiNearbySearchOption.pageCapacity(20);  // 默认每页10条
-        mPoiSearch.searchNearby(poiNearbySearchOption);  // 发起附近检索请求
-
-    }
-
-    @Override
-    public void onGetPoiResult(PoiResult result) {
-        // 获取POI检索结果
-        if (result == null || result.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {// 没有找到检索结果
-            ToastUtils.toast("未找到结果");
-            return;
-        }
-
-        if (result.error == SearchResult.ERRORNO.NO_ERROR) {// 检索结果正常返回
-            if (result.getAllPoi() != null && result.getAllPoi().size() > 0) {
-                ArrayList<PoiInfo> addressInfoList = new ArrayList<>();
-                addressInfoList.addAll(result.getAllPoi());
-                mViewAddressList.setAdapter(new AddressAdapter(addressInfoList, getActivity()));
-            }
-        }
-    }
-
-    @Override
-    public void onGetPoiDetailResult(PoiDetailResult poiDetailResult) {
-
-    }
-
-    @Override
-    public void onGetPoiIndoorResult(PoiIndoorResult poiIndoorResult) {
-
-    }
-
-    private class AddressAdapter extends ABaseAdapter<PoiInfo>{
+    private class AddressAdapter extends ABaseAdapter<PoiInfo> {
 
         public AddressAdapter(ArrayList<PoiInfo> datas, Activity context) {
             super(datas, context);
@@ -240,7 +245,7 @@ public class ChooseLocationFragment extends ABaseFragment implements OnGetPoiSea
             return new PosItemView();
         }
 
-        private class PosItemView extends AbstractItemView<PoiInfo>{
+        private class PosItemView extends AbstractItemView<PoiInfo> {
             @ViewInject(id = R.id.name)
             TextView mViewName;
 

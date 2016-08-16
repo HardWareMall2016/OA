@@ -73,6 +73,7 @@ import java.util.List;
 public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatcher, ExtendMediaPicker.OnMediaPickerListener ,AdapterView.OnItemClickListener {
 
     private static final int REQUEST_CODE_CUSTOMER = 100;
+    private static final int REQUEST_CODE_LOCATION = 102;
 
     //View
     @ViewInject(id = R.id.sign_in_time)
@@ -166,7 +167,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
     void OnClick(View v) {
         switch (v.getId()) {
             case R.id.address_content:
-                ChooseLocationFragment.launch(getActivity());
+                ChooseLocationFragment.launchForResult(this, REQUEST_CODE_LOCATION);
                 break;
             case R.id.customer_content:
                 AccountListFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
@@ -178,12 +179,21 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
     }
 
     private void signInRequest() {
+
+        if(mAddressInfo==null||TextUtils.isEmpty(mAddressInfo.address)){
+            ToastUtils.toast("请等待定位");
+            return;
+        }
+
+        if(TextUtils.isEmpty(mCustomerId)){
+            ToastUtils.toast("请选择客户");
+            return;
+        }
+
         if (isRequestProcessing(ApiUrls.MYSIGN_SIGNIN)) {
             return;
         }
         HttpRequestParams requestParams = Tools.createHttpRequestParams();
-
-        //DistanceUtil.getDistance()
 
         requestParams.put("Abnormal", 1);
         requestParams.put("AbnormalDistance", 21337.287181);
@@ -220,6 +230,14 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
             mViewSignInCustomer.setText(data.getStringExtra(AccountListFragment.KEY_ACCOUNT_NAME));
             mViewSignInCustomer.setTextColor(0xff333333);
             mCustomerId = data.getStringExtra(AccountListFragment.KEY_ACCOUNT_ID);
+        }else if (requestCode == REQUEST_CODE_LOCATION && resultCode == Activity.RESULT_OK) {
+            mAddressInfo = new AddressInfo();
+            mAddressInfo.Latitude = data.getDoubleExtra(ChooseLocationFragment.KEY_LATITUDE,0);
+            mAddressInfo.Longitude = data.getDoubleExtra(ChooseLocationFragment.KEY_LONGITUDE, 0);
+            mAddressInfo.address = data.getStringExtra(ChooseLocationFragment.KEY_ADDRESS);
+
+            mViewSignInAddress.setText(mAddressInfo.address);
+            mViewSignInAddress.setTextColor(0xff333333);
         }
 
         mExtendMediaPicker.onActivityResult(requestCode, resultCode, data);
@@ -289,6 +307,9 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         @Override
         public void onReceiveLocation(BDLocation location) {
             Log.i("BaiduLocationApiDem", "onReceiveLocation");
+            if(location==null){
+                return;
+            }
             List<Poi> list = location.getPoiList();// POI数据
             if (list != null && list.size() > 0 && !TextUtils.isEmpty(list.get(0).getName())) {
 

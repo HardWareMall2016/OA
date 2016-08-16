@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -62,6 +63,7 @@ import java.util.List;
  */
 public class OutdoorSignEditFragment extends ABaseFragment implements TextWatcher{
     private final static String ARG_KEY="arg_key";
+    private static final int REQUEST_CODE_LOCATION = 102;
 
     //View
     @ViewInject(id = R.id.sign_out_time)
@@ -149,13 +151,26 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
     void OnClick(View v) {
         switch (v.getId()) {
             case R.id.address_content:
-                ChooseLocationFragment.launch(getActivity());
+                ChooseLocationFragment.launchForResult(this,REQUEST_CODE_LOCATION);
                 break;
             case R.id.customer_content:
                 break;
             case R.id.btn_sign_out:
                 signOutRequest();
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_LOCATION && resultCode == Activity.RESULT_OK) {
+            mAddressInfo = new AddressInfo();
+            mAddressInfo.Latitude = data.getDoubleExtra(ChooseLocationFragment.KEY_LATITUDE,0);
+            mAddressInfo.Longitude = data.getDoubleExtra(ChooseLocationFragment.KEY_LONGITUDE, 0);
+            mAddressInfo.address = data.getStringExtra(ChooseLocationFragment.KEY_ADDRESS);
+
+            mViewSignInAddress.setText(mAddressInfo.address);
+            mViewSignInAddress.setTextColor(0xff333333);
         }
     }
 
@@ -196,8 +211,9 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
 
     private void signOutRequest() {
 
-        if(TextUtils.isEmpty(mAddressInfo.address)){
-            ToastUtils.toast("签出地址为空");
+        if(mAddressInfo==null||TextUtils.isEmpty(mAddressInfo.address)){
+            ToastUtils.toast("请等待定位");
+            return;
         }
 
         if (isRequestProcessing(ApiUrls.MYSIGN_SIGN_OUT)) {
