@@ -145,7 +145,7 @@ public class LoginFragment extends ABaseFragment {
                 switch (resultCode) {
                     case success:
                         LoginResponseBean responseBean = Tools.parseJsonTostError(result, LoginResponseBean.class);
-                        if (responseBean != null) {
+                        if (responseBean != null && responseBean.getEntityInfo() != null){
                             saveUserInfo(responseBean);
                             Intent homePageIntent = new Intent(getActivity(), MainActivity.class);
                             homePageIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -169,7 +169,7 @@ public class LoginFragment extends ABaseFragment {
         user.setDepartName(responseBean.getEntityInfo().getDepartname());
         user.setHeadPortrait(responseBean.getEntityInfo().getNew_headportrait());
         user.setUserId(responseBean.getEntityInfo().getUserId());
-        user.setUserName(responseBean.getEntityInfo().getUserName());
+        user.setUserName(mAccount);
         user.setPassword(mPassword);
         user.setIsLogin(true);
         user.setIsLogin(true);

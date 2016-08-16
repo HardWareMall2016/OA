@@ -6,6 +6,7 @@ package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -46,7 +47,8 @@ public class MarketActivityCreateFragment extends ABaseFragment {
 
     private TimePickerView mViewTimePicker;
 
-
+    private String campaignName;
+    private String moneyNum;
     @Override
     protected int inflateContentView() {
         return R.layout.frag_market_activity_create;
@@ -93,9 +95,30 @@ public class MarketActivityCreateFragment extends ABaseFragment {
                 mViewTimePicker.show();
                 break;
             case R.id.btn_true:
+                if (!checkInput()) {
+                    return;
+                }
                 Commit();
                 break;
         }
+    }
+
+    private boolean checkInput() {
+        campaignName = mCampaignName.getText().toString();
+        moneyNum = mCreateMoney.getText().toString();
+        if (TextUtils.isEmpty(campaignName)) {
+            ToastUtils.toast("请填写活动名称");
+            return false;
+        }
+        if(TextUtils.isEmpty(moneyNum)){
+            ToastUtils.toast("请填写金额");
+            return false;
+        }
+        if("请选择时间".equals(mRlChangData.getText().toString())){
+            ToastUtils.toast("请选择时间");
+            return false;
+        }
+        return true;
     }
 
     private void Commit() {
@@ -110,7 +133,7 @@ public class MarketActivityCreateFragment extends ABaseFragment {
         requestBean.setUserName(UserInfo.getCurrentUser().getUserName());
         requestBean.setIsStartWorkflow(true);
         requestBean.setEntityName("new_campaign");
-        requestBean.setApprovalPrice(mCreateMoney.getText().toString());
+        requestBean.setApprovalPrice(moneyNum);
 
         MarketActivityCreateRequestBean.WorkflowFormInfoBean workflowFormInfoBean = new MarketActivityCreateRequestBean.WorkflowFormInfoBean();
         workflowFormInfoBean.setAuditStatus("");
@@ -120,7 +143,7 @@ public class MarketActivityCreateFragment extends ABaseFragment {
 
         ArrayList<MarketActivityCreateRequestBean.FormInfoBean> arrayList = new ArrayList<>();
         MarketActivityCreateRequestBean.FormInfoBean formInfoBean1 = new MarketActivityCreateRequestBean.FormInfoBean();
-        formInfoBean1.setFieldValue(mCampaignName.getText().toString());
+        formInfoBean1.setFieldValue(campaignName);
         formInfoBean1.setFieldName("new_campaignname");
         formInfoBean1.setFieldType("2");
 
@@ -130,7 +153,7 @@ public class MarketActivityCreateFragment extends ABaseFragment {
         formInfoBean2.setFieldType("1");
 
         MarketActivityCreateRequestBean.FormInfoBean formInfoBean3 = new MarketActivityCreateRequestBean.FormInfoBean();
-        formInfoBean3.setFieldValue(mCreateMoney.getText().toString());
+        formInfoBean3.setFieldValue(moneyNum);
         formInfoBean3.setFieldName("new_amount");
         formInfoBean3.setFieldType("3");
 
@@ -159,7 +182,7 @@ public class MarketActivityCreateFragment extends ABaseFragment {
                     case success:
                         BaseResponseBean responseBean = Tools.parseJsonTostError(result, BaseResponseBean.class);
                         if (responseBean != null) {
-                            ToastUtils.toast("新增表单成功");
+                            ToastUtils.toast(responseBean.getMsg());
                             getActivity().finish();
                         }
                         break;

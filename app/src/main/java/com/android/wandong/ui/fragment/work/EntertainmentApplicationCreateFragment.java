@@ -5,18 +5,26 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.wandong.R;
+import com.android.wandong.base.BaseResponseBean;
+import com.android.wandong.base.UserInfo;
+import com.android.wandong.beans.MarketActivityCreateRequestBean;
+import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.timePicker.TimePickerView;
 import com.android.wandong.utils.Tools;
 import com.zhan.framework.component.container.FragmentArgs;
 import com.zhan.framework.component.container.FragmentContainerActivity;
+import com.zhan.framework.network.HttpRequestHandler;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.fragment.ARefreshFragment;
@@ -65,8 +73,30 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
     @ViewInject(id = R.id.create_enter_customer,click = "OnClick")
     TextView mCustomer ;
 
+    @ViewInject(id = R.id.enter_tainment_peopleNum)
+    EditText mEtTainPeopleNum ;
+    @ViewInject(id = R.id.et_entertainment_reason)
+    EditText mEtTainMentReason;
+    @ViewInject(id = R.id.tv_enter_tainment_unit)
+    TextView mTainmentUnit;
+    @ViewInject(id = R.id.et_entertainment_meals)
+    EditText mEtTainMentMeals ;
+    @ViewInject(id = R.id.et_entertainment_conference_fee)
+    EditText mEtTainMentConferenceFee ;
+    @ViewInject(id = R.id.et_entertainment_office_fee)
+    EditText mEtTainMentOfficeFee ;
+    @ViewInject(id = R.id.et_entertainment_traffice_fee)
+    EditText mEtTainMentTrafficeFee ;
+    @ViewInject(id = R.id.et_entertainment_gift_fee)
+    EditText mEtTainMentGiftFee;
+
     @ViewInject(id = R.id.mylesson_picker_view)
     LoopView mPickView;
+    @ViewInject(id = R.id.enter_tainment_finalprice)
+    TextView mFinalPrice ;
+
+    @ViewInject(id = R.id.btn_submit,click = "OnClick")
+    Button mBtnSubmit ;
 
     private View mChangLessonPopMenuContent;
     private long mOverdueTime=0;
@@ -75,6 +105,15 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
 
     private List<String> province_list = new ArrayList<>();
     private  int type = 1 ;
+    private String mCustomerId ;
+
+    private String mPeopleNum ;
+    private String mTainMentReason;
+    private String mTainMentMeals;
+    private String mTainMentConferenceFee ;
+    private String mTainMentOfficeFee;
+    private String mTainMentTrafficeFee ;
+    private String mTainMentGiftFee;
 
     public static void launch(Activity activity) {
         FragmentArgs args = new FragmentArgs();
@@ -140,6 +179,8 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
         province_list.add("澳门特别行政区");
         intiPopMenu();
         initTimePicker();
+
+        mTainmentUnit.setText("营销中心");
     }
 
     private void initTimePicker() {
@@ -177,7 +218,201 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
             case R.id.create_enter_customer:
                 EntertainmentApplicationListFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
                 break;
+            case R.id.btn_submit:
+                if (!checkInput()) {
+                    return;
+                }
+                double a1=Double.parseDouble(mTainMentMeals);
+                double a2=Double.parseDouble(mTainMentConferenceFee);
+                double a3=Double.parseDouble(mTainMentOfficeFee);
+                double a4=Double.parseDouble(mTainMentTrafficeFee);
+                double a5=Double.parseDouble(mTainMentGiftFee);
+                double All = a1+a2+a3+a4+a5;
+                mFinalPrice.setText(String.valueOf(All));
+
+                Submit();
+                break;
         }
+    }
+
+    private void Submit(){
+        MarketActivityCreateRequestBean requestBean=new MarketActivityCreateRequestBean();
+        requestBean.setDepartId(UserInfo.getCurrentUser().getDepartId());
+        requestBean.setId("");
+        requestBean.setPassWord(UserInfo.getCurrentUser().getPassword());
+        requestBean.setOperType("1");
+        requestBean.setUserId(UserInfo.getCurrentUser().getUserId());
+        requestBean.setHasChildren(false);
+        requestBean.setIsAuditForm(false);
+        requestBean.setUserName(UserInfo.getCurrentUser().getUserName());
+        requestBean.setIsStartWorkflow(true);
+        requestBean.setEntityName("new_entertain");
+        requestBean.setApprovalPrice(mFinalPrice.getText().toString());//总计费用
+
+        MarketActivityCreateRequestBean.WorkflowFormInfoBean workflowFormInfoBean = new MarketActivityCreateRequestBean.WorkflowFormInfoBean();
+        workflowFormInfoBean.setAuditStatus("");
+        workflowFormInfoBean.setOpinion("");
+        workflowFormInfoBean.setStepNumber("");
+        requestBean.setWorkflowFormInfo(workflowFormInfoBean);
+
+        ArrayList<MarketActivityCreateRequestBean.FormInfoBean> arrayList = new ArrayList<>();
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean1 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean1.setFieldValue(mCustomerId);
+        formInfoBean1.setFieldName("new_accountid");
+        formInfoBean1.setFieldType("4");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean2 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean2.setFieldValue(mPeopleNum);
+        formInfoBean2.setFieldName("new_number");
+        formInfoBean2.setFieldType("6");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean3 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean3.setFieldValue(mChangeData.getText().toString());
+        formInfoBean3.setFieldName("new_entertaindate");
+        formInfoBean3.setFieldType("5");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean4 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean4.setFieldValue(mEtTainMentReason.getText().toString());
+        formInfoBean4.setFieldName("new_reason");
+        formInfoBean4.setFieldType("2");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean5 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean5.setFieldValue(mTainMentMeals);
+        formInfoBean5.setFieldName("new_estimate_meals");
+        formInfoBean5.setFieldType("3");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean6 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean6.setFieldValue(mTainMentConferenceFee);
+        formInfoBean6.setFieldName("new_estimate_hotel");
+        formInfoBean6.setFieldType("3");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean7 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean7.setFieldValue(mTainMentOfficeFee);
+        formInfoBean7.setFieldName("new_estimate_office");
+        formInfoBean7.setFieldType("3");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean8 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean8.setFieldValue(mTainMentTrafficeFee);
+        formInfoBean8.setFieldName("new_estimate_traffic");
+        formInfoBean8.setFieldType("3");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean9 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean9.setFieldValue(mTainMentGiftFee);
+        formInfoBean9.setFieldName("new_estimate_gift");
+        formInfoBean9.setFieldType("3");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean10 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean10.setFieldValue(mFinalPrice.getText().toString());
+        formInfoBean10.setFieldName("new_estimate_total");
+        formInfoBean10.setFieldType("3");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean11 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean11.setFieldValue(mProvince.getText().toString());
+        formInfoBean11.setFieldName("new_province");
+        formInfoBean11.setFieldType("2");
+
+        MarketActivityCreateRequestBean.FormInfoBean formInfoBean12 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean12.setFieldValue("营销中心");
+        formInfoBean12.setFieldName("new_applyunit");
+        formInfoBean12.setFieldType("2");
+
+        arrayList.add(formInfoBean1);
+        arrayList.add(formInfoBean2);
+        arrayList.add(formInfoBean3);
+        arrayList.add(formInfoBean4);
+        arrayList.add(formInfoBean5);
+        arrayList.add(formInfoBean6);
+        arrayList.add(formInfoBean7);
+        arrayList.add(formInfoBean8);
+        arrayList.add(formInfoBean9);
+        arrayList.add(formInfoBean10);
+        arrayList.add(formInfoBean11);
+        arrayList.add(formInfoBean12);
+
+        requestBean.setFormInfo(arrayList);
+
+        startJsonRequest(ApiUrls.COMMON_SUBMIT_APPLY, requestBean, new HttpRequestHandler(this) {
+            @Override
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                switch (resultCode) {
+                    case success:
+                        BaseResponseBean responseBean = Tools.parseJsonTostError(result, BaseResponseBean.class);
+                        if (responseBean != null) {
+                            ToastUtils.toast(responseBean.getMsg());
+                            getActivity().finish();
+                        }
+                        break;
+                    default:
+                        ToastUtils.toast(result);
+                        break;
+                }
+            }
+        });
+    }
+
+    private boolean checkInput() {
+        mPeopleNum = mEtTainPeopleNum.getText().toString();
+        mTainMentReason = mEtTainMentReason.getText().toString();
+        mTainMentMeals = mEtTainMentMeals.getText().toString();
+        mTainMentConferenceFee = mEtTainMentConferenceFee.getText().toString();
+        mTainMentOfficeFee = mEtTainMentOfficeFee.getText().toString();
+        mTainMentTrafficeFee = mEtTainMentTrafficeFee.getText().toString();
+        mTainMentGiftFee = mEtTainMentGiftFee.getText().toString();
+
+        if("请选择客户单位".equals(mCustomer.getText().toString())){
+            ToastUtils.toast("请选择客户单位");
+            return false;
+        }
+        if (TextUtils.isEmpty(mPeopleNum)) {
+            ToastUtils.toast("请填写招待人数");
+            return false;
+        }
+        if("请选择招待时间".equals(mChangeData.getText().toString())){
+            ToastUtils.toast("请选择招待时间");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mTainMentReason)){
+            ToastUtils.toast("请填写招待事由");
+            return false;
+        }
+
+        if("请选择省份".equals(mProvince.getText().toString())){
+            ToastUtils.toast("请选择省份");
+            return false;
+        }
+
+        if("请选择单元".equals(mTainmentUnit.getText().toString())){
+            ToastUtils.toast("请选择单元");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mTainMentMeals)){
+            ToastUtils.toast("请填写餐费");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mTainMentConferenceFee)){
+            ToastUtils.toast("请填写会议住宿费");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mTainMentOfficeFee)){
+            ToastUtils.toast("请填写办公用品费");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mTainMentTrafficeFee)){
+            ToastUtils.toast("请填写交通费");
+            return false;
+        }
+
+        if(TextUtils.isEmpty(mTainMentGiftFee)){
+            ToastUtils.toast("请填写礼品费");
+            return false;
+        }
+
+        return true;
     }
 
     private void showChooseMenu() {
@@ -256,7 +491,7 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
         if (requestCode == REQUEST_CODE_CUSTOMER && resultCode == Activity.RESULT_OK) {
             mCustomer.setText(data.getStringExtra(EntertainmentApplicationListFragment.KEY_ACCOUNT_NAME));
             mCustomer.setTextColor(0xff333333);
-           // mCustomerId=data.getStringExtra(AccountListFragment.KEY_ACCOUNT_ID);
+            mCustomerId =data.getStringExtra(EntertainmentApplicationListFragment.KEY_ACCOUNT_ID);
         }
     }
 }

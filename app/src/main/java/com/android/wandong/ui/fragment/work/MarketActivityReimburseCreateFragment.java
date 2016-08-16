@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.android.wandong.R;
-import com.android.wandong.beans.AccountListResponseBean;
+import com.android.wandong.beans.MarketReimburseCreateListResponseBean;
+import com.android.wandong.beans.ReimburseCreateTwoContent;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.android.wandong.utils.Tools;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhan.framework.component.container.FragmentContainerActivity;
@@ -65,34 +65,44 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
             mSelectedPos=-1;
         }
         HttpRequestParams requestParams= Tools.createHttpRequestParams();
-        startFormRequest(ApiUrls.NOTICE_CONTACTS_USER_list, requestParams, new PagingTask<AccountListResponseBean>(mode) {
+        requestParams.put("PageIndex",getNextPage(mode));
+        requestParams.put("PageNumber", getRefreshConfig().minResultSize);
+        requestParams.put("AuditStatus","3");
+        requestParams.put("BeginDate","");
+        requestParams.put("CampaignName","");
+        requestParams.put("CostType","");
+        requestParams.put("EndDate","");
+        requestParams.put("IsJustLookOwner","");
+        requestParams.put("IsRelation","false");
+
+
+        startFormRequest(ApiUrls.COMPAIGN_APPLY_LIST, requestParams, new PagingTask<MarketReimburseCreateListResponseBean>(mode) {
             @Override
-            public AccountListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, AccountListResponseBean.class);
+            public MarketReimburseCreateListResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, MarketReimburseCreateListResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(AccountListResponseBean result) {
+            public String verifyResponseResult(MarketReimburseCreateListResponseBean result) {
                 return Tools.verifyResponseResult(result);
             }
 
             @Override
-            protected List<AccountInfo> parseResult(AccountListResponseBean baseResponseBean) {
+            protected List<AccountInfo> parseResult(MarketReimburseCreateListResponseBean baseResponseBean) {
                 List<AccountInfo> items = new ArrayList<>();
-                if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null && baseResponseBean.getEntityInfo().getList() != null) {
-                    for (AccountListResponseBean.EntityInfoBean.ListBean bean : baseResponseBean.getEntityInfo().getList()) {
+                if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null) {
+                    for (MarketReimburseCreateListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
                         AccountInfo reportDataItem = new AccountInfo();
-                        reportDataItem.AccountId = bean.getAccountId();
+                        reportDataItem.CampaignId = bean.getCampaignId();
+                        reportDataItem.ApplyNo = bean.getApplyNo();
+                        reportDataItem.Status = bean.getStatus();
                         reportDataItem.Name = bean.getName();
-                        reportDataItem.OwnerId = bean.getOwnerId();
-                        reportDataItem.OwnerName = bean.getOwnerName();
-                        reportDataItem.Level = bean.getLevel();
-                        reportDataItem.Longitude = bean.getLongitude();
-                        reportDataItem.Latitude = bean.getLatitude();
-                        reportDataItem.Type = bean.getType();
+                        reportDataItem.CostType = bean.getCostType();
+                        reportDataItem.CostTypeName = bean.getCostTypeName();
+                        reportDataItem.OccurTime = bean.getOccurTime();
+                        reportDataItem.Amount = bean.getAmount();
                         reportDataItem.CreatedOn = bean.getCreatedOn();
-                        reportDataItem.ContractNumber = bean.getContractNumber();
-                        reportDataItem.OpportunityNumber = bean.getOpportunityNumber();
+                        reportDataItem.OwnerName = bean.getOwnerName();
                         items.add(reportDataItem);
                     }
                 }
@@ -109,7 +119,18 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         super.onItemClick(parent, view, position, id);
-        MarketActivityReimburseCreateTwoFragment.launch(getActivity());
+        ReimburseCreateTwoContent content = new ReimburseCreateTwoContent();
+        content.setCampaignId(getAdapterItems().get((int)id).CampaignId);
+        content.setApplyNo(getAdapterItems().get((int) id).ApplyNo);
+        content.setStatus(getAdapterItems().get((int) id).Status);
+        content.setName(getAdapterItems().get((int) id).Name);
+        content.setCostType(getAdapterItems().get((int) id).CostType);
+        content.setCostTypeName(getAdapterItems().get((int) id).CostTypeName);
+        content.setOccurTime(getAdapterItems().get((int) id).OccurTime);
+        content.setAmount(getAdapterItems().get((int) id).Amount);
+        content.setOwnerName(getAdapterItems().get((int) id).OwnerName);
+        content.setCreatedOn(getAdapterItems().get((int)id).CreatedOn);
+        MarketActivityReimburseCreateTwoFragment.launch(getActivity(),content);
     }
 
     @Override
@@ -118,39 +139,43 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
     }
 
     private class ItemView extends ABaseAdapter.AbstractItemView<AccountInfo>{
+        @ViewInject(id = R.id.ApplyNo)
+        TextView mApplyNo ;
         @ViewInject(id = R.id.AccountName)
-        TextView mViewAccountName ;
-
-        @ViewInject(id = R.id.imgStatus)
+        TextView mAccountName ;
+        @ViewInject(id = R.id.name)
+        TextView mName ;
+        @ViewInject(id = R.id.number)
+        TextView mNumber ;
+        @ViewInject(id = R.id.headPortrait)
+        ImageView mViewHeadPortrait;
+        @ViewInject(id = R.id.img_status)
         ImageView mViewStatus ;
-
         @Override
         public int inflateViewId() {
-            return R.layout.list_item_account;
+            return R.layout.list_item_market_activity_application;
         }
 
         @Override
         public void bindingData(View convertView, AccountInfo data) {
-            Tools.setTextView(mViewAccountName,data.Name);
-            if(mSelectedPos==getPosition()){
-                mViewStatus.setImageResource(R.drawable.checkbox_sel);
-            }else{
-                mViewStatus.setImageResource(R.drawable.checkbox_unsel);
-            }
+            mApplyNo.setText(data.ApplyNo);
+            mAccountName.setText(data.Name+"("+data.CostTypeName+")");
+            mName.setText(data.OwnerName);
+            mNumber.setText(data.Amount +"");
+            AuditStatusHelper.setImageViewByStatus(mViewStatus, data.Status);
         }
     }
 
     public class AccountInfo{
-        String AccountId;
+        String CampaignId;
+        String ApplyNo;
+        int Status;
         String Name;
-        String OwnerId;
+        int CostType;
+        String CostTypeName;
+        String OccurTime;
+        int Amount;
         String OwnerName;
-        int Level;
-        String Longitude;
-        String Latitude;
-        int Type;
         String CreatedOn;
-        int ContractNumber;
-        int OpportunityNumber;
     }
 }

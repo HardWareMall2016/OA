@@ -62,6 +62,7 @@
                     android:textSize="14dp"/>
 
                 <EditText
+                    android:id="@+id/enter_tainment_peopleNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -115,6 +116,7 @@
                     android:textSize="14dp"/>
 
                 <EditText
+                    android:id="@+id/et_entertainment_reason"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:background="@null"
@@ -188,6 +190,7 @@
                         android:textSize="14dp"/>
 
                     <TextView
+                        android:id="@+id/tv_enter_tainment_unit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -214,6 +217,7 @@
                         android:textSize="14dp"/>
 
                     <EditText
+                        android:id="@+id/et_entertainment_meals"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -239,6 +243,7 @@
                         android:textSize="14dp"/>
 
                     <EditText
+                        android:id="@+id/et_entertainment_conference_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -265,6 +270,7 @@
                         android:textSize="14dp"/>
 
                     <EditText
+                        android:id="@+id/et_entertainment_office_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -290,6 +296,7 @@
                         android:textSize="14dp"/>
 
                     <EditText
+                        android:id="@+id/et_entertainment_traffice_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -315,6 +322,7 @@
                         android:textSize="14dp"/>
 
                     <EditText
+                        android:id="@+id/et_entertainment_gift_fee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -339,6 +347,7 @@
                         android:textSize="14dp"/>
 
                     <TextView
+                        android:id="@+id/enter_tainment_finalprice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
