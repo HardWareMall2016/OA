@@ -150,7 +150,7 @@ public class MarketActivityReimburseCreateTwoFragment extends ABaseFragment{
         requestBean.setIsAuditForm(false);
         requestBean.setUserName(UserInfo.getCurrentUser().getUserName());
         requestBean.setIsStartWorkflow(true);
-        requestBean.setEntityName(mContent.getName());
+        requestBean.setEntityName("new_campaigncost");
         requestBean.setApprovalPrice(mCreateMoney.getText().toString());
 
         MarketActivityCreateRequestBean.WorkflowFormInfoBean workflowFormInfoBean = new MarketActivityCreateRequestBean.WorkflowFormInfoBean();
