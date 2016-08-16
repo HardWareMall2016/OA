@@ -182,7 +182,7 @@ public class MarketActivityCreateFragment extends ABaseFragment {
                     case success:
                         BaseResponseBean responseBean = Tools.parseJsonTostError(result, BaseResponseBean.class);
                         if (responseBean != null) {
-                            ToastUtils.toast("新增表单成功");
+                            ToastUtils.toast(responseBean.getMsg());
                             getActivity().finish();
                         }
                         break;

@@ -7,13 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.android.wandong.R;
-import com.android.wandong.beans.AccountListResponseBean;
 import com.android.wandong.beans.MarketReimburseCreateListResponseBean;
-import com.android.wandong.beans.MarketReimburseDetailResponseBean;
+import com.android.wandong.beans.ReimburseCreateTwoContent;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.android.wandong.utils.Tools;
@@ -122,7 +119,18 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         super.onItemClick(parent, view, position, id);
-        MarketActivityReimburseCreateTwoFragment.launch(getActivity());
+        ReimburseCreateTwoContent content = new ReimburseCreateTwoContent();
+        content.setCampaignId(getAdapterItems().get((int)id).CampaignId);
+        content.setApplyNo(getAdapterItems().get((int) id).ApplyNo);
+        content.setStatus(getAdapterItems().get((int) id).Status);
+        content.setName(getAdapterItems().get((int) id).Name);
+        content.setCostType(getAdapterItems().get((int) id).CostType);
+        content.setCostTypeName(getAdapterItems().get((int) id).CostTypeName);
+        content.setOccurTime(getAdapterItems().get((int) id).OccurTime);
+        content.setAmount(getAdapterItems().get((int) id).Amount);
+        content.setOwnerName(getAdapterItems().get((int) id).OwnerName);
+        content.setCreatedOn(getAdapterItems().get((int)id).CreatedOn);
+        MarketActivityReimburseCreateTwoFragment.launch(getActivity(),content);
     }
 
     @Override

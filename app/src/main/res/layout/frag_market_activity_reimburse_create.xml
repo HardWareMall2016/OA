@@ -41,8 +41,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:singleLine="true"
-                    android:hint="请填写活动名称"
-                    android:textColor="@color/text_color_title"
+                    android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal"
                     android:background="@null"/>
             </RelativeLayout>
@@ -166,7 +165,7 @@
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/icon_arrow_right"
                     android:singleLine="true"
-                    android:hint="2016-8-12"
+                    android:text="请选择时间"
                     android:textSize="@dimen/text_size_normal"
                     android:background="@null"/>
             </RelativeLayout>
