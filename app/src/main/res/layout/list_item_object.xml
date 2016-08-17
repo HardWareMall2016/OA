@@ -22,8 +22,11 @@
         android:layout_weight="1"
         android:singleLine="true"
         android:text="客户名称"
+        android:drawableLeft="@drawable/icon_people"
+        android:drawablePadding="10dp"
         android:textColor="@color/text_color_content"
-        android:textSize="@dimen/text_size_normal" />
+        android:textSize="@dimen/text_size_normal"
+        android:layout_marginLeft="14dp"/>
 
 </LinearLayout>
 

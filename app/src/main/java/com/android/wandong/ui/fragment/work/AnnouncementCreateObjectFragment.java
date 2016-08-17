@@ -5,38 +5,50 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.wandong.R;
-import com.android.wandong.beans.AccountListResponseBean;
+import com.android.wandong.base.BaseResponseBean;
+import com.android.wandong.base.UserInfo;
+import com.android.wandong.beans.AccountObjectListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
-import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
-import com.zhan.framework.utils.PixelUtils;
+import com.zhan.framework.ui.fragment.ABaseFragment;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ${keke} on 16/8/10.
  */
-public class AnnouncementCreateObjectFragment extends APullToRefreshListFragment<AnnouncementCreateObjectFragment.AccountInfo>  {
+public class AnnouncementCreateObjectFragment extends ABaseFragment implements AdapterView.OnItemClickListener {
 
-    private int mSelectedPos=-1;
+    @ViewInject(id = R.id.lv_object_listview)
+    ListView mObjectListView;
+    @ViewInject(id = R.id.announcement_object_departments,click = "OnClick")
+    RelativeLayout mDepartMent;
+    @ViewInject(id = R.id.announcement_object_workRole,click = "OnClick")
+    RelativeLayout mWorkRole ;
 
+    private ArrayList<AccountInfo> mObjectList = new ArrayList<>();
+    private AnnouncementCreateObjectAdapter mAdapter;
+    private int mSelectedPos = -1;
 
     public static void launch(AnnouncementCreateFragment activity,int requestCode) {
         FragmentContainerActivity.launchForResult(activity, AnnouncementCreateObjectFragment.class, null, requestCode);
     }
 
+    @Override
+    protected int inflateContentView() {
+        return R.layout.frag_announcement_create_object;
+    }
 
     public void onPrepareActionbarMenu(TextView menu,Activity activity) {
         menu.setText("全选");
@@ -49,91 +61,68 @@ public class AnnouncementCreateObjectFragment extends APullToRefreshListFragment
     }
 
     @Override
-    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
-        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
-        listView.setDividerHeight(getListDividerHeight());
-        View searchHeader=getActivity().getLayoutInflater().inflate(R.layout.layout_create_object_header,null);
-        if(getListDividerHeight()!=0){
-            searchHeader.setPadding(PixelUtils.dp2px(8),PixelUtils.dp2px(0),PixelUtils.dp2px(8),PixelUtils.dp2px(0));
-        }
-        mPullToRefreshListView.getRefreshableView().addHeaderView(searchHeader);
-
-        RelativeLayout departmentsView = (RelativeLayout)searchHeader.findViewById(R.id.announcement_object_departments);
-        departmentsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnnouncementCreatetDepartFragment.launch(getActivity());
-            }
-        });
-        RelativeLayout workRoleView = (RelativeLayout) searchHeader.findViewById(R.id.announcement_object_workRole);
-        workRoleView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AnnouncementCreatetWorkFragment.launch(getActivity());
-            }
-        });
-    }
-
-    public int getListDividerHeight(){
-        return 0;
-    }
-    @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("公告对象");
+        mSelectedPos = -1;
+
+        mObjectListView.setOnItemClickListener(this);
     }
 
+
+
     @Override
-    protected void requestData(RefreshMode mode) {
-        if(mode!=RefreshMode.update){
-            mSelectedPos=-1;
-        }
-        HttpRequestParams requestParams=Tools.createHttpRequestParams();
+    public void requestData() {
+        HttpRequestParams requestParams = new HttpRequestParams();
+        requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
+        requestParams.put("UserName",UserInfo.getCurrentUser().getUserName());
 
-
-        startFormRequest(ApiUrls.NOTICE_CONTACTS_USER_list, requestParams, new PagingTask<AccountListResponseBean>(mode) {
+        startFormRequest(ApiUrls.NOTICE_CONTACTS_USERS, requestParams, new BaseHttpRequestTask<BaseResponseBean>() {
             @Override
-            public AccountListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, AccountListResponseBean.class);
+            public AccountObjectListResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, AccountObjectListResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(AccountListResponseBean result) {
-                return Tools.verifyResponseResult(result);
-            }
-
-            @Override
-            protected List<AccountInfo> parseResult(AccountListResponseBean baseResponseBean) {
-                List<AccountInfo> items = new ArrayList<>();
-                if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null && baseResponseBean.getEntityInfo().getList() != null) {
-                    for (AccountListResponseBean.EntityInfoBean.ListBean bean : baseResponseBean.getEntityInfo().getList()) {
-                        AccountInfo reportDataItem = new AccountInfo();
-                        reportDataItem.AccountId = bean.getAccountId();
-                        reportDataItem.Name = bean.getName();
-                        reportDataItem.OwnerId = bean.getOwnerId();
-                        reportDataItem.OwnerName = bean.getOwnerName();
-                        reportDataItem.Level = bean.getLevel();
-                        reportDataItem.Longitude = bean.getLongitude();
-                        reportDataItem.Latitude = bean.getLatitude();
-                        reportDataItem.Type = bean.getType();
-                        reportDataItem.CreatedOn = bean.getCreatedOn();
-                        reportDataItem.ContractNumber = bean.getContractNumber();
-                        reportDataItem.OpportunityNumber = bean.getOpportunityNumber();
-                        items.add(reportDataItem);
-                    }
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                super.onRequestFinished(resultCode, result);
+                switch (resultCode) {
+                    case success:
+                        AccountObjectListResponseBean bean = Tools.parseJsonTostError(result, AccountObjectListResponseBean.class);
+                        if (bean != null && bean.getEntityInfo() != null) {
+                            mObjectList.clear();
+                            for (AccountObjectListResponseBean.EntityInfoBean entityInfoBean : bean.getEntityInfo()) {
+                                AccountInfo accountInfo = new AccountInfo();
+                                accountInfo.userid = entityInfoBean.getUserid();
+                                accountInfo.fullname = entityInfoBean.getFullname();
+                                accountInfo.new_departmentid = entityInfoBean.getNew_departmentid();
+                                accountInfo.new_departmentname = entityInfoBean.getNew_departmentname();
+                                accountInfo.new_hyphenateid = entityInfoBean.getNew_hyphenateid();
+                                accountInfo.new_headportrait = entityInfoBean.getNew_headportrait();
+                                mObjectList.add(accountInfo);
+                            }
+                            mAdapter = new AnnouncementCreateObjectAdapter(mObjectList, getActivity());
+                            mObjectListView.setAdapter(mAdapter);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                return items;
             }
         }, HttpRequestUtils.RequestType.POST);
     }
 
-    @Override
-    protected void configRefresh(RefreshConfig config) {
-        config.minResultSize=20;
-    }
-    @Override
-    protected ABaseAdapter.AbstractItemView<AnnouncementCreateObjectFragment.AccountInfo> newItemView() {
-        return new ItemView();
+    private class AnnouncementCreateObjectAdapter extends ABaseAdapter<AccountInfo> {
+
+        public AnnouncementCreateObjectAdapter(ArrayList<AccountInfo> datas, Activity context) {
+            super(datas, context);
+        }
+
+        @Override
+        protected AbstractItemView<AccountInfo> newItemView() {
+            return new ItemView();
+        }
     }
 
     private class ItemView extends ABaseAdapter.AbstractItemView<AccountInfo>{
@@ -145,13 +134,13 @@ public class AnnouncementCreateObjectFragment extends APullToRefreshListFragment
 
         @Override
         public int inflateViewId() {
-            return R.layout.list_item_account;
+            return R.layout.list_item_object;
         }
 
         @Override
         public void bindingData(View convertView, AccountInfo data) {
-            Tools.setTextView(mViewAccountName,data.Name);
-            if(mSelectedPos==getPosition()){
+            Tools.setTextView(mViewAccountName,data.fullname);
+            if(mSelectedPos == getPosition()){
                 mViewStatus.setImageResource(R.drawable.checkbox_sel);
             }else{
                 mViewStatus.setImageResource(R.drawable.checkbox_unsel);
@@ -159,18 +148,33 @@ public class AnnouncementCreateObjectFragment extends APullToRefreshListFragment
         }
     }
 
+    void OnClick(View view){
+        switch (view.getId()){
+            case R.id.announcement_object_departments:
+                AnnouncementCreatetDepartFragment.launch(getActivity());
+                break;
+            case R.id.announcement_object_workRole:
+                AnnouncementCreatetWorkFragment.launch(getActivity());
+                break;
+        }
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(mSelectedPos!=id){
+            mSelectedPos= (int) id;
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
     public class AccountInfo{
-        String AccountId;
-        String Name;
-        String OwnerId;
-        String OwnerName;
-        int Level;
-        String Longitude;
-        String Latitude;
-        int Type;
-        String CreatedOn;
-        int ContractNumber;
-        int OpportunityNumber;
+        String userid;
+        String fullname;
+        String new_departmentid;
+        String new_departmentname;
+        String new_hyphenateid;
+        String new_headportrait;
     }
 
 }

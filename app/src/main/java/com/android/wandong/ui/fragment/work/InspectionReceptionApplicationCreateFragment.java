@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,10 +17,14 @@ import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.MarketActivityCreateRequestBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.ui.widget.timePicker.TimePickerView;
+import com.android.wandong.utils.ExtendMediaPicker;
 import com.android.wandong.utils.Tools;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestHandler;
+import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.widget.ActionSheetDialog;
@@ -32,11 +37,12 @@ import java.util.Date;
 /**
  * Created by ${keke} on 16/8/13.
  */
-public class InspectionReceptionApplicationCreateFragment extends ABaseFragment {
+public class InspectionReceptionApplicationCreateFragment extends ABaseFragment implements ExtendMediaPicker.OnMediaPickerListener, AdapterView.OnItemClickListener {
     private static final int REQUEST_CODE_CUSTOMER = 100;
 
-    @ViewInject(id = R.id.imgAddPhoto, click = "OnClick")
-    ImageView mAddPhoto;
+    @ViewInject(id = R.id.photos)
+    FixGridView mFixGridView;
+
     @ViewInject(id = R.id.inspection_company_name, click = "OnClick")
     TextView mCompanyName;
     @ViewInject(id = R.id.et_inspection_phone)
@@ -51,6 +57,11 @@ public class InspectionReceptionApplicationCreateFragment extends ABaseFragment 
     EditText mEtInspectionPeopleNum;
     @ViewInject(id = R.id.btn_commit, click = "OnClick")
     Button mCommit;
+
+    private ExtendMediaPicker mExtendMediaPicker;
+    private LayoutInflater mInflater;
+    private ArrayList<String> mMeidaUri = new ArrayList<>();
+    private AttachmentAdapter mAdapter;
 
     private long mOverdueTime = 0;
 
@@ -77,6 +88,17 @@ public class InspectionReceptionApplicationCreateFragment extends ABaseFragment 
         getActivity().setTitle("考察接待申请");
         initTimePickerVisiting();
         initTimePickerfinish();
+
+        mExtendMediaPicker = new ExtendMediaPicker(getActivity());
+        mExtendMediaPicker.setOnMediaPickerListener(this);
+
+        mInflater=inflater;
+        //图片,最后一个表示添加
+        mMeidaUri.clear();
+        mMeidaUri.add("add_new");
+        mAdapter = new AttachmentAdapter(mMeidaUri,getActivity());
+        mFixGridView.setAdapter(mAdapter);
+        mFixGridView.setOnItemClickListener(this);
     }
 
     private void initTimePickerVisiting() {
@@ -132,28 +154,12 @@ public class InspectionReceptionApplicationCreateFragment extends ABaseFragment 
             mCompanyName.setTextColor(0xff333333);
             mCustomerId=data.getStringExtra(AccountListFragment.KEY_ACCOUNT_ID);
         }
+
+        mExtendMediaPicker.onActivityResult(requestCode, resultCode, data);
     }
 
     void OnClick(View v) {
         switch (v.getId()) {
-            case R.id.imgAddPhoto:
-                ActionSheetDialog actionSheetDialog = new ActionSheetDialog(getActivity());
-                actionSheetDialog.builder();
-                actionSheetDialog.addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-
-                    }
-                });
-                actionSheetDialog.addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
-                    @Override
-                    public void onClick(int which) {
-
-                    }
-                });
-
-                actionSheetDialog.show();
-                break;
             case R.id.inspection_company_name:
                 InspectionReceptionListFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
                 break;
@@ -171,6 +177,63 @@ public class InspectionReceptionApplicationCreateFragment extends ABaseFragment 
                 }
                 Commit();
                 break;
+        }
+    }
+
+    @Override
+    public void onSelectedMediaChanged(String mediaUri) {
+        mMeidaUri.add(0, mediaUri);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(mMeidaUri.size()-1==position){
+            ActionSheetDialog actionSheetDialog = new ActionSheetDialog(getActivity());
+            actionSheetDialog.builder();
+            actionSheetDialog.addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    mExtendMediaPicker.openSystemCamera(InspectionReceptionApplicationCreateFragment.this);
+                }
+            });
+            actionSheetDialog.addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                @Override
+                public void onClick(int which) {
+                    mExtendMediaPicker.openSystemPickImage(InspectionReceptionApplicationCreateFragment.this);
+                }
+            });
+            actionSheetDialog.show();
+        }
+    }
+
+    private class AttachmentAdapter extends ABaseAdapter<String> {
+        public AttachmentAdapter(ArrayList<String> datas, Activity context) {
+            super(datas, context);
+        }
+
+        @Override
+        protected AbstractItemView<String> newItemView() {
+            return new AttachmentItemView();
+        }
+    }
+
+    private class AttachmentItemView extends ABaseAdapter.AbstractItemView<String> {
+        @ViewInject(id = R.id.attachment)
+        ImageView mViewAttachment;
+
+        @Override
+        public int inflateViewId() {
+            return R.layout.list_item_common_attachment;
+        }
+
+        @Override
+        public void bindingData(View convertView, String data) {
+            if(getPosition()==getSize()-1){
+                ImageLoader.getInstance().displayImage("drawable://" + R.drawable.icon_sign_in_add_photo, mViewAttachment, Tools.buildDefDisplayImgOptions());
+            } else {
+                ImageLoader.getInstance().displayImage("file://"+data, mViewAttachment, Tools.buildDefDisplayImgOptions());
+            }
         }
     }
 

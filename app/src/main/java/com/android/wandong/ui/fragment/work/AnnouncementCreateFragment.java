@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.android.wandong.R;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.widget.ActionSheetDialog;
-import com.zhan.framework.utils.PixelUtils;
 
 /**
  * Created by ${keke} on 16/8/10.
