@@ -10,21 +10,30 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.wandong.R;
+import com.android.wandong.base.BaseResponseBean;
+import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.CircleView;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.ui.widget.FixViewPager;
+import com.android.wandong.utils.Tools;
+import com.zhan.framework.network.HttpRequestHandler;
+import com.zhan.framework.network.HttpRequestParams;
+import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.InjectUtility;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.widget.ActionSheetDialog;
 import com.zhan.framework.utils.PixelUtils;
+import com.zhan.framework.utils.ToastUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -213,10 +222,34 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         actionSheetDialog.addSheetItem("今日休息", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
             @Override
             public void onClick(int which) {
-
+                todayRestRequest();
             }
         });
         actionSheetDialog.show();
+    }
+
+    private void todayRestRequest(){
+        HttpRequestParams requestParams = Tools.createHttpRequestParams();
+        HashMap<String,String> volleyRequestParams=null;
+        if(requestParams!=null){
+            volleyRequestParams=requestParams.parseToVolleyRequestParams();
+        }
+        Request request= HttpRequestUtils.startVolleyRequest(null, ApiUrls.WORKREPORT_SENDCURDAYREST, volleyRequestParams,  new HttpRequestHandler() {
+            @Override
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                switch (resultCode) {
+                    case success:
+                        BaseResponseBean responseBean = Tools.parseJsonTostError(result, BaseResponseBean.class);
+                        if (responseBean != null) {
+                            ToastUtils.toast("提交成功！");
+                        }
+                        break;
+                    default:
+                        ToastUtils.toast(result);
+                        break;
+                }
+            }
+        }, HttpRequestUtils.RequestType.POST);
     }
 
     private class MyViewPagerAdapter extends PagerAdapter {
