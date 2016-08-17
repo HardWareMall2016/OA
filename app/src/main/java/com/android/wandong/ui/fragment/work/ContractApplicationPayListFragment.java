@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
-import com.android.wandong.beans.AccountListResponseBean;
+import com.android.wandong.beans.ContractPayListResponseBean;
 import com.android.wandong.beans.ContractProductModelListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
@@ -27,16 +27,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ${keke} on 16/8/13.
+ * Created by ${keke} on 16/8/17.
  */
-public class TenderApplicationBidProductListFragment extends APullToRefreshListFragment<TenderApplicationBidProductListFragment.AccountInfo>  {
+public class ContractApplicationPayListFragment extends APullToRefreshListFragment<ContractApplicationPayListFragment.AccountInfo>  {
 
-    public static String KEY_BIDPRODUCT_NAME="bidproduct_name";
-    public static String KEY_BIDPRODUCT_ID="bidproduct_id";
+    public static String KEY_ACCOUNT_NAME="account_name";
+    public static String KEY_ACCOUNT_ID="account_id";
+
     private int mSelectedPos=-1;
 
-    public static void launchForResult(TenderApplicationCreateFragment from, int requestCode) {
-        FragmentContainerActivity.launchForResult(from, TenderApplicationBidProductListFragment.class, null, requestCode);
+
+    public static void launchForResult(ContractApplicationCreateFragment from, int requestCode) {
+        FragmentContainerActivity.launchForResult(from, ContractApplicationPayListFragment.class, null, requestCode);
     }
 
     @Override
@@ -47,15 +49,15 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
     @Override
     public void onActionBarMenuClick() {
         if(mSelectedPos==-1){
-            ToastUtils.toast("请选择产品线");
+            ToastUtils.toast("请选择费用类型");
             return;
         }
 
-        AccountInfo accountInfo=getAdapterItems().get(mSelectedPos);
+        AccountInfo accountInfo = getAdapterItems().get(mSelectedPos);
 
         Intent intent=new Intent();
-        intent.putExtra(KEY_BIDPRODUCT_NAME,accountInfo.Name);
-        intent.putExtra(KEY_BIDPRODUCT_ID, accountInfo.Id);
+        intent.putExtra(KEY_ACCOUNT_NAME,accountInfo.Name);
+        //intent.putExtra(KEY_ACCOUNT_ID, accountInfo.Id);
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }
@@ -63,17 +65,26 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("投标产品");
+        getActivity().setTitle("费用类型");
         mSelectedPos=-1;
     }
+
     @Override
     protected void configRefresh(RefreshConfig config) {
         config.minResultSize=20;
     }
 
     @Override
-    protected ABaseAdapter.AbstractItemView<AccountInfo> newItemView() {
+    protected ABaseAdapter.AbstractItemView<ContractApplicationPayListFragment.AccountInfo> newItemView() {
         return new ItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(mSelectedPos!=id){
+            mSelectedPos= (int) id;
+            notifyDataSetChanged();
+        }
     }
 
     private class ItemView extends ABaseAdapter.AbstractItemView<AccountInfo>{
@@ -107,32 +118,28 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
         }
 
         HttpRequestParams requestParams = new HttpRequestParams();
-        requestParams.put("UserName", UserInfo.getCurrentUser().getUserName());
-        requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
-        requestParams.put("PageIndex",getNextPage(mode));
-        requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("ProductClassifyId","089c9037-b918-e611-ac23-085700e64e0f");
+        requestParams.put("AttributeName","new_payment_appointment");
+        requestParams.put("EntityName","new_contract");
 
-        startFormRequest(ApiUrls.OPPORTUNITY_GETPRODUCT, requestParams, new PagingTask<ContractProductModelListResponseBean>(mode) {
+        startFormRequest(ApiUrls.COMMON_GETOPION_VALUE, requestParams, new PagingTask<ContractPayListResponseBean>(mode) {
             @Override
-            public ContractProductModelListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, ContractProductModelListResponseBean.class);
+            public ContractPayListResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, ContractPayListResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(ContractProductModelListResponseBean result) {
+            public String verifyResponseResult(ContractPayListResponseBean result) {
                 return Tools.verifyResponseResult(result);
             }
 
             @Override
-            protected List<AccountInfo> parseResult(ContractProductModelListResponseBean baseResponseBean) {
+            protected List<AccountInfo> parseResult(ContractPayListResponseBean baseResponseBean) {
                 List<AccountInfo> items = new ArrayList<>();
                 if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null) {
-                    for (ContractProductModelListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
+                    for (ContractPayListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
                         AccountInfo reportDataItem = new AccountInfo();
-                        reportDataItem.Id = bean.getId();
                         reportDataItem.Name = bean.getName();
-                        reportDataItem.Price = bean.getPrice();
+                        reportDataItem.Value = bean.getValue();
                         items.add(reportDataItem);
                     }
                 }
@@ -141,19 +148,8 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
         }, HttpRequestUtils.RequestType.POST);
     }
 
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(mSelectedPos!=id){
-            mSelectedPos= (int) id;
-            notifyDataSetChanged();
-        }
-    }
-
-
     public class AccountInfo{
-        String Id;
         String Name;
-        int Price;
+        String Value;
     }
 }

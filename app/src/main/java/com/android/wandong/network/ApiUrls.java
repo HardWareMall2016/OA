@@ -63,6 +63,12 @@ public class ApiUrls {
 
     //合同申请列表
     public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
+    //新建合同申请－产品线
+    public static final String OPPORTUNITY_GETPRODUCT_CLASSIFY = "Opportunity/GetProductClassify.ashx";
+    //新建合同申请－产品型号
+    public static final String OPPORTUNITY_GETPRODUCT = "Opportunity/GetProduct.ashx";
+    //新建合同申请－配置要求
+    public static final String COMMON_GETOPION_VALUE = "Common/GetOptionValue.ashx";
 
     //招待申请-列表
     public static final String ENTERTAIN_APPLY_LIST = "EntertainApply/List.ashx";

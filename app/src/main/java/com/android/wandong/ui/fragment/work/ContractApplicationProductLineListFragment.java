@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
-import com.android.wandong.beans.AccountListResponseBean;
-import com.android.wandong.beans.ContractProductModelListResponseBean;
+import com.android.wandong.beans.AllocationListResponseBean;
+import com.android.wandong.beans.ContractProductLineListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
 import com.zhan.framework.component.container.FragmentContainerActivity;
@@ -27,16 +27,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ${keke} on 16/8/13.
+ * Created by ${keke} on 16/8/17.
  */
-public class TenderApplicationBidProductListFragment extends APullToRefreshListFragment<TenderApplicationBidProductListFragment.AccountInfo>  {
+public class ContractApplicationProductLineListFragment extends APullToRefreshListFragment<ContractApplicationProductLineListFragment.AccountInfo> {
+    public static String KEY_ACCOUNT_NAME="account_name";
+    public static String KEY_ACCOUNT_ID="account_id";
 
-    public static String KEY_BIDPRODUCT_NAME="bidproduct_name";
-    public static String KEY_BIDPRODUCT_ID="bidproduct_id";
     private int mSelectedPos=-1;
 
-    public static void launchForResult(TenderApplicationCreateFragment from, int requestCode) {
-        FragmentContainerActivity.launchForResult(from, TenderApplicationBidProductListFragment.class, null, requestCode);
+    public static void launchForResult(ContractApplicationCreateFragment from, int requestCode) {
+        FragmentContainerActivity.launchForResult(from, ContractApplicationProductLineListFragment.class, null, requestCode);
     }
 
     @Override
@@ -51,11 +51,11 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
             return;
         }
 
-        AccountInfo accountInfo=getAdapterItems().get(mSelectedPos);
+        AccountInfo accountInfo = getAdapterItems().get(mSelectedPos);
 
         Intent intent=new Intent();
-        intent.putExtra(KEY_BIDPRODUCT_NAME,accountInfo.Name);
-        intent.putExtra(KEY_BIDPRODUCT_ID, accountInfo.Id);
+        intent.putExtra(KEY_ACCOUNT_NAME,accountInfo.Name);
+        intent.putExtra(KEY_ACCOUNT_ID, accountInfo.Id);
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }
@@ -63,17 +63,26 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("投标产品");
+        getActivity().setTitle("产品线");
         mSelectedPos=-1;
     }
+
     @Override
     protected void configRefresh(RefreshConfig config) {
         config.minResultSize=20;
     }
 
     @Override
-    protected ABaseAdapter.AbstractItemView<AccountInfo> newItemView() {
+    protected ABaseAdapter.AbstractItemView<ContractApplicationProductLineListFragment.AccountInfo> newItemView() {
         return new ItemView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(mSelectedPos!=id){
+            mSelectedPos= (int) id;
+            notifyDataSetChanged();
+        }
     }
 
     private class ItemView extends ABaseAdapter.AbstractItemView<AccountInfo>{
@@ -111,28 +120,27 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
         requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
         requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
-        requestParams.put("ProductClassifyId","089c9037-b918-e611-ac23-085700e64e0f");
 
-        startFormRequest(ApiUrls.OPPORTUNITY_GETPRODUCT, requestParams, new PagingTask<ContractProductModelListResponseBean>(mode) {
+        startFormRequest(ApiUrls.OPPORTUNITY_GETPRODUCT_CLASSIFY, requestParams, new PagingTask<ContractProductLineListResponseBean>(mode) {
             @Override
-            public ContractProductModelListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, ContractProductModelListResponseBean.class);
+            public ContractProductLineListResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, ContractProductLineListResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(ContractProductModelListResponseBean result) {
+            public String verifyResponseResult(ContractProductLineListResponseBean result) {
                 return Tools.verifyResponseResult(result);
             }
 
             @Override
-            protected List<AccountInfo> parseResult(ContractProductModelListResponseBean baseResponseBean) {
+            protected List<AccountInfo> parseResult(ContractProductLineListResponseBean baseResponseBean) {
                 List<AccountInfo> items = new ArrayList<>();
                 if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null) {
-                    for (ContractProductModelListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
+                    for (ContractProductLineListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
                         AccountInfo reportDataItem = new AccountInfo();
                         reportDataItem.Id = bean.getId();
                         reportDataItem.Name = bean.getName();
-                        reportDataItem.Price = bean.getPrice();
+                        reportDataItem.Specifications = bean.getSpecifications();
                         items.add(reportDataItem);
                     }
                 }
@@ -141,19 +149,9 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
         }, HttpRequestUtils.RequestType.POST);
     }
 
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(mSelectedPos!=id){
-            mSelectedPos= (int) id;
-            notifyDataSetChanged();
-        }
-    }
-
-
     public class AccountInfo{
         String Id;
         String Name;
-        int Price;
+        String Specifications;
     }
 }

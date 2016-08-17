@@ -9,7 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.wandong.R;
+import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.AccountListResponseBean;
+import com.android.wandong.beans.ContractProductLineListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
 import com.zhan.framework.component.container.FragmentContainerActivity;
@@ -53,7 +55,7 @@ public class TenderApplicationProductListFragment extends APullToRefreshListFrag
 
         Intent intent=new Intent();
         intent.putExtra(KEY_PRODUCT_NAME,accountInfo.Name);
-        intent.putExtra(KEY_PRODUCT_ID, accountInfo.AccountId);
+        intent.putExtra(KEY_PRODUCT_ID, accountInfo.Id);
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }
@@ -100,43 +102,36 @@ public class TenderApplicationProductListFragment extends APullToRefreshListFrag
 
     @Override
     protected void requestData(RefreshMode mode) {
-
         if(mode!=RefreshMode.update){
             mSelectedPos=-1;
         }
 
-        HttpRequestParams requestParams= Tools.createHttpRequestParams();
-        requestParams.put("PageIndex", getNextPage(mode));
+        HttpRequestParams requestParams = new HttpRequestParams();
+        requestParams.put("UserName", UserInfo.getCurrentUser().getUserName());
+        requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
+        requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
 
-        startFormRequest(ApiUrls.ACCOUNT_LIST, requestParams, new PagingTask<AccountListResponseBean>(mode) {
+        startFormRequest(ApiUrls.OPPORTUNITY_GETPRODUCT_CLASSIFY, requestParams, new PagingTask<ContractProductLineListResponseBean>(mode) {
             @Override
-            public AccountListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, AccountListResponseBean.class);
+            public ContractProductLineListResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, ContractProductLineListResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(AccountListResponseBean result) {
+            public String verifyResponseResult(ContractProductLineListResponseBean result) {
                 return Tools.verifyResponseResult(result);
             }
 
             @Override
-            protected List<AccountInfo> parseResult(AccountListResponseBean baseResponseBean) {
+            protected List<AccountInfo> parseResult(ContractProductLineListResponseBean baseResponseBean) {
                 List<AccountInfo> items = new ArrayList<>();
-                if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null && baseResponseBean.getEntityInfo().getList() != null) {
-                    for (AccountListResponseBean.EntityInfoBean.ListBean bean : baseResponseBean.getEntityInfo().getList()) {
+                if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null) {
+                    for (ContractProductLineListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
                         AccountInfo reportDataItem = new AccountInfo();
-                        reportDataItem.AccountId = bean.getAccountId();
+                        reportDataItem.Id = bean.getId();
                         reportDataItem.Name = bean.getName();
-                        reportDataItem.OwnerId = bean.getOwnerId();
-                        reportDataItem.OwnerName = bean.getOwnerName();
-                        reportDataItem.Level = bean.getLevel();
-                        reportDataItem.Longitude = bean.getLongitude();
-                        reportDataItem.Latitude = bean.getLatitude();
-                        reportDataItem.Type = bean.getType();
-                        reportDataItem.CreatedOn = bean.getCreatedOn();
-                        reportDataItem.ContractNumber = bean.getContractNumber();
-                        reportDataItem.OpportunityNumber = bean.getOpportunityNumber();
+                        reportDataItem.Specifications = bean.getSpecifications();
                         items.add(reportDataItem);
                     }
                 }
@@ -155,16 +150,8 @@ public class TenderApplicationProductListFragment extends APullToRefreshListFrag
 
 
     public class AccountInfo{
-        String AccountId;
+        String Id;
         String Name;
-        String OwnerId;
-        String OwnerName;
-        int Level;
-        String Longitude;
-        String Latitude;
-        int Type;
-        String CreatedOn;
-        int ContractNumber;
-        int OpportunityNumber;
+        String Specifications;
     }
 }

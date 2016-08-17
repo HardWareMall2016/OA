@@ -35,7 +35,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
-                    android:id="@+id/inspection_company_name"
+                    android:id="@+id/inspection_project_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -67,6 +67,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_tender_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -161,6 +162,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_tender_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -257,6 +259,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_tender_equipment_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -321,6 +324,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_tender_agency_agency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -352,6 +356,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_tender_company_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -383,6 +388,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_tender_websit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -398,6 +404,7 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/btn_commit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_main_color_selector"
