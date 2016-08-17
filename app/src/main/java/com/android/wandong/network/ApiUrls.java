@@ -126,4 +126,9 @@ public class ApiUrls {
     public static final String MYSIGN_SIGNIN= "MySign/SignIn.ashx";
     //外勤签到-签出
     public static final String MYSIGN_SIGN_OUT= "MySign/SignOut.ashx";
+
+    //工作报告-写日报 周报
+    public static final String WORKREPORT_SENDREPORT= "WorkReport/SendReport.ashx";
+    //工作报告-今日休息
+    public static final String WORKREPORT_SENDCURDAYREST= "WorkReport/SendCurDayRest.ashx";
 }

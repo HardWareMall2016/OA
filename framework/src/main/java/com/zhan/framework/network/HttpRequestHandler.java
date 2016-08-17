@@ -58,6 +58,10 @@ public abstract class HttpRequestHandler implements HttpRequestCallback {
         mFragment=fragment;
     }
 
+    public HttpRequestHandler(){
+        mFragment=null;
+    }
+
     /**
      * 是否缓存请求数据
      * @return
