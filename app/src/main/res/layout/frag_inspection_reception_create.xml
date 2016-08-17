@@ -68,12 +68,13 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_inspection_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:layout_alignParentRight="true"
                     android:gravity="start|top"
-                    android:hint="请填写公告内容"
+                    android:hint="请填写来访者姓名"
                     android:drawableRight="@drawable/arrow_right_small"
                     android:textColor="@color/text_color_content"
                     android:textColorHint="@color/text_color_content"
@@ -100,6 +101,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_inspection_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -196,6 +198,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <EditText
+                    android:id="@+id/et_inspection_peopleNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -244,7 +247,8 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
+    <Button
+        android:id="@+id/btn_commit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_main_color_selector"
