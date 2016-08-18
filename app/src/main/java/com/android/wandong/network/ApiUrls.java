@@ -131,4 +131,7 @@ public class ApiUrls {
     public static final String WORKREPORT_SENDREPORT= "WorkReport/SendReport.ashx";
     //工作报告-今日休息
     public static final String WORKREPORT_SENDCURDAYREST= "WorkReport/SendCurDayRest.ashx";
+
+    //上传图片
+    public static final String UPLOAD_IMAGES= "Common/UploadImgs.ashx";
 }
