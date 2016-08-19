@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.LoginResponseBean;
+import com.android.wandong.beans.MenuResponseBean;
+import com.android.wandong.model.work.WorkMenu;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.activity.MainActivity;
 import com.android.wandong.utils.Tools;
@@ -23,6 +25,9 @@ import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.activity.BaseActivity;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 作者：伍岳 on 2016/4/21 13:10
@@ -130,23 +135,71 @@ public class LoginFragment extends ABaseFragment {
     }
 
 
-    private void loginRequest(String account,String password){
+    private void loginRequest(final String account, final String password){
         if(isRequestProcessing(ApiUrls.LOGIN)){
             return;
         }
-        showRotateProgressDialog("登录中...",false);
+        showRotateProgressDialog("登录中...", false);
         HttpRequestParams requestParams=new HttpRequestParams();
         requestParams.put("UserName",account);
         requestParams.put("PassWord",password);
         startFormRequest(ApiUrls.LOGIN, requestParams, new HttpRequestHandler(this) {
             @Override
             public void onRequestFinished(ResultCode resultCode, String result) {
-                closeRotateProgressDialog();
                 switch (resultCode) {
                     case success:
                         LoginResponseBean responseBean = Tools.parseJsonTostError(result, LoginResponseBean.class);
                         if (responseBean != null && responseBean.getEntityInfo() != null){
                             saveUserInfo(responseBean);
+                            /*Intent homePageIntent = new Intent(getActivity(), MainActivity.class);
+                            homePageIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(homePageIntent);
+                            getActivity().finish()*/;
+                            requestWorkMenu(account, password);
+                        }else{
+                            closeRotateProgressDialog();
+                        }
+                        break;
+                    default:
+                        closeRotateProgressDialog();
+                        ToastUtils.toast(result);
+                        break;
+                }
+            }
+        }, HttpRequestUtils.RequestType.POST);
+    }
+
+    private void requestWorkMenu(String account,String password){
+        HttpRequestParams requestParams=new HttpRequestParams();
+        requestParams.put("UserName",account);
+        requestParams.put("PassWord",password);
+        requestParams.put("MenuLevel",2);
+        startFormRequest(ApiUrls.GET_MOBILE_MENU, requestParams, new HttpRequestHandler(this) {
+            @Override
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                closeRotateProgressDialog();
+                switch (resultCode) {
+                    case success:
+                        MenuResponseBean responseBean = Tools.parseJsonTostError(result, MenuResponseBean.class);
+                        if (responseBean != null && responseBean.getEntityInfo() != null) {
+                            WorkMenu workMenu=new WorkMenu();
+                            List<WorkMenu.MenuItem> menuItems=new ArrayList<>();
+                            workMenu.setMenuItemList(menuItems);
+                            for(MenuResponseBean.EntityInfoBean bean:responseBean.getEntityInfo()){
+                                WorkMenu.MenuItem menuItem=new WorkMenu.MenuItem();
+                                menuItem.setEntityName(bean.getEntityName());
+                                menuItem.setMenuLevel(bean.getMenuLevel());
+                                menuItem.setMobileMenuId(bean.getMobileMenuId());
+                                menuItem.setName(bean.getName());
+                                menuItem.setOrder(bean.getOrder());
+                                menuItems.add(menuItem);
+                            }
+                            WorkMenu.persisObject(workMenu);
+
+                            //没问题就设置为登录
+                            UserInfo.getCurrentUser().setIsLogin(true);
+                            UserInfo.saveLoginUserInfo(UserInfo.getCurrentUser());
+
                             Intent homePageIntent = new Intent(getActivity(), MainActivity.class);
                             homePageIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(homePageIntent);
@@ -161,7 +214,6 @@ public class LoginFragment extends ABaseFragment {
         }, HttpRequestUtils.RequestType.POST);
     }
 
-
     private void saveUserInfo(LoginResponseBean responseBean){
         UserInfo user = new UserInfo();
         user.setLoginAccount(mAccount);
@@ -171,9 +223,7 @@ public class LoginFragment extends ABaseFragment {
         user.setUserId(responseBean.getEntityInfo().getUserId());
         user.setUserName(mAccount);
         user.setPassword(mPassword);
-        user.setIsLogin(true);
-        user.setIsLogin(true);
-
+        user.setIsLogin(false);
         UserInfo.saveLoginUserInfo(user);
     }
 

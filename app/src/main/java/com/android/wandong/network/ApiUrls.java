@@ -34,6 +34,7 @@ public class ApiUrls {
      */
     public static final String LOGIN = "Common/Login.ashx";
 
+    public static final String GET_MOBILE_MENU = "Common/GetMobileMenu.ashx";
 
     /***
      *  工作模块
