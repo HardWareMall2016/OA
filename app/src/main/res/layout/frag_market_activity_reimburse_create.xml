@@ -67,6 +67,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
+                    android:id="@+id/cost_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

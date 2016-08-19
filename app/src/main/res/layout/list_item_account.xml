@@ -9,11 +9,6 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <ImageView
-        android:id="@+id/imgStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/checkbox_unsel" />
 
     <TextView
         android:id="@+id/AccountName"
@@ -24,6 +19,12 @@
         android:text="客户名称"
         android:textColor="@color/text_color_content"
         android:textSize="@dimen/text_size_normal" />
+
+    <ImageView
+        android:id="@+id/imgStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/checkbox_unsel" />
 
 </LinearLayout>
 

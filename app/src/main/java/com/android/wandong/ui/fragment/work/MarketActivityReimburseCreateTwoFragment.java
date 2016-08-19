@@ -23,6 +23,8 @@ import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.utils.ToastUtils;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,6 +48,8 @@ public class MarketActivityReimburseCreateTwoFragment extends ABaseFragment{
     TextView mCreateNumber ;
     @ViewInject(id = R.id.remark)
     EditText mRemark;
+    @ViewInject(id = R.id.cost_name)
+    TextView mCostName;
 
     private long mOverdueTime=0;
 
@@ -83,8 +87,10 @@ public class MarketActivityReimburseCreateTwoFragment extends ABaseFragment{
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("市场活动费报销");
         mCampaignName.setText(mContent.getName());
-        mCreateNumber.setText("5");
+        mCreateNumber.setText(mContent.getCostType()+"");
         mCreateMoney.setText(mContent.getAmount() + "");
+        mCostName.setText(mContent.getCostTypeName());
+        mRlChangData.setText(mContent.getOccurTime());
         initTimePicker();
     }
 

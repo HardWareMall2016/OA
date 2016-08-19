@@ -68,13 +68,14 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
+                    android:id="@+id/tv_market_costtype"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:drawableRight="@drawable/icon_arrow_right"
                     android:singleLine="true"
-                    android:text="国内展览费"
+                    android:text="请选择费用类型"
                     android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
             </RelativeLayout>

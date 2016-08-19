@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.android.wandong.R;
+import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.MarketReimburseCreateListResponseBean;
 import com.android.wandong.beans.ReimburseCreateTwoContent;
 import com.android.wandong.network.ApiUrls;
@@ -64,7 +65,10 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
         if(mode!=RefreshMode.update){
             mSelectedPos=-1;
         }
-        HttpRequestParams requestParams= Tools.createHttpRequestParams();
+        HttpRequestParams requestParams = new HttpRequestParams();
+        requestParams.put("UserName", UserInfo.getCurrentUser().getUserName());
+        requestParams.put("PassWord",UserInfo.getCurrentUser().getPassword());
+        requestParams.put("UserId",UserInfo.getCurrentUser().getUserId());
         requestParams.put("PageIndex",getNextPage(mode));
         requestParams.put("PageNumber", getRefreshConfig().minResultSize);
         requestParams.put("AuditStatus","3");
@@ -72,7 +76,7 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
         requestParams.put("CampaignName","");
         requestParams.put("CostType","");
         requestParams.put("EndDate","");
-        requestParams.put("IsJustLookOwner","");
+        requestParams.put("IsJustLookOwner","true");
         requestParams.put("IsRelation","false");
 
 

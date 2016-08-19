@@ -5,6 +5,7 @@ package com.android.wandong.ui.fragment.work;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ import java.util.Date;
 
 
 public class MarketActivityCreateFragment extends ABaseFragment {
+    private static final int REQUEST_CODE_CUSTOMER=100;
 
     @ViewInject(id = R.id.market_change_data,click = "OnClick")
     TextView mRlChangData;
@@ -42,13 +44,15 @@ public class MarketActivityCreateFragment extends ABaseFragment {
     EditText mCampaignName ;
     @ViewInject(id = R.id.remark)
     EditText mRemark;
-
+    @ViewInject(id = R.id.tv_market_costtype,click = "OnClick")
+    TextView mTvCostType;
     private long mOverdueTime=0;
 
     private TimePickerView mViewTimePicker;
 
     private String campaignName;
     private String moneyNum;
+    private String mCustomerId;
     @Override
     protected int inflateContentView() {
         return R.layout.frag_market_activity_create;
@@ -100,6 +104,9 @@ public class MarketActivityCreateFragment extends ABaseFragment {
                 }
                 Commit();
                 break;
+            case R.id.tv_market_costtype:
+                MarketActivityCreateCostTypeListFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
+                break;
         }
     }
 
@@ -118,11 +125,15 @@ public class MarketActivityCreateFragment extends ABaseFragment {
             ToastUtils.toast("请选择时间");
             return false;
         }
+        if("请选择费用类型".equals(mTvCostType.getText().toString())){
+            ToastUtils.toast("请选择费用类型");
+            return false;
+        }
         return true;
     }
 
     private void Commit() {
-        MarketActivityCreateRequestBean requestBean=new MarketActivityCreateRequestBean();
+        MarketActivityCreateRequestBean requestBean = new MarketActivityCreateRequestBean();
         requestBean.setDepartId(UserInfo.getCurrentUser().getDepartId());
         requestBean.setId("");
         requestBean.setPassWord(UserInfo.getCurrentUser().getPassword());
@@ -192,6 +203,15 @@ public class MarketActivityCreateFragment extends ABaseFragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_CUSTOMER && resultCode == Activity.RESULT_OK) {
+            mTvCostType.setText(data.getStringExtra(MarketActivityCreateCostTypeListFragment.KEY_ACCOUNT_NAME));
+            mTvCostType.setTextColor(0xff333333);
+            mCustomerId =data.getStringExtra(MarketActivityCreateCostTypeListFragment.KEY_ACCOUNT_ID);
+        }
     }
 
 }
