@@ -79,6 +79,8 @@ public class ApiUrls {
     public static final String COMPAIGN_APPLY_DETAIL = "Campaign/Apply/Detail.ashx";
     //新建市场活动费申请
     public static final String COMMON_SUBMIT_APPLY = "Common/SubmitApply.ashx";
+    //新建市场活动费申请-选择费用类型
+    public static final String COMMON_GETOPTION_VALUE = "Common/GetOptionValue.ashx";
 
     //市场活动费报销
     public static final String  CAMPAIGN_EXPENSE_LIST = "Campaign/Expense/List.ashx";

@@ -76,7 +76,7 @@ public class MarketActivityReimburseCreateFragment extends APullToRefreshListFra
         requestParams.put("CampaignName","");
         requestParams.put("CostType","");
         requestParams.put("EndDate","");
-        requestParams.put("IsJustLookOwner","");
+        requestParams.put("IsJustLookOwner","true");
         requestParams.put("IsRelation","false");
 
 
