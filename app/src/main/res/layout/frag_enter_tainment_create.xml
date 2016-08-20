@@ -73,7 +73,8 @@
                     android:textSize="14dp"
                     android:textColor="@color/text_color_content"
                     android:textColorHint="@color/text_color_content"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="20dp"
+                    android:numeric="integer"/>
 
             </RelativeLayout>
 
@@ -195,9 +196,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:drawableRight="@drawable/arrow_right_small"
                         android:gravity="center"
-                        android:text="请选择单元"
+                        android:text="上海"
                         android:textSize="14dp"
                         android:textColor="@color/text_color_content"/>
 
@@ -227,7 +227,8 @@
                         android:hint="请填写餐费"
                         android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColorHint="@color/text_color_content"
+                        android:numeric="integer"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -253,7 +254,8 @@
                         android:hint="请填写会议住宿费"
                         android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColorHint="@color/text_color_content"
+                        android:numeric="integer"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -280,7 +282,8 @@
                         android:hint="请填写办公用品费"
                         android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColorHint="@color/text_color_content"
+                        android:numeric="integer"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -306,7 +309,8 @@
                         android:hint="请填写交通费"
                         android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColorHint="@color/text_color_content"
+                        android:numeric="integer"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -332,7 +336,8 @@
                         android:hint="请填写礼品费"
                         android:layout_marginRight="8dp"
                         android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColorHint="@color/text_color_content"
+                        android:numeric="integer"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"

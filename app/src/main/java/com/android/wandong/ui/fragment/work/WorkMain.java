@@ -88,10 +88,10 @@ public class WorkMain extends AStripTabsFragment<WorkMain.WorkCategoryItem> impl
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         mAdapter = new CategoryAdapter(mTabs, getActivity());
-        mGridView.setAdapter(mAdapter);
-        mGridView.setOnItemClickListener(this);
-        mWorkCreateNewWorkDialogHelper = new WorkCreateNewWorkDialogHelper(getActivity(), mTabs);
-    }
+    mGridView.setAdapter(mAdapter);
+    mGridView.setOnItemClickListener(this);
+    mWorkCreateNewWorkDialogHelper = new WorkCreateNewWorkDialogHelper(getActivity(), mTabs);
+}
 
     @Override
     protected Fragment newFragment(WorkCategoryItem bean) {

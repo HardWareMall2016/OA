@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.wandong.R;
 import com.android.wandong.base.BaseResponseBean;
@@ -22,12 +24,10 @@ import com.android.wandong.beans.MarketActivityCreateRequestBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.timePicker.TimePickerView;
 import com.android.wandong.utils.Tools;
-import com.zhan.framework.component.container.FragmentArgs;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestHandler;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
-import com.zhan.framework.ui.fragment.ARefreshFragment;
 import com.zhan.framework.utils.ToastUtils;
 import com.zhan.framework.view.pickerview.LoopView;
 
@@ -116,26 +116,12 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
     private String mTainMentGiftFee;
 
     public static void launch(Activity activity) {
-        FragmentArgs args = new FragmentArgs();
-        //args.add(ARG_KEY, signId);
-        FragmentContainerActivity.launch(activity, EntertainmentApplicationCreateFragment.class, args);
+        FragmentContainerActivity.launch(activity, EntertainmentApplicationCreateFragment.class, null);
     }
 
     @Override
     protected int inflateContentView() {
         return R.layout.frag_enter_tainment_create;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //mSignId = savedInstanceState == null ? (String) getArguments().getSerializable(ARG_KEY) : (String) savedInstanceState.getSerializable(ARG_KEY);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //outState.putSerializable(ARG_KEY, mSignId);
     }
 
     @Override
@@ -180,8 +166,45 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
         intiPopMenu();
         initTimePicker();
 
-        mTainmentUnit.setText("营销中心");
+        mEtTainMentMeals.addTextChangedListener(mTextWatcher);
+        mEtTainMentConferenceFee.addTextChangedListener(mTextWatcher);
+        mEtTainMentOfficeFee.addTextChangedListener(mTextWatcher);
+        mEtTainMentTrafficeFee.addTextChangedListener(mTextWatcher);
+        mEtTainMentGiftFee.addTextChangedListener(mTextWatcher);
     }
+
+
+
+    TextWatcher mTextWatcher = new TextWatcher() {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            boolean Sign1 = mEtTainMentMeals.getText().length() > 0;
+            boolean Sign2 = mEtTainMentConferenceFee.getText().length() > 0;
+            boolean Sign3 = mEtTainMentOfficeFee.getText().length() > 0;
+            boolean Sign4 = mEtTainMentTrafficeFee.getText().length() > 0;
+            boolean Sign5 = mEtTainMentGiftFee.getText().length() > 0;
+
+            if (Sign1&Sign2&Sign3&Sign4&Sign5) {
+                int i1= Integer.parseInt(mEtTainMentMeals.getText().toString());
+                int i2= Integer.parseInt(mEtTainMentConferenceFee.getText().toString());
+                int i3= Integer.parseInt(mEtTainMentOfficeFee.getText().toString());
+                int i4= Integer.parseInt(mEtTainMentTrafficeFee.getText().toString());
+                int i5= Integer.parseInt(mEtTainMentGiftFee.getText().toString());
+
+
+                int fialprice = i1+i2+i3+i4+i5;
+                mFinalPrice.setText(fialprice+"");
+            }
+        }
+    };
 
     private void initTimePicker() {
         mViewTimePicker = new TimePickerView(getActivity(), TimePickerView.Type.YEAR_MONTH_DAY);
@@ -222,14 +245,6 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
                 if (!checkInput()) {
                     return;
                 }
-                double a1=Double.parseDouble(mTainMentMeals);
-                double a2=Double.parseDouble(mTainMentConferenceFee);
-                double a3=Double.parseDouble(mTainMentOfficeFee);
-                double a4=Double.parseDouble(mTainMentTrafficeFee);
-                double a5=Double.parseDouble(mTainMentGiftFee);
-                double All = a1+a2+a3+a4+a5;
-                mFinalPrice.setText(String.valueOf(All));
-
                 Submit();
                 break;
         }

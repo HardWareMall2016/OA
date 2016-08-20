@@ -41,7 +41,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:singleLine="true"
-                    android:text="交通补助"
+                    android:text="请选择费用类型"
                     android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal"
                     android:drawableRight="@drawable/arrow_right_small"
