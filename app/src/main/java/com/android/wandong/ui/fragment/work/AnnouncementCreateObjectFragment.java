@@ -23,7 +23,11 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
+
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by ${keke} on 16/8/10.
@@ -33,13 +37,12 @@ public class AnnouncementCreateObjectFragment extends ABaseFragment implements A
     @ViewInject(id = R.id.lv_object_listview)
     ListView mObjectListView;
     @ViewInject(id = R.id.announcement_object_departments,click = "OnClick")
-    RelativeLayout mDepartMent;
+    View mDepartMent;
     @ViewInject(id = R.id.announcement_object_workRole,click = "OnClick")
-    RelativeLayout mWorkRole ;
+    View mWorkRole ;
 
     private ArrayList<AccountInfo> mObjectList = new ArrayList<>();
     private AnnouncementCreateObjectAdapter mAdapter;
-    private int mSelectedPos = -1;
 
     public static void launch(AnnouncementCreateFragment activity,int requestCode) {
         FragmentContainerActivity.launchForResult(activity, AnnouncementCreateObjectFragment.class, null, requestCode);
@@ -54,22 +57,22 @@ public class AnnouncementCreateObjectFragment extends ABaseFragment implements A
         menu.setText("全选");
     }
 
-
     @Override
     public void onActionBarMenuClick() {
-
+        for(AccountInfo info:mObjectList){
+            info.selected=true;
+        }
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("公告对象");
-        mSelectedPos = -1;
-
         mObjectListView.setOnItemClickListener(this);
+        mAdapter = new AnnouncementCreateObjectAdapter(mObjectList, getActivity());
+        mObjectListView.setAdapter(mAdapter);
     }
-
-
 
     @Override
     public void requestData() {
@@ -101,8 +104,10 @@ public class AnnouncementCreateObjectFragment extends ABaseFragment implements A
                                 accountInfo.new_headportrait = entityInfoBean.getNew_headportrait();
                                 mObjectList.add(accountInfo);
                             }
-                            mAdapter = new AnnouncementCreateObjectAdapter(mObjectList, getActivity());
-                            mObjectListView.setAdapter(mAdapter);
+
+                            Comparator cmp = new ChineseCharComp();
+                            Collections.sort(mObjectList, cmp);
+
                             mAdapter.notifyDataSetChanged();
                         }
                         break;
@@ -140,7 +145,7 @@ public class AnnouncementCreateObjectFragment extends ABaseFragment implements A
         @Override
         public void bindingData(View convertView, AccountInfo data) {
             Tools.setTextView(mViewAccountName,data.fullname);
-            if(mSelectedPos == getPosition()){
+            if(data.selected){
                 mViewStatus.setImageResource(R.drawable.checkbox_sel);
             }else{
                 mViewStatus.setImageResource(R.drawable.checkbox_unsel);
@@ -162,13 +167,14 @@ public class AnnouncementCreateObjectFragment extends ABaseFragment implements A
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(mSelectedPos!=id){
-            mSelectedPos= (int) id;
-            mAdapter.notifyDataSetChanged();
-        }
+        AccountInfo accountInfo=mObjectList.get(position);
+        accountInfo.selected=!accountInfo.selected;
+        mAdapter.notifyDataSetChanged();
+
     }
 
     public class AccountInfo{
+        boolean selected=false;
         String userid;
         String fullname;
         String new_departmentid;
@@ -177,4 +183,16 @@ public class AnnouncementCreateObjectFragment extends ABaseFragment implements A
         String new_headportrait;
     }
 
+    public class ChineseCharComp implements Comparator<AccountInfo> {
+        Collator myCollator = Collator.getInstance(java.util.Locale.CHINA);
+
+        public int compare(AccountInfo o1, AccountInfo o2) {
+            if (myCollator.compare(o1.fullname, o2.fullname) < 0)
+                return -1;
+            else if (myCollator.compare(o1.fullname, o2.fullname) > 0)
+                return 1;
+            else
+                return 0;
+        }
+    }
 }

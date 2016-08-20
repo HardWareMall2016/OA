@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingBottom="16dp"
+        android:paddingBottom="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="16dp">
+
         <EditText
             android:id="@+id/search_content"
             android:layout_width="match_parent"
@@ -19,74 +22,66 @@
             android:drawableLeft="@drawable/search_bg_pressed"
             android:gravity="center"
             android:hint="搜索"
-            android:minHeight="40dp"/>
-        <RelativeLayout
+            android:minHeight="40dp" />
+
+        <TextView
             android:id="@+id/announcement_object_departments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:paddingRight="10dp"
-            android:background="@drawable/bg_white_small">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="   按组织结构查看"
-                android:drawableLeft="@drawable/icon_people"
-                android:textColor="@color/text_color_title"
-                android:textSize="@dimen/text_size_normal" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow_right_small"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
-        <RelativeLayout
+            android:background="@drawable/bg_white_underline_selector"
+            android:drawableLeft="@drawable/icon_people"
+            android:drawablePadding="16dp"
+            android:drawableRight="@drawable/arrow_right_small"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="按组织结构查看"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
             android:id="@+id/announcement_object_workRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:paddingRight="10dp"
-            android:background="@drawable/bg_white_small">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="   按工作岗位查看"
-                android:drawableLeft="@drawable/icon_people"
-                android:textColor="@color/text_color_title"
-                android:textSize="@dimen/text_size_normal" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow_right_small"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
+            android:background="@drawable/bg_white_underline_selector"
+            android:drawableLeft="@drawable/icon_people"
+            android:drawablePadding="16dp"
+            android:drawableRight="@drawable/arrow_right_small"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="按工作岗位查看"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_normal" />
 
         <ListView
             android:id="@+id/lv_object_listview"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:layout_height="fill_parent"
             android:layout_marginTop="10dp"
-            />
+            android:background="@color/white"
+            android:cacheColorHint="#00000000"
+            android:divider="@color/divider_color"
+            android:dividerHeight="1dip"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:smoothScrollbar="true" />
+
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_main_color_selector"
         android:gravity="center"
         android:minHeight="48dp"
         android:text="确定"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_normal"
-        android:layout_gravity="bottom"
-        />
-</FrameLayout>
+        android:textSize="@dimen/text_size_normal" />
+</LinearLayout>
