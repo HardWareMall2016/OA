@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -27,8 +28,9 @@ import java.util.ArrayList;
  * Created by ${keke} on 16/8/13.
  */
 public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
+    private static final int REQUEST_CODE_CUSTOMER=100;
 
-    @ViewInject(id = R.id.tv_specialdurse_traffice)
+    @ViewInject(id = R.id.tv_specialdurse_traffice,click = "OnClick")
     TextView mTraffic ;
     @ViewInject(id = R.id.et_specialdurse_reimbursement)
     EditText mEtReimbursement;
@@ -42,6 +44,7 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
     private String mReimburseMent;
     private String mTime ;
     private String mRemark ;
+    private String mCustomerId;
 
     @Override
     protected int inflateContentView() {
@@ -68,6 +71,9 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
 
                 Commit();
                 break;
+            case R.id.tv_specialdurse_traffice:
+                SpecialDuesReimbursementCreateTrafficeFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
+                break;
         }
     }
 
@@ -75,6 +81,11 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
         mReimburseMent = mEtReimbursement.getText().toString();
         mTime = mEtTime.getText().toString();
         mRemark = mEtRemark.getText().toString();
+
+        if("请选择费用类型".equals(mTraffic.getText().toString())){
+            ToastUtils.toast("请选择费用类型");
+            return false;
+        }
 
         if (TextUtils.isEmpty(mReimburseMent)) {
             ToastUtils.toast("请填写报销金额");
@@ -86,10 +97,6 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
             return false;
         }
 
-        if(TextUtils.isEmpty(mRemark)){
-            ToastUtils.toast("请填写备注内容");
-            return false;
-        }
         return true;
     }
 
@@ -160,5 +167,14 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_CUSTOMER && resultCode == Activity.RESULT_OK) {
+            mTraffic.setText(data.getStringExtra(SpecialDuesReimbursementCreateTrafficeFragment.KEY_ACCOUNT_NAME));
+            mTraffic.setTextColor(0xff333333);
+            mCustomerId =data.getStringExtra(SpecialDuesReimbursementCreateTrafficeFragment.KEY_ACCOUNT_ID);
+        }
     }
 }
