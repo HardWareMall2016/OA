@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.android.wandong.R;
 import com.android.wandong.base.App;
 import com.android.wandong.base.BaseResponseBean;
@@ -208,8 +209,8 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
         List<String> images = new ArrayList<>();
         UploadImgRequestBean requestBean = new UploadImgRequestBean();
-        requestBean.setPhotos(images);
-        requestBean.setPhotosId("");
+        requestBean.Photos=images;
+        requestBean.PhotosId="";
         for (int i = 0; i < mMeidaUri.size() - 1; i++) {
             images.add(PhotoUtils.imageFile2StrByBase64(mMeidaUri.get(i)));
         }
