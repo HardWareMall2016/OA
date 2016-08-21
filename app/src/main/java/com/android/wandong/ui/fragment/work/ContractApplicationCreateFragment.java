@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.ContractApplicationCreateResponseBean;
+import com.android.wandong.beans.ContractContent;
 import com.android.wandong.beans.ReimburseCreateTwoContent;
 import com.android.wandong.beans.WorkReportReplyListResponseBean;
 import com.android.wandong.network.ApiUrls;
@@ -69,6 +70,8 @@ public class ContractApplicationCreateFragment extends ABaseFragment{
     Button mSubmitNext;
 
     private String opportunityId ;
+    private String ProductClassifyId ;
+    private String ProductId ;
 
     private String mContractName;
     private String mContractAddress;
@@ -79,6 +82,9 @@ public class ContractApplicationCreateFragment extends ABaseFragment{
     private String mPrice;
     private String mSaleNumber;
     private String mContractDelivery;
+
+    private String AccountName;
+    private String mProductBasePrice ;
 
     public static void launch(Activity mActivity, String opportunityId) {
         FragmentArgs args = new FragmentArgs();
@@ -135,11 +141,16 @@ public class ContractApplicationCreateFragment extends ABaseFragment{
                 super.onSuccess(result);
                 if (result != null && result.getEntityInfo() != null) {
                     mEtCustorName.setText(result.getEntityInfo().getAccountName());
+                    AccountName = result.getEntityInfo().getAccountName();
 
                     for(ContractApplicationCreateResponseBean.EntityInfoBean.OpportunityProductItemBean itemBean : result.getEntityInfo().getOpportunityProductItem()){
                         mProductLine.setText(itemBean.getProductClassifyName());
                         mProductModel.setText(itemBean.getName());
                         mEtSaleNumber.setText(itemBean.getQuantity()+"");
+                        ProductClassifyId = itemBean.getProductClassifyId();
+                        ProductId = itemBean.getProductId();
+
+                        mProductBasePrice = itemBean.getPrice()+"";
                     }
                 }
 
@@ -163,7 +174,22 @@ public class ContractApplicationCreateFragment extends ABaseFragment{
                 if (!checkInput()) {
                     return;
                 }
-                ContractApplicationNextFragment.launch(getActivity());
+                ContractContent content = new ContractContent();
+                content.setAccountName(AccountName);
+                content.setBuyerName(mEtBuyerName.getText().toString());
+                content.setContractName(mEtContractName.getText().toString());
+                content.setDeliveryAppointment(mEtDelivery.getText().toString());
+                content.setMoneyBelonger(mEtContractBonus.getText().toString());
+                content.setOpportunityId(opportunityId);
+                content.setProductClassifyId(ProductClassifyId);
+                content.setProductId(ProductId);
+                content.setQuantity(mEtSaleNumber.getText().toString());
+                content.setTaskBelonger(mEtContractTask.getText().toString());
+                content.setUnit(mTvContractUnitName.getText().toString());
+                content.setContractAmount(mPrice);
+                content.setUserSite(mEtContractAddress.getText().toString());
+                content.setProductBasePrice(mProductBasePrice);
+                ContractApplicationNextFragment.launch(getActivity(), content);
                 break;
         }
     }
@@ -209,8 +235,14 @@ public class ContractApplicationCreateFragment extends ABaseFragment{
             return false;
         }
 
+
         if(TextUtils.isEmpty(mSaleNumber)){
             ToastUtils.toast("请填写销售数量");
+            return false;
+        }
+
+        if("请选择付款约定".equals(mPayMentMethod.getText().toString())){
+            ToastUtils.toast("请选择付款约定");
             return false;
         }
 

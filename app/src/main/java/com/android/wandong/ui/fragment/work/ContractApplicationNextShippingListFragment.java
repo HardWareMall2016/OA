@@ -30,6 +30,7 @@ import java.util.List;
 public class ContractApplicationNextShippingListFragment extends APullToRefreshListFragment<ContractApplicationNextShippingListFragment.AccountInfo> {
 
     public static String KEY_ACCOUNT_SHIPPINGNAME="shipping_name";
+    public static String KEY_ACCOUNT_ID="shipping_id";
 
     private int mSelectedPos=-1;
 
@@ -53,6 +54,7 @@ public class ContractApplicationNextShippingListFragment extends APullToRefreshL
 
         Intent intent=new Intent();
         intent.putExtra(KEY_ACCOUNT_SHIPPINGNAME,accountInfo.Name);
+        intent.putExtra(KEY_ACCOUNT_ID,accountInfo.Value);
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }

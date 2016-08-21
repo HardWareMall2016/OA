@@ -75,6 +75,8 @@ public class ApiUrls {
     public static final String OPPORTUNITY_GETPRODUCT = "Opportunity/GetProduct.ashx";
     //新建合同申请－配置要求
     public static final String COMMON_GETOPION_VALUE = "Common/GetOptionValue.ashx";
+    //新建合同申请
+    public static final String CONTRACT_APPLY_ADD = "ContractApply/Add.ashx";
 
     //招待申请-列表
     public static final String ENTERTAIN_APPLY_LIST = "EntertainApply/List.ashx";

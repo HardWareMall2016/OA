@@ -30,7 +30,7 @@ import java.util.List;
 public class ContractApplicationNextCommissionListFragment extends APullToRefreshListFragment<ContractApplicationNextCommissionListFragment.AccountInfo> {
 
     public static String KEY_COMMISSION_NAME="commission_name";
-    //public static String KEY_ACCOUNT_ID="account_id";
+    public static String KEY_ACCOUNT_ID="account_id";
 
     private int mSelectedPos=-1;
 
@@ -54,7 +54,7 @@ public class ContractApplicationNextCommissionListFragment extends APullToRefres
 
         Intent intent=new Intent();
         intent.putExtra(KEY_COMMISSION_NAME,accountInfo.Name);
-        //intent.putExtra(KEY_ACCOUNT_ID, accountInfo.AccountId);
+        intent.putExtra(KEY_ACCOUNT_ID, accountInfo.Value);
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }

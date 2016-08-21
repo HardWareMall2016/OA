@@ -220,8 +220,8 @@
                         android:textSize="14dp"
                         android:hint="请填写客户名称"
                         android:layout_marginRight="8dp"
-                        android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColor="@color/text_color_title"
+                        android:textColorHint="@color/text_color_title" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -246,7 +246,7 @@
                         android:textSize="14dp"
                         android:text="请选择产品线"
                         android:layout_marginRight="8dp"
-                        android:textColor="@color/text_color_content"
+                        android:textColor="@color/text_color_title"
                         android:drawableRight="@drawable/arrow_right_small" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -271,7 +271,7 @@
                         android:textSize="14dp"
                         android:text="产品型号"
                         android:layout_marginRight="8dp"
-                        android:textColor="@color/text_color_content"
+                        android:textColor="@color/text_color_title"
                         android:drawableRight="@drawable/arrow_right_small" />
                 </RelativeLayout>
                 <RelativeLayout
@@ -353,8 +353,7 @@
                         android:text="请选择付款约定"
                         android:drawableRight="@drawable/arrow_right_small"
                         android:layout_marginRight="8dp"
-                        android:textColor="@color/text_color_content"
-                        android:textColorHint="@color/text_color_content" />
+                        android:textColor="@color/text_color_title" />
 
                 </RelativeLayout>
 
