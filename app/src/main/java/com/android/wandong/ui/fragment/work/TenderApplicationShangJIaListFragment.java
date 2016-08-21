@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
-import com.android.wandong.beans.AccountListResponseBean;
 import com.android.wandong.beans.ContractProductModelListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhan.framework.component.container.FragmentArgs;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestParams;
@@ -22,39 +23,54 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
+import com.zhan.framework.utils.PixelUtils;
 import com.zhan.framework.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ${keke} on 16/8/13.
+ * Created by ${keke} on 16/8/21.
  */
-public class TenderApplicationBidProductListFragment extends APullToRefreshListFragment<TenderApplicationBidProductListFragment.AccountInfo>  {
-
-    private final static String ARG_KEY = "tender_bidproduct";
-
+public class TenderApplicationShangJIaListFragment extends APullToRefreshListFragment<TenderApplicationShangJIaListFragment.AccountInfo> {
+    private final static String ARG_KEY = "shangjia";
     public static String KEY_BIDPRODUCT_NAME="bidproduct_name";
     public static String KEY_BIDPRODUCT_ID="bidproduct_id";
     private int mSelectedPos=-1;
 
-    private String mProductId ;
+    private String mCustomerId ;
 
-    public static void launchForResult(TenderApplicationCreateFragment from, int requestCode, String mProductId) {
+    public static void launchForResult(TenderApplicationCreateFragment from, int requestCode, String mCustomerId) {
         FragmentArgs args = new FragmentArgs();
-        args.add(ARG_KEY, mProductId);
-        FragmentContainerActivity.launchForResult(from, TenderApplicationBidProductListFragment.class, args, requestCode);
+        args.add(ARG_KEY, mCustomerId);
+        FragmentContainerActivity.launchForResult(from, TenderApplicationShangJIaListFragment.class, args, requestCode);
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mProductId = savedInstanceState == null ? (String) getArguments().getSerializable(ARG_KEY) : (String) savedInstanceState.getSerializable(ARG_KEY);
+        mCustomerId = savedInstanceState == null ? (String) getArguments().getSerializable(ARG_KEY) : (String) savedInstanceState.getSerializable(ARG_KEY);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(ARG_KEY, mProductId);
+        outState.putSerializable(ARG_KEY, mCustomerId);
+    }
+
+    @Override
+    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
+        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
+        listView.setDividerHeight(getListDividerHeight());
+        View searchHeader=getActivity().getLayoutInflater().inflate(R.layout.layout_work_search_header,null);
+        if(getListDividerHeight()!=0){
+            searchHeader.setPadding(PixelUtils.dp2px(8),PixelUtils.dp2px(0),PixelUtils.dp2px(8),PixelUtils.dp2px(0));
+        }
+        mPullToRefreshListView.getRefreshableView().addHeaderView(searchHeader);
+    }
+
+    public int getListDividerHeight(){
+        return 0;
     }
 
     @Override
@@ -65,7 +81,7 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
     @Override
     public void onActionBarMenuClick() {
         if(mSelectedPos==-1){
-            ToastUtils.toast("请选择产品线");
+            ToastUtils.toast("请选择商机");
             return;
         }
 
@@ -81,9 +97,11 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
-        getActivity().setTitle("投标产品");
+        getActivity().setTitle("选择商机");
         mSelectedPos=-1;
     }
+
+
     @Override
     protected void configRefresh(RefreshConfig config) {
         config.minResultSize=20;
@@ -124,7 +142,7 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
             mSelectedPos=-1;
         }
 
-        HttpRequestParams requestParams = new HttpRequestParams();
+        /*HttpRequestParams requestParams = new HttpRequestParams();
         requestParams.put("UserName", UserInfo.getCurrentUser().getUserName());
         requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
         requestParams.put("PageIndex",getNextPage(mode));
@@ -156,9 +174,8 @@ public class TenderApplicationBidProductListFragment extends APullToRefreshListF
                 }
                 return items;
             }
-        }, HttpRequestUtils.RequestType.POST);
+        }, HttpRequestUtils.RequestType.POST);*/
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -122,7 +122,7 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
 
         ArrayList<MarketActivityCreateRequestBean.FormInfoBean> arrayList = new ArrayList<>();
         MarketActivityCreateRequestBean.FormInfoBean formInfoBean1 = new MarketActivityCreateRequestBean.FormInfoBean();
-        formInfoBean1.setFieldValue("2");//交通补助为2
+        formInfoBean1.setFieldValue(mCustomerId);
         formInfoBean1.setFieldName("new_costtype");
         formInfoBean1.setFieldType("1");
 
@@ -132,7 +132,7 @@ public class SpecialDuesReimbursementCreateFragment extends ABaseFragment{
         formInfoBean2.setFieldType("3");
 
         MarketActivityCreateRequestBean.FormInfoBean formInfoBean3 = new MarketActivityCreateRequestBean.FormInfoBean();
-        formInfoBean3.setFieldValue("2049");
+        formInfoBean3.setFieldValue(mTime);
         formInfoBean3.setFieldName("new_feeddate");
         formInfoBean3.setFieldType("2");
 

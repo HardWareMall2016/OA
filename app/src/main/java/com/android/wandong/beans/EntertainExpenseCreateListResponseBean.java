@@ -10,22 +10,22 @@ import java.util.List;
 public class EntertainExpenseCreateListResponseBean extends BaseResponseBean{
     /**
      * errorcode : 0
-     * entityInfo : [{"Id":"95b18cbd-5a59-e611-92fc-085700e64e0f","ApplyNo":"ZDBX201608000011","AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","Reason":"客户来了","Number":5,"Amount":9830,"Status":3,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1470215695000)/"},{"Id":"b5ee613b-c541-e611-9105-085700e64e0f","ApplyNo":"ZDBX201607000002","AccountId":"1040c2e6-5516-e611-ac23-085700e64e0f","AccountName":"巴州区红十字医院（巴中红十字医院）","Reason":"招待费测试","Number":1,"Amount":0,"Status":3,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1467622605000)/"}]
+     * entityInfo : [{"EntertainId":"49983671-a65e-e611-92fc-085700e64e0f","ApplyNo":"ZDSQ201608000026","EstimateTotal":1554,"AccountId":"5e40c2e6-5516-e611-ac23-085700e64e0f","AccountName":"高平武承谋骨伤专科医院","Reason":"Tgro","Number":3,"PersonalImage":"UploadedFiles/HeadPortrait/cc7e4862-1204-45a3-80a6-68ee24193775.jpeg","OwnerName":"姓名","CreatedOn":"/Date(1470797964000)/","Status":3}]
      */
 
     private int errorcode;
     /**
-     * Id : 95b18cbd-5a59-e611-92fc-085700e64e0f
-     * ApplyNo : ZDBX201608000011
-     * AccountId : 5640c2e6-5516-e611-ac23-085700e64e0f
-     * AccountName : 襄城区余家湖社区卫生服务中心
-     * Reason : 客户来了
-     * Number : 5
-     * Amount : 9830
-     * Status : 3
-     * OwnerId : c52610c5-60fd-e511-a1e5-085700e64e0f
+     * EntertainId : 49983671-a65e-e611-92fc-085700e64e0f
+     * ApplyNo : ZDSQ201608000026
+     * EstimateTotal : 1554
+     * AccountId : 5e40c2e6-5516-e611-ac23-085700e64e0f
+     * AccountName : 高平武承谋骨伤专科医院
+     * Reason : Tgro
+     * Number : 3
+     * PersonalImage : UploadedFiles/HeadPortrait/cc7e4862-1204-45a3-80a6-68ee24193775.jpeg
      * OwnerName : 姓名
-     * CreatedOn : /Date(1470215695000)/
+     * CreatedOn : /Date(1470797964000)/
+     * Status : 3
      */
 
     private List<EntityInfoBean> entityInfo;
@@ -47,24 +47,24 @@ public class EntertainExpenseCreateListResponseBean extends BaseResponseBean{
     }
 
     public static class EntityInfoBean {
-        private String Id;
+        private String EntertainId;
         private String ApplyNo;
+        private int EstimateTotal;
         private String AccountId;
         private String AccountName;
         private String Reason;
         private int Number;
-        private int Amount;
-        private int Status;
-        private String OwnerId;
+        private String PersonalImage;
         private String OwnerName;
         private String CreatedOn;
+        private int Status;
 
-        public String getId() {
-            return Id;
+        public String getEntertainId() {
+            return EntertainId;
         }
 
-        public void setId(String Id) {
-            this.Id = Id;
+        public void setEntertainId(String EntertainId) {
+            this.EntertainId = EntertainId;
         }
 
         public String getApplyNo() {
@@ -73,6 +73,14 @@ public class EntertainExpenseCreateListResponseBean extends BaseResponseBean{
 
         public void setApplyNo(String ApplyNo) {
             this.ApplyNo = ApplyNo;
+        }
+
+        public int getEstimateTotal() {
+            return EstimateTotal;
+        }
+
+        public void setEstimateTotal(int EstimateTotal) {
+            this.EstimateTotal = EstimateTotal;
         }
 
         public String getAccountId() {
@@ -107,28 +115,12 @@ public class EntertainExpenseCreateListResponseBean extends BaseResponseBean{
             this.Number = Number;
         }
 
-        public int getAmount() {
-            return Amount;
+        public String getPersonalImage() {
+            return PersonalImage;
         }
 
-        public void setAmount(int Amount) {
-            this.Amount = Amount;
-        }
-
-        public int getStatus() {
-            return Status;
-        }
-
-        public void setStatus(int Status) {
-            this.Status = Status;
-        }
-
-        public String getOwnerId() {
-            return OwnerId;
-        }
-
-        public void setOwnerId(String OwnerId) {
-            this.OwnerId = OwnerId;
+        public void setPersonalImage(String PersonalImage) {
+            this.PersonalImage = PersonalImage;
         }
 
         public String getOwnerName() {
@@ -145,6 +137,14 @@ public class EntertainExpenseCreateListResponseBean extends BaseResponseBean{
 
         public void setCreatedOn(String CreatedOn) {
             this.CreatedOn = CreatedOn;
+        }
+
+        public int getStatus() {
+            return Status;
+        }
+
+        public void setStatus(int Status) {
+            this.Status = Status;
         }
     }
 }

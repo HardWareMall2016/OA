@@ -62,8 +62,13 @@ public class ApiUrls {
     public static final String CONTACTS_WORKROLES = "Contacts/WorkRoles.ashx";
 
 
+
     //合同申请列表
     public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
+    //新建合同申请－商机列表
+    public static final String OPPORTUNITY_LIST = "Opportunity/List.ashx";
+    //新建合同申请－详情
+    public static final String OPPPRTUNITY_DETAIL = "Opportunity/Detail.ashx";
     //新建合同申请－产品线
     public static final String OPPORTUNITY_GETPRODUCT_CLASSIFY = "Opportunity/GetProductClassify.ashx";
     //新建合同申请－产品型号

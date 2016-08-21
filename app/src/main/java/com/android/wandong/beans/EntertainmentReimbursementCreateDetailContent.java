@@ -6,25 +6,24 @@ import java.io.Serializable;
  * * 作者：keke on 2016/8/20 15:04
  */
 public class EntertainmentReimbursementCreateDetailContent implements Serializable {
-
-    private String Id;
+    private String EntertainId;
     private String ApplyNo;
+    private int EstimateTotal;
     private String AccountId;
     private String AccountName;
     private String Reason;
     private int Number;
-    private int Amount;
-    private int Status;
-    private String OwnerId;
+    private String PersonalImage;
     private String OwnerName;
     private String CreatedOn;
+    private int Status;
 
-    public String getId() {
-        return Id;
+    public String getEntertainId() {
+        return EntertainId;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setEntertainId(String EntertainId) {
+        this.EntertainId = EntertainId;
     }
 
     public String getApplyNo() {
@@ -33,6 +32,14 @@ public class EntertainmentReimbursementCreateDetailContent implements Serializab
 
     public void setApplyNo(String ApplyNo) {
         this.ApplyNo = ApplyNo;
+    }
+
+    public int getEstimateTotal() {
+        return EstimateTotal;
+    }
+
+    public void setEstimateTotal(int EstimateTotal) {
+        this.EstimateTotal = EstimateTotal;
     }
 
     public String getAccountId() {
@@ -67,28 +74,12 @@ public class EntertainmentReimbursementCreateDetailContent implements Serializab
         this.Number = Number;
     }
 
-    public int getAmount() {
-        return Amount;
+    public String getPersonalImage() {
+        return PersonalImage;
     }
 
-    public void setAmount(int Amount) {
-        this.Amount = Amount;
-    }
-
-    public int getStatus() {
-        return Status;
-    }
-
-    public void setStatus(int Status) {
-        this.Status = Status;
-    }
-
-    public String getOwnerId() {
-        return OwnerId;
-    }
-
-    public void setOwnerId(String OwnerId) {
-        this.OwnerId = OwnerId;
+    public void setPersonalImage(String PersonalImage) {
+        this.PersonalImage = PersonalImage;
     }
 
     public String getOwnerName() {
@@ -105,5 +96,13 @@ public class EntertainmentReimbursementCreateDetailContent implements Serializab
 
     public void setCreatedOn(String CreatedOn) {
         this.CreatedOn = CreatedOn;
+    }
+
+    public int getStatus() {
+        return Status;
+    }
+
+    public void setStatus(int Status) {
+        this.Status = Status;
     }
 }

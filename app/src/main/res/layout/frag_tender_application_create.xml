@@ -18,11 +18,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_white_small"
+                android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
+                android:padding="16dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <TextView
@@ -51,10 +50,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <TextView
@@ -84,9 +81,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <TextView
@@ -115,9 +111,39 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:layout_centerVertical="true"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="关联商机"
+                    android:textColor="@color/text_color_title"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:id="@+id/tender_change_shangji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="start|top"
+                    android:hint="请选择关联商机"
+                    android:drawableRight="@drawable/arrow_right_small"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_content"
+                    android:textSize="@dimen/text_size_normal" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_underline_selector"
+                android:minHeight="48dp"
+                android:padding="16dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <TextView
@@ -147,9 +173,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <TextView
@@ -178,9 +203,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -210,9 +233,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -243,9 +264,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -275,9 +294,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -308,9 +325,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -340,9 +355,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -372,9 +385,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_underline_selector"
                 android:minHeight="48dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="8dp"
-                android:layout_marginTop="10dp"
+                android:padding="16dp"
                 android:layout_centerVertical="true"
                 android:gravity="center">
 
@@ -399,6 +410,31 @@
                     android:textColorHint="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="备注"
+                    android:textSize="14dp"/>
+
+                <EditText
+                    android:id="@+id/et_tender_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@null"
+                    android:hint="请填写备注内容"
+                    android:gravity="top|start"
+                    android:layout_marginTop="8dp"
+                    android:textSize="@dimen/text_size_normal"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/text_color_content"
+                    android:textColorHint="@color/text_color_supplementary" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -32,6 +32,7 @@ import java.util.List;
 /**
  * Created by ${keke} on 16/8/19.
  */
+
 public class MarketActivityCreateCostTypeListFragment extends APullToRefreshListFragment<MarketActivityCreateCostTypeListFragment.AccountInfo> {
     public static String KEY_ACCOUNT_NAME = "account_name";
     public static String KEY_ACCOUNT_ID = "account_id";
@@ -41,22 +42,6 @@ public class MarketActivityCreateCostTypeListFragment extends APullToRefreshList
 
     public static void launchForResult(MarketActivityCreateFragment from, int requestCode) {
         FragmentContainerActivity.launchForResult(from, MarketActivityCreateCostTypeListFragment.class, null, requestCode);
-    }
-
-
-    @Override
-    protected void setInitPullToRefresh(ListView listView, PullToRefreshListView pullToRefreshListView, Bundle savedInstanceState) {
-        super.setInitPullToRefresh(listView, pullToRefreshListView, savedInstanceState);
-        listView.setDividerHeight(getListDividerHeight());
-        View searchHeader=getActivity().getLayoutInflater().inflate(R.layout.layout_work_search_header,null);
-        if(getListDividerHeight()!=0){
-            searchHeader.setPadding(PixelUtils.dp2px(8),PixelUtils.dp2px(0),PixelUtils.dp2px(8),PixelUtils.dp2px(0));
-        }
-        mPullToRefreshListView.getRefreshableView().addHeaderView(searchHeader);
-    }
-
-    public int getListDividerHeight(){
-        return 0;
     }
 
     @Override
