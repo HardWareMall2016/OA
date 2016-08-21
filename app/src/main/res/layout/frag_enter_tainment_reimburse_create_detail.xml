@@ -30,10 +30,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -58,10 +56,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,10 +80,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,9 +106,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -154,10 +147,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -168,12 +159,12 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
-                    android:id="@+id/province"
+                    android:id="@+id/create_province"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="江苏"
+                    android:text="发生省份"
                     android:textColor="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
 
@@ -182,10 +173,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -196,7 +185,7 @@
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
-                    android:id="@+id/ApplyUnit"
+                    android:id="@+id/create_ApplyUnit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -210,10 +199,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -240,10 +227,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -270,10 +255,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -300,10 +283,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -330,10 +311,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -360,10 +339,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:minHeight="40dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:background="@drawable/bg_white_underline_selector"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -387,7 +364,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
+    <Button
         android:id="@+id/btn_commit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -40,6 +40,7 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
     private static final int REQUEST_CODE_CUSTOMER=100;
     private static final int REQUEST_CODE_PRODUCT=101;
     private static final int REQUEST_CODE_BIDPRODUCT=102;
+    private static final int REQUEST_CODE_SHANGJIA=103;
 
     @ViewInject(id = R.id.inspection_project_name)
     EditText mEtProjectName;
@@ -55,9 +56,13 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
     EditText mEtCompanyName;
     @ViewInject(id = R.id.et_tender_websit)
     EditText mEtWebSit;
+    @ViewInject(id = R.id.et_tender_reason)
+    EditText mEtReason;
 
     @ViewInject(id = R.id.tender_customer,click = "OnClick")
     TextView mCustomer ;
+    @ViewInject(id = R.id.tender_change_shangji,click = "OnClick")
+    TextView mShangJia;
     @ViewInject(id = R.id.tender_change_province,click = "OnClick")
     TextView mProvince;
     @ViewInject(id = R.id.tender_change_bidtime,click = "OnClick")
@@ -81,6 +86,7 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
     private String mCustomerId ;
     private String mProductId ;
     private String mBidProductId;
+    private String mShangJiaId ;
 
     private String mProjectName;
     private String mTenderCode;
@@ -176,6 +182,12 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
             case R.id.tender_customer:
                 TenderApplicationListFragment.launchForResult(this, REQUEST_CODE_CUSTOMER);
                 break;
+            case R.id.tender_change_shangji:
+                if (!checkShangJiaInput()) {
+                    return;
+                }
+                TenderApplicationShangJIaListFragment.launchForResult(this, REQUEST_CODE_SHANGJIA,mCustomerId);
+                break;
             case R.id.tender_change_province:
                 showChooseMenu();
                 break;
@@ -187,13 +199,15 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
                 TenderApplicationProductListFragment.launchForResult(this, REQUEST_CODE_PRODUCT);
                 break;
             case R.id.tender_change_bidproduct:
-                TenderApplicationBidProductListFragment.launchForResult(this, REQUEST_CODE_BIDPRODUCT);
+                if (!checkBidProductInput()) {
+                    return;
+                }
+                TenderApplicationBidProductListFragment.launchForResult(this, REQUEST_CODE_BIDPRODUCT,mProductId);
                 break;
             case R.id.btn_commit:
                 if (!checkInput()) {
                     return;
                 }
-
                 Commit();
                 break;
         }
@@ -380,13 +394,25 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
             return false;
         }
 
-        if (TextUtils.isEmpty(mWebSit)) {
-            ToastUtils.toast("请填写网站");
-            return false;
-        }
 
         return true;
     }
+
+    private boolean checkBidProductInput() {
+        if("请选择产品线".equals(mProduct.getText().toString())){
+            ToastUtils.toast("请选择产品线");
+            return false;
+        }
+        return true;
+    }
+    private boolean checkShangJiaInput() {
+        if("请选择客户".equals(mCustomer.getText().toString())){
+            ToastUtils.toast("请选择客户");
+            return false;
+        }
+        return true;
+    }
+
 
     private void showChooseMenu() {
         mChangLessonPopMenuContent = getActivity().getLayoutInflater().inflate(R.layout.pop_memu_create_entertain, null);
@@ -479,5 +505,10 @@ public class TenderApplicationCreateFragment extends ABaseFragment {
             mBidProductId = data.getStringExtra(TenderApplicationBidProductListFragment.KEY_BIDPRODUCT_ID);
         }
 
+        if(requestCode == REQUEST_CODE_SHANGJIA && resultCode == Activity.RESULT_OK){
+            mShangJia.setText(data.getStringExtra(TenderApplicationShangJIaListFragment.KEY_BIDPRODUCT_NAME));
+            mShangJia.setTextColor(0xff333333);
+            mShangJiaId = data.getStringExtra(TenderApplicationShangJIaListFragment.KEY_BIDPRODUCT_ID);
+        }
     }
 }

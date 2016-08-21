@@ -64,14 +64,21 @@ public class ApiUrls {
     public static final String CONTACTS_CONVERT_USERLIST = "Contacts/ConvertUserList.ashx";
 
 
+
     //合同申请列表
     public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
+    //新建合同申请－商机列表
+    public static final String OPPORTUNITY_LIST = "Opportunity/List.ashx";
+    //新建合同申请－详情
+    public static final String OPPPRTUNITY_DETAIL = "Opportunity/Detail.ashx";
     //新建合同申请－产品线
     public static final String OPPORTUNITY_GETPRODUCT_CLASSIFY = "Opportunity/GetProductClassify.ashx";
     //新建合同申请－产品型号
     public static final String OPPORTUNITY_GETPRODUCT = "Opportunity/GetProduct.ashx";
     //新建合同申请－配置要求
     public static final String COMMON_GETOPION_VALUE = "Common/GetOptionValue.ashx";
+    //新建合同申请
+    public static final String CONTRACT_APPLY_ADD = "ContractApply/Add.ashx";
 
     //招待申请-列表
     public static final String ENTERTAIN_APPLY_LIST = "EntertainApply/List.ashx";

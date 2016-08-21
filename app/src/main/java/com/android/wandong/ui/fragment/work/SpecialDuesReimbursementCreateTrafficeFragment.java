@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.beans.CostTypeListResponseBean;
+import com.android.wandong.beans.SpecialDuesReimburseCostTypeResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
 import com.zhan.framework.component.container.FragmentContainerActivity;
@@ -84,24 +85,24 @@ public class SpecialDuesReimbursementCreateTrafficeFragment extends APullToRefre
         }
         HttpRequestParams requestParams = new HttpRequestParams();
         requestParams.put("AttributeName", "new_costtype");
-        requestParams.put("EntityName", "new_campaign");
+        requestParams.put("EntityName", "new_special_payment");
 
-        startFormRequest(ApiUrls.COMMON_GETOPTION_VALUE, requestParams, new PagingTask<CostTypeListResponseBean>(mode) {
+        startFormRequest(ApiUrls.COMMON_GETOPTION_VALUE, requestParams, new PagingTask<SpecialDuesReimburseCostTypeResponseBean>(mode) {
             @Override
-            public CostTypeListResponseBean parseResponseToResult(String content) {
-                return Tools.parseJson(content, CostTypeListResponseBean.class);
+            public SpecialDuesReimburseCostTypeResponseBean parseResponseToResult(String content) {
+                return Tools.parseJson(content, SpecialDuesReimburseCostTypeResponseBean.class);
             }
 
             @Override
-            public String verifyResponseResult(CostTypeListResponseBean result) {
+            public String verifyResponseResult(SpecialDuesReimburseCostTypeResponseBean result) {
                 return Tools.verifyResponseResult(result);
             }
 
             @Override
-            protected List<AccountInfo> parseResult(CostTypeListResponseBean baseResponseBean) {
+            protected List<AccountInfo> parseResult(SpecialDuesReimburseCostTypeResponseBean baseResponseBean) {
                 List<AccountInfo> items=new ArrayList<>();
                 if(baseResponseBean!=null&&baseResponseBean.getEntityInfo()!=null){
-                    for (CostTypeListResponseBean.EntityInfoBean bean: baseResponseBean.getEntityInfo()) {
+                    for (SpecialDuesReimburseCostTypeResponseBean.EntityInfoBean bean: baseResponseBean.getEntityInfo()) {
                         AccountInfo reportDataItem = new AccountInfo();
                         reportDataItem.Value=bean.getValue();
                         reportDataItem.Name=bean.getName();

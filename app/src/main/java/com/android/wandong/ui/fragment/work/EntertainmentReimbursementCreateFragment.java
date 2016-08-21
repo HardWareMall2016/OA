@@ -80,7 +80,7 @@ public class EntertainmentReimbursementCreateFragment extends APullToRefreshList
         requestParams.put("IsJustLookOwner", "true");
         requestParams.put("IsRelation", "false");
 
-        startFormRequest(ApiUrls.ENTER_TAIN_EXPENSE, requestParams, new PagingTask<EntertainExpenseCreateListResponseBean>(mode) {
+        startFormRequest(ApiUrls.ENTERTAIN_APPLY_LIST, requestParams, new PagingTask<EntertainExpenseCreateListResponseBean>(mode) {
             @Override
             public EntertainExpenseCreateListResponseBean parseResponseToResult(String content) {
                 return Tools.parseJson(content, EntertainExpenseCreateListResponseBean.class);
@@ -97,15 +97,15 @@ public class EntertainmentReimbursementCreateFragment extends APullToRefreshList
                 if (baseResponseBean != null && baseResponseBean.getEntityInfo() != null) {
                     for (EntertainExpenseCreateListResponseBean.EntityInfoBean bean : baseResponseBean.getEntityInfo()) {
                         AccountInfo reportDataItem = new AccountInfo();
-                        reportDataItem.Id = bean.getId();
+                        reportDataItem.EntertainId = bean.getEntertainId();
                         reportDataItem.ApplyNo = bean.getApplyNo();
+                        reportDataItem.EstimateTotal = bean.getEstimateTotal();
                         reportDataItem.AccountId = bean.getAccountId();
                         reportDataItem.AccountName = bean.getAccountName();
                         reportDataItem.Reason = bean.getReason();
                         reportDataItem.Number = bean.getNumber();
-                        reportDataItem.Amount = bean.getAmount();
+                        reportDataItem.PersonalImage = bean.getPersonalImage();
                         reportDataItem.Status = bean.getStatus();
-                        reportDataItem.OwnerId = bean.getOwnerId();
                         reportDataItem.OwnerName = bean.getOwnerName();
                         reportDataItem.CreatedOn = bean.getCreatedOn();
                         items.add(reportDataItem);
@@ -126,15 +126,15 @@ public class EntertainmentReimbursementCreateFragment extends APullToRefreshList
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         super.onItemClick(parent, view, position, id);
         EntertainmentReimbursementCreateDetailContent content = new EntertainmentReimbursementCreateDetailContent();
-        content.setId(getAdapterItems().get((int)id).Id);
-        content.setApplyNo(getAdapterItems().get((int)id).ApplyNo);
-        content.setAccountId(getAdapterItems().get((int)id).AccountId);
-        content.setAccountName(getAdapterItems().get((int)id).AccountName);
-        content.setReason(getAdapterItems().get((int)id).Reason);
-        content.setNumber(getAdapterItems().get((int)id).Number);
-        content.setAmount(getAdapterItems().get((int)id).Amount);
-        content.setStatus(getAdapterItems().get((int)id).Status);
-        content.setOwnerId(getAdapterItems().get((int)id).OwnerId);
+        content.setAccountId(getAdapterItems().get((int) id).AccountId);
+        content.setEntertainId(getAdapterItems().get((int)id).EntertainId);
+        content.setApplyNo(getAdapterItems().get((int) id).ApplyNo);
+        content.setEstimateTotal(getAdapterItems().get((int) id).EstimateTotal);
+        content.setAccountName(getAdapterItems().get((int) id).AccountName);
+        content.setReason(getAdapterItems().get((int) id).Reason);
+        content.setNumber(getAdapterItems().get((int) id).Number);
+        content.setPersonalImage(getAdapterItems().get((int) id).PersonalImage);
+        content.setStatus(getAdapterItems().get((int) id).Status);
         content.setOwnerName(getAdapterItems().get((int)id).OwnerName);
         content.setCreatedOn(getAdapterItems().get((int)id).CreatedOn);
         EntertainmentReimbursementCreateDetailFragment.launch(getActivity(),content);
@@ -168,23 +168,23 @@ public class EntertainmentReimbursementCreateFragment extends APullToRefreshList
             mApplyNo.setText(data.ApplyNo);
             mAccountName.setText(data.AccountName);
             mName.setText(data.OwnerName);
-            mNumber.setText(data.Amount + "");
+            mNumber.setText(data.EstimateTotal + "元");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.Status);
         }
     }
 
 
     public class AccountInfo {
-        String Id;
+        String EntertainId;
         String ApplyNo;
+        int EstimateTotal;
         String AccountId;
         String AccountName;
         String Reason;
         int Number;
-        int Amount;
-        int Status;
-        String OwnerId;
+        String PersonalImage;
         String OwnerName;
         String CreatedOn;
+        int Status;
     }
 }

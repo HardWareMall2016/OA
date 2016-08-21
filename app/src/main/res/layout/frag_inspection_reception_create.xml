@@ -74,8 +74,7 @@
                     android:background="@color/transparent"
                     android:layout_alignParentRight="true"
                     android:gravity="start|top"
-                    android:hint="请填写来访者姓名"
-                    android:drawableRight="@drawable/arrow_right_small"
+                    android:hint="请填写姓名"
                     android:textColor="@color/text_color_content"
                     android:textColorHint="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
@@ -108,7 +107,6 @@
                     android:layout_alignParentRight="true"
                     android:gravity="start|top"
                     android:hint="请填写电话"
-                    android:drawableRight="@drawable/arrow_right_small"
                     android:textColor="@color/text_color_content"
                     android:textColorHint="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />
@@ -204,8 +202,7 @@
                     android:background="@color/transparent"
                     android:layout_alignParentRight="true"
                     android:gravity="start|top"
-                    android:hint="请填写来访人数"
-                    android:drawableRight="@drawable/arrow_right_small"
+                    android:hint="请填写人数"
                     android:textColor="@color/text_color_content"
                     android:textColorHint="@color/text_color_content"
                     android:textSize="@dimen/text_size_normal" />

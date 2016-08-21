@@ -327,7 +327,7 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
         formInfoBean11.setFieldType("2");
 
         MarketActivityCreateRequestBean.FormInfoBean formInfoBean12 = new MarketActivityCreateRequestBean.FormInfoBean();
-        formInfoBean12.setFieldValue("营销中心");
+        formInfoBean12.setFieldValue(mTainmentUnit.getText().toString());
         formInfoBean12.setFieldName("new_applyunit");
         formInfoBean12.setFieldType("2");
 
