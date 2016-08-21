@@ -1,5 +1,7 @@
 package com.android.wandong.beans;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.List;
 
 /**
@@ -31,22 +33,11 @@ import java.util.List;
  * //
  */
 public class UploadImgRequestBean {
-    private String PhotosId;
-    private List<String> Photos;
 
-    public String getPhotosId() {
-        return PhotosId;
-    }
+    @JSONField(name = "PhotosId")
+    public String PhotosId;
 
-    public void setPhotosId(String PhotosId) {
-        this.PhotosId = PhotosId;
-    }
+    @JSONField(name = "Photos")
+    public List<String> Photos;
 
-    public List<String> getPhotos() {
-        return Photos;
-    }
-
-    public void setPhotos(List<String> Photos) {
-        this.Photos = Photos;
-    }
 }
