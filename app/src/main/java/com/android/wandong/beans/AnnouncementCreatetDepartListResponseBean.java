@@ -1,19 +1,48 @@
 package com.android.wandong.beans;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.android.wandong.base.BaseResponseBean;
 
 import java.util.List;
 
 /**
- * Created by ${keke} on 16/8/10.
+ * 作者：伍岳 on 16/8/10 12:38
+ * 邮箱：wuyue8512@163.com
+ //
+ //         .............................................
+ //                  美女坐镇                  BUG辟易
+ //         .............................................
+ //
+ //                       .::::.
+ //                     .::::::::.
+ //                    :::::::::::
+ //                 ..:::::::::::'
+ //              '::::::::::::'
+ //                .::::::::::
+ //           '::::::::::::::..
+ //                ..::::::::::::.
+ //              ``::::::::::::::::
+ //               ::::``:::::::::'        .:::.
+ //              ::::'   ':::::'       .::::::::.
+ //            .::::'      ::::     .:::::::'::::.
+ //           .:::'       :::::  .:::::::::' ':::::.
+ //          .::'        :::::.:::::::::'      ':::::.
+ //         .::'         ::::::::::::::'         ``::::.
+ //     ...:::           ::::::::::::'              ``::.
+ //    ```` ':.          ':::::::::'                  ::::..
+ //                       '.:::::'                    ':'````..
+ //
  */
 public class AnnouncementCreatetDepartListResponseBean extends BaseResponseBean {
+
     /**
      * errorcode : 200
-     * entityInfo : {"departlist":[{"type":3,"new_departmentId":"23fad504-c232-e611-9c1b-085700e64e0f","new_name":"营销中心"},{"type":3,"new_departmentId":"63750d60-c232-e611-9c1b-085700e64e0f","new_name":"技术服务"},{"type":3,"new_departmentId":"640e407b-c232-e611-9c1b-085700e64e0f","new_name":"品牌部"},{"type":3,"new_departmentId":"efd7b195-c232-e611-9c1b-085700e64e0f","new_name":"DR产品部"},{"type":3,"new_departmentId":"1d51bbb6-c232-e611-9c1b-085700e64e0f","new_name":"动态产品部"},{"type":3,"new_departmentId":"fec713d4-c232-e611-9c1b-085700e64e0f","new_name":"发生器产品部"},{"type":3,"new_departmentId":"200abef4-c232-e611-9c1b-085700e64e0f","new_name":"CT、探测器产品部"},{"type":3,"new_departmentId":"a5b0c90c-c332-e611-9c1b-085700e64e0f","new_name":"基础放射及部件产品部"},{"type":3,"new_departmentId":"8e4de723-c332-e611-9c1b-085700e64e0f","new_name":"MR产品部"},{"type":3,"new_departmentId":"718a4b99-c332-e611-9c1b-085700e64e0f","new_name":"研发质量部"},{"type":3,"new_departmentId":"abcd5fcf-c332-e611-9c1b-085700e64e0f","new_name":"财务部"}],"userlist":[{"type":1,"SystemUserId":"3492379e-d832-e611-9c1b-085700e64e0f","fullname":"谢宇峰","new_headportrait":"","new_hyphenateid":"test04"}]}
+     * entityInfo : {"departlist":[{"type":3,"new_departmentId":"23fad504-c232-e611-9c1b-085700e64e0f","new_name":"营销中心"},{"type":3,"new_departmentId":"63750d60-c232-e611-9c1b-085700e64e0f","new_name":"技术服务"},{"type":3,"new_departmentId":"640e407b-c232-e611-9c1b-085700e64e0f","new_name":"品牌部"},{"type":3,"new_departmentId":"efd7b195-c232-e611-9c1b-085700e64e0f","new_name":"DR产品部"},{"type":3,"new_departmentId":"1d51bbb6-c232-e611-9c1b-085700e64e0f","new_name":"动态产品部"},{"type":3,"new_departmentId":"fec713d4-c232-e611-9c1b-085700e64e0f","new_name":"发生器产品部"},{"type":3,"new_departmentId":"200abef4-c232-e611-9c1b-085700e64e0f","new_name":"CT、探测器产品部"},{"type":3,"new_departmentId":"a5b0c90c-c332-e611-9c1b-085700e64e0f","new_name":"基础放射及部件产品部"},{"type":3,"new_departmentId":"8e4de723-c332-e611-9c1b-085700e64e0f","new_name":"MR产品部"},{"type":3,"new_departmentId":"718a4b99-c332-e611-9c1b-085700e64e0f","new_name":"研发质量部"},{"type":3,"new_departmentId":"abcd5fcf-c332-e611-9c1b-085700e64e0f","new_name":"财务部"}],"userlist":[{"type":1,"SystemUserId":"3492379e-d832-e611-9c1b-085700e64e0f","fullname":"谢宇峰","new_headportrait":"","new_hyphenateid":""}]}
      */
 
+    @JSONField(name = "errorcode")
     private int errorcode;
+    @JSONField(name = "entityInfo")
     private EntityInfoBean entityInfo;
 
     public int getErrorcode() {
@@ -39,15 +68,17 @@ public class AnnouncementCreatetDepartListResponseBean extends BaseResponseBean 
          * new_name : 营销中心
          */
 
+        @JSONField(name = "departlist")
         private List<DepartlistBean> departlist;
         /**
          * type : 1
          * SystemUserId : 3492379e-d832-e611-9c1b-085700e64e0f
          * fullname : 谢宇峰
          * new_headportrait :
-         * new_hyphenateid : test04
+         * new_hyphenateid :
          */
 
+        @JSONField(name = "userlist")
         private List<UserlistBean> userlist;
 
         public List<DepartlistBean> getDepartlist() {
@@ -67,9 +98,12 @@ public class AnnouncementCreatetDepartListResponseBean extends BaseResponseBean 
         }
 
         public static class DepartlistBean {
+            @JSONField(name = "type")
             private int type;
-            private String new_departmentId;
-            private String new_name;
+            @JSONField(name = "new_departmentId")
+            private String newDepartmentId;
+            @JSONField(name = "new_name")
+            private String newName;
 
             public int getType() {
                 return type;
@@ -79,29 +113,34 @@ public class AnnouncementCreatetDepartListResponseBean extends BaseResponseBean 
                 this.type = type;
             }
 
-            public String getNew_departmentId() {
-                return new_departmentId;
+            public String getNewDepartmentId() {
+                return newDepartmentId;
             }
 
-            public void setNew_departmentId(String new_departmentId) {
-                this.new_departmentId = new_departmentId;
+            public void setNewDepartmentId(String newDepartmentId) {
+                this.newDepartmentId = newDepartmentId;
             }
 
-            public String getNew_name() {
-                return new_name;
+            public String getNewName() {
+                return newName;
             }
 
-            public void setNew_name(String new_name) {
-                this.new_name = new_name;
+            public void setNewName(String newName) {
+                this.newName = newName;
             }
         }
 
         public static class UserlistBean {
+            @JSONField(name = "type")
             private int type;
+            @JSONField(name = "SystemUserId")
             private String SystemUserId;
+            @JSONField(name = "fullname")
             private String fullname;
-            private String new_headportrait;
-            private String new_hyphenateid;
+            @JSONField(name = "new_headportrait")
+            private String newHeadportrait;
+            @JSONField(name = "new_hyphenateid")
+            private String newHyphenateid;
 
             public int getType() {
                 return type;
@@ -127,20 +166,20 @@ public class AnnouncementCreatetDepartListResponseBean extends BaseResponseBean 
                 this.fullname = fullname;
             }
 
-            public String getNew_headportrait() {
-                return new_headportrait;
+            public String getNewHeadportrait() {
+                return newHeadportrait;
             }
 
-            public void setNew_headportrait(String new_headportrait) {
-                this.new_headportrait = new_headportrait;
+            public void setNewHeadportrait(String newHeadportrait) {
+                this.newHeadportrait = newHeadportrait;
             }
 
-            public String getNew_hyphenateid() {
-                return new_hyphenateid;
+            public String getNewHyphenateid() {
+                return newHyphenateid;
             }
 
-            public void setNew_hyphenateid(String new_hyphenateid) {
-                this.new_hyphenateid = new_hyphenateid;
+            public void setNewHyphenateid(String newHyphenateid) {
+                this.newHyphenateid = newHyphenateid;
             }
         }
     }

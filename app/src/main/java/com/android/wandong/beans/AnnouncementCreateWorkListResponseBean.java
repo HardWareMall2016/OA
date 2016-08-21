@@ -42,6 +42,10 @@ public class AnnouncementCreateWorkListResponseBean extends BaseResponseBean {
         private int type;
         private String RoleId;
         private String Name;
+        private String SystemUserId;
+        private String fullname;
+        private String new_headportrait;
+        private String new_hyphenateid;
 
         public int getType() {
             return type;
@@ -65,6 +69,38 @@ public class AnnouncementCreateWorkListResponseBean extends BaseResponseBean {
 
         public void setName(String Name) {
             this.Name = Name;
+        }
+
+        public String getSystemUserId() {
+            return SystemUserId;
+        }
+
+        public void setSystemUserId(String systemUserId) {
+            SystemUserId = systemUserId;
+        }
+
+        public String getFullname() {
+            return fullname;
+        }
+
+        public void setFullname(String fullname) {
+            this.fullname = fullname;
+        }
+
+        public String getNew_headportrait() {
+            return new_headportrait;
+        }
+
+        public void setNew_headportrait(String new_headportrait) {
+            this.new_headportrait = new_headportrait;
+        }
+
+        public String getNew_hyphenateid() {
+            return new_hyphenateid;
+        }
+
+        public void setNew_hyphenateid(String new_hyphenateid) {
+            this.new_hyphenateid = new_hyphenateid;
         }
     }
 }

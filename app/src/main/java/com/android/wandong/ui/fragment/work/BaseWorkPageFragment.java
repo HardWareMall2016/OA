@@ -56,6 +56,11 @@ public abstract class BaseWorkPageFragment<ItemData, ResponseBean extends BaseRe
     protected View mViewContentSearch;*/
 
     @Override
+    public boolean isContentEmpty() {
+        return false;
+    }
+
+    @Override
     protected int inflateContentView() {
         return R.layout.frag_work_comm_layout_with_search;
     }

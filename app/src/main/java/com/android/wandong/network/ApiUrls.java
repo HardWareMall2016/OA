@@ -60,6 +60,8 @@ public class ApiUrls {
     public static final String CONTACTS_DEPARTMENTS = "Contacts/Departments.ashx";
     //新建公告－按工作岗位查看列表
     public static final String CONTACTS_WORKROLES = "Contacts/WorkRoles.ashx";
+    //查询公告对象信息
+    public static final String CONTACTS_CONVERT_USERLIST = "Contacts/ConvertUserList.ashx";
 
 
     //合同申请列表

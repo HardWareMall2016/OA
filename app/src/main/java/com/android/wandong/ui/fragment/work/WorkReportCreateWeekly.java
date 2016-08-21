@@ -1,19 +1,25 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.android.wandong.R;
 import com.android.wandong.base.BaseResponseBean;
+import com.android.wandong.beans.ConvertUserListResponseBean;
+import com.android.wandong.model.work.PeopleInfo;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestHandler;
 import com.zhan.framework.network.HttpRequestParams;
@@ -54,7 +60,9 @@ import java.util.List;
  * //                       '.:::::'                    ':'````..
  * //
  */
-public class WorkReportCreateWeekly extends ABaseFragment{
+public class WorkReportCreateWeekly extends ABaseFragment implements AdapterView.OnItemClickListener {
+
+    private final static int REQUEST_CODE_PEOPLE = 101;
 
     @ViewInject(id = R.id.people)
     protected FixGridView mFixGridView;
@@ -70,6 +78,9 @@ public class WorkReportCreateWeekly extends ABaseFragment{
 
     @ViewInject(id = R.id.btn_submit, click = "OnClick")
     View mViewSubmit;
+
+    @ViewInject(id = R.id.selectedPeople, click = "OnClick")
+    TextView mViewSelectedPeople;
 
     private ArrayList<PeopleInfo> mPeopleList = new ArrayList<>();
 
@@ -95,10 +106,8 @@ public class WorkReportCreateWeekly extends ABaseFragment{
         mPeopleList.add(new PeopleInfo());
         mAdapter = new PeopleAdapter(mPeopleList,getActivity());
         mFixGridView.setAdapter(mAdapter);
-    }
-
-    public class PeopleInfo{
-
+        mFixGridView.setOnItemClickListener(this);
+        mViewSelectedPeople.setText(String.format("已选择%d人", mPeopleList.size() - 1));
     }
 
     private class PeopleAdapter extends ABaseAdapter<PeopleInfo> {
@@ -113,8 +122,17 @@ public class WorkReportCreateWeekly extends ABaseFragment{
     }
 
     private class PeopleItemView extends ABaseAdapter.AbstractItemView<PeopleInfo> {
-        @ViewInject(id = R.id.attachment)
-        ImageView mViewAttachment;
+        @ViewInject(id = R.id.photo)
+        ImageView mViewPhoto;
+
+        @ViewInject(id = R.id.name)
+        TextView mViewName;
+
+        @ViewInject(id = R.id.remove_btn)
+        ImageView mViewRemoveBtn;
+
+        @ViewInject(id = R.id.add_btn)
+        ImageView mViewAddBtn;
 
         @Override
         public int inflateViewId() {
@@ -124,19 +142,130 @@ public class WorkReportCreateWeekly extends ABaseFragment{
         @Override
         public void bindingData(View convertView, PeopleInfo data) {
             if(getPosition()==getSize()-1){
-                //ImageLoader.getInstance().displayImage("drawable://" + R.drawable.icon_sign_in_add_photo, mViewAttachment, Tools.buildDefDisplayImgOptions());
+                mViewAddBtn.setVisibility(View.VISIBLE);
+                mViewPhoto.setVisibility(View.GONE);
+                mViewName.setVisibility(View.GONE);
+                mViewRemoveBtn.setVisibility(View.GONE);
             } else {
-                //ImageLoader.getInstance().displayImage("file://"+data, mViewAttachment, Tools.buildDefDisplayImgOptions());
+                mViewPhoto.setVisibility(View.VISIBLE);
+                mViewName.setVisibility(View.VISIBLE);
+                mViewRemoveBtn.setVisibility(View.VISIBLE);
+                mViewAddBtn.setVisibility(View.GONE);
+
+                mViewRemoveBtn.setTag(data);
+                mViewRemoveBtn.setOnClickListener(mOnRemovePeopleClickListener);
+
+                mViewName.setText(data.userName);
+                ImageLoader.getInstance().displayImage(data.headportrait, mViewPhoto, Tools.buildDisplayImageOptionsForAvatar());
             }
         }
     }
+
+    private View.OnClickListener mOnRemovePeopleClickListener=new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            PeopleInfo data=(PeopleInfo)v.getTag();
+            mPeopleList.remove(data);
+            mAdapter.notifyDataSetChanged();
+
+            mViewSelectedPeople.setText(String.format("已选择%d人",mPeopleList.size()-1));
+        }
+    };
 
     void OnClick(View v) {
         switch (v.getId()) {
             case R.id.btn_submit:
                 createWeeklyReportRequest();
                 break;
+            case R.id.selectedPeople:
+                AnnouncementCreateObjectFragment.launchForResult(this, REQUEST_CODE_PEOPLE);
+                break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PEOPLE && resultCode == Activity.RESULT_OK) {
+            AnnouncementCreateObjectFragment.AnnounceObjectInfo selectInfo = (AnnouncementCreateObjectFragment.AnnounceObjectInfo) data.getSerializableExtra(AnnouncementCreateObjectFragment.EXT_DATA_KEY);
+            requestAnnouncementCreateObject(selectInfo);
+        }
+    }
+
+
+    private void requestAnnouncementCreateObject(AnnouncementCreateObjectFragment.AnnounceObjectInfo selectInfo) {
+        HttpRequestParams requestParams = Tools.createHttpRequestParams();
+        String roles = "";
+        for (String item : selectInfo.roles) {
+            if (TextUtils.isEmpty(roles)) {
+                roles = item;
+            } else {
+                roles += "," + item;
+            }
+        }
+        String departs = "";
+        for (String item : selectInfo.departs) {
+            if (TextUtils.isEmpty(departs)) {
+                departs = item;
+            } else {
+                departs += "," + item;
+            }
+        }
+        String user = "";
+        for (String item : selectInfo.users) {
+            if (TextUtils.isEmpty(user)) {
+                user = item;
+            } else {
+                user += "," + item;
+            }
+        }
+        requestParams.put("roles", roles);
+        requestParams.put("departs", departs);
+        requestParams.put("users", user);
+        startFormRequest(ApiUrls.CONTACTS_CONVERT_USERLIST, requestParams, new HttpRequestHandler(this) {
+            @Override
+            public void onPrepare() {
+                showRotateProgressDialog("正在获取中...",false);
+            }
+
+            @Override
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                closeRotateProgressDialog();
+                switch (resultCode) {
+                    case success:
+                        ConvertUserListResponseBean responseBean = Tools.parseJsonTostError(result, ConvertUserListResponseBean.class);
+                        if (responseBean != null&&responseBean.getEntityInfo()!=null) {
+                            for(ConvertUserListResponseBean.EntityInfoBean bean:responseBean.getEntityInfo()){
+                                PeopleInfo peopleInfo=new PeopleInfo();
+                                peopleInfo.userId=bean.getSystemUserId();
+                                peopleInfo.userName=bean.getFullname();
+                                peopleInfo.headportrait=bean.getNewHeadportrait();
+                                peopleInfo.hyphenateid=bean.getNewHyphenateid();
+
+                                if(bean.getSystemUserId()==null){
+                                    continue;
+                                }
+
+                                boolean exists=false;
+                                for(PeopleInfo item:mPeopleList){
+                                    if(peopleInfo.userId.equals(item.userId)){
+                                        exists=true;
+                                        break;
+                                    }
+                                }
+                                if(!exists){
+                                    mPeopleList.add(0,peopleInfo);
+                                }
+                            }
+                            mAdapter.notifyDataSetChanged();
+                            mViewSelectedPeople.setText(String.format("已选择%d人", mPeopleList.size() - 1));
+                        }
+                        break;
+                    default:
+                        ToastUtils.toast(result);
+                        break;
+                }
+            }
+        }, HttpRequestUtils.RequestType.POST);
     }
 
     private void createWeeklyReportRequest(){
@@ -175,8 +304,15 @@ public class WorkReportCreateWeekly extends ABaseFragment{
         requestParams.put("workexperience", workExperience);
         requestParams.put("worksummary", JSON.toJSONString(workSummaryItems));
         //数组 重复填写
-        //requestParams.put("UserList[][hyphenateid]", "Dddddddd");
+        //requestParams.put("UserList[][hyphenateId]", "Dddddddd");
         //requestParams.put("UserList[][userid]", "Dddddddd");
+        //数组 重复填写
+        if(mPeopleList.size()>1){
+            for(int i=0;i<mPeopleList.size()-1;i++){
+                requestParams.put("UserList["+i+"][hyphenateId]", mPeopleList.get(i).hyphenateid);
+                requestParams.put("UserList["+i+"][userid]", mPeopleList.get(i).userId);
+            }
+        }
 
         startFormRequest(ApiUrls.WORKREPORT_SENDREPORT, requestParams, new HttpRequestHandler(this) {
             @Override
@@ -195,6 +331,14 @@ public class WorkReportCreateWeekly extends ABaseFragment{
                 }
             }
         }, HttpRequestUtils.RequestType.POST);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(position==mPeopleList.size()-1){
+            AnnouncementCreateObjectFragment.launchForResult(this, REQUEST_CODE_PEOPLE);
+        }
     }
 
     private class WorkSummaryItem{

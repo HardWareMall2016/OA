@@ -74,10 +74,10 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginTop="16dp"
         android:background="@drawable/bg_main_color_selector"
         android:gravity="center"
         android:minHeight="48dp"
