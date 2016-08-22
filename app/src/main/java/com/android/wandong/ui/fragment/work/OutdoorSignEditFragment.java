@@ -124,7 +124,7 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("外勤签到详情");
         mViewRemark.addTextChangedListener(this);
-        mViewSignOutTime.setText(Tools.parseTimeToMintues(System.currentTimeMillis()));
+        mViewSignOutTime.setText(Tools.parseTimeToMinutes(System.currentTimeMillis()));
 
         mLocationClient = new LocationClient(App.getInstance());     //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
@@ -200,7 +200,8 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
                 super.onSuccess(result);
                 //这里加正确处理的逻辑就好了
                 if (result != null && result.getEntityInfo() != null && result.getEntityInfo().getSignInfo() != null) {
-                    Tools.setTextView(mViewSignInTime, result.getEntityInfo().getSignInfo().getSignInTime());
+                    long time=Tools.parseDateStrToLong(result.getEntityInfo().getSignInfo().getSignInTime());
+                    Tools.setTextView(mViewSignInTime, Tools.parseTimeToMinutes(time));
                     Tools.setTextView(mViewSignInAddress, result.getEntityInfo().getSignInfo().getAddress());
                     Tools.setTextView(mViewRelativeCustomer, result.getEntityInfo().getSignInfo().getAccountName());
                     Tools.setTextView(mViewRemark, result.getEntityInfo().getSignInfo().getRemarks());

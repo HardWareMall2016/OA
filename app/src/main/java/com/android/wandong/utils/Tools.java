@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -32,7 +31,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.utils.DiskCacheUtils;
 import com.nostra13.universalimageloader.utils.MemoryCacheUtils;
-import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.utils.ToastUtils;
 
@@ -128,7 +126,7 @@ public class Tools {
     /***
      * 时间戳转换
      */
-    public static String parseTimeToMintues(Long time) {
+    public static String parseTimeToMinutes(Long time) {
         Date date = new Date(time);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
         String strTime = format.format(date);
@@ -151,6 +149,44 @@ public class Tools {
         String strTime = format.format(date);
         return strTime;
     }
+
+    public static long parseDateStrToLong(String dataStr){
+        if(TextUtils.isEmpty(dataStr)){
+            return 0;
+        }
+        String date=dataStr.replace("/Date(", "");
+        date=date.replace(")/","");
+        try {
+           return Long.valueOf(date);
+        }catch (Exception ex){
+            return 0;
+        }
+    }
+
+    public static String parseTimeToChinaYearMinutes(Long time) {
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm",Locale.ENGLISH);
+        String strTime = format.format(date);
+        return strTime;
+    }
+
+    public static String parseTimeToChinaYearMinutes(String dateStr) {
+        Long time=parseDateStrToLong(dateStr);
+        return parseTimeToChinaYearMinutes(time);
+    }
+
+    public static String parseTimeToChinaMonthMinutes(Long time) {
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("MM月dd日 HH:mm",Locale.ENGLISH);
+        String strTime = format.format(date);
+        return strTime;
+    }
+
+    public static String parseTimeToChinaMonthMinutes(String dateStr) {
+        Long time=parseDateStrToLong(dateStr);
+        return parseTimeToChinaMonthMinutes(time);
+    }
+
 
     /***
      * 将时间戳转换为日期或时间字符串，当前显示时间其他显示日期

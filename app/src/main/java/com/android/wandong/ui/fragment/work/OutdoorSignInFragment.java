@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -17,14 +15,10 @@ import com.android.wandong.beans.OutDoorSignInListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.network.HttpRequestParams;
-import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
-import com.zhan.framework.ui.fragment.APullToRefreshListFragment;
-import com.zhan.framework.ui.fragment.ARefreshFragment;
 import com.zhan.framework.utils.PixelUtils;
 
 import java.util.ArrayList;
@@ -184,7 +178,7 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
             Tools.setTextView(mViewName, data.OwnerName);
             Tools.setTextView(mViewLocation,"地点："+data.Address);
             Tools.setTextView(mViewRelativeCustomer,"关联客户："+data.AccountName);
-            Tools.setTextView(mViewSummary,data.Remarks);
+            Tools.setTextView(mViewSummary, data.Remarks);
             if(TextUtils.isEmpty(data.SignOutAddress)){
                 mViewStatus.setVisibility(View.VISIBLE);
             }else{
@@ -206,6 +200,13 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
                         OutdoorSignAttachmentsFragment.launch(getActivity(), paramsBean);
                     }
                 });
+            }
+
+            mViewTime.setText(Tools.parseTimeToChinaMonthMinutes(data.SignInTime));
+            if(TextUtils.isEmpty(data.SignOutTime)||Tools.parseDateStrToLong(data.SignOutTime)<=0){
+                mViewSignTime.setText(Tools.parseTimeToChinaYearMinutes(data.SignInTime));
+            }else{
+                mViewSignTime.setText(Tools.parseTimeToChinaYearMinutes(data.SignOutTime));
             }
         }
     }

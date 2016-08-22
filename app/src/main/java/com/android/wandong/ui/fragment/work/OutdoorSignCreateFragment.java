@@ -10,14 +10,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.android.wandong.R;
 import com.android.wandong.base.App;
 import com.android.wandong.base.BaseResponseBean;
@@ -137,7 +134,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("新建外勤签到");
         mViewRemark.addTextChangedListener(this);
-        mViewSignInTime.setText(Tools.parseTimeToMintues(System.currentTimeMillis()));
+        mViewSignInTime.setText(Tools.parseTimeToMinutes(System.currentTimeMillis()));
 
         mLocationClient = new LocationClient(App.getInstance());     //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
@@ -246,7 +243,7 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         requestParams.put("Address", mAddressInfo.address);
         requestParams.put("AttaRelationId", attaRelationId);
         requestParams.put("Latitude", mAddressInfo.Latitude);
-        requestParams.put("LocTime", Tools.parseTimeToMintues(System.currentTimeMillis()));
+        requestParams.put("LocTime", Tools.parseTimeToMinutes(System.currentTimeMillis()));
         requestParams.put("Longitude", mAddressInfo.Longitude);
         requestParams.put("Remarks", mViewRemark.getText().toString());
 
