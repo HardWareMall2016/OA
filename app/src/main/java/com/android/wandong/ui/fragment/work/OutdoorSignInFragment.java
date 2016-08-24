@@ -178,6 +178,7 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
             Tools.setTextView(mViewName, data.OwnerName);
             Tools.setTextView(mViewLocation,"地点："+data.Address);
             Tools.setTextView(mViewRelativeCustomer,"关联客户："+data.AccountName);
+            mViewSummary.setVisibility(TextUtils.isEmpty(data.Remarks)?View.GONE:View.VISIBLE);
             Tools.setTextView(mViewSummary, data.Remarks);
             if(TextUtils.isEmpty(data.SignOutAddress)){
                 mViewStatus.setVisibility(View.VISIBLE);
@@ -193,20 +194,25 @@ public class OutdoorSignInFragment extends BaseWorkPageFragment<OutdoorSignInFra
                 mViewAttachmentInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        OutdoorSignAttachmentsFragment.ParamsBean paramsBean=new OutdoorSignAttachmentsFragment.ParamsBean();
-                        paramsBean.photos=data.AttachmentInfo;
-                        paramsBean.showPos=position;
-                        paramsBean.address=data.Address;
+                        OutdoorSignAttachmentsFragment.ParamsBean paramsBean = new OutdoorSignAttachmentsFragment.ParamsBean();
+                        paramsBean.photos = data.AttachmentInfo;
+                        paramsBean.showPos = position;
+                        paramsBean.address = data.Address;
+
+                        if (TextUtils.isEmpty(data.SignOutTime) || Tools.parseDateStrToLong(data.SignOutTime) <= 0) {
+                            paramsBean.time = Tools.parseDateStrToLong(data.SignInTime);
+                        } else {
+                            paramsBean.time = Tools.parseDateStrToLong(data.SignOutTime);
+                        }
                         OutdoorSignAttachmentsFragment.launch(getActivity(), paramsBean);
                     }
                 });
             }
-
             mViewTime.setText(Tools.parseTimeToChinaMonthMinutes(data.SignInTime));
             if(TextUtils.isEmpty(data.SignOutTime)||Tools.parseDateStrToLong(data.SignOutTime)<=0){
-                mViewSignTime.setText(Tools.parseTimeToChinaYearMinutes(data.SignInTime));
+                mViewSignTime.setText("签到时间: " + Tools.parseTimeToChinaYearMinutes(data.SignInTime));
             }else{
-                mViewSignTime.setText(Tools.parseTimeToChinaYearMinutes(data.SignOutTime));
+                mViewSignTime.setText("签到时间: " + Tools.parseTimeToChinaYearMinutes(data.SignOutTime));
             }
         }
     }

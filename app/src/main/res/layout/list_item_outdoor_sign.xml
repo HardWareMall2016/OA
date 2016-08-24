@@ -116,7 +116,7 @@
             android:drawablePadding="8dp"
             android:text="地点：中国上海市晋安区某某地"
             android:textColor="@color/text_color_content"
-            android:textSize="@dimen/text_size_normal" />
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/relative_customer"
@@ -127,7 +127,7 @@
             android:drawablePadding="8dp"
             android:text="关联客户：上海企线信息科技"
             android:textColor="@color/text_color_content"
-            android:textSize="@dimen/text_size_normal" />
+            android:textSize="@dimen/text_size_small" />
     </LinearLayout>
 
 </RelativeLayout>

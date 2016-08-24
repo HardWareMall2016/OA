@@ -18,7 +18,6 @@ import com.android.wandong.beans.WorkReportListResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.RatingBar;
 import com.android.wandong.utils.Tools;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
@@ -28,7 +27,6 @@ import com.zhan.framework.utils.PixelUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * 作者：伍岳 on 2016/7/22 09:43
@@ -178,12 +176,6 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         @ViewInject(id = R.id.workExperience)
         protected TextView mViewWorkExperience;
 
-        @ViewInject(id = R.id.comment)
-        protected TextView mViewComment;
-
-        @ViewInject(id = R.id.comment_time)
-        protected TextView mViewCommentTime;
-
 
 
         @ViewInject(id = R.id.dailyWorkContent)
@@ -204,10 +196,18 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
         @ViewInject(id = R.id.dailyWorkExperience)
         protected TextView mViewDailyWorkExperience;
 
+        @ViewInject(id = R.id.comment_container)
+        protected View mViewCommentConainer;
+
+        @ViewInject(id = R.id.comment)
+        protected TextView mViewComment;
+
+        @ViewInject(id = R.id.comment_time)
+        protected TextView mViewCommentTime;
 
 
         @ViewInject(id = R.id.todayRest)
-        protected TextView mViewTodayRest;
+        protected View mViewTodayRest;
 
         @ViewInject(id = R.id.replay_contnet)
         protected View mViewReplayContent;
@@ -280,15 +280,6 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
                     Tools.setTextView(mViewWorkExperience,data.new_workexperience);
                 }
 
-
-                Tools.setTextView(mViewComment, String.format("%s:%s",data.new_commentperson,data.new_commentcontent));
-                Tools.setTextView(mViewCommentTime, data.new_commenttime);
-
-                SpannableString spanString = new SpannableString("  点评");
-                ForegroundColorSpan span = new ForegroundColorSpan(0xff87BC7F);
-                spanString.setSpan(span, 0, spanString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                mViewCommentTime.append(spanString);
-
             }else if("日报".equals(data.new_reporttype)){
                 mViewDailyWorkContent.setVisibility(View.VISIBLE);
                 mViewReplayContent.setVisibility(View.VISIBLE);
@@ -296,7 +287,8 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
                 mViewContentRelativeCustomerDailyWorkSummary.removeAllViews();
                 if(data.newWorkSummary.size()>0){
                     for(NewWorkSummary summary:data.newWorkSummary){
-                        View view= mInflater.inflate(R.layout.item_work_report_relative_cus_daily_summary,mViewContentRelativeCustomerDailyWorkSummary,true);
+                        View view= mInflater.inflate(R.layout.item_work_report_relative_cus_daily_summary,null);
+                        mViewContentRelativeCustomerDailyWorkSummary.addView(view);
                         TextView viewRelativeCustomer= (TextView)view.findViewById(R.id.relative_customer);
                         TextView viewDailyWorkSummary= (TextView)view.findViewById(R.id.dailyWorkSummary);
                         Tools.setTextView(viewRelativeCustomer, String.format("关联客户:%s",summary.new_customername));
@@ -320,6 +312,20 @@ public class WorkReportListFragment extends BaseWorkPageFragment<WorkReportListF
                     mViewDailyWorkExperienceTitle.setVisibility(View.VISIBLE);
                     mViewDailyWorkExperience.setVisibility(View.VISIBLE);
                     Tools.setTextView(mViewDailyWorkExperience, data.new_workexperience);
+                }
+
+                if(TextUtils.isEmpty(data.new_commentcontent)){
+                    mViewCommentConainer.setVisibility(View.GONE);
+                }else{
+                    mViewCommentConainer.setVisibility(View.VISIBLE);
+
+                    Tools.setTextView(mViewComment, String.format("%s:%s",data.new_commentperson,data.new_commentcontent));
+                    Tools.setTextView(mViewCommentTime, data.new_commenttime);
+
+                    SpannableString spanString = new SpannableString("  点评");
+                    ForegroundColorSpan span = new ForegroundColorSpan(0xff87BC7F);
+                    spanString.setSpan(span, 0, spanString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    mViewCommentTime.append(spanString);
                 }
             }
 

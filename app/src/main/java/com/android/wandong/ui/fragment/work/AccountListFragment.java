@@ -59,6 +59,8 @@ import java.util.List;
 public class AccountListFragment extends APullToRefreshListFragment<AccountListFragment.AccountInfo> {
     public static String KEY_ACCOUNT_NAME="account_name";
     public static String KEY_ACCOUNT_ID="account_id";
+    public static String KEY_LONGITUDE="Longitude";
+    public static String KEY_LATITUDE="Latitude";
 
     private int mSelectedPos=-1;
 
@@ -98,6 +100,8 @@ public class AccountListFragment extends APullToRefreshListFragment<AccountListF
         Intent intent=new Intent();
         intent.putExtra(KEY_ACCOUNT_NAME,accountInfo.Name);
         intent.putExtra(KEY_ACCOUNT_ID,accountInfo.AccountId);
+        intent.putExtra(KEY_LONGITUDE,accountInfo.Longitude);
+        intent.putExtra(KEY_LATITUDE,accountInfo.Latitude);
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }
@@ -203,8 +207,8 @@ public class AccountListFragment extends APullToRefreshListFragment<AccountListF
         String OwnerId;
         String OwnerName;
         int Level;
-        String Longitude;
-        String Latitude;
+        double Longitude;
+        double Latitude;
         int Type;
         String CreatedOn;
         int ContractNumber;

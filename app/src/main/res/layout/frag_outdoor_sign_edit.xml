@@ -233,6 +233,18 @@
                         android:text="0/200"
                         android:textColor="@color/text_color_content"
                         android:textSize="@dimen/text_size_small" />
+
+                    <com.android.wandong.ui.widget.FixGridView
+                        android:id="@+id/attachment_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_white_small"
+                        android:gravity="fill"
+                        android:horizontalSpacing="4dip"
+                        android:numColumns="4"
+                        android:padding="8dp"
+                        android:stretchMode="columnWidth"
+                        android:verticalSpacing="4dip" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

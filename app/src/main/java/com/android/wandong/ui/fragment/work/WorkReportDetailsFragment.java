@@ -107,12 +107,6 @@ public class WorkReportDetailsFragment extends ABaseFragment {
     @ViewInject(id = R.id.workExperience)
     protected TextView mViewWorkExperience;
 
-    @ViewInject(id = R.id.comment)
-    protected TextView mViewComment;
-
-    @ViewInject(id = R.id.comment_time)
-    protected TextView mViewCommentTime;
-
 
 
     @ViewInject(id = R.id.dailyWorkContent)
@@ -132,6 +126,15 @@ public class WorkReportDetailsFragment extends ABaseFragment {
 
     @ViewInject(id = R.id.dailyWorkExperience)
     protected TextView mViewDailyWorkExperience;
+
+    @ViewInject(id = R.id.comment_container)
+    protected View mViewCommentConainer;
+
+    @ViewInject(id = R.id.comment)
+    protected TextView mViewComment;
+
+    @ViewInject(id = R.id.comment_time)
+    protected TextView mViewCommentTime;
 
 
 
@@ -403,21 +406,13 @@ public class WorkReportDetailsFragment extends ABaseFragment {
                 Tools.setTextView(mViewWorkExperience,mReportData.new_workexperience);
             }
 
-
-            Tools.setTextView(mViewComment, String.format("%s:%s",mReportData.new_commentperson,mReportData.new_commentcontent));
-            Tools.setTextView(mViewCommentTime, mReportData.new_commenttime);
-
-            SpannableString spanString = new SpannableString("  点评");
-            ForegroundColorSpan span = new ForegroundColorSpan(0xff87BC7F);
-            spanString.setSpan(span, 0, spanString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mViewCommentTime.append(spanString);
-
         }else if("日报".equals(mReportData.new_reporttype)){
             mViewDailyWorkContent.setVisibility(View.VISIBLE);
              mViewContentRelativeCustomerDailyWorkSummary.removeAllViews();
              if(mReportData.newWorkSummary.size()>0){
                  for(WorkReportListFragment.NewWorkSummary summary:mReportData.newWorkSummary){
-                     View view= mInflater.inflate(R.layout.item_work_report_relative_cus_daily_summary,mViewContentRelativeCustomerDailyWorkSummary,true);
+                     View view= mInflater.inflate(R.layout.item_work_report_relative_cus_daily_summary,null);
+                     mViewContentRelativeCustomerDailyWorkSummary.addView(view);
                      TextView viewRelativeCustomer= (TextView)view.findViewById(R.id.relative_customer);
                      TextView viewDailyWorkSummary= (TextView)view.findViewById(R.id.dailyWorkSummary);
                      Tools.setTextView(viewRelativeCustomer, String.format("关联客户:%s",summary.new_customername));
@@ -441,6 +436,20 @@ public class WorkReportDetailsFragment extends ABaseFragment {
                 mViewDailyWorkExperience.setVisibility(View.VISIBLE);
                 Tools.setTextView(mViewDailyWorkExperience, mReportData.new_workexperience);
             }
+
+             if(TextUtils.isEmpty(mReportData.new_commentcontent)){
+                 mViewCommentConainer.setVisibility(View.GONE);
+             }else{
+                 mViewCommentConainer.setVisibility(View.VISIBLE);
+
+                 Tools.setTextView(mViewComment, String.format("%s:%s",mReportData.new_commentperson,mReportData.new_commentcontent));
+                 Tools.setTextView(mViewCommentTime, mReportData.new_commenttime);
+
+                 SpannableString spanString = new SpannableString("  点评");
+                 ForegroundColorSpan span = new ForegroundColorSpan(0xff87BC7F);
+                 spanString.setSpan(span, 0, spanString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                 mViewCommentTime.append(spanString);
+             }
         }
     }
 

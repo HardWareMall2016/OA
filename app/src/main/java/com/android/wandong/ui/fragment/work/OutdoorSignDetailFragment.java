@@ -148,6 +148,12 @@ public class OutdoorSignDetailFragment extends ABaseFragment {
                     Tools.setTextView(mViewRelativeCustomer, result.getEntityInfo().getSignInfo().getAccountName());
                     Tools.setTextView(mViewRemark, result.getEntityInfo().getSignInfo().getRemarks());
 
+                    long signInTime=Tools.parseDateStrToLong(result.getEntityInfo().getSignInfo().getSignInTime());
+                    mViewSignInTime.setText(Tools.parseTimeToMinutes(signInTime));
+
+                    long signOutTime=Tools.parseDateStrToLong(result.getEntityInfo().getSignInfo().getSignOutTime());
+                    mViewSignOutTime.setText(Tools.parseTimeToMinutes(signOutTime));
+
                     if(result.getEntityInfo().getAttachmentInfo().size()==0){
                         mViewAttachmentInfo.setVisibility(View.GONE);
                     }else {
@@ -160,6 +166,8 @@ public class OutdoorSignDetailFragment extends ABaseFragment {
                                 paramsBean.photos=result.getEntityInfo().getAttachmentInfo();
                                 paramsBean.showPos=position;
                                 paramsBean.address=result.getEntityInfo().getSignInfo().getAddress();
+                                long signTime=Tools.parseDateStrToLong(result.getEntityInfo().getSignInfo().getSignOutTime());
+                                paramsBean.time=signTime;
                                 OutdoorSignAttachmentsFragment.launch(getActivity(), paramsBean);
                             }
                         });
