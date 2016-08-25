@@ -55,6 +55,9 @@ public class SpecialDuesReimbursementDetailsFragment extends ABaseFragment {
     @ViewInject(id = R.id.indicator)
     private ImageView mImgIndicator;
 
+    @ViewInject(id = R.id.tv_Remark)
+    TextView mTvRemark ;
+
     @ViewInject(id = R.id.ApprovalInformation, click = "OnClick")
     private View mViewApprovalInformation;//审批信息
 
@@ -125,8 +128,15 @@ public class SpecialDuesReimbursementDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getName());
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, mMoneyFormat.format(result.getEntityInfo().getDetail().getAmount()));
-            Tools.setTextView(mType,result.getEntityInfo().getDetail().getCostType()+"");
-            Tools.setTextView(mPeople, UserInfo.getCurrentUser().getUserName());
+            Tools.setTextView(mType,result.getEntityInfo().getDetail().getCostTypeName());
+            Tools.setTextView(mPeople, result.getEntityInfo().getDetail().getOwnerName());
+
+            if(result.getEntityInfo().getDetail().getRemark() != null){
+                mTvRemark.setVisibility(View.VISIBLE);
+                Tools.setTextView(mTvRemark, result.getEntityInfo().getDetail().getRemark());
+            }else{
+                mTvRemark.setVisibility(View.GONE);
+            }
 
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
         }

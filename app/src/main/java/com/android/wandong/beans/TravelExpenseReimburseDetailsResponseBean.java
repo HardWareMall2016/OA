@@ -10,13 +10,13 @@ import java.util.List;
 public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean {
     /**
      * errorcode : 200
-     * entityInfo : {"Detail":[{"TravelPaymentId":"05c5b786-ba5a-e611-92fc-085700e64e0f","BeginDate":"/Date(1470596520000)/","EndDate":"/Date(1470682920000)/","TravelDays":"","HotelDays":"","Origin":"cfd ","Destination":"mdd ","Transport":2,"IsGoBack":false,"TrainTicket":null,"Allowance":null,"OilFuel":null,"LocalTravel":"0.00","CrossTravel":null,"Hotel":"0.00","Travel":888,"HotelSubsidy":555,"MealSubsidy":0,"CarSubsidy":0,"Other":0,"IsDiscount":false,"DiscountRate":"","Remark":"Ccsy ","OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"tanting","CreatedOn":"/Date(1470366786000)/","PersonalImage":null}],"Approval":[{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"}],"isApprover":false}
+     * entityInfo : {"Detail":[{"TravelPaymentId":"f8a1548e-d669-e611-92fc-085700e64e0f","BeginDate":"/Date(1471998600000)/","EndDate":"/Date(1472178600000)/","TravelDays":"","HotelDays":"","Origin":"测试你的","Destination":"测试","Transport":2,"TransportName":"火车","IsGoBack":false,"TrainTicket":null,"Allowance":null,"OilFuel":null,"LocalTravel":"0.00","CrossTravel":null,"Hotel":"0.00","Travel":22,"HotelSubsidy":0,"MealSubsidy":0,"CarSubsidy":0,"Other":0,"IsDiscount":false,"DiscountRate":"二等座","Remark":"测试","OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1472028092000)/","PersonalImage":"UploadedFiles/HeadPortrait/cc7e4862-1204-45a3-80a6-68ee24193775.jpeg"}],"Approval":[{"StepNumber":"1","ApprovalTime":"2016-08-25 11:50","ApprovalPrice":22,"Opinion":"同意了","Result":"通过","ApproverId":"027503d7-9b54-e611-be6c-085700e64e0f","Approver":"单元经理"}],"isApprover":false}
      */
 
     private int errorcode;
     /**
-     * Detail : [{"TravelPaymentId":"05c5b786-ba5a-e611-92fc-085700e64e0f","BeginDate":"/Date(1470596520000)/","EndDate":"/Date(1470682920000)/","TravelDays":"","HotelDays":"","Origin":"cfd ","Destination":"mdd ","Transport":2,"IsGoBack":false,"TrainTicket":null,"Allowance":null,"OilFuel":null,"LocalTravel":"0.00","CrossTravel":null,"Hotel":"0.00","Travel":888,"HotelSubsidy":555,"MealSubsidy":0,"CarSubsidy":0,"Other":0,"IsDiscount":false,"DiscountRate":"","Remark":"Ccsy ","OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"tanting","CreatedOn":"/Date(1470366786000)/","PersonalImage":null}]
-     * Approval : [{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"}]
+     * Detail : [{"TravelPaymentId":"f8a1548e-d669-e611-92fc-085700e64e0f","BeginDate":"/Date(1471998600000)/","EndDate":"/Date(1472178600000)/","TravelDays":"","HotelDays":"","Origin":"测试你的","Destination":"测试","Transport":2,"TransportName":"火车","IsGoBack":false,"TrainTicket":null,"Allowance":null,"OilFuel":null,"LocalTravel":"0.00","CrossTravel":null,"Hotel":"0.00","Travel":22,"HotelSubsidy":0,"MealSubsidy":0,"CarSubsidy":0,"Other":0,"IsDiscount":false,"DiscountRate":"二等座","Remark":"测试","OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1472028092000)/","PersonalImage":"UploadedFiles/HeadPortrait/cc7e4862-1204-45a3-80a6-68ee24193775.jpeg"}]
+     * Approval : [{"StepNumber":"1","ApprovalTime":"2016-08-25 11:50","ApprovalPrice":22,"Opinion":"同意了","Result":"通过","ApproverId":"027503d7-9b54-e611-be6c-085700e64e0f","Approver":"单元经理"}]
      * isApprover : false
      */
 
@@ -41,14 +41,15 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
     public static class EntityInfoBean {
         private boolean isApprover;
         /**
-         * TravelPaymentId : 05c5b786-ba5a-e611-92fc-085700e64e0f
-         * BeginDate : /Date(1470596520000)/
-         * EndDate : /Date(1470682920000)/
+         * TravelPaymentId : f8a1548e-d669-e611-92fc-085700e64e0f
+         * BeginDate : /Date(1471998600000)/
+         * EndDate : /Date(1472178600000)/
          * TravelDays :
          * HotelDays :
-         * Origin : cfd
-         * Destination : mdd
+         * Origin : 测试你的
+         * Destination : 测试
          * Transport : 2
+         * TransportName : 火车
          * IsGoBack : false
          * TrainTicket : null
          * Allowance : null
@@ -56,29 +57,29 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
          * LocalTravel : 0.00
          * CrossTravel : null
          * Hotel : 0.00
-         * Travel : 888.0
-         * HotelSubsidy : 555.0
+         * Travel : 22.0
+         * HotelSubsidy : 0.0
          * MealSubsidy : 0.0
          * CarSubsidy : 0.0
          * Other : 0.0
          * IsDiscount : false
-         * DiscountRate :
-         * Remark : Ccsy
-         * OwnerId : 20998760-65fd-e511-a1e5-085700e64e0f
-         * OwnerName : tanting
-         * CreatedOn : /Date(1470366786000)/
-         * PersonalImage : null
+         * DiscountRate : 二等座
+         * Remark : 测试
+         * OwnerId : c52610c5-60fd-e511-a1e5-085700e64e0f
+         * OwnerName : 姓名
+         * CreatedOn : /Date(1472028092000)/
+         * PersonalImage : UploadedFiles/HeadPortrait/cc7e4862-1204-45a3-80a6-68ee24193775.jpeg
          */
 
         private List<DetailBean> Detail;
         /**
          * StepNumber : 1
-         * ApprovalTime :
-         * ApprovalPrice : 0
-         * Opinion :
-         * Result :
-         * ApproverId : 97bb0342-2d34-e611-b907-085700e64e0f
-         * Approver : 待豫单元经理审批
+         * ApprovalTime : 2016-08-25 11:50
+         * ApprovalPrice : 22.0
+         * Opinion : 同意了
+         * Result : 通过
+         * ApproverId : 027503d7-9b54-e611-be6c-085700e64e0f
+         * Approver : 单元经理
          */
 
         private List<ApprovalBean> Approval;
@@ -116,6 +117,7 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
             private String Origin;
             private String Destination;
             private int Transport;
+            private String TransportName;
             private boolean IsGoBack;
             private Object TrainTicket;
             private Object Allowance;
@@ -134,7 +136,7 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
             private String OwnerId;
             private String OwnerName;
             private String CreatedOn;
-            private Object PersonalImage;
+            private String PersonalImage;
 
             public String getTravelPaymentId() {
                 return TravelPaymentId;
@@ -198,6 +200,14 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
 
             public void setTransport(int Transport) {
                 this.Transport = Transport;
+            }
+
+            public String getTransportName() {
+                return TransportName;
+            }
+
+            public void setTransportName(String TransportName) {
+                this.TransportName = TransportName;
             }
 
             public boolean isIsGoBack() {
@@ -344,11 +354,11 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
                 this.CreatedOn = CreatedOn;
             }
 
-            public Object getPersonalImage() {
+            public String getPersonalImage() {
                 return PersonalImage;
             }
 
-            public void setPersonalImage(Object PersonalImage) {
+            public void setPersonalImage(String PersonalImage) {
                 this.PersonalImage = PersonalImage;
             }
         }
@@ -356,7 +366,7 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
         public static class ApprovalBean {
             private String StepNumber;
             private String ApprovalTime;
-            private int ApprovalPrice;
+            private double ApprovalPrice;
             private String Opinion;
             private String Result;
             private String ApproverId;
@@ -378,11 +388,11 @@ public class TravelExpenseReimburseDetailsResponseBean extends BaseResponseBean 
                 this.ApprovalTime = ApprovalTime;
             }
 
-            public int getApprovalPrice() {
+            public double getApprovalPrice() {
                 return ApprovalPrice;
             }
 
-            public void setApprovalPrice(int ApprovalPrice) {
+            public void setApprovalPrice(double ApprovalPrice) {
                 this.ApprovalPrice = ApprovalPrice;
             }
 

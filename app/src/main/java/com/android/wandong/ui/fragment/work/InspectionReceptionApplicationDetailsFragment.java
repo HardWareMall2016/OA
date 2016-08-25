@@ -132,7 +132,7 @@ public class InspectionReceptionApplicationDetailsFragment extends ABaseFragment
     private void populateView(InspectionReceptionApplicationDetailsResponseBean result) {
         if (result.getEntityInfo().getDetail() != null) {
             Tools.setTextView(mViewApplyNo, result.getEntityInfo().getDetail().getAccountName());
-            Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getVisitName());
+            Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, result.getEntityInfo().getDetail().getVisitNumber()+"人");
             Tools.setTextView(mInspectionName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mInspectionPhone, result.getEntityInfo().getDetail().getVisitTelephone());

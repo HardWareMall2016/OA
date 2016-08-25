@@ -76,6 +76,11 @@ public class EntertainmentReimbursementDetailFragment extends ABaseFragment {
     @ViewInject(id = R.id.indicator)
     private ImageView mImgIndicator;
 
+    @ViewInject(id = R.id.province)
+    TextView mTvProvince ;
+    @ViewInject(id = R.id.TrueEstimateMeals)
+    TextView mTvTrueEstimateMeals ;
+
     @ViewInject(id = R.id.ApprovalInformation, click = "OnClick")
     private View mViewApprovalInformation;//审批信息
 
@@ -153,6 +158,9 @@ public class EntertainmentReimbursementDetailFragment extends ABaseFragment {
             Tools.setTextView(mViewCustomerNum, String.format("%d人", result.getEntityInfo().getDetail().getNumber()));
             Tools.setTextView(mViewReasonContent, String.valueOf(result.getEntityInfo().getDetail().getReason()));
 
+            Tools.setTextView(mTvProvince, result.getEntityInfo().getDetail().getProvince());
+
+            Tools.setTextView(mTvTrueEstimateMeals, String.format("%d元", result.getEntityInfo().getDetail().getActualMeals()));
 
             Tools.setTextView(mViewApplyUnit, String.valueOf(result.getEntityInfo().getDetail().getApplyUnit()));
 

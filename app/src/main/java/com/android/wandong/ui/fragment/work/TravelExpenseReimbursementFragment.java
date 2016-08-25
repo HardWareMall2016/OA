@@ -116,7 +116,7 @@ public class TravelExpenseReimbursementFragment extends BaseWorkPageFragment<Tra
         public void bindingData(View convertView, ItemData data) {
             mApplyNo.setText(data.getName());
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getApprovalPrice()+"");
+            mNumber.setText(data.getApprovalPrice()+"元");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getAuditStatus());
         }
     }

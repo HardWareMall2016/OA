@@ -10,19 +10,22 @@ import java.util.List;
 public class TenderApplicationResponseBean extends BaseResponseBean{
     /**
      * errorcode : 0
-     * entityInfo : [{"TenderAuthorizationId":"f1630972-db5a-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000007","Name":"i_Open 0.3T","BidStatus":1,"Number":"001","AccountName":null,"OwnerName":"tanting","CreatedOn":"/Date(1470380924000)/","Status":2},{"TenderAuthorizationId":"04a45c87-275a-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000006","Name":"i_Magnate 1.5T-进口磁体","BidStatus":1,"Number":"1001","AccountName":null,"OwnerName":"tanting","CreatedOn":"/Date(1470303651000)/","Status":4},{"TenderAuthorizationId":"76e5d2b5-095a-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000005","Name":"CGO-2100-01","BidStatus":1,"Number":"2222","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1470290844000)/","Status":4},{"TenderAuthorizationId":"db379b65-7159-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000004","Name":"i_Magnate 1.5T-进口磁体","BidStatus":1,"Number":"500","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1470225426000)/","Status":2},{"TenderAuthorizationId":"7c8f23bf-7059-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000003","Name":"DM-1型","BidStatus":1,"Number":"编号666","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1470225146000)/","Status":2},{"TenderAuthorizationId":"f13d5a0a-d457-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000002","Name":"i_Open 0.3T","BidStatus":1,"Number":"常规化","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1470047890000)/","Status":2},{"TenderAuthorizationId":"956bdd72-c557-e611-92fc-085700e64e0f","ApplyNo":"TBSQ201608000001","Name":"DRF-1C型","BidStatus":1,"Number":"www011","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1470041623000)/","Status":2},{"TenderAuthorizationId":"ceab1a8c-5f55-e611-96a5-085700e64e0f","ApplyNo":"TBSQ201607000009","Name":"F108-V型","BidStatus":1,"Number":"编号111","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1469777955000)/","Status":2},{"TenderAuthorizationId":"abdb8686-5b55-e611-96a5-085700e64e0f","ApplyNo":"TBSQ201607000008","Name":"DRF-1B型","BidStatus":1,"Number":"编号001","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1469776227000)/","Status":2},{"TenderAuthorizationId":"5827dc1f-7754-e611-be6c-085700e64e0f","ApplyNo":"TBSQ201607000007","Name":"DRF-2B型","BidStatus":1,"Number":"000000001","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1469678130000)/","Status":2}]
+     * entityInfo : [{"TenderAuthorizationId":"4921b933-dc69-e611-92fc-085700e64e0f","ProjectName":"测试","ApplyNo":"TBSQ201608000024","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1474617600000)/","Quantity":12,"Number":"测试001","AccountName":null,"OwnerName":"檀庭","CreatedOn":"/Date(1472030517000)/","Status":2},{"TenderAuthorizationId":"71b73ec9-1468-e611-92fc-085700e64e0f","ProjectName":"地级市区","ApplyNo":"TBSQ201608000023","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1471939200000)/","Quantity":35,"Number":"00000023","AccountName":null,"OwnerName":"檀庭","CreatedOn":"/Date(1471834917000)/","Status":2},{"TenderAuthorizationId":"8a1ced80-ff65-e611-92fc-085700e64e0f","ProjectName":"测试你的人是","ApplyNo":"TBSQ201608000022","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1471507200000)/","Quantity":123,"Number":"！？！？！？","AccountName":null,"OwnerName":"檀庭","CreatedOn":"/Date(1471605874000)/","Status":2},{"TenderAuthorizationId":"6eb4b2b3-f265-e611-92fc-085700e64e0f","ProjectName":"fjc ","ApplyNo":"TBSQ201608000021","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1476777600000)/","Quantity":5,"Number":"gosh","AccountName":null,"OwnerName":"檀庭","CreatedOn":"/Date(1471600376000)/","Status":3},{"TenderAuthorizationId":"b84d08e3-d865-e611-92fc-085700e64e0f","ProjectName":"我","ApplyNo":"TBSQ201608000020","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1474185600000)/","Quantity":12,"Number":"请问我","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1471589288000)/","Status":3},{"TenderAuthorizationId":"6a425ede-d565-e611-92fc-085700e64e0f","ProjectName":"妈妈们","ApplyNo":"TBSQ201608000019","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1474185600000)/","Quantity":12,"Number":"0","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1471587993000)/","Status":3},{"TenderAuthorizationId":"68425ede-d565-e611-92fc-085700e64e0f","ProjectName":"妈妈们","ApplyNo":"TBSQ201608000018","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1474185600000)/","Quantity":12,"Number":"0","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1471587992000)/","Status":3},{"TenderAuthorizationId":"467d648f-bd63-e611-92fc-085700e64e0f","ProjectName":"aaaaaa","ApplyNo":"TBSQ201608000017","Name":"CGO-2100-01","BidStatus":1,"OpenTendersTime":"/Date(1471248000000)/","Quantity":111,"Number":"bbbbbbb","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1471357649000)/","Status":3},{"TenderAuthorizationId":"5a9bd8c2-8663-e611-92fc-085700e64e0f","ProjectName":"热缤纷多彩v","ApplyNo":"TBSQ201608000016","Name":"LS-3型","BidStatus":1,"OpenTendersTime":"/Date(1479196800000)/","Quantity":180,"Number":"000350","AccountName":null,"OwnerName":"姓名","CreatedOn":"/Date(1471334113000)/","Status":2},{"TenderAuthorizationId":"95ea44e0-b562-e611-92fc-085700e64e0f","ProjectName":"测试","ApplyNo":"TBSQ201608000015","Name":"DM-1型","BidStatus":1,"OpenTendersTime":"/Date(1476864000000)/","Quantity":2,"Number":"x007","AccountName":null,"OwnerName":"檀庭","CreatedOn":"/Date(1471244398000)/","Status":4}]
      */
 
     private int errorcode;
     /**
-     * TenderAuthorizationId : f1630972-db5a-e611-92fc-085700e64e0f
-     * ApplyNo : TBSQ201608000007
-     * Name : i_Open 0.3T
+     * TenderAuthorizationId : 4921b933-dc69-e611-92fc-085700e64e0f
+     * ProjectName : 测试
+     * ApplyNo : TBSQ201608000024
+     * Name : LS-3型
      * BidStatus : 1
-     * Number : 001
+     * OpenTendersTime : /Date(1474617600000)/
+     * Quantity : 12
+     * Number : 测试001
      * AccountName : null
-     * OwnerName : tanting
-     * CreatedOn : /Date(1470380924000)/
+     * OwnerName : 檀庭
+     * CreatedOn : /Date(1472030517000)/
      * Status : 2
      */
 
@@ -46,9 +49,12 @@ public class TenderApplicationResponseBean extends BaseResponseBean{
 
     public static class EntityInfoBean {
         private String TenderAuthorizationId;
+        private String ProjectName;
         private String ApplyNo;
         private String Name;
         private int BidStatus;
+        private String OpenTendersTime;
+        private int Quantity;
         private String Number;
         private String AccountName;
         private String OwnerName;
@@ -61,6 +67,14 @@ public class TenderApplicationResponseBean extends BaseResponseBean{
 
         public void setTenderAuthorizationId(String TenderAuthorizationId) {
             this.TenderAuthorizationId = TenderAuthorizationId;
+        }
+
+        public String getProjectName() {
+            return ProjectName;
+        }
+
+        public void setProjectName(String ProjectName) {
+            this.ProjectName = ProjectName;
         }
 
         public String getApplyNo() {
@@ -85,6 +99,22 @@ public class TenderApplicationResponseBean extends BaseResponseBean{
 
         public void setBidStatus(int BidStatus) {
             this.BidStatus = BidStatus;
+        }
+
+        public String getOpenTendersTime() {
+            return OpenTendersTime;
+        }
+
+        public void setOpenTendersTime(String OpenTendersTime) {
+            this.OpenTendersTime = OpenTendersTime;
+        }
+
+        public int getQuantity() {
+            return Quantity;
+        }
+
+        public void setQuantity(int Quantity) {
+            this.Quantity = Quantity;
         }
 
         public String getNumber() {
