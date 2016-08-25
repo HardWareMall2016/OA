@@ -37,6 +37,7 @@ import com.zhan.framework.utils.ToastUtils;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -541,6 +542,19 @@ public class Tools {
             requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
         }
         return requestParams;
+    }
+
+    public static String parseDistance(double distance){
+        DecimalFormat df = new DecimalFormat();
+        df.applyPattern("###.##米");
+
+        DecimalFormat df2 = new DecimalFormat();
+        df.applyPattern("###,###.##公里");
+        if(distance<1000){
+            return df.format(distance);
+        }else{
+            return df.format(distance/1000);
+        }
     }
 
 }

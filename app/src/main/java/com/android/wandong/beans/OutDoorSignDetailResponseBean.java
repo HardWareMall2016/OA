@@ -119,7 +119,7 @@ public class OutDoorSignDetailResponseBean extends BaseResponseBean {
             private String SignOutTime;
             private int Signabnormal;
             private int SignInAbnormal;
-            private int AbnormalDistance;
+            private double AbnormalDistance;
             private Object PersonalImage;
 
             public String getSignId() {
@@ -242,11 +242,11 @@ public class OutDoorSignDetailResponseBean extends BaseResponseBean {
                 this.SignInAbnormal = SignInAbnormal;
             }
 
-            public int getAbnormalDistance() {
+            public double getAbnormalDistance() {
                 return AbnormalDistance;
             }
 
-            public void setAbnormalDistance(int AbnormalDistance) {
+            public void setAbnormalDistance(double AbnormalDistance) {
                 this.AbnormalDistance = AbnormalDistance;
             }
 

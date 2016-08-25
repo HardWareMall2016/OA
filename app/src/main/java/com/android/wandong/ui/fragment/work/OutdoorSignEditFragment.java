@@ -104,6 +104,12 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
     @ViewInject(id = R.id.btn_sign_out, click = "OnClick")
     View mBtnSignOut;
 
+    @ViewInject(id = R.id.sign_in_abnormal_title)
+    TextView mViewSignInAdnormalTitle;
+
+    @ViewInject(id = R.id.sign_in_abnormal)
+    TextView mViewSignInAdnormal;
+
     //Data
     private String mSignId;
     private AddressInfo mAddressInfo;
@@ -218,6 +224,17 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
                     Tools.setTextView(mViewSignInAddress, result.getEntityInfo().getSignInfo().getAddress());
                     Tools.setTextView(mViewRelativeCustomer, result.getEntityInfo().getSignInfo().getAccountName());
                     Tools.setTextView(mViewRemark, result.getEntityInfo().getSignInfo().getRemarks());
+
+                    //签入异常
+                    if(result.getEntityInfo().getSignInfo().getSignInAbnormal()==1){
+                        mViewSignInAdnormalTitle.setVisibility(View.VISIBLE);
+                        mViewSignInAdnormal.setVisibility(View.VISIBLE);
+                        double distance=result.getEntityInfo().getSignInfo().getAbnormalDistance();
+                        mViewSignInAdnormal.setText(Tools.parseDistance(distance));
+                    }else{
+                        mViewSignInAdnormalTitle.setVisibility(View.GONE);
+                        mViewSignInAdnormal.setVisibility(View.GONE);
+                    }
 
                     if(result.getEntityInfo().getAttachmentInfo().size()==0){
                         mViewAttachmentInfo.setVisibility(View.GONE);

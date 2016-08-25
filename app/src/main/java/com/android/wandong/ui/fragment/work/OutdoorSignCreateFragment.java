@@ -249,7 +249,9 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
         double distance = DistanceUtil.getDistance(p1LL, p2LL);
 
-        requestParams.put("Abnormal", 1);
+        boolean abnormal=distance>500;
+
+        requestParams.put("Abnormal", abnormal?1:0);
         requestParams.put("AbnormalDistance", distance);
         requestParams.put("AccountId", mCustomerId);
         requestParams.put("Address", mAddressInfo.address);
@@ -377,12 +379,12 @@ public class ProgressBarAsyncTask extends AsyncTask<String, Void, String> {
                     mExtendMediaPicker.openSystemCamera(OutdoorSignCreateFragment.this);
                 }
             });
-            actionSheetDialog.addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+            /*actionSheetDialog.addSheetItem("相册", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
                 @Override
                 public void onClick(int which) {
                     mExtendMediaPicker.openSystemPickImage(OutdoorSignCreateFragment.this);
                 }
-            });
+            });*/
             actionSheetDialog.show();
         }
     }

@@ -89,6 +89,12 @@ public class OutdoorSignDetailFragment extends ABaseFragment {
     @ViewInject(id = R.id.attachment_info)
     FixGridView mViewAttachmentInfo;
 
+    @ViewInject(id = R.id.sign_in_abnormal_title)
+    TextView mViewSignInAdnormalTitle;
+
+    @ViewInject(id = R.id.sign_in_abnormal)
+    TextView mViewSignInAdnormal;
+
     private LayoutInflater mInflater;
 
     public static void launch(Activity activity, String signId) {
@@ -153,6 +159,17 @@ public class OutdoorSignDetailFragment extends ABaseFragment {
 
                     long signOutTime=Tools.parseDateStrToLong(result.getEntityInfo().getSignInfo().getSignOutTime());
                     mViewSignOutTime.setText(Tools.parseTimeToMinutes(signOutTime));
+
+                    //签入异常
+                    if(result.getEntityInfo().getSignInfo().getSignInAbnormal()==1){
+                        mViewSignInAdnormalTitle.setVisibility(View.VISIBLE);
+                        mViewSignInAdnormal.setVisibility(View.VISIBLE);
+                        double distance=result.getEntityInfo().getSignInfo().getAbnormalDistance();
+                        mViewSignInAdnormal.setText(Tools.parseDistance(distance));
+                    }else{
+                        mViewSignInAdnormalTitle.setVisibility(View.GONE);
+                        mViewSignInAdnormal.setVisibility(View.GONE);
+                    }
 
                     if(result.getEntityInfo().getAttachmentInfo().size()==0){
                         mViewAttachmentInfo.setVisibility(View.GONE);
