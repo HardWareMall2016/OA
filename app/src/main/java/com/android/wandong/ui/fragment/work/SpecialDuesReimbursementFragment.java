@@ -114,7 +114,7 @@ public class SpecialDuesReimbursementFragment extends BaseWorkPageFragment<Speci
         public void bindingData(View convertView, ItemData data) {
             mApplyNo.setText(data.getApplyNo());
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getAmount()+"");
+            mNumber.setText(data.getAmount()+"元");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }

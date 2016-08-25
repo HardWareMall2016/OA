@@ -73,6 +73,7 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
                 item.setOwnerName(beanItem.getOwnerName());
                 item.setCreatedOn(beanItem.getCreatedOn());
                 item.setStatus(beanItem.getStatus());
+                item.setQuantity(beanItem.getQuantity());
                 items.add(item);
             }
         }
@@ -110,18 +111,21 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
         public void bindingData(View convertView, ItemData data) {
             mApplyNo.setText(data.getName());
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getNumber());
+            mNumber.setText(data.getQuantity()+"台");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }
 
     public class ItemData {
         private String TenderAuthorizationId;
+        private String ProjectName;
         private String ApplyNo;
         private String Name;
         private int BidStatus;
+        private String OpenTendersTime;
+        private int Quantity;
         private String Number;
-        private Object AccountName;
+        private String AccountName;
         private String OwnerName;
         private String CreatedOn;
         private int Status;
@@ -132,6 +136,14 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
 
         public void setTenderAuthorizationId(String TenderAuthorizationId) {
             this.TenderAuthorizationId = TenderAuthorizationId;
+        }
+
+        public String getProjectName() {
+            return ProjectName;
+        }
+
+        public void setProjectName(String ProjectName) {
+            this.ProjectName = ProjectName;
         }
 
         public String getApplyNo() {
@@ -158,6 +170,22 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
             this.BidStatus = BidStatus;
         }
 
+        public String getOpenTendersTime() {
+            return OpenTendersTime;
+        }
+
+        public void setOpenTendersTime(String OpenTendersTime) {
+            this.OpenTendersTime = OpenTendersTime;
+        }
+
+        public int getQuantity() {
+            return Quantity;
+        }
+
+        public void setQuantity(int Quantity) {
+            this.Quantity = Quantity;
+        }
+
         public String getNumber() {
             return Number;
         }
@@ -166,11 +194,11 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
             this.Number = Number;
         }
 
-        public Object getAccountName() {
+        public String getAccountName() {
             return AccountName;
         }
 
-        public void setAccountName(Object AccountName) {
+        public void setAccountName(String AccountName) {
             this.AccountName = AccountName;
         }
 

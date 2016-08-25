@@ -6,10 +6,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
+import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.InspectionReceptionResponseBean;
 import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
+import com.android.wandong.utils.Tools;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -50,8 +52,14 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
 
     @Override
     protected void populateRequestParams(RefreshMode mode, HttpRequestParams requestParams) {
+        requestParams.put("AuditStatus","");
+        requestParams.put("BeginDate", "");
+        requestParams.put("EndDate","");
+        requestParams.put("IsJustLookOwner","false");
         requestParams.put("PageIndex",getNextPage(mode));
-        requestParams.put("PageNumber", getRefreshConfig().minResultSize);
+        requestParams.put("PassWord", UserInfo.getCurrentUser().getPassword());
+        requestParams.put("SearchName","");
+        requestParams.put("UserName",UserInfo.getCurrentUser().getUserName());
     }
 
     @Override
@@ -94,10 +102,12 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
 
         @ViewInject(id = R.id.ApplyNo)
         TextView mApplyNo ;
-        @ViewInject(id = R.id.name)
+        @ViewInject(id = R.id.OwnerName)
         TextView mName ;
         @ViewInject(id = R.id.number)
         TextView mNumber ;
+        @ViewInject(id = R.id.time)
+        TextView mTime ;
         @ViewInject(id = R.id.headPortrait)
         ImageView mViewHeadPortrait;
         @ViewInject(id = R.id.img_status)
@@ -112,7 +122,8 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
         public void bindingData(View convertView, ItemData data) {
             mApplyNo.setText(data.getAccountName());
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getVisitNumber()+"");
+            mNumber.setText(data.getVisitNumber()+"人");
+            mTime.setText(Tools.parseTimeToDateStr(Tools.parseDateStrToLong(data.getApplyTime())));
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }
@@ -128,6 +139,7 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
         private String ApplyTime;
         private int Status;
         private String OwnerName;
+        private String ComeTime;
         private String CreatedOn;
 
         public String getReceptionId() {
@@ -208,6 +220,14 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
 
         public void setOwnerName(String OwnerName) {
             this.OwnerName = OwnerName;
+        }
+
+        public String getComeTime() {
+            return ComeTime;
+        }
+
+        public void setComeTime(String ComeTime) {
+            this.ComeTime = ComeTime;
         }
 
         public String getCreatedOn() {

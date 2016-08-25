@@ -10,14 +10,14 @@ import java.util.List;
 public class SpecialDuesReimbursementDetailsResponseBean extends BaseResponseBean {
     /**
      * errorcode : 200
-     * entityInfo : {"Detail":{"SpecialPaymentId":"f14765e0-6e59-e611-92fc-085700e64e0f","Name":"ZXBX201608000003","FeedDate":"2015","CostType":2,"Amount":20,"Remark":"拍啊","AuditStatus":3,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1470224343000)/","StepNumber":2},"Approval":[{"StepNumber":"1","ApprovalTime":"2016-08-03 19:45","ApprovalPrice":20,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"},{"StepNumber":"2","ApprovalTime":"2016-08-03 19:45","ApprovalPrice":20,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"}],"isApprover":false}
+     * entityInfo : {"Detail":{"SpecialPaymentId":"d13182f5-2e68-e611-92fc-085700e64e0f","Name":"ZXBX201608000016","FeedDate":"要","CostType":2,"CostTypeName":"交通补助","Amount":22,"Remark":null,"AuditStatus":2,"AuditStatusName":"待审批","OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1471846158000)/","StepNumber":2},"Approval":[{"StepNumber":"1","ApprovalTime":"2016-08-22 14:19","ApprovalPrice":22,"Opinion":"","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}],"isApprover":true}
      */
 
     private int errorcode;
     /**
-     * Detail : {"SpecialPaymentId":"f14765e0-6e59-e611-92fc-085700e64e0f","Name":"ZXBX201608000003","FeedDate":"2015","CostType":2,"Amount":20,"Remark":"拍啊","AuditStatus":3,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1470224343000)/","StepNumber":2}
-     * Approval : [{"StepNumber":"1","ApprovalTime":"2016-08-03 19:45","ApprovalPrice":20,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"},{"StepNumber":"2","ApprovalTime":"2016-08-03 19:45","ApprovalPrice":20,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"}]
-     * isApprover : false
+     * Detail : {"SpecialPaymentId":"d13182f5-2e68-e611-92fc-085700e64e0f","Name":"ZXBX201608000016","FeedDate":"要","CostType":2,"CostTypeName":"交通补助","Amount":22,"Remark":null,"AuditStatus":2,"AuditStatusName":"待审批","OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1471846158000)/","StepNumber":2}
+     * Approval : [{"StepNumber":"1","ApprovalTime":"2016-08-22 14:19","ApprovalPrice":22,"Opinion":"","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}]
+     * isApprover : true
      */
 
     private EntityInfoBean entityInfo;
@@ -40,16 +40,18 @@ public class SpecialDuesReimbursementDetailsResponseBean extends BaseResponseBea
 
     public static class EntityInfoBean {
         /**
-         * SpecialPaymentId : f14765e0-6e59-e611-92fc-085700e64e0f
-         * Name : ZXBX201608000003
-         * FeedDate : 2015
+         * SpecialPaymentId : d13182f5-2e68-e611-92fc-085700e64e0f
+         * Name : ZXBX201608000016
+         * FeedDate : 要
          * CostType : 2
-         * Amount : 20.0
-         * Remark : 拍啊
-         * AuditStatus : 3
+         * CostTypeName : 交通补助
+         * Amount : 22.0
+         * Remark : null
+         * AuditStatus : 2
+         * AuditStatusName : 待审批
          * OwnerId : c52610c5-60fd-e511-a1e5-085700e64e0f
          * OwnerName : 姓名
-         * CreatedOn : /Date(1470224343000)/
+         * CreatedOn : /Date(1471846158000)/
          * StepNumber : 2
          */
 
@@ -57,9 +59,9 @@ public class SpecialDuesReimbursementDetailsResponseBean extends BaseResponseBea
         private boolean isApprover;
         /**
          * StepNumber : 1
-         * ApprovalTime : 2016-08-03 19:45
-         * ApprovalPrice : 20.0
-         * Opinion : 审批测试
+         * ApprovalTime : 2016-08-22 14:19
+         * ApprovalPrice : 22.0
+         * Opinion :
          * Result : 通过
          * ApproverId : c52610c5-60fd-e511-a1e5-085700e64e0f
          * Approver : 姓名
@@ -96,9 +98,11 @@ public class SpecialDuesReimbursementDetailsResponseBean extends BaseResponseBea
             private String Name;
             private String FeedDate;
             private int CostType;
+            private String CostTypeName;
             private double Amount;
             private String Remark;
             private int AuditStatus;
+            private String AuditStatusName;
             private String OwnerId;
             private String OwnerName;
             private String CreatedOn;
@@ -136,6 +140,14 @@ public class SpecialDuesReimbursementDetailsResponseBean extends BaseResponseBea
                 this.CostType = CostType;
             }
 
+            public String getCostTypeName() {
+                return CostTypeName;
+            }
+
+            public void setCostTypeName(String CostTypeName) {
+                this.CostTypeName = CostTypeName;
+            }
+
             public double getAmount() {
                 return Amount;
             }
@@ -158,6 +170,14 @@ public class SpecialDuesReimbursementDetailsResponseBean extends BaseResponseBea
 
             public void setAuditStatus(int AuditStatus) {
                 this.AuditStatus = AuditStatus;
+            }
+
+            public String getAuditStatusName() {
+                return AuditStatusName;
+            }
+
+            public void setAuditStatusName(String AuditStatusName) {
+                this.AuditStatusName = AuditStatusName;
             }
 
             public String getOwnerId() {

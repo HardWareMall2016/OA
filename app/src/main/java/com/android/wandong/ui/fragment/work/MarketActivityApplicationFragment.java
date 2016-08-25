@@ -125,7 +125,7 @@ public class MarketActivityApplicationFragment extends BaseWorkPageFragment<Mark
             mApplyNo.setText(data.getApplyNo());
             mAccountName.setText(data.getName()+"(国内展览)");
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getAmount() + "");
+            mNumber.setText(data.getAmount() + "元");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }

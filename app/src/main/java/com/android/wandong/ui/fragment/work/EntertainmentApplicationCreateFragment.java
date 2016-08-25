@@ -402,31 +402,6 @@ public class EntertainmentApplicationCreateFragment extends ABaseFragment{
             return false;
         }
 
-        if(TextUtils.isEmpty(mTainMentMeals)){
-            ToastUtils.toast("请填写餐费");
-            return false;
-        }
-
-        if(TextUtils.isEmpty(mTainMentConferenceFee)){
-            ToastUtils.toast("请填写会议住宿费");
-            return false;
-        }
-
-        if(TextUtils.isEmpty(mTainMentOfficeFee)){
-            ToastUtils.toast("请填写办公用品费");
-            return false;
-        }
-
-        if(TextUtils.isEmpty(mTainMentTrafficeFee)){
-            ToastUtils.toast("请填写交通费");
-            return false;
-        }
-
-        if(TextUtils.isEmpty(mTainMentGiftFee)){
-            ToastUtils.toast("请填写礼品费");
-            return false;
-        }
-
         return true;
     }
 

@@ -11,7 +11,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
-import com.android.wandong.beans.MarketApplyDetailResponseBean;
 import com.android.wandong.beans.MarketReimburseDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
@@ -52,6 +51,8 @@ public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
 
     @ViewInject(id = R.id.indicator)
     private ImageView mImgIndicator;
+    @ViewInject(id = R.id.tv_Remark)
+    TextView mTvRemark ;
 
     @ViewInject(id = R.id.ApprovalInformation, click = "OnClick")
     private View mViewApprovalInformation;//审批信息
@@ -123,9 +124,16 @@ public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
     private void populateView(MarketReimburseDetailResponseBean result) {
         if (result.getEntityInfo().getDetail() != null) {
             Tools.setTextView(mViewApplyNo, result.getEntityInfo().getDetail().getName());
-            Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getCampaignName()+"(国内展览)");
+            Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getCampaignName()+"("+result.getEntityInfo().getDetail().getCostTypeName()+")");
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, mMoneyFormat.format(result.getEntityInfo().getDetail().getAmount()));
+
+            if(result.getEntityInfo().getDetail().getRemark() != null){
+                mTvRemark.setVisibility(View.VISIBLE);
+                Tools.setTextView(mTvRemark, result.getEntityInfo().getDetail().getRemark());
+            }else{
+                mTvRemark.setVisibility(View.GONE);
+            }
 
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
         }

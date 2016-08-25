@@ -46,6 +46,8 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
     @ViewInject(id = R.id.img_status)
     private ImageView mViewStatus;//审批状态
     private String mCampaignId;
+    @ViewInject(id = R.id.tv_Remark)
+    TextView mTvRemark ;
 
     @ViewInject(id = R.id.listViewApproval)
     private FixListView mListViewApproval;
@@ -126,6 +128,12 @@ public class MarketActivityApplicationDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getCampaignName()+"(国内展览)");
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, mMoneyFormat.format(result.getEntityInfo().getDetail().getAmount()));
+            if(result.getEntityInfo().getDetail().getRemark() != null){
+                mTvRemark.setVisibility(View.VISIBLE);
+                Tools.setTextView(mTvRemark, result.getEntityInfo().getDetail().getRemark());
+            }else{
+                mTvRemark.setVisibility(View.GONE);
+            }
 
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
         }

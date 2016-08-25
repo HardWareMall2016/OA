@@ -10,15 +10,15 @@ import java.util.List;
 public class InspectionReceptionApplicationDetailsResponseBean extends BaseResponseBean {
     /**
      * errorcode : 0
-     * entityInfo : {"Detail":{"ReceptionId":"5112ec76-dd5a-e611-92fc-085700e64e0f","Name":"KCSQ201608000021","AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","ComeTime":"/Date(1470554160000)/","LeaveTime":"/Date(1483211760000)/","SubmitTime":"/Date(1470381792000)/","VisitName":"名称：","VisitNumber":20,"VisitTelephone":"13162520886","AuditStatus":2,"OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"tanting","CreatedOn":"/Date(-62135596800000)/","StepNumber":1},"AttachmentInfo":[],"Approval":[{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}],"isApprover":false}
+     * entityInfo : {"Detail":{"ReceptionId":"f7ad845f-ca69-e611-92fc-085700e64e0f","Name":"KCSQ201608000034","AccountId":"91cb40a7-ac69-e611-92fc-085700e64e0f","AccountName":"上海第九十七人民医院","ComeTime":"/Date(1472109000000)/","LeaveTime":"/Date(1472281800000)/","SubmitTime":"/Date(1472022859000)/","VisitName":"测试","VisitNumber":12,"VisitTelephone":"123463","AuditStatus":2,"AuditStatusName":null,"OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"檀庭","CreatedOn":"/Date(-62135596800000)/","StepNumber":1},"AttachmentInfo":[],"Approval":[{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}],"isApprover":true}
      */
 
     private int errorcode;
     /**
-     * Detail : {"ReceptionId":"5112ec76-dd5a-e611-92fc-085700e64e0f","Name":"KCSQ201608000021","AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","ComeTime":"/Date(1470554160000)/","LeaveTime":"/Date(1483211760000)/","SubmitTime":"/Date(1470381792000)/","VisitName":"名称：","VisitNumber":20,"VisitTelephone":"13162520886","AuditStatus":2,"OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"tanting","CreatedOn":"/Date(-62135596800000)/","StepNumber":1}
+     * Detail : {"ReceptionId":"f7ad845f-ca69-e611-92fc-085700e64e0f","Name":"KCSQ201608000034","AccountId":"91cb40a7-ac69-e611-92fc-085700e64e0f","AccountName":"上海第九十七人民医院","ComeTime":"/Date(1472109000000)/","LeaveTime":"/Date(1472281800000)/","SubmitTime":"/Date(1472022859000)/","VisitName":"测试","VisitNumber":12,"VisitTelephone":"123463","AuditStatus":2,"AuditStatusName":null,"OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"檀庭","CreatedOn":"/Date(-62135596800000)/","StepNumber":1}
      * AttachmentInfo : []
      * Approval : [{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}]
-     * isApprover : false
+     * isApprover : true
      */
 
     private EntityInfoBean entityInfo;
@@ -41,19 +41,20 @@ public class InspectionReceptionApplicationDetailsResponseBean extends BaseRespo
 
     public static class EntityInfoBean {
         /**
-         * ReceptionId : 5112ec76-dd5a-e611-92fc-085700e64e0f
-         * Name : KCSQ201608000021
-         * AccountId : 5640c2e6-5516-e611-ac23-085700e64e0f
-         * AccountName : 襄城区余家湖社区卫生服务中心
-         * ComeTime : /Date(1470554160000)/
-         * LeaveTime : /Date(1483211760000)/
-         * SubmitTime : /Date(1470381792000)/
-         * VisitName : 名称：
-         * VisitNumber : 20
-         * VisitTelephone : 13162520886
+         * ReceptionId : f7ad845f-ca69-e611-92fc-085700e64e0f
+         * Name : KCSQ201608000034
+         * AccountId : 91cb40a7-ac69-e611-92fc-085700e64e0f
+         * AccountName : 上海第九十七人民医院
+         * ComeTime : /Date(1472109000000)/
+         * LeaveTime : /Date(1472281800000)/
+         * SubmitTime : /Date(1472022859000)/
+         * VisitName : 测试
+         * VisitNumber : 12
+         * VisitTelephone : 123463
          * AuditStatus : 2
+         * AuditStatusName : null
          * OwnerId : 20998760-65fd-e511-a1e5-085700e64e0f
-         * OwnerName : tanting
+         * OwnerName : 檀庭
          * CreatedOn : /Date(-62135596800000)/
          * StepNumber : 1
          */
@@ -117,6 +118,7 @@ public class InspectionReceptionApplicationDetailsResponseBean extends BaseRespo
             private int VisitNumber;
             private String VisitTelephone;
             private int AuditStatus;
+            private String AuditStatusName;
             private String OwnerId;
             private String OwnerName;
             private String CreatedOn;
@@ -208,6 +210,14 @@ public class InspectionReceptionApplicationDetailsResponseBean extends BaseRespo
 
             public void setAuditStatus(int AuditStatus) {
                 this.AuditStatus = AuditStatus;
+            }
+
+            public String getAuditStatusName() {
+                return AuditStatusName;
+            }
+
+            public void setAuditStatusName(String AuditStatusName) {
+                this.AuditStatusName = AuditStatusName;
             }
 
             public String getOwnerId() {

@@ -10,20 +10,21 @@ import java.util.List;
 public class MarketActivityReimbursementResponseBean extends BaseResponseBean {
     /**
      * errorcode : 0
-     * entityInfo : [{"CampaignId":"591cf439-e75a-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000007","Status":4,"Name":"100","CostType":2,"OccurTime":"/Date(1470816000000)/","Amount":5000,"OwnerName":"姓名","CreatedOn":"/Date(1470385984000)/"},{"CampaignId":"c8bbdda1-aa5a-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000006","Status":2,"Name":"测试结果显示","CostType":2,"OccurTime":"/Date(1470211200000)/","Amount":2366,"OwnerName":"tanting","CreatedOn":"/Date(1470359959000)/"},{"CampaignId":"44532a1a-3c5a-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000005","Status":2,"Name":"tart ","CostType":4,"OccurTime":"/Date(1469779200000)/","Amount":500,"OwnerName":"姓名","CreatedOn":"/Date(1470312487000)/"},{"CampaignId":"87952f14-325a-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000004","Status":2,"Name":"活动又一个","CostType":2,"OccurTime":"/Date(1475481600000)/","Amount":9888,"OwnerName":"tanting","CreatedOn":"/Date(1470308182000)/"},{"CampaignId":"80801079-6859-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000003","Status":3,"Name":"彩页测试","CostType":1,"OccurTime":"/Date(1467532800000)/","Amount":30,"OwnerName":"姓名","CreatedOn":"/Date(1470221593000)/"},{"CampaignId":"e24a1ff5-5d59-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000002","Status":3,"Name":"show","CostType":2,"OccurTime":"/Date(1469779200000)/","Amount":500,"OwnerName":"姓名","CreatedOn":"/Date(1470217077000)/"},{"CampaignId":"3f3f808e-4c59-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000001","Status":4,"Name":"hhgg ","CostType":2,"OccurTime":"/Date(1469779200000)/","Amount":5000,"OwnerName":"姓名","CreatedOn":"/Date(1470209603000)/"},{"CampaignId":"a59ca9f6-5555-e611-96a5-085700e64e0f","ApplyNo":"SCBX201607000016","Status":3,"Name":"SCSQ201607000007","CostType":2,"OccurTime":"/Date(1467594000000)/","Amount":12345,"OwnerName":"姓名","CreatedOn":"/Date(1469773839000)/"},{"CampaignId":"dc01cb81-4c55-e611-96a5-085700e64e0f","ApplyNo":"SCBX201607000015","Status":2,"Name":"陈陈","CostType":1,"OccurTime":"/Date(1467594000000)/","Amount":2335,"OwnerName":"姓名","CreatedOn":"/Date(1469769777000)/"},{"CampaignId":"e72e92b0-4b55-e611-96a5-085700e64e0f","ApplyNo":"SCBX201607000014","Status":2,"Name":"陈陈","CostType":1,"OccurTime":"/Date(1467594000000)/","Amount":23355,"OwnerName":"姓名","CreatedOn":"/Date(1469769426000)/"}]
+     * entityInfo : [{"CampaignId":"09f4c329-1d66-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000022","Status":2,"Name":"活动名称","CostType":4,"CostTypeName":"彩页","OccurTime":"/Date(1471507200000)/","Amount":109,"OwnerName":"姓名","CreatedOn":"/Date(1471618613000)/"},{"CampaignId":"8566c918-0066-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000021","Status":2,"Name":"脱衣舞","CostType":1,"CostTypeName":"广告宣传费","OccurTime":"/Date(1503043200000)/","Amount":10,"OwnerName":"姓名","CreatedOn":"/Date(1471606129000)/"},{"CampaignId":"36e878e9-f365-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000020","Status":2,"Name":"shichanghuodong","CostType":2,"CostTypeName":"国内展览费","OccurTime":"/Date(1470470400000)/","Amount":38,"OwnerName":"檀庭","CreatedOn":"/Date(1471600895000)/"},{"CampaignId":"16b78703-d965-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000019","Status":3,"Name":"11","CostType":2,"CostTypeName":"国内展览费","OccurTime":"/Date(1471075200000)/","Amount":333,"OwnerName":"姓名","CreatedOn":"/Date(1471589343000)/"},{"CampaignId":"dfe63c44-ff62-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000018","Status":3,"Name":"huodong 000123","CostType":4,"CostTypeName":"彩页","OccurTime":"/Date(1475913600000)/","Amount":96352,"OwnerName":"檀庭","CreatedOn":"/Date(1471275919000)/"},{"CampaignId":"75b16025-af62-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000017","Status":3,"Name":"tr ","CostType":2,"CostTypeName":"国内展览费","OccurTime":"/Date(1470988800000)/","Amount":2222,"OwnerName":"姓名","CreatedOn":"/Date(1471241509000)/"},{"CampaignId":"71b16025-af62-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000016","Status":3,"Name":"tr ","CostType":2,"CostTypeName":"国内展览费","OccurTime":"/Date(1470988800000)/","Amount":2222,"OwnerName":"姓名","CreatedOn":"/Date(1471241507000)/"},{"CampaignId":"2588afa1-1e61-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000015","Status":3,"Name":"彩页测试","CostType":4,"CostTypeName":"彩页","OccurTime":"/Date(1467532800000)/","Amount":0,"OwnerName":"姓名","CreatedOn":"/Date(1471069488000)/"},{"CampaignId":"e4981b1a-9a5f-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000014","Status":3,"Name":"一","CostType":2,"CostTypeName":"国内展览费","OccurTime":"/Date(1502265600000)/","Amount":1.25588882E8,"OwnerName":"姓名","CreatedOn":"/Date(1470902615000)/"},{"CampaignId":"c48cada9-9f5e-e611-92fc-085700e64e0f","ApplyNo":"SCBX201608000010","Status":3,"Name":"好的","CostType":2,"CostTypeName":"国内展览费","OccurTime":"/Date(1476000000000)/","Amount":1.2356686E7,"OwnerName":"姓名","CreatedOn":"/Date(1470795059000)/"}]
      */
 
     private int errorcode;
     /**
-     * CampaignId : 591cf439-e75a-e611-92fc-085700e64e0f
-     * ApplyNo : SCBX201608000007
-     * Status : 4
-     * Name : 100
-     * CostType : 2
-     * OccurTime : /Date(1470816000000)/
-     * Amount : 5000.0
+     * CampaignId : 09f4c329-1d66-e611-92fc-085700e64e0f
+     * ApplyNo : SCBX201608000022
+     * Status : 2
+     * Name : 活动名称
+     * CostType : 4
+     * CostTypeName : 彩页
+     * OccurTime : /Date(1471507200000)/
+     * Amount : 109.0
      * OwnerName : 姓名
-     * CreatedOn : /Date(1470385984000)/
+     * CreatedOn : /Date(1471618613000)/
      */
 
     private List<EntityInfoBean> entityInfo;
@@ -50,6 +51,7 @@ public class MarketActivityReimbursementResponseBean extends BaseResponseBean {
         private int Status;
         private String Name;
         private int CostType;
+        private String CostTypeName;
         private String OccurTime;
         private double Amount;
         private String OwnerName;
@@ -93,6 +95,14 @@ public class MarketActivityReimbursementResponseBean extends BaseResponseBean {
 
         public void setCostType(int CostType) {
             this.CostType = CostType;
+        }
+
+        public String getCostTypeName() {
+            return CostTypeName;
+        }
+
+        public void setCostTypeName(String CostTypeName) {
+            this.CostTypeName = CostTypeName;
         }
 
         public String getOccurTime() {
