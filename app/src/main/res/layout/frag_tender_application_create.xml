@@ -42,7 +42,9 @@
                     android:hint="请填写项目名称"
                     android:textColor="@color/text_color_content"
                     android:textColorHint="@color/text_color_content"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:textSize="@dimen/text_size_normal"
+                    android:gravity="right"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
