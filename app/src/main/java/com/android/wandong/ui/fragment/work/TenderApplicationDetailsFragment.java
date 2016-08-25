@@ -68,6 +68,8 @@ public class TenderApplicationDetailsFragment extends ABaseFragment {
     TextView mNetWork ;
     @ViewInject(id = R.id.copmany_name)
     TextView mCopmanyName ;
+    @ViewInject(id = R.id.tv_Remark)
+    TextView mTvRemark;
 
 
     @ViewInject(id = R.id.ApprovalInformation, click = "OnClick")
@@ -140,9 +142,8 @@ public class TenderApplicationDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewApplyNo, result.getEntityInfo().getDetail().getName());
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getProjectName()+"  "+result.getEntityInfo().getDetail().getNumber());
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
-            Tools.setTextView(mViewmoneyr, result.getEntityInfo().getDetail().getQuantity()+"");
+            Tools.setTextView(mViewmoneyr, result.getEntityInfo().getDetail().getQuantity()+"台");
             //Tools.setTextView(mViewTime, );
-            Tools.setTextView(mViewmoneyr, result.getEntityInfo().getDetail().getQuantity() + "");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
             Tools.setTextView(mName, result.getEntityInfo().getDetail().getAccountName());
             Tools.setTextView(mAddress, result.getEntityInfo().getDetail().getProvince()+" "+result.getEntityInfo().getDetail().getCity());
@@ -152,6 +153,13 @@ public class TenderApplicationDetailsFragment extends ABaseFragment {
             Tools.setTextView(mDailiCompany, result.getEntityInfo().getDetail().getTenderAgency());
             Tools.setTextView(mNetWork, result.getEntityInfo().getDetail().getWebsite());
             Tools.setTextView(mCopmanyName, result.getEntityInfo().getDetail().getEmpoweredName());
+            if(result.getEntityInfo().getDetail().getRemark() != null){
+                mTvRemark.setVisibility(View.VISIBLE);
+                Tools.setTextView(mTvRemark, result.getEntityInfo().getDetail().getRemark());
+            }else{
+                mTvRemark.setVisibility(View.GONE);
+            }
+
         }
 
         ArrayList<ApprovalItem> approvalItems = new ArrayList<>();

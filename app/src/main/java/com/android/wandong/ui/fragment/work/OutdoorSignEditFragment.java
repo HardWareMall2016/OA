@@ -9,7 +9,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -17,12 +21,14 @@ import com.android.wandong.base.App;
 import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.beans.OutDoorSignDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentArgs;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestHandler;
@@ -31,6 +37,8 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.utils.ToastUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,6 +98,9 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
     @ViewInject(id = R.id.remark_length_info)
     TextView mViewRemarkLength;
 
+    @ViewInject(id = R.id.attachment_info)
+    FixGridView mViewAttachmentInfo;
+
     @ViewInject(id = R.id.btn_sign_out, click = "OnClick")
     View mBtnSignOut;
 
@@ -100,6 +111,7 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
 
+    private LayoutInflater mInflater;
 
     public static void launch(Activity activity,String signId) {
         FragmentArgs args = new FragmentArgs();
@@ -122,6 +134,7 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
     @Override
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
+        mInflater=inflater;
         getActivity().setTitle("外勤签到详情");
         mViewRemark.addTextChangedListener(this);
         mViewSignOutTime.setText(Tools.parseTimeToMinutes(System.currentTimeMillis()));
@@ -205,6 +218,25 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
                     Tools.setTextView(mViewSignInAddress, result.getEntityInfo().getSignInfo().getAddress());
                     Tools.setTextView(mViewRelativeCustomer, result.getEntityInfo().getSignInfo().getAccountName());
                     Tools.setTextView(mViewRemark, result.getEntityInfo().getSignInfo().getRemarks());
+
+                    if(result.getEntityInfo().getAttachmentInfo().size()==0){
+                        mViewAttachmentInfo.setVisibility(View.GONE);
+                    }else {
+                        mViewAttachmentInfo.setVisibility(View.VISIBLE);
+                        mViewAttachmentInfo.setAdapter(new GridViewAdapter(result.getEntityInfo().getAttachmentInfo()));
+                        mViewAttachmentInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                OutdoorSignAttachmentsFragment.ParamsBean paramsBean=new OutdoorSignAttachmentsFragment.ParamsBean();
+                                paramsBean.photos=result.getEntityInfo().getAttachmentInfo();
+                                paramsBean.showPos=position;
+                                paramsBean.address=result.getEntityInfo().getSignInfo().getAddress();
+                                long signTime=Tools.parseDateStrToLong(result.getEntityInfo().getSignInfo().getSignOutTime());
+                                paramsBean.time=signTime;
+                                OutdoorSignAttachmentsFragment.launch(getActivity(), paramsBean);
+                            }
+                        });
+                    }
                 }
             }
         }, HttpRequestUtils.RequestType.POST);
@@ -308,4 +340,48 @@ public class OutdoorSignEditFragment extends ABaseFragment implements TextWatche
         String address;
     }
 
+    private class GridViewAdapter extends BaseAdapter {
+        List<String> mAttachmentInfo=new ArrayList<>();
+        public GridViewAdapter( List<String> attachmentInfo){
+            mAttachmentInfo=attachmentInfo;
+        }
+
+        @Override
+        public int getCount() {
+            return mAttachmentInfo.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mAttachmentInfo.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            GridViewHolder holder;
+            if(convertView==null){
+                convertView=mInflater.inflate(R.layout.list_item_common_attachment,null);
+                holder=new GridViewHolder(convertView);
+            }else{
+                holder= (GridViewHolder)convertView.getTag();
+            }
+
+            ImageLoader.getInstance().displayImage(mAttachmentInfo.get(position), holder.viewAttachment, Tools.buildDefDisplayImgOptions());
+
+            return convertView;
+        }
+    }
+
+    private class GridViewHolder{
+        public ImageView viewAttachment;
+        public GridViewHolder(View convertView){
+            viewAttachment=(ImageView)convertView.findViewById(R.id.attachment);
+            convertView.setTag(this);
+        }
+    }
 }

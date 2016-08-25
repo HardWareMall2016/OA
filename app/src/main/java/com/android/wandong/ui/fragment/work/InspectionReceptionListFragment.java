@@ -181,8 +181,8 @@ public class InspectionReceptionListFragment extends APullToRefreshListFragment<
         String OwnerId;
         String OwnerName;
         int Level;
-        String Longitude;
-        String Latitude;
+        double Longitude;
+        double Latitude;
         int Type;
         String CreatedOn;
         int ContractNumber;

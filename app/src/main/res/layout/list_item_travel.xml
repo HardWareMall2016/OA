@@ -71,7 +71,7 @@
             android:layout_alignStart="@id/travel_tool"
             android:layout_below="@id/travel_tool"
             android:visibility="gone">
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -92,8 +92,8 @@
                     android:text="住宿费补贴"
                     android:textColor="@color/text_color_title"
                     android:textSize="@dimen/text_size_small" />
-            </LinearLayout>
-            <LinearLayout
+            </LinearLayout>-->
+           <!-- <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -114,15 +114,15 @@
                     android:text="交通补贴"
                     android:textColor="@color/text_color_title"
                     android:textSize="@dimen/text_size_small" />
-            </LinearLayout>
-            <TextView
+            </LinearLayout>-->
+            <!--<TextView
                 android:id="@+id/travel_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="其他"
                 android:textColor="@color/text_color_title"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_size_small" />-->
             <TextView
                 android:id="@+id/travel_shiyou"
                 android:layout_width="wrap_content"
@@ -154,6 +154,7 @@
                         android:text="报销金额"
                         />
                     <TextView
+                        android:id="@+id/tv_travel_money"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="360"

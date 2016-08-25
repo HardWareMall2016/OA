@@ -76,6 +76,7 @@ public class MarketActivityReimbursementFragment extends BaseWorkPageFragment<Ma
                 item.setStatus(beanItem.getStatus());
                 item.setName(beanItem.getName());
                 item.setCostType(beanItem.getCostType());
+                item.setCostTypeName(beanItem.getCostTypeName());
                 item.setOccurTime(beanItem.getOccurTime());
                 item.setAmount(beanItem.getAmount());
                 item.setOwnerName(beanItem.getOwnerName());
@@ -118,9 +119,9 @@ public class MarketActivityReimbursementFragment extends BaseWorkPageFragment<Ma
         @Override
         public void bindingData(View convertView, ItemData data) {
             mApplyNo.setText(data.getApplyNo());
-            mAccountName.setText(data.getName()+"(国内展览)");
+            mAccountName.setText(data.getName()+"("+data.getCostTypeName()+")");
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getAmount()+"");
+            mNumber.setText(data.getAmount()+"元");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }
@@ -131,6 +132,7 @@ public class MarketActivityReimbursementFragment extends BaseWorkPageFragment<Ma
         private int Status;
         private String Name;
         private int CostType;
+        private String CostTypeName;
         private String OccurTime;
         private double Amount;
         private String OwnerName;
@@ -174,6 +176,14 @@ public class MarketActivityReimbursementFragment extends BaseWorkPageFragment<Ma
 
         public void setCostType(int CostType) {
             this.CostType = CostType;
+        }
+
+        public String getCostTypeName() {
+            return CostTypeName;
+        }
+
+        public void setCostTypeName(String CostTypeName) {
+            this.CostTypeName = CostTypeName;
         }
 
         public String getOccurTime() {

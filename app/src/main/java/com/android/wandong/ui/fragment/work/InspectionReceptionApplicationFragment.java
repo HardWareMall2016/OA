@@ -112,7 +112,7 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
         public void bindingData(View convertView, ItemData data) {
             mApplyNo.setText(data.getAccountName());
             mName.setText(data.getOwnerName());
-            mNumber.setText(data.getVisitNumber()+"");
+            mNumber.setText(data.getVisitNumber()+"人");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }

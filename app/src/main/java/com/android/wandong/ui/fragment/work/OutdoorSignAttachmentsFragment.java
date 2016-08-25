@@ -70,8 +70,11 @@ public class OutdoorSignAttachmentsFragment extends ABaseFragment implements Pho
     @ViewInject(id = R.id.indicator)
     LinearLayout mContainerIndicator;
 
-    @ViewInject(id = R.id.location)
+    @ViewInject(id = R.id.time)
     TextView mViewTime;
+
+    @ViewInject(id = R.id.location)
+    TextView mViewLocation;
 
     //data
     private ParamsBean mParamsBean;
@@ -116,7 +119,8 @@ public class OutdoorSignAttachmentsFragment extends ABaseFragment implements Pho
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         mViewPager.setAdapter(new SamplePagerAdapter());
 
-        Tools.setTextView(mViewTime,mParamsBean.address);
+        mViewTime.setText(Tools.parseTimeToChinaYearMinutes(mParamsBean.time));
+        Tools.setTextView(mViewLocation,mParamsBean.address);
 
         if (mParamsBean.showPos < mParamsBean.photos.size() && mParamsBean.showPos >= 0) {
             mViewPager.setCurrentItem(mParamsBean.showPos);

@@ -96,6 +96,7 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("差旅费报销详情");
         mMoneyFormat.applyPattern("###,##0.00元");
+        mViewNumber.setText(mContent.getStepNumber()+"个");
     }
 
     @Override
@@ -183,6 +184,7 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
                 detailItem.OwnerName = bean.getOwnerName();
                 detailItem.CreatedOn = bean.getCreatedOn();
                 detailItem.PersonalImage = bean.getPersonalImage();
+                detailItem.TransportName = bean.getTransportName();
 
                 detailItems.add(detailItem);
             }
@@ -212,7 +214,7 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
     private class ApprovalItem{
         String StepNumber;
         String ApprovalTime;
-        int ApprovalPrice;
+        double ApprovalPrice;
         String Opinion;
         String Result;
         String ApproverId;
@@ -248,6 +250,7 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         String OwnerName;
         String CreatedOn;
         Object PersonalImage;
+        String TransportName ;
     }
 
     private class TravelAdapter extends ABaseAdapter<DetailItem> {
@@ -284,6 +287,12 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         @ViewInject(id = R.id.travel_indicator)
         ImageView mIndicator ;
 
+        @ViewInject(id = R.id.tv_travel_money)
+        TextView mTvTravelMoney ;
+
+        @ViewInject(id = R.id.travel_shiyou)
+        TextView mTvShiYou;
+
         @Override
         public int inflateViewId() {
             return R.layout.list_item_travel;
@@ -295,7 +304,9 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
             mHeadNumber.setText(getPosition()+1+"");
             mAddress.setText("往返地址："+data.Origin+"-"+data.Destination);
             mTravelTime.setText("出差时间："+data.TravelDays+"天");
-            mTravelTool.setText("交通工具：" + data.TrainTicket + "|交通费：" + data.Travel + "");
+            mTravelTool.setText("交通工具：" + data.TransportName + "|交通费：" + data.Travel + "");
+            mTvTravelMoney.setText(data.Travel+"");
+            mTvShiYou.setText("出差事由："+data.Remark);
 
 
             if(data.expand){
@@ -361,7 +372,7 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
 
             Tools.setTextView(name, data.Approver);
             Tools.setTextView(result, data.Result);
-            Tools.setTextView(opinion, data.Opinion);
+            Tools.setTextView(opinion, "("+data.Opinion+")");
             Tools.setTextView(time, data.ApprovalTime);
 
         }

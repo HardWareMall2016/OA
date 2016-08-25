@@ -175,8 +175,8 @@ public class EntertainmentApplicationListFragment extends APullToRefreshListFrag
         String OwnerId;
         String OwnerName;
         int Level;
-        String Longitude;
-        String Latitude;
+        double Longitude;
+        double Latitude;
         int Type;
         String CreatedOn;
         int ContractNumber;

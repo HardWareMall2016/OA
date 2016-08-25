@@ -31,6 +31,9 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.inner.GeoPoint;
+import com.baidu.mapapi.utils.DistanceUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.component.container.FragmentContainerActivity;
 import com.zhan.framework.network.HttpRequestHandler;
@@ -113,6 +116,9 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
 
     //Data
     private String mCustomerId;
+    private double mCustomerLongitude;
+    private double mCustomerLatitude;
+
     private AddressInfo mAddressInfo;
     private ArrayList<String> mMeidaUri = new ArrayList<>();
 
@@ -237,8 +243,14 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
         }
         HttpRequestParams requestParams = Tools.createHttpRequestParams();
 
+        LatLng p1LL = new LatLng(mAddressInfo.Latitude, mAddressInfo.Longitude);
+
+        LatLng p2LL = new LatLng(mCustomerLatitude,mCustomerLongitude);
+
+        double distance = DistanceUtil.getDistance(p1LL, p2LL);
+
         requestParams.put("Abnormal", 1);
-        requestParams.put("AbnormalDistance", 21337.287181);
+        requestParams.put("AbnormalDistance", distance);
         requestParams.put("AccountId", mCustomerId);
         requestParams.put("Address", mAddressInfo.address);
         requestParams.put("AttaRelationId", attaRelationId);
@@ -272,6 +284,8 @@ public class OutdoorSignCreateFragment extends ABaseFragment implements TextWatc
             mViewSignInCustomer.setText(data.getStringExtra(AccountListFragment.KEY_ACCOUNT_NAME));
             mViewSignInCustomer.setTextColor(0xff333333);
             mCustomerId = data.getStringExtra(AccountListFragment.KEY_ACCOUNT_ID);
+            mCustomerLongitude= data.getDoubleExtra(AccountListFragment.KEY_LONGITUDE, 0);
+            mCustomerLatitude= data.getDoubleExtra(AccountListFragment.KEY_LATITUDE,0);
         } else if (requestCode == REQUEST_CODE_LOCATION && resultCode == Activity.RESULT_OK) {
             mAddressInfo = new AddressInfo();
             mAddressInfo.Latitude = data.getDoubleExtra(ChooseLocationFragment.KEY_LATITUDE, 0);
@@ -354,7 +368,7 @@ public class ProgressBarAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (mMeidaUri.size() - 1 == position) {
+        if (mMeidaUri.size() - 1 == position&&mMeidaUri.size()<11) {
             ActionSheetDialog actionSheetDialog = new ActionSheetDialog(getActivity());
             actionSheetDialog.builder();
             actionSheetDialog.addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {

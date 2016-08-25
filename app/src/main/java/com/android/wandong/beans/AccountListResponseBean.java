@@ -89,8 +89,8 @@ public class AccountListResponseBean extends BaseResponseBean {
             private String OwnerId;
             private String OwnerName;
             private int Level;
-            private String Longitude;
-            private String Latitude;
+            private double Longitude;
+            private double Latitude;
             private int Type;
             private String CreatedOn;
             private int ContractNumber;
@@ -136,19 +136,19 @@ public class AccountListResponseBean extends BaseResponseBean {
                 this.Level = Level;
             }
 
-            public String getLongitude() {
+            public double getLongitude() {
                 return Longitude;
             }
 
-            public void setLongitude(String Longitude) {
+            public void setLongitude(double Longitude) {
                 this.Longitude = Longitude;
             }
 
-            public String getLatitude() {
+            public double getLatitude() {
                 return Latitude;
             }
 
-            public void setLatitude(String Latitude) {
+            public void setLatitude(double Latitude) {
                 this.Latitude = Latitude;
             }
 

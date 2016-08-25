@@ -131,7 +131,7 @@ public class EntertainmentReimbursementFragment extends BaseWorkPageFragment<Ent
             Tools.setTextView(mViewApplyNo, data.ApplyNo);
             Tools.setTextView(mViewAccountNamet,data.AccountName);
             Tools.setTextView(mViewName,data.OwnerName);
-            Tools.setTextView(mViewNumber, String.valueOf(data.Number));
+            Tools.setTextView(mViewNumber, String.valueOf(data.Amount)+"元");
             AuditStatusHelper.setImageViewByStatus(mViewImgStatus, data.Status);
         }
     }

@@ -10,14 +10,14 @@ import java.util.List;
 public class MarketReimburseDetailResponseBean extends BaseResponseBean{
     /**
      * errorcode : 200
-     * entityInfo : {"Detail":{"CampaignId":"80801079-6859-e611-92fc-085700e64e0f","Name":"SCBX201608000003","CampaignName":"彩页测试","CostType":1,"OccurTime":"/Date(1467561600000)/","Amount":30,"Remark":"3000","Quantity":0,"AuditStatus":3,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1470221593000)/","StepNumber":2},"Approval":[{"StepNumber":"1","ApprovalTime":"2016-08-03 18:53","ApprovalPrice":30,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"},{"StepNumber":"2","ApprovalTime":"2016-08-03 18:53","ApprovalPrice":30,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"}],"isApprover":false}
+     * entityInfo : {"Detail":{"CampaignId":"09f4c329-1d66-e611-92fc-085700e64e0f","Name":"SCBX201608000022","CampaignName":"活动名称","CostType":4,"CostTypeName":"彩页","OccurTime":"/Date(1471536000000)/","Amount":109,"Remark":"活动费神ing","Quantity":2,"AuditStatus":2,"AuditStatusName":null,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1471618613000)/","StepNumber":1},"Approval":[{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}],"isApprover":true}
      */
 
     private int errorcode;
     /**
-     * Detail : {"CampaignId":"80801079-6859-e611-92fc-085700e64e0f","Name":"SCBX201608000003","CampaignName":"彩页测试","CostType":1,"OccurTime":"/Date(1467561600000)/","Amount":30,"Remark":"3000","Quantity":0,"AuditStatus":3,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1470221593000)/","StepNumber":2}
-     * Approval : [{"StepNumber":"1","ApprovalTime":"2016-08-03 18:53","ApprovalPrice":30,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"},{"StepNumber":"2","ApprovalTime":"2016-08-03 18:53","ApprovalPrice":30,"Opinion":"审批测试","Result":"通过","ApproverId":"c52610c5-60fd-e511-a1e5-085700e64e0f","Approver":"姓名"}]
-     * isApprover : false
+     * Detail : {"CampaignId":"09f4c329-1d66-e611-92fc-085700e64e0f","Name":"SCBX201608000022","CampaignName":"活动名称","CostType":4,"CostTypeName":"彩页","OccurTime":"/Date(1471536000000)/","Amount":109,"Remark":"活动费神ing","Quantity":2,"AuditStatus":2,"AuditStatusName":null,"OwnerId":"c52610c5-60fd-e511-a1e5-085700e64e0f","OwnerName":"姓名","CreatedOn":"/Date(1471618613000)/","StepNumber":1}
+     * Approval : [{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}]
+     * isApprover : true
      */
 
     private EntityInfoBean entityInfo;
@@ -40,31 +40,33 @@ public class MarketReimburseDetailResponseBean extends BaseResponseBean{
 
     public static class EntityInfoBean {
         /**
-         * CampaignId : 80801079-6859-e611-92fc-085700e64e0f
-         * Name : SCBX201608000003
-         * CampaignName : 彩页测试
-         * CostType : 1
-         * OccurTime : /Date(1467561600000)/
-         * Amount : 30
-         * Remark : 3000
-         * Quantity : 0
-         * AuditStatus : 3
+         * CampaignId : 09f4c329-1d66-e611-92fc-085700e64e0f
+         * Name : SCBX201608000022
+         * CampaignName : 活动名称
+         * CostType : 4
+         * CostTypeName : 彩页
+         * OccurTime : /Date(1471536000000)/
+         * Amount : 109.0
+         * Remark : 活动费神ing
+         * Quantity : 2
+         * AuditStatus : 2
+         * AuditStatusName : null
          * OwnerId : c52610c5-60fd-e511-a1e5-085700e64e0f
          * OwnerName : 姓名
-         * CreatedOn : /Date(1470221593000)/
-         * StepNumber : 2
+         * CreatedOn : /Date(1471618613000)/
+         * StepNumber : 1
          */
 
         private DetailBean Detail;
         private boolean isApprover;
         /**
          * StepNumber : 1
-         * ApprovalTime : 2016-08-03 18:53
-         * ApprovalPrice : 30
-         * Opinion : 审批测试
-         * Result : 通过
-         * ApproverId : c52610c5-60fd-e511-a1e5-085700e64e0f
-         * Approver : 姓名
+         * ApprovalTime :
+         * ApprovalPrice : 0
+         * Opinion :
+         * Result :
+         * ApproverId : 97bb0342-2d34-e611-b907-085700e64e0f
+         * Approver : 待豫单元经理审批
          */
 
         private List<ApprovalBean> Approval;
@@ -98,11 +100,13 @@ public class MarketReimburseDetailResponseBean extends BaseResponseBean{
             private String Name;
             private String CampaignName;
             private int CostType;
+            private String CostTypeName;
             private String OccurTime;
-            private int Amount;
+            private double Amount;
             private String Remark;
             private int Quantity;
             private int AuditStatus;
+            private Object AuditStatusName;
             private String OwnerId;
             private String OwnerName;
             private String CreatedOn;
@@ -140,6 +144,14 @@ public class MarketReimburseDetailResponseBean extends BaseResponseBean{
                 this.CostType = CostType;
             }
 
+            public String getCostTypeName() {
+                return CostTypeName;
+            }
+
+            public void setCostTypeName(String CostTypeName) {
+                this.CostTypeName = CostTypeName;
+            }
+
             public String getOccurTime() {
                 return OccurTime;
             }
@@ -148,11 +160,11 @@ public class MarketReimburseDetailResponseBean extends BaseResponseBean{
                 this.OccurTime = OccurTime;
             }
 
-            public int getAmount() {
+            public double getAmount() {
                 return Amount;
             }
 
-            public void setAmount(int Amount) {
+            public void setAmount(double Amount) {
                 this.Amount = Amount;
             }
 
@@ -178,6 +190,14 @@ public class MarketReimburseDetailResponseBean extends BaseResponseBean{
 
             public void setAuditStatus(int AuditStatus) {
                 this.AuditStatus = AuditStatus;
+            }
+
+            public Object getAuditStatusName() {
+                return AuditStatusName;
+            }
+
+            public void setAuditStatusName(Object AuditStatusName) {
+                this.AuditStatusName = AuditStatusName;
             }
 
             public String getOwnerId() {
