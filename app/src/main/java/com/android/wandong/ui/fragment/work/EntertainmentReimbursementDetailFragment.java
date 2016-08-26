@@ -160,7 +160,7 @@ public class EntertainmentReimbursementDetailFragment extends ABaseFragment {
 
             Tools.setTextView(mTvProvince, result.getEntityInfo().getDetail().getProvince());
 
-            Tools.setTextView(mTvTrueEstimateMeals, String.format("%d元", result.getEntityInfo().getDetail().getActualMeals()));
+            Tools.setTextView(mTvTrueEstimateMeals, result.getEntityInfo().getDetail().getActualMeals()+"元");
 
             Tools.setTextView(mViewApplyUnit, String.valueOf(result.getEntityInfo().getDetail().getApplyUnit()));
 
