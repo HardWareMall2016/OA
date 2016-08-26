@@ -10,6 +10,7 @@ import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.beans.TenderApplicationResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
+import com.android.wandong.utils.Tools;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -101,6 +102,8 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
         ImageView mViewHeadPortrait;
         @ViewInject(id = R.id.img_status)
         ImageView mViewStatus ;
+        @ViewInject(id = R.id.time)
+        TextView mTvTime ;
 
         @Override
         public int inflateViewId() {
@@ -113,6 +116,7 @@ public class TenderApplicationFragment extends BaseWorkPageFragment<TenderApplic
             mName.setText(data.getOwnerName());
             mNumber.setText(data.getQuantity()+"台");
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
+            mTvTime.setText(Tools.parseTimeToDateStr(Tools.parseDateStrToLong(data.getCreatedOn())));
         }
     }
 
