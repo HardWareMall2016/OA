@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
+import com.android.wandong.beans.InspectionReceptionApplicationContent;
 import com.android.wandong.beans.InspectionReceptionResponseBean;
 import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.network.ApiUrls;
@@ -95,7 +96,10 @@ public class InspectionReceptionApplicationFragment extends BaseWorkPageFragment
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        InspectionReceptionApplicationDetailsFragment.launch(getActivity(), getAdapterItems().get((int) id).ReceptionId);
+        InspectionReceptionApplicationContent content = new InspectionReceptionApplicationContent();
+        content.setReceptionId(getAdapterItems().get((int)id).getReceptionId());
+        content.setCreateTime(getAdapterItems().get((int)id).getCreatedOn());
+        InspectionReceptionApplicationDetailsFragment.launch(getActivity(), content);
     }
 
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{

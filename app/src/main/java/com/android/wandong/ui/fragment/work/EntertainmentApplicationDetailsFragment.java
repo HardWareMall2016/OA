@@ -180,6 +180,8 @@ public class EntertainmentApplicationDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewCustomerNum, String.format("%d人", result.getEntityInfo().getDetail().getNumber()));
             Tools.setTextView(mViewReasonContent, String.valueOf(result.getEntityInfo().getDetail().getReason()));
 
+            Tools.setTextView(mViewTime,Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getCreatedOn())));
+
 
             Tools.setTextView(mViewApplyUnit, String.valueOf(result.getEntityInfo().getDetail().getApplyUnit()));
 

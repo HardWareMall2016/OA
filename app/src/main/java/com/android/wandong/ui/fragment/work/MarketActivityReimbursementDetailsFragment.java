@@ -127,6 +127,7 @@ public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getCampaignName()+"("+result.getEntityInfo().getDetail().getCostTypeName()+")");
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, mMoneyFormat.format(result.getEntityInfo().getDetail().getAmount()));
+            Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getCreatedOn())));
 
             if(result.getEntityInfo().getDetail().getRemark() != null){
                 mTvRemark.setVisibility(View.VISIBLE);

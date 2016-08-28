@@ -143,13 +143,16 @@ public class TenderApplicationDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getProjectName()+"  "+result.getEntityInfo().getDetail().getNumber());
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, result.getEntityInfo().getDetail().getQuantity()+"台");
-            //Tools.setTextView(mViewTime, );
+            Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getCreatedOn())));
+
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
             Tools.setTextView(mName, result.getEntityInfo().getDetail().getAccountName());
             Tools.setTextView(mAddress, result.getEntityInfo().getDetail().getProvince()+" "+result.getEntityInfo().getDetail().getCity());
             Tools.setTextView(mProductLine, result.getEntityInfo().getDetail().getProductClassifyName());
             Tools.setTextView(mZhaobiaoProduct, result.getEntityInfo().getDetail().getProductName());
-            //Tools.setTextView(mOpenTime, result.getEntityInfo().getDetail().getProductClassifyName());
+
+            Tools.setTextView(mOpenTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getOpenTendersTime())));
+
             Tools.setTextView(mDailiCompany, result.getEntityInfo().getDetail().getTenderAgency());
             Tools.setTextView(mNetWork, result.getEntityInfo().getDetail().getWebsite());
             Tools.setTextView(mCopmanyName, result.getEntityInfo().getDetail().getEmpoweredName());

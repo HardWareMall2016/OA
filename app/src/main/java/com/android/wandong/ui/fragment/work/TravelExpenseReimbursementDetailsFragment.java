@@ -97,6 +97,8 @@ public class TravelExpenseReimbursementDetailsFragment extends ABaseFragment {
         getActivity().setTitle("差旅费报销详情");
         mMoneyFormat.applyPattern("###,##0.00元");
         mViewNumber.setText(mContent.getStepNumber()+"个");
+        mMoney.setText(mContent.getApprovalPrice()+"元");
+        mTime.setText(mContent.getCreatedOn());
     }
 
     @Override

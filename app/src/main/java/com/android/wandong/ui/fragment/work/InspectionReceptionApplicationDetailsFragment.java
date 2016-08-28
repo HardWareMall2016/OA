@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
+import com.android.wandong.beans.InspectionReceptionApplicationContent;
 import com.android.wandong.beans.InspectionReceptionApplicationDetailsResponseBean;
 import com.android.wandong.beans.MarketReimburseDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
@@ -70,14 +71,16 @@ public class InspectionReceptionApplicationDetailsFragment extends ABaseFragment
     private DecimalFormat mMoneyFormat = new DecimalFormat();
     private Handler mHandler=new Handler();
 
+    private InspectionReceptionApplicationContent content ;
+
     @Override
     protected int inflateContentView() {
         return R.layout.frag_inspection_application_details;
     }
 
-    public static void launch(FragmentActivity activity, String receptionId) {
+    public static void launch(FragmentActivity activity, InspectionReceptionApplicationContent content) {
         FragmentArgs args = new FragmentArgs();
-        args.add(ARG_KEY, receptionId);
+        args.add(ARG_KEY, content);
         FragmentContainerActivity.launch(activity, InspectionReceptionApplicationDetailsFragment.class, args);
     }
 
@@ -85,13 +88,13 @@ public class InspectionReceptionApplicationDetailsFragment extends ABaseFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mReceptionId = savedInstanceState == null ? (String) getArguments().getSerializable(ARG_KEY) : (String) savedInstanceState.getSerializable(ARG_KEY);
+        content = savedInstanceState == null ? (InspectionReceptionApplicationContent) getArguments().getSerializable(ARG_KEY) : (InspectionReceptionApplicationContent) savedInstanceState.getSerializable(ARG_KEY);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(ARG_KEY, mReceptionId);
+        outState.putSerializable(ARG_KEY, content);
     }
 
     @Override
@@ -99,6 +102,10 @@ public class InspectionReceptionApplicationDetailsFragment extends ABaseFragment
         super.layoutInit(inflater, savedInstanceSate);
         getActivity().setTitle("考察接待申请详情");
         mMoneyFormat.applyPattern("###,##0.00元");
+
+        mReceptionId = content.getReceptionId();
+        mViewTime.setText(Tools.parseTimeToDateStr(Tools.parseDateStrToLong(content.getCreateTime())));
+
     }
 
     @Override
@@ -136,6 +143,9 @@ public class InspectionReceptionApplicationDetailsFragment extends ABaseFragment
             Tools.setTextView(mViewmoneyr, result.getEntityInfo().getDetail().getVisitNumber()+"人");
             Tools.setTextView(mInspectionName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mInspectionPhone, result.getEntityInfo().getDetail().getVisitTelephone());
+
+            Tools.setTextView(mData1, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getComeTime())));
+            Tools.setTextView(mData2, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getLeaveTime())));
 
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
         }
