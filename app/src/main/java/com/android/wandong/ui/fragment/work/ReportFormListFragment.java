@@ -65,7 +65,7 @@ public class ReportFormListFragment extends BaseWorkPageFragment<ReportFormListF
 
     @Override
     public int getListDividerHeight() {
-        return PixelUtils.dp2px(16);
+        return PixelUtils.dp2px(8);
     }
 
     @Override

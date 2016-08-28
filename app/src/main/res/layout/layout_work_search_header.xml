@@ -1,10 +1,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="16dp"
+    android:paddingBottom="8dp"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    android:paddingTop="16dp">
+    android:paddingTop="8dp">
 
     <EditText
         android:id="@+id/search_content"
@@ -14,6 +14,7 @@
         android:drawableLeft="@drawable/search_bg_pressed"
         android:gravity="center"
         android:hint="搜索"
-        android:minHeight="40dp" />
+        android:minHeight="30dp"
+        android:textSize="@dimen/text_size_small" />
 </FrameLayout>
 
