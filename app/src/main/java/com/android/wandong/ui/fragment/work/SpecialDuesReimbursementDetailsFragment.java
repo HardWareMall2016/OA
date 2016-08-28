@@ -26,6 +26,8 @@ import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
 import com.zhan.framework.ui.widget.CircleImageView;
 
+import org.w3c.dom.Text;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -46,6 +48,8 @@ public class SpecialDuesReimbursementDetailsFragment extends ABaseFragment {
     TextView mType ;
     @ViewInject(id = R.id.people)
     TextView mPeople ;
+    @ViewInject(id = R.id.time)
+    TextView mViewTime;
 
     @ViewInject(id = R.id.img_status)
     private ImageView mViewStatus;//审批状态
@@ -130,6 +134,7 @@ public class SpecialDuesReimbursementDetailsFragment extends ABaseFragment {
             Tools.setTextView(mViewmoneyr, mMoneyFormat.format(result.getEntityInfo().getDetail().getAmount()));
             Tools.setTextView(mType,result.getEntityInfo().getDetail().getCostTypeName());
             Tools.setTextView(mPeople, result.getEntityInfo().getDetail().getOwnerName());
+            Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getCreatedOn())));
 
             if(result.getEntityInfo().getDetail().getRemark() != null){
                 mTvRemark.setVisibility(View.VISIBLE);

@@ -10,6 +10,7 @@ import com.android.wandong.beans.NoticeResponseBean;
 import com.android.wandong.beans.SpecialDuesReimburseResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
+import com.android.wandong.utils.Tools;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -104,6 +105,8 @@ public class SpecialDuesReimbursementFragment extends BaseWorkPageFragment<Speci
         ImageView mViewHeadPortrait;
         @ViewInject(id = R.id.img_status)
         ImageView mViewStatus ;
+        @ViewInject(id = R.id.time)
+        TextView mViewTime ;
 
         @Override
         public int inflateViewId() {
@@ -115,6 +118,7 @@ public class SpecialDuesReimbursementFragment extends BaseWorkPageFragment<Speci
             mApplyNo.setText(data.getApplyNo());
             mName.setText(data.getOwnerName());
             mNumber.setText(data.getAmount()+"元");
+            Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(data.getCreatedOn())));
             AuditStatusHelper.setImageViewByStatus(mViewStatus, data.getStatus());
         }
     }

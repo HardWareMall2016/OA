@@ -143,7 +143,7 @@ public class EntertainmentApplicationFragment extends BaseWorkPageFragment<Enter
             Tools.setTextView(mViewAccountNamet,data.AccountName);
             Tools.setTextView(mViewName,data.OwnerName);
             Tools.setTextView(mViewMoney,  mMoneyFormat.format(data.EstimateTotal));
-            //Tools.setTextView(mViewApplyNo,data.ApplyNo);
+            Tools.setTextView(mViewTime,Tools.parseTimeToDateStr(Tools.parseDateStrToLong(data.CreatedOn)));
             AuditStatusHelper.setImageViewByStatus(mViewImgStatus,data.Status);
         }
     }

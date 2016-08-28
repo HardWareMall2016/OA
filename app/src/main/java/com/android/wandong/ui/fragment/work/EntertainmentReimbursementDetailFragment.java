@@ -153,6 +153,8 @@ public class EntertainmentReimbursementDetailFragment extends ABaseFragment {
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
             Tools.setTextView(mViewmoneyr, mMoneyFormat.format(result.getEntityInfo().getDetail().getActualTotal()));
 
+            Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(result.getEntityInfo().getDetail().getCreatedOn())));
+
             AuditStatusHelper.setImageViewByStatus(mViewStatus, result.getEntityInfo().getDetail().getAuditStatus());
 
             Tools.setTextView(mViewCustomerNum, String.format("%d人", result.getEntityInfo().getDetail().getNumber()));
