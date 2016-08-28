@@ -10,14 +10,14 @@ import java.util.List;
 public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
     /**
      * errorcode : 200
-     * entityInfo : {"Detail":{"TenderAuthorizationId":"f1630972-db5a-e611-92fc-085700e64e0f","Name":"TBSQ201608000007","ProjectName":"招投标","Number":"001","BidStatus":0,"AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","Province":"天津市","City":"哈哈哈哈","ProductClassifyId":"64bc3705-b218-e611-ac23-085700e64e0f","ProductClassifyName":"MRI磁共振成像系统","ProductId":"9b94b47d-d318-e611-ac23-085700e64e0f","ProductName":"i_Open 0.3T","Quantity":20,"OpenTendersTime":"/Date(1470470400000)/","TenderAgency":"机构","website":"www","EmpoweredName":"名","OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"tanting","CreatedOn":"/Date(1470380924000)/","Remark":"","AuditStatus":2,"StepNumber":1,"TenderAuthorizationOpportunitys":[{"TenderAuthorizationOpportunityId":"77e5d2b5-095a-e611-92fc-085700e64e0f","OpportunityId":"00000000-0000-0000-0000-000000000000","OpportunityName":null,"TenderAuthorizationId":"76e5d2b5-095a-e611-92fc-085700e64e0f"}]},"Approval":[{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}],"isApprover":false}
+     * entityInfo : {"Detail":{"TenderAuthorizationId":"01e3855f-786b-e611-92fc-085700e64e0f","Name":"TBSQ201608000032","ProjectName":"周五招投标","Number":"08261525","BidStatus":0,"AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","Province":"河北省","City":"邯郸","ProductClassifyId":"089c9037-b918-e611-ac23-085700e64e0f","ProductClassifyName":"常规产品","ProductId":"24e647a4-da18-e611-ac23-085700e64e0f","ProductName":"LS-3型","Quantity":5,"OpenTendersTime":"/Date(1487923200000)/","TenderAgency":"第一临时工有限公司","Website":"www.cctv.com","EmpoweredName":"第一市场","OwnerId":"fe139861-9b54-e611-be6c-085700e64e0f","OwnerName":"销售员","CreatedOn":"/Date(1472207543000)/","Remark":"","AuditStatus":2,"AuditStatusName":null,"StepNumber":1,"TenderAuthorizationOpportunitys":{"TenderAuthorizationOpportunityId":"02e3855f-786b-e611-92fc-085700e64e0f","OpportunityId":"095ad7c0-d868-e611-92fc-085700e64e0f","OpportunityName":"测试商机2","TenderAuthorizationId":"01e3855f-786b-e611-92fc-085700e64e0f"}},"Approval":[{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}],"isApprover":true}
      */
 
     private int errorcode;
     /**
-     * Detail : {"TenderAuthorizationId":"f1630972-db5a-e611-92fc-085700e64e0f","Name":"TBSQ201608000007","ProjectName":"招投标","Number":"001","BidStatus":0,"AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","Province":"天津市","City":"哈哈哈哈","ProductClassifyId":"64bc3705-b218-e611-ac23-085700e64e0f","ProductClassifyName":"MRI磁共振成像系统","ProductId":"9b94b47d-d318-e611-ac23-085700e64e0f","ProductName":"i_Open 0.3T","Quantity":20,"OpenTendersTime":"/Date(1470470400000)/","TenderAgency":"机构","website":"www","EmpoweredName":"名","OwnerId":"20998760-65fd-e511-a1e5-085700e64e0f","OwnerName":"tanting","CreatedOn":"/Date(1470380924000)/","Remark":"","AuditStatus":2,"StepNumber":1,"TenderAuthorizationOpportunitys":[{"TenderAuthorizationOpportunityId":"77e5d2b5-095a-e611-92fc-085700e64e0f","OpportunityId":"00000000-0000-0000-0000-000000000000","OpportunityName":null,"TenderAuthorizationId":"76e5d2b5-095a-e611-92fc-085700e64e0f"}]}
+     * Detail : {"TenderAuthorizationId":"01e3855f-786b-e611-92fc-085700e64e0f","Name":"TBSQ201608000032","ProjectName":"周五招投标","Number":"08261525","BidStatus":0,"AccountId":"5640c2e6-5516-e611-ac23-085700e64e0f","AccountName":"襄城区余家湖社区卫生服务中心","Province":"河北省","City":"邯郸","ProductClassifyId":"089c9037-b918-e611-ac23-085700e64e0f","ProductClassifyName":"常规产品","ProductId":"24e647a4-da18-e611-ac23-085700e64e0f","ProductName":"LS-3型","Quantity":5,"OpenTendersTime":"/Date(1487923200000)/","TenderAgency":"第一临时工有限公司","Website":"www.cctv.com","EmpoweredName":"第一市场","OwnerId":"fe139861-9b54-e611-be6c-085700e64e0f","OwnerName":"销售员","CreatedOn":"/Date(1472207543000)/","Remark":"","AuditStatus":2,"AuditStatusName":null,"StepNumber":1,"TenderAuthorizationOpportunitys":{"TenderAuthorizationOpportunityId":"02e3855f-786b-e611-92fc-085700e64e0f","OpportunityId":"095ad7c0-d868-e611-92fc-085700e64e0f","OpportunityName":"测试商机2","TenderAuthorizationId":"01e3855f-786b-e611-92fc-085700e64e0f"}}
      * Approval : [{"StepNumber":"1","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"97bb0342-2d34-e611-b907-085700e64e0f","Approver":"待豫单元经理审批"},{"StepNumber":"2","ApprovalTime":"","ApprovalPrice":0,"Opinion":"","Result":"","ApproverId":"75bb0342-2d34-e611-b907-085700e64e0f","Approver":"待销售总监审批"}]
-     * isApprover : false
+     * isApprover : true
      */
 
     private EntityInfoBean entityInfo;
@@ -40,31 +40,32 @@ public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
 
     public static class EntityInfoBean {
         /**
-         * TenderAuthorizationId : f1630972-db5a-e611-92fc-085700e64e0f
-         * Name : TBSQ201608000007
-         * ProjectName : 招投标
-         * Number : 001
+         * TenderAuthorizationId : 01e3855f-786b-e611-92fc-085700e64e0f
+         * Name : TBSQ201608000032
+         * ProjectName : 周五招投标
+         * Number : 08261525
          * BidStatus : 0
          * AccountId : 5640c2e6-5516-e611-ac23-085700e64e0f
          * AccountName : 襄城区余家湖社区卫生服务中心
-         * Province : 天津市
-         * City : 哈哈哈哈
-         * ProductClassifyId : 64bc3705-b218-e611-ac23-085700e64e0f
-         * ProductClassifyName : MRI磁共振成像系统
-         * ProductId : 9b94b47d-d318-e611-ac23-085700e64e0f
-         * ProductName : i_Open 0.3T
-         * Quantity : 20
-         * OpenTendersTime : /Date(1470470400000)/
-         * TenderAgency : 机构
-         * website : www
-         * EmpoweredName : 名
-         * OwnerId : 20998760-65fd-e511-a1e5-085700e64e0f
-         * OwnerName : tanting
-         * CreatedOn : /Date(1470380924000)/
+         * Province : 河北省
+         * City : 邯郸
+         * ProductClassifyId : 089c9037-b918-e611-ac23-085700e64e0f
+         * ProductClassifyName : 常规产品
+         * ProductId : 24e647a4-da18-e611-ac23-085700e64e0f
+         * ProductName : LS-3型
+         * Quantity : 5
+         * OpenTendersTime : /Date(1487923200000)/
+         * TenderAgency : 第一临时工有限公司
+         * Website : www.cctv.com
+         * EmpoweredName : 第一市场
+         * OwnerId : fe139861-9b54-e611-be6c-085700e64e0f
+         * OwnerName : 销售员
+         * CreatedOn : /Date(1472207543000)/
          * Remark :
          * AuditStatus : 2
+         * AuditStatusName : null
          * StepNumber : 1
-         * TenderAuthorizationOpportunitys : [{"TenderAuthorizationOpportunityId":"77e5d2b5-095a-e611-92fc-085700e64e0f","OpportunityId":"00000000-0000-0000-0000-000000000000","OpportunityName":null,"TenderAuthorizationId":"76e5d2b5-095a-e611-92fc-085700e64e0f"}]
+         * TenderAuthorizationOpportunitys : {"TenderAuthorizationOpportunityId":"02e3855f-786b-e611-92fc-085700e64e0f","OpportunityId":"095ad7c0-d868-e611-92fc-085700e64e0f","OpportunityName":"测试商机2","TenderAuthorizationId":"01e3855f-786b-e611-92fc-085700e64e0f"}
          */
 
         private DetailBean Detail;
@@ -122,22 +123,23 @@ public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
             private int Quantity;
             private String OpenTendersTime;
             private String TenderAgency;
-            private String website;
+            private String Website;
             private String EmpoweredName;
             private String OwnerId;
             private String OwnerName;
             private String CreatedOn;
             private String Remark;
             private int AuditStatus;
+            private Object AuditStatusName;
             private int StepNumber;
             /**
-             * TenderAuthorizationOpportunityId : 77e5d2b5-095a-e611-92fc-085700e64e0f
-             * OpportunityId : 00000000-0000-0000-0000-000000000000
-             * OpportunityName : null
-             * TenderAuthorizationId : 76e5d2b5-095a-e611-92fc-085700e64e0f
+             * TenderAuthorizationOpportunityId : 02e3855f-786b-e611-92fc-085700e64e0f
+             * OpportunityId : 095ad7c0-d868-e611-92fc-085700e64e0f
+             * OpportunityName : 测试商机2
+             * TenderAuthorizationId : 01e3855f-786b-e611-92fc-085700e64e0f
              */
 
-            private List<TenderAuthorizationOpportunitysBean> TenderAuthorizationOpportunitys;
+            private TenderAuthorizationOpportunitysBean TenderAuthorizationOpportunitys;
 
             public String getTenderAuthorizationId() {
                 return TenderAuthorizationId;
@@ -268,11 +270,11 @@ public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
             }
 
             public String getWebsite() {
-                return website;
+                return Website;
             }
 
-            public void setWebsite(String website) {
-                this.website = website;
+            public void setWebsite(String Website) {
+                this.Website = Website;
             }
 
             public String getEmpoweredName() {
@@ -323,6 +325,14 @@ public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
                 this.AuditStatus = AuditStatus;
             }
 
+            public Object getAuditStatusName() {
+                return AuditStatusName;
+            }
+
+            public void setAuditStatusName(Object AuditStatusName) {
+                this.AuditStatusName = AuditStatusName;
+            }
+
             public int getStepNumber() {
                 return StepNumber;
             }
@@ -331,18 +341,18 @@ public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
                 this.StepNumber = StepNumber;
             }
 
-            public List<TenderAuthorizationOpportunitysBean> getTenderAuthorizationOpportunitys() {
+            public TenderAuthorizationOpportunitysBean getTenderAuthorizationOpportunitys() {
                 return TenderAuthorizationOpportunitys;
             }
 
-            public void setTenderAuthorizationOpportunitys(List<TenderAuthorizationOpportunitysBean> TenderAuthorizationOpportunitys) {
+            public void setTenderAuthorizationOpportunitys(TenderAuthorizationOpportunitysBean TenderAuthorizationOpportunitys) {
                 this.TenderAuthorizationOpportunitys = TenderAuthorizationOpportunitys;
             }
 
             public static class TenderAuthorizationOpportunitysBean {
                 private String TenderAuthorizationOpportunityId;
                 private String OpportunityId;
-                private Object OpportunityName;
+                private String OpportunityName;
                 private String TenderAuthorizationId;
 
                 public String getTenderAuthorizationOpportunityId() {
@@ -361,11 +371,11 @@ public class TenderApplicationDetailsResponseBean extends BaseResponseBean {
                     this.OpportunityId = OpportunityId;
                 }
 
-                public Object getOpportunityName() {
+                public String getOpportunityName() {
                     return OpportunityName;
                 }
 
-                public void setOpportunityName(Object OpportunityName) {
+                public void setOpportunityName(String OpportunityName) {
                     this.OpportunityName = OpportunityName;
                 }
 
