@@ -11,6 +11,7 @@ import com.android.wandong.ui.fragment.work.EntertainmentReimbursementFragment;
 import com.android.wandong.ui.fragment.work.InspectionReceptionApplicationFragment;
 import com.android.wandong.ui.fragment.work.MarketActivityApplicationFragment;
 import com.android.wandong.ui.fragment.work.MarketActivityReimbursementFragment;
+import com.android.wandong.ui.fragment.work.MyAuditListFragment;
 import com.android.wandong.ui.fragment.work.NoticeFragment;
 import com.android.wandong.ui.fragment.work.OutdoorSignInFragment;
 import com.android.wandong.ui.fragment.work.SpecialDuesReimbursementFragment;
@@ -79,6 +80,15 @@ public class WorkTabUtils {
         for (WorkMenu.MenuItem menuItem : workMenu.getMenuItemList()) {
             if(TextUtils.isEmpty(menuItem.getEntityName())){
                 continue;
+            }
+
+            if (menuItem.getEntityName().equals(NEW_BACKLOG)) {
+                item = new WorkMain.WorkCategoryItem();
+                item.setTitle(MyAuditListFragment.TAB_NAME);
+                item.setType(MyAuditListFragment.TAB_TYPE);
+                //item.setCategoryDrawableRes(R.drawable.icon_category_wqqd);
+                item.setFragmentClass(MyAuditListFragment.class);
+                mTabs.add(item);
             }
 
             if (menuItem.getEntityName().equals(NEW_SIGNIN)) {

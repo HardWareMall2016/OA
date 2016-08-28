@@ -146,4 +146,11 @@ public class ApiUrls {
 
     //上传图片
     public static final String UPLOAD_IMAGES= "Common/UploadImgs.ashx";
+
+    //待我审批列表
+    public static final String MY_AUDIT_NUMBER= "MyAudit/Number.ashx";
+
+    //待我审批详情列表
+    public static final String MY_AUDIT_LIST= "MyAudit/List.ashx";
+
 }

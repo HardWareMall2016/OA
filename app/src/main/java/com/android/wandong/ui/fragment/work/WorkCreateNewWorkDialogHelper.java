@@ -135,11 +135,15 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
         List<View> listViews = new ArrayList<>();
         ArrayList<WorkMain.WorkCategoryItem> pageData = new ArrayList<>();
         for (int i = 0; i < mTabs.size(); i++) {
-            if (i % 9 == 0) {
+            WorkMain.WorkCategoryItem tabItem= mTabs.get(i);
+            if(MyAuditListFragment.TAB_TYPE.equals(tabItem.getType())){
+                continue;
+            }
+            if (pageData.size() % 9 == 0) {
                 pageData = new ArrayList<>();
                 mPageDataList.add(pageData);
             }
-            pageData.add(mTabs.get(i));
+            pageData.add(tabItem);
         }
 
         for (int i = 0; i < mPageDataList.size(); i++) {

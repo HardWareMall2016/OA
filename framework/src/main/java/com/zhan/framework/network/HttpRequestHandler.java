@@ -13,6 +13,7 @@ import com.zhan.framework.cache.CacheUtility;
 
 import org.aisen.orm.extra.Extra;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 作者：伍岳 on 2015/12/3 11:51
@@ -54,12 +55,23 @@ public abstract class HttpRequestHandler implements HttpRequestCallback {
     private String mApiUrl;
     private Object mRequestParams;
 
+    private Object mTag;
+
     public HttpRequestHandler(Fragment fragment){
         mFragment=fragment;
     }
 
+    public HttpRequestHandler(Fragment fragment,Object tag){
+        mFragment=fragment;
+        mTag=tag;
+    }
+
     public HttpRequestHandler(){
         mFragment=null;
+    }
+
+    protected Object getTag(){
+        return mTag;
     }
 
     /**
