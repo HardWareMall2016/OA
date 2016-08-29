@@ -67,6 +67,8 @@ public class ApiUrls {
 
     //合同申请列表
     public static final String CONTRACT_APPLY_LIST = "ContractApply/List.ashx";
+    //合同申请详情
+    public static final String CONTRACT_APPLY_DETAIL = "ContractApply/Detail.ashx";
     //新建合同申请－商机列表
     public static final String OPPORTUNITY_LIST = "Opportunity/List.ashx";
     //新建合同申请－详情
