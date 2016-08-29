@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_underline_selector"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp">
+
+    <ImageView
+        android:id="@+id/headPortrait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icon_travel" />
+
+
+    <TextView
+        android:id="@+id/ApplyNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/headPortrait"
+        android:singleLine="true"
+        android:text="申请单号"
+        android:textColor="@color/text_color_title"
+        android:textSize="@dimen/text_size_normal" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ApplyNo"
+        android:layout_below="@id/ApplyNo"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_people"
+            android:drawablePadding="6dp"
+            android:text="名称"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:drawableLeft="@drawable/icon_number"
+            android:drawablePadding="6dp"
+            android:text="数量"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:drawableLeft="@drawable/icon_time"
+            android:drawablePadding="6dp"
+            android:text="时间"
+            android:textColor="@color/text_color_title"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/icon_passed" />
+</RelativeLayout>
+
+
+
+
+
