@@ -1,6 +1,7 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -91,6 +92,13 @@ public class ContractApplicationFragment extends BaseWorkPageFragment<ContractAp
         return new ListItemView();
     }
 
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ContractApplicationDetailsFragment.launch(getActivity(), getAdapterItems().get((int) id).ContractId);
+    }
+
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
 
         @ViewInject(id = R.id.ContractName)
@@ -126,7 +134,12 @@ public class ContractApplicationFragment extends BaseWorkPageFragment<ContractAp
                 mStatus.setText("执行状态："+data.Status+"");
             }
             mOwnerName.setText(data.OwnerName);
-            mContracTotal.setText(data.ContracTotal+"");
+            if(data.ContracTotal >10000){
+                mContracTotal.setText(data.ContracTotal/10000+"万");
+            }else{
+                mContracTotal.setText(data.ContracTotal + "");
+            }
+
             Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(data.CreatedOn)));
             AuditStatusHelper.setImageViewByStatus(mImageStatus, data.Status);
 
