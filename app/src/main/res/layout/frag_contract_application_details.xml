@@ -167,7 +167,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:id="@+id/ll_1">
+                android:id="@+id/ll_1"
+                android:visibility="visible">
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -193,6 +194,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_unit_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -209,6 +211,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_user_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -225,6 +228,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_task_people"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -233,6 +237,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                     <TextView
+                        android:id="@+id/tv_bonus_people"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -252,6 +257,7 @@
                     android:background="@drawable/bg_white_small"
                     android:layout_marginTop="14dp">
                     <TextView
+                        android:id="@+id/tv_buyer_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -268,6 +274,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/customer_people"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -284,6 +291,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_product_line"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -300,6 +308,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_product_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -318,6 +327,7 @@
                     android:layout_marginTop="14dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_ContracTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -326,6 +336,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                     <TextView
+                        android:id="@+id/tv_Quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -343,6 +354,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_Payment_agreement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -351,53 +363,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                 </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/ApprovalInformation1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FDF7E4"
-                    android:minHeight="40dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="审批信息"
-                        android:textColor="#F0B831"
-                        android:textSize="@dimen/text_size_normal" />
-
-                    <ImageView
-                        android:id="@+id/indicator1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/icon_yellow_down" />
-
-                </RelativeLayout>
-
-                <com.android.wandong.ui.widget.FixListView
-                    android:id="@+id/listViewApproval1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:cacheColorHint="#00000000"
-                    android:divider="@null"
-                    android:dividerHeight="0dip"
-                    android:fadingEdge="none"
-                    android:fastScrollEnabled="false"
-                    android:footerDividersEnabled="false"
-                    android:headerDividersEnabled="false"
-                    android:smoothScrollbar="true"
-                    android:visibility="gone" />
             </LinearLayout>
-
-
 
 
             <LinearLayout
@@ -414,6 +380,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_Configuration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -422,6 +389,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                     <TextView
+                        android:id="@+id/tv_base_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -439,6 +407,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_CommissionModeName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -447,6 +416,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                     <TextView
+                        android:id="@+id/tv_CommissionEstimateAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -464,6 +434,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_Warranty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -472,6 +443,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                     <TextView
+                        android:id="@+id/tv_GuaranteePublishPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -489,6 +461,7 @@
                     android:paddingRight="16dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_TransportModeName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -504,13 +477,40 @@
                     android:minHeight="40dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:layout_marginTop="14dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/tv_CapitalOccupyPrincipal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="培训要求:"
+                        android:text="资金占用本金:"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/tv_AmortizedModeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:text="分期方式:"
+                        android:textColor="@color/text_color_content"
+                        android:textSize="@dimen/text_size_normal"
+                        android:gravity="center"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="40dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:background="@drawable/bg_white_small">
+                    <TextView
+                        android:id="@+id/tv_Interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="资金占用计算:"
                         android:textColor="@color/text_color_content"
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
@@ -524,57 +524,7 @@
                     android:layout_marginTop="14dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="培训预估金额:"
-                        android:textColor="@color/text_color_content"
-                        android:textSize="@dimen/text_size_normal"
-                        android:gravity="center"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="40dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/bg_white_small">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="装卸要求:"
-                        android:textColor="@color/text_color_content"
-                        android:textSize="@dimen/text_size_normal"
-                        android:gravity="center"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="40dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/bg_white_small">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="装卸费预估金额:"
-                        android:textColor="@color/text_color_content"
-                        android:textSize="@dimen/text_size_normal"
-                        android:gravity="center"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="40dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:layout_marginTop="14dp"
-                    android:background="@drawable/bg_white_small">
-                    <TextView
+                        android:id="@+id/tva_ContracTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -583,6 +533,7 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                     <TextView
+                        android:id="@+id/tv_FinalEstimateAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -592,48 +543,6 @@
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/ApprovalInformation2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FDF7E4"
-                    android:minHeight="40dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="审批信息"
-                        android:textColor="#F0B831"
-                        android:textSize="@dimen/text_size_normal" />
-
-                    <ImageView
-                        android:id="@+id/indicator2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/icon_yellow_down" />
-
-                </RelativeLayout>
-
-                <com.android.wandong.ui.widget.FixListView
-                    android:id="@+id/listViewApproval2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:cacheColorHint="#00000000"
-                    android:divider="@null"
-                    android:dividerHeight="0dip"
-                    android:fadingEdge="none"
-                    android:fastScrollEnabled="false"
-                    android:footerDividersEnabled="false"
-                    android:headerDividersEnabled="false"
-                    android:smoothScrollbar="true"
-                    android:visibility="gone" />
-
             </LinearLayout>
 
 
@@ -654,6 +563,7 @@
                     android:layout_marginTop="14dp"
                     android:background="@drawable/bg_white_small">
                     <TextView
+                        android:id="@+id/Tv_ERP_ContractNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -661,53 +571,50 @@
                         android:textColor="@color/text_color_content"
                         android:textSize="@dimen/text_size_normal"
                         android:gravity="center"/>
-
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/ApprovalInformation3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FDF7E4"
-                    android:minHeight="40dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="审批信息"
-                        android:textColor="#F0B831"
-                        android:textSize="@dimen/text_size_normal" />
-
-                    <ImageView
-                        android:id="@+id/indicator3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/icon_yellow_down" />
-
-                </RelativeLayout>
-
-                <com.android.wandong.ui.widget.FixListView
-                    android:id="@+id/listViewApproval3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:cacheColorHint="#00000000"
-                    android:divider="@null"
-                    android:dividerHeight="0dip"
-                    android:fadingEdge="none"
-                    android:fastScrollEnabled="false"
-                    android:footerDividersEnabled="false"
-                    android:headerDividersEnabled="false"
-                    android:smoothScrollbar="true"
-                    android:visibility="gone" />
-
             </LinearLayout>
-            
 
+            <RelativeLayout
+                android:id="@+id/ApprovalInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FDF7E4"
+                android:minHeight="40dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="审批信息"
+                    android:textColor="#F0B831"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <ImageView
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_yellow_down" />
+
+            </RelativeLayout>
+
+            <com.android.wandong.ui.widget.FixListView
+                android:id="@+id/listViewApproval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="0dip"
+                android:fadingEdge="none"
+                android:fastScrollEnabled="false"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false"
+                android:smoothScrollbar="true"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 

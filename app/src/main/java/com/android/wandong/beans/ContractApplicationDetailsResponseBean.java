@@ -185,7 +185,7 @@ public class ContractApplicationDetailsResponseBean extends BaseResponseBean {
             private Object PurchasingPublishPrice;
             private int CommissionMode;
             private String CommissionModeName;
-            private Object CommissionEstimateAmount;
+            private String CommissionEstimateAmount;
             private String Warranty;
             private String GuaranteePublishPrice;
             private int TransportMode;
@@ -488,11 +488,11 @@ public class ContractApplicationDetailsResponseBean extends BaseResponseBean {
                 this.CommissionModeName = CommissionModeName;
             }
 
-            public Object getCommissionEstimateAmount() {
+            public String getCommissionEstimateAmount() {
                 return CommissionEstimateAmount;
             }
 
-            public void setCommissionEstimateAmount(Object CommissionEstimateAmount) {
+            public void setCommissionEstimateAmount(String CommissionEstimateAmount) {
                 this.CommissionEstimateAmount = CommissionEstimateAmount;
             }
 
