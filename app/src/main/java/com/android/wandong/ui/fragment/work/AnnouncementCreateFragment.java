@@ -107,6 +107,7 @@ public class AnnouncementCreateFragment extends ABaseFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             AnnouncementCreateObjectFragment.AnnounceObjectInfo selectInfo = (AnnouncementCreateObjectFragment.AnnounceObjectInfo) data.getSerializableExtra(AnnouncementCreateObjectFragment.EXT_DATA_KEY);
+            //mObjectNumber.setText("已选"+selectInfo.roles.size()+"人");
             requestAnnouncementCreateObject(selectInfo);
         }
     }

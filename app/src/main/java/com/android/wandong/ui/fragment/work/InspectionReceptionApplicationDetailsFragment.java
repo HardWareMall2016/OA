@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class InspectionReceptionApplicationDetailsFragment extends ABaseFragment
     TextView mData1;
     @ViewInject(id = R.id.inspection_data2)
     TextView mData2 ;
+
 
     @ViewInject(id = R.id.listViewApproval)
     FixListView mListViewApproval;

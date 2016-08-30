@@ -1,11 +1,13 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
 import com.android.wandong.base.UserInfo;
+import com.android.wandong.beans.ContractApplicationDetailContent;
 import com.android.wandong.beans.ContractApplicationResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
@@ -91,6 +93,21 @@ public class ContractApplicationFragment extends BaseWorkPageFragment<ContractAp
         return new ListItemView();
     }
 
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ContractApplicationDetailContent content = new ContractApplicationDetailContent();
+        content.setContractId(getAdapterItems().get((int) id).ContractId);
+        content.setContractName(getAdapterItems().get((int)id).ContractName);
+        content.setStatus(getAdapterItems().get((int)id).Status);
+        content.setOwnerName(getAdapterItems().get((int)id).OwnerName);
+        content.setContracTotal(getAdapterItems().get((int)id).ContracTotal);
+        content.setCreatedOn(getAdapterItems().get((int)id).CreatedOn);
+        content.setApplyNo(getAdapterItems().get((int)id).ApplyNo);
+        ContractApplicationDetailsFragment.launch(getActivity(), content);
+    }
+
     private class ListItemView extends ABaseAdapter.AbstractItemView<ItemData>{
 
         @ViewInject(id = R.id.ContractName)
@@ -122,11 +139,18 @@ public class ContractApplicationFragment extends BaseWorkPageFragment<ContractAp
                 mStatus.setText("执行状态：已批准");
             }else if(data.Status == 2){
                 mStatus.setText("执行状态：待审批");
+            }else if(data.Status == 4){
+                mStatus.setText("执行状态：驳回");
             }else{
-                mStatus.setText("执行状态："+data.Status+"");
+                mStatus.setText("执行状态：签订");
             }
             mOwnerName.setText(data.OwnerName);
-            mContracTotal.setText(data.ContracTotal+"");
+            if(data.ContracTotal >10000){
+                mContracTotal.setText(data.ContracTotal/10000+"万");
+            }else{
+                mContracTotal.setText(data.ContracTotal + "元");
+            }
+
             Tools.setTextView(mViewTime, Tools.parseTimeToDateStr(Tools.parseDateStrToLong(data.CreatedOn)));
             AuditStatusHelper.setImageViewByStatus(mImageStatus, data.Status);
 
