@@ -199,7 +199,6 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
 
         mSubItems.clear();
         mSubAdapter.notifyDataSetChanged();
-        
         refreshViewVisible();
         showRotateProgressDialog("请求中...",false);
         querySubList(1);
@@ -335,6 +334,27 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
     }
 
     private class SubItemView extends ABaseAdapter.AbstractItemView<SubItem>{
+        @ViewInject(id = R.id.icon)
+        ImageView mImgIcon ;
+
+        @ViewInject(id = R.id.title_1)
+        TextView mTitle1 ;
+
+        @ViewInject(id = R.id.title_2)
+        TextView mTitle2 ;
+
+        @ViewInject(id = R.id.name)
+        TextView mName ;
+
+        @ViewInject(id = R.id.number)
+        TextView mViewNumber ;
+
+        @ViewInject(id = R.id.time)
+        TextView mViewTime ;
+
+        @ViewInject(id = R.id.img_status)
+        ImageView mImgStatus ;
+
         @Override
         public int inflateViewId() {
             return R.layout.list_item_sub_my_audit;
