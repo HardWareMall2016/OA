@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="当前可用额度（元）"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_normal" />
+
+        <TextView
+            android:id="@+id/tv_current_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/ll_head"
+        android:id="@+id/rl_pifu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_small">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="批复金额" />
+
+        <TextView
+            android:id="@+id/tv_reimbursement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="16dp"
+            android:text="123" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_below="@+id/rl_pifu"
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="信息"
+        android:textSize="@dimen/text_size_normal" />
+
+    <EditText
+        android:id="@+id/et_remark"
+        android:layout_below="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        android:gravity="top|start"
+        android:hint="请填写批复信息"
+        android:inputType="textMultiLine"
+        android:paddingLeft="16dp"
+        android:textColor="@color/text_color_content"
+        android:textColorHint="@color/text_color_content"
+        android:textSize="@dimen/text_size_normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="同意"
+            android:gravity="center"
+            android:padding="10dp"
+            android:background="@color/main_color"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#F9BF33"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="不同意"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

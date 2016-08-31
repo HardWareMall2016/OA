@@ -11,6 +11,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
+import com.android.wandong.base.UserInfo;
+import com.android.wandong.beans.MarketReimburseDetailReplyContent;
 import com.android.wandong.beans.MarketReimburseDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
@@ -56,8 +58,11 @@ public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
 
     @ViewInject(id = R.id.ApprovalInformation, click = "OnClick")
     private View mViewApprovalInformation;//审批信息
+    @ViewInject(id = R.id.tv_reply,click = "OnClick")
+    TextView mTvReply ;
 
     private String mCampaignId;
+    private double ApprovalPrice;
 
     private DecimalFormat mMoneyFormat = new DecimalFormat();
     private Handler mHandler=new Handler();
@@ -123,6 +128,7 @@ public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
 
     private void populateView(MarketReimburseDetailResponseBean result) {
         if (result.getEntityInfo().getDetail() != null) {
+            ApprovalPrice = result.getEntityInfo().getDetail().getAmount();
             Tools.setTextView(mViewApplyNo, result.getEntityInfo().getDetail().getName());
             Tools.setTextView(mViewAccountName, result.getEntityInfo().getDetail().getCampaignName()+"("+result.getEntityInfo().getDetail().getCostTypeName()+")");
             Tools.setTextView(mViewOwnerName, result.getEntityInfo().getDetail().getOwnerName());
@@ -175,6 +181,12 @@ public class MarketActivityReimbursementDetailsFragment extends ABaseFragment {
                     mListViewApproval.setVisibility(View.GONE);
                     mImgIndicator.setImageResource(R.drawable.icon_yellow_down);
                 }
+                break;
+            case R.id.tv_reply:
+                MarketReimburseDetailReplyContent content = new MarketReimburseDetailReplyContent();
+                //replyDetailContent.setName(mViewApplyNo.getText().toString());
+                content.setAmount(ApprovalPrice);
+                ReplyDetailFragment.launch(getActivity(),content);
                 break;
         }
     }

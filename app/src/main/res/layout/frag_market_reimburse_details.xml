@@ -206,6 +206,23 @@
         </LinearLayout>
     </ScrollView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/comm_red">
+        <TextView
+            android:id="@+id/tv_reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="批复"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+    </RelativeLayout>
+
     <include
         android:id="@id/layoutLoading"
         layout="@layout/comm_lay_loading"

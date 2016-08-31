@@ -155,4 +155,7 @@ public class ApiUrls {
     //待我审批详情列表
     public static final String MY_AUDIT_LIST= "MyAudit/List.ashx";
 
+    //批复接口
+    public static final String APPROVAL_GETUSEABLE_PRICE = "Approval/GetUseablePrice.ashx";
+
 }
