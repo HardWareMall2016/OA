@@ -157,5 +157,8 @@ public class ApiUrls {
 
     //批复接口
     public static final String APPROVAL_GETUSEABLE_PRICE = "Approval/GetUseablePrice.ashx";
+    //同意批复接口
+    public static final String COMMON_SUBMIT_APPPLY = "Common/SubmitApply.ashx";
+
 
 }

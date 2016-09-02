@@ -86,6 +86,7 @@
         android:layout_alignParentBottom="true"
         >
         <TextView
+            android:id="@+id/tv_Agreed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -96,6 +97,7 @@
             android:textColor="@color/white"
             android:textSize="16dp"/>
         <TextView
+            android:id="@+id/tv_NoAgreed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

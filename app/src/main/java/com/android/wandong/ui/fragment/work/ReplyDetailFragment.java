@@ -3,22 +3,29 @@ package com.android.wandong.ui.fragment.work;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.wandong.R;
+import com.android.wandong.base.BaseResponseBean;
 import com.android.wandong.base.UserInfo;
 import com.android.wandong.beans.MarketReimburseDetailReplyContent;
+import com.android.wandong.beans.ReplyDetailRequestBean;
 import com.android.wandong.beans.ReplyDetailResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.utils.Tools;
 import com.zhan.framework.component.container.FragmentArgs;
 import com.zhan.framework.component.container.FragmentContainerActivity;
+import com.zhan.framework.network.HttpRequestHandler;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.ui.fragment.ABaseFragment;
+import com.zhan.framework.utils.ToastUtils;
 
+import java.net.IDN;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * 作者：蒲柯柯 on 2016/8/31 11:46
@@ -32,6 +39,10 @@ public class ReplyDetailFragment extends ABaseFragment{
     TextView mTvCurrentLimit;
     @ViewInject(id = R.id.tv_reimbursement)
     TextView mTvReimbursement;
+    @ViewInject(id = R.id.tv_Agreed,click = "OnClick")
+    TextView mTvAgreed;
+    @ViewInject(id = R.id.tv_NoAgreed,click = "OnClick")
+    TextView mTvNoAgreed;
 
     private MarketReimburseDetailReplyContent content;
     private DecimalFormat mMoneyFormat = new DecimalFormat();
@@ -93,5 +104,65 @@ public class ReplyDetailFragment extends ABaseFragment{
             }
 
         }, HttpRequestUtils.RequestType.POST);
+    }
+
+    void OnClick(View view){
+        switch (view.getId()){
+            case R.id.tv_Agreed:
+                AgreedDate();
+                break;
+            case R.id.tv_NoAgreed:
+                break;
+        }
+    }
+
+    private void AgreedDate() {
+        ReplyDetailRequestBean requestBean=new ReplyDetailRequestBean();
+        requestBean.setDepartId(UserInfo.getCurrentUser().getDepartId());
+        requestBean.setId("");
+        requestBean.setPassWord(UserInfo.getCurrentUser().getPassword());
+        requestBean.setOperType("1");
+        requestBean.setUserId(UserInfo.getCurrentUser().getUserId());
+
+        requestBean.setHasChildren(false);
+        requestBean.setIsAuditForm(false);
+        requestBean.setUserName(UserInfo.getCurrentUser().getUserName());
+        requestBean.setIsStartWorkflow(true);
+        requestBean.setEntityName("new_entertaincost");
+        requestBean.setApprovalPrice("0");
+
+        ReplyDetailRequestBean.WorkflowFormInfoBean workflowFormInfoBean = new ReplyDetailRequestBean.WorkflowFormInfoBean();
+        workflowFormInfoBean.setOpinion("");
+        workflowFormInfoBean.setStepNumber("");
+        requestBean.setWorkflowFormInfo(workflowFormInfoBean);
+
+        /*ArrayList<ReplyDetailRequestBean.WorkflowFormInfoBean> arrayList = new ArrayList<>();
+        ReplyDetailRequestBean.FormInfoBean formInfoBean1 = new MarketActivityCreateRequestBean.FormInfoBean();
+        formInfoBean1.setFieldValue(mCustomerId);
+        formInfoBean1.setFieldName("new_accountid");
+        formInfoBean1.setFieldType("4");
+
+
+        arrayList.add(formInfoBean1);
+
+        requestBean.setFormInfo(arrayList);*/
+
+        startJsonRequest(ApiUrls.COMMON_SUBMIT_APPLY, requestBean, new HttpRequestHandler(this) {
+            @Override
+            public void onRequestFinished(ResultCode resultCode, String result) {
+                switch (resultCode) {
+                    case success:
+                        BaseResponseBean responseBean = Tools.parseJsonTostError(result, BaseResponseBean.class);
+                        if (responseBean != null) {
+                            ToastUtils.toast(responseBean.getMsg());
+                            getActivity().finish();
+                        }
+                        break;
+                    default:
+                        ToastUtils.toast(result);
+                        break;
+                }
+            }
+        });
     }
 }
