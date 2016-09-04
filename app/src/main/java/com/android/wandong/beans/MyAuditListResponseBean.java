@@ -37,7 +37,6 @@ public class MyAuditListResponseBean extends BaseResponseBean{
     @JSONField(name = "errorcode")
     private int errorcode;
 
-    @JSONField(name = "entityInfo")
     private List<EntityInfoBean> entityInfo;
 
     public int getErrorcode() {
@@ -57,19 +56,46 @@ public class MyAuditListResponseBean extends BaseResponseBean{
     }
 
     public static class EntityInfoBean {
-        @JSONField(name = "ContractId")
+        //合同申请审批
         private String ContractId;
-        @JSONField(name = "ApplyNo")
         private String ApplyNo;
-        @JSONField(name = "ContractName")
         private String ContractName;
-        @JSONField(name = "Status")
         private String Status;
-        @JSONField(name = "ContracTotal")
         private String ContracTotal;
-        @JSONField(name = "OwnerName")
+
+        //市场活动费申请审批
+        private String CampaignId;
+        //private String ApplyNo;
+        //private String Name;
+        private String CostTypeName;
+        //private String Status;
+        private String OccurTime;
+        //private String Amount;
+
+        //市场活动费报销审批
+        //private String CampaignId;
+        //private String ApplyNo;
+        //private String Name;
+        //private String CostTypeName;
+        //private String OccurTime;
+        //private String Amount;
+        //private String Status;
+
+        //专项费用报销审批
+        private String Id;
+        //private String ApplyNo;
+        private String Amount;
+        //private String Status;
+
+        //差旅费报销
+        private String TravelCostId;
+        private String Name;
+        private String ApprovalPrice;
+        private String StepNumber;
+        private String AuditStatus;
+
+        //公共部分
         private String OwnerName;
-        @JSONField(name = "CreatedOn")
         private String CreatedOn;
 
         public String getContractId() {
@@ -126,6 +152,86 @@ public class MyAuditListResponseBean extends BaseResponseBean{
 
         public void setCreatedOn(String CreatedOn) {
             this.CreatedOn = CreatedOn;
+        }
+
+        public String getTravelCostId() {
+            return TravelCostId;
+        }
+
+        public void setTravelCostId(String travelCostId) {
+            TravelCostId = travelCostId;
+        }
+
+        public String getName() {
+            return Name;
+        }
+
+        public void setName(String name) {
+            Name = name;
+        }
+
+        public String getApprovalPrice() {
+            return ApprovalPrice;
+        }
+
+        public void setApprovalPrice(String approvalPrice) {
+            ApprovalPrice = approvalPrice;
+        }
+
+        public String getStepNumber() {
+            return StepNumber;
+        }
+
+        public void setStepNumber(String stepNumber) {
+            StepNumber = stepNumber;
+        }
+
+        public String getAuditStatus() {
+            return AuditStatus;
+        }
+
+        public void setAuditStatus(String auditStatus) {
+            AuditStatus = auditStatus;
+        }
+
+        public String getId() {
+            return Id;
+        }
+
+        public void setId(String id) {
+            Id = id;
+        }
+
+        public String getAmount() {
+            return Amount;
+        }
+
+        public void setAmount(String amount) {
+            Amount = amount;
+        }
+
+        public String getCampaignId() {
+            return CampaignId;
+        }
+
+        public void setCampaignId(String campaignId) {
+            CampaignId = campaignId;
+        }
+
+        public String getCostTypeName() {
+            return CostTypeName;
+        }
+
+        public void setCostTypeName(String costTypeName) {
+            CostTypeName = costTypeName;
+        }
+
+        public String getOccurTime() {
+            return OccurTime;
+        }
+
+        public void setOccurTime(String occurTime) {
+            OccurTime = occurTime;
         }
     }
 }

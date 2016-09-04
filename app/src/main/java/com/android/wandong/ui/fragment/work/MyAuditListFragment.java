@@ -14,6 +14,7 @@ import com.android.wandong.R;
 import com.android.wandong.beans.MyAuditListResponseBean;
 import com.android.wandong.beans.MyAuditResponseBean;
 import com.android.wandong.network.ApiUrls;
+import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
 import com.android.wandong.utils.Tools;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -24,6 +25,7 @@ import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.utils.ToastUtils;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +94,8 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
 
     private boolean mCanSubListLoadMore=false;
 
+    private DecimalFormat mMoneyDf = new DecimalFormat();
+
     @Override
     protected int inflateContentView() {
         return R.layout.frag_my_audit_list;
@@ -117,6 +121,7 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
     protected void layoutInit(LayoutInflater inflater, Bundle savedInstanceSate) {
         super.layoutInit(inflater, savedInstanceSate);
         mShowSubList=false;
+        mMoneyDf.applyPattern("###,###.##元");
 
         initPullDownLable();
         initPullUpLable(true);
@@ -287,7 +292,7 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
         requestParams.put("PageIndex",pageIndex);
         requestParams.put("PageNumber", SUB_LIST_SIZE);
 
-        startFormRequest(ApiUrls.MY_AUDIT_LIST, requestParams, new HttpRequestHandler(this){
+        startFormRequest(ApiUrls.MY_AUDIT_LIST, requestParams, new HttpRequestHandler(this,mCurrentAuditItem.entityName){
             @Override
             public void onRequestFinished(ResultCode resultCode, String result) {
                 closeRotateProgressDialog();
@@ -300,13 +305,41 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                                 mCanSubListLoadMore=responseBean.getEntityInfo().size()>=SUB_LIST_SIZE;
                                 for(MyAuditListResponseBean.EntityInfoBean bean:responseBean.getEntityInfo()){
                                     SubItem subItem=new SubItem();
+
+
                                     subItem.ContractId=bean.getContractId();
                                     subItem.ApplyNo=bean.getApplyNo();
                                     subItem.ContractName=bean.getContractName();
                                     subItem.Status=bean.getStatus();
                                     subItem.ContracTotal=bean.getContracTotal();
+
+                                    //市场活动费申请审批
+                                    subItem.CampaignId=bean.getCampaignId();
+                                    //private String ApplyNo;
+                                    //private String Name;
+                                    subItem.CostTypeName=bean.getCostTypeName();
+                                    //private String Status;
+                                    subItem.OccurTime=bean.getOccurTime();
+                                    //private String Amount;
+
+                                    //专项费用报销审批
+                                    subItem.Id=bean.getId();
+                                    //private String ApplyNo;
+                                    subItem.Amount=bean.getAmount();
+                                    //private String Status;
+
+                                    //差旅费报销
+                                    subItem.TravelCostId=bean.getTravelCostId();
+                                    subItem.Name=bean.getName();
+                                    subItem.ApprovalPrice=bean.getApprovalPrice();
+                                    subItem.StepNumber=bean.getStepNumber();
+                                    subItem.AuditStatus=bean.getAuditStatus();
+
+                                    //公共部分
                                     subItem.OwnerName=bean.getOwnerName();
                                     subItem.CreatedOn=bean.getCreatedOn();
+                                    subItem.entityName= (String) getTag();
+
                                     mSubItems.add(subItem);
                                 }
                                 mSubAdapter.notifyDataSetChanged();
@@ -362,19 +395,122 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
 
         @Override
         public void bindingData(View convertView, SubItem data) {
+            if("new_campaign".equals(data.entityName)){
+                //市场活动费申请审批
+                mImgIcon.setImageResource(R.drawable.icon_campaign);
+                mTitle1.setText(data.ApplyNo);
+                mTitle2.setText(String.format("%s(%s)",data.Name,data.CostTypeName));
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.OccurTime);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.Amount);
+                }catch (Exception ignored){
 
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
+            }else if("new_campaigncost".equals(data.entityName)){
+                //市场活动费报销审批
+                mImgIcon.setImageResource(R.drawable.icon_campaigncost);
+                mTitle1.setText(data.ApplyNo);
+                mTitle2.setText(String.format("%s(%s)",data.Name,data.CostTypeName));
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.OccurTime);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.Amount);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
+            }else if("new_contract".equals(data.entityName)){
+                //合同申请审批
+                mImgIcon.setImageResource(R.drawable.icon_category_htsq);
+            }else if("new_entertain".equals(data.entityName)){
+                //招待费申请审批
+                mImgIcon.setImageResource(R.drawable.icon_category_zdfsq);
+            }else if("new_entertaincost".equals(data.entityName)){
+                //招待费报销审批
+                mImgIcon.setImageResource(R.drawable.icon_category_zdfbx);
+            }else if("new_reception".equals(data.entityName)){
+                //考察接待申请审批
+                mImgIcon.setImageResource(R.drawable.icon_category_kcjdsq);
+            }else if("new_special_payment".equals(data.entityName)){
+                //专项费用报销审批
+                mImgIcon.setImageResource(R.drawable.icon_special);
+                mTitle1.setVisibility(View.GONE);
+                mTitle2.setText(data.ApplyNo);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.CreatedOn);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.Amount);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
+            }else if("new_tenderauthorization".equals(data.entityName)){
+                //投标授权申请审批
+                mImgIcon.setImageResource(R.drawable.icon_category_ztbsq);
+            }else if("new_travelcost".equals(data.entityName)){
+                //差旅费报销审批
+                mImgIcon.setImageResource(R.drawable.icon_travel);
+                mTitle1.setVisibility(View.GONE);
+                mTitle2.setText(data.Name);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.CreatedOn);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.ApprovalPrice);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus,Integer.parseInt(data.AuditStatus));
+            }else {
+                mImgIcon.setImageResource(R.drawable.icon_category_bb);
+            }
         }
     }
 
 
     private class SubItem{
+        //合同申请审批
         String ContractId;
         String ApplyNo;
         String ContractName;
         String Status;
         String ContracTotal;
+
+        //市场活动费申请审批
+        String CampaignId;
+        //private String ApplyNo;
+        //private String Name;
+        String CostTypeName;
+        //private String Status;
+        String OccurTime;
+        //private String Amount;
+
+        //专项费用报销审批
+        String Id;
+        //private String ApplyNo;
+        String Amount;
+        //private String Status;
+
+        //差旅费报销
+        String TravelCostId;
+        String Name;
+        String ApprovalPrice;
+        String StepNumber;
+        String AuditStatus;
+
+        //公共部分
         String OwnerName;
         String CreatedOn;
+        String entityName;
     }
 
 

@@ -37,7 +37,7 @@
         android:layout_toRightOf="@id/icon"
         android:singleLine="true"
         android:text="标题2"
-        android:textColor="@color/text_color_content"
+        android:textColor="@color/text_color_title"
         android:textSize="@dimen/text_size_small" />
 
     <LinearLayout
