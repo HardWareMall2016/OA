@@ -11,10 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.android.wandong.R;
+import com.android.wandong.beans.InspectionReceptionApplicationContent;
 import com.android.wandong.beans.MyAuditListResponseBean;
 import com.android.wandong.beans.MyAuditResponseBean;
 import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.work.Tools.AuditStatusHelper;
+import com.android.wandong.ui.fragment.work.Tools.MarketActivityApplicationDetailsFragment;
 import com.android.wandong.utils.Tools;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -148,6 +150,7 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
         });
         mSubAdapter=new SubAdapter(mSubItems,getActivity());
         mListViewMyAuditDetails.setAdapter(mSubAdapter);
+        mListViewMyAuditDetails.setOnItemClickListener(mOnSubListClick);
     }
 
     @Override
@@ -208,6 +211,41 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
         showRotateProgressDialog("请求中...",false);
         querySubList(1);
     }
+
+    private AdapterView.OnItemClickListener mOnSubListClick=new AdapterView.OnItemClickListener(){
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            SubItem data=mSubItems.get((int) id);
+
+            if("new_campaign".equals(data.entityName)){
+                //市场活动费申请审批
+                MarketActivityApplicationDetailsFragment.launch(getActivity(), data.CampaignId);
+            }else if("new_campaigncost".equals(data.entityName)){
+                //市场活动费报销审批
+                MarketActivityReimbursementDetailsFragment.launch(getActivity(), data.CampaignId);
+            }else if("new_contract".equals(data.entityName)){
+                //合同申请审批
+            }else if("new_entertain".equals(data.entityName)){
+                //招待费申请审批
+                EntertainmentApplicationDetailsFragment.launch(getActivity(),data.EntertainId);
+            }else if("new_entertaincost".equals(data.entityName)){
+                //招待费报销审批
+                EntertainmentReimbursementDetailFragment.launch(getActivity(),data.Id);
+            }else if("new_reception".equals(data.entityName)){
+                //考察接待申请审批
+                //InspectionReceptionApplicationDetailsFragment
+            }else if("new_special_payment".equals(data.entityName)){
+                //专项费用报销审批
+                SpecialDuesReimbursementDetailsFragment.launch(getActivity(),data.Id);
+            }else if("new_tenderauthorization".equals(data.entityName)){
+                //投标授权申请审批
+                TenderApplicationDetailsFragment.launch(getActivity(), data.TenderAuthorizationId);
+            }else if("new_travelcost".equals(data.entityName)){
+                //差旅费报销审批
+                //TravelExpenseReimbursementDetailsFragment.launch(getActivity(), content);
+            }
+        }
+    };
 
     @Override
     protected ABaseAdapter.AbstractItemView<MyAuditItem> newItemView() {
