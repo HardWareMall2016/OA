@@ -313,6 +313,21 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                                     subItem.Status=bean.getStatus();
                                     subItem.ContracTotal=bean.getContracTotal();
 
+                                    //招待费申请审批
+                                    subItem.EntertainId=bean.getEntertainId();
+                                    //private String ApplyNo;
+                                    //private String AccountName;
+                                    subItem.EstimateTotal=bean.getEstimateTotal();
+                                    //private String Status;
+
+                                    //招待费报销审批
+                                    //private String Id;
+                                    //private String ApplyNo;
+                                    subItem.AccountName=bean.getAccountName();
+                                    //private String Amount;
+                                    //private String Status;
+
+
                                     //市场活动费申请审批
                                     subItem.CampaignId=bean.getCampaignId();
                                     //private String ApplyNo;
@@ -328,12 +343,31 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                                     subItem.Amount=bean.getAmount();
                                     //private String Status;
 
+                                    //考察接待申请审批
+                                    subItem.ReceptionId=bean.getReceptionId();
+                                    //private String AccountName;
+                                    subItem.VisitName=bean.getVisitName();
+                                    subItem.VisitNumber=bean.getVisitNumber();
+                                    subItem.ComeTime=bean.getComeTime();
+                                    //private String Status;
+                                    //private String OwnerName;
+                                    subItem.ApplyTime=bean.getApplyTime();
+
                                     //差旅费报销
                                     subItem.TravelCostId=bean.getTravelCostId();
                                     subItem.Name=bean.getName();
                                     subItem.ApprovalPrice=bean.getApprovalPrice();
                                     subItem.StepNumber=bean.getStepNumber();
                                     subItem.AuditStatus=bean.getAuditStatus();
+
+                                    //投标授权申请审批
+                                    subItem.TenderAuthorizationId=bean.getTenderAuthorizationId();
+                                    //private String Name;
+                                    subItem.ProjectName=bean.getProjectName();
+                                    subItem.OpenTendersTime=bean.getOpenTendersTime();
+                                    //private String Status;
+                                    subItem.Quantity=bean.getQuantity();
+                                    //private String OwnerName;
 
                                     //公共部分
                                     subItem.OwnerName=bean.getOwnerName();
@@ -430,13 +464,49 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                 mImgIcon.setImageResource(R.drawable.icon_category_htsq);
             }else if("new_entertain".equals(data.entityName)){
                 //招待费申请审批
-                mImgIcon.setImageResource(R.drawable.icon_category_zdfsq);
+                mImgIcon.setImageResource(R.drawable.head_portrait_entertain_apply);
+                mTitle1.setText(data.ApplyNo);
+                mTitle2.setText(data.AccountName);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.CreatedOn);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.EstimateTotal);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_entertaincost".equals(data.entityName)){
                 //招待费报销审批
-                mImgIcon.setImageResource(R.drawable.icon_category_zdfbx);
+                mImgIcon.setImageResource(R.drawable.icon_entertaincost);
+                mTitle1.setText(data.ApplyNo);
+                mTitle2.setText(data.AccountName);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.CreatedOn);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.Amount);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_reception".equals(data.entityName)){
                 //考察接待申请审批
-                mImgIcon.setImageResource(R.drawable.icon_category_kcjdsq);
+                mImgIcon.setImageResource(R.drawable.icon_reception);
+                mTitle1.setVisibility(View.GONE);
+                mTitle2.setText(data.AccountName);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.ComeTime);
+                double num=0;
+                try{
+                    num=Integer.parseInt(data.VisitNumber);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(String.format("%s人", num));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_special_payment".equals(data.entityName)){
                 //专项费用报销审批
                 mImgIcon.setImageResource(R.drawable.icon_special);
@@ -454,7 +524,13 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                 AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_tenderauthorization".equals(data.entityName)){
                 //投标授权申请审批
-                mImgIcon.setImageResource(R.drawable.icon_category_ztbsq);
+                mImgIcon.setImageResource(R.drawable.icon_tenderauthorization);
+                mTitle1.setVisibility(View.GONE);
+                mTitle2.setText(data.Name);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.OpenTendersTime);
+                mViewNumber.setText(data.Quantity);
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_travelcost".equals(data.entityName)){
                 //差旅费报销审批
                 mImgIcon.setImageResource(R.drawable.icon_travel);
@@ -494,6 +570,30 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
         String OccurTime;
         //private String Amount;
 
+        //招待费申请审批
+        String EntertainId;
+        //private String ApplyNo;
+        //private String AccountName;
+        String EstimateTotal;
+        //private String Status;
+
+        //招待费报销审批
+        //private String Id;
+        //private String ApplyNo;
+        String AccountName;
+        //private String Amount;
+        //private String Status;
+
+        //考察接待申请审批
+        String ReceptionId;
+        //private String AccountName;
+        String VisitName;
+        String VisitNumber;
+        String ComeTime;
+        //private String Status;
+        //private String OwnerName;
+        String ApplyTime;
+
         //专项费用报销审批
         String Id;
         //private String ApplyNo;
@@ -506,6 +606,15 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
         String ApprovalPrice;
         String StepNumber;
         String AuditStatus;
+
+        //投标授权申请审批
+        String TenderAuthorizationId;
+        //private String Name;
+        String ProjectName;
+        String OpenTendersTime;
+        //private String Status;
+        String Quantity;
+        //private String OwnerName;
 
         //公共部分
         String OwnerName;

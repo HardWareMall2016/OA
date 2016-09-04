@@ -81,6 +81,30 @@ public class MyAuditListResponseBean extends BaseResponseBean{
         //private String Amount;
         //private String Status;
 
+        //招待费申请审批
+        private String EntertainId;
+        //private String ApplyNo;
+        //private String AccountName;
+        private String EstimateTotal;
+        //private String Status;
+
+        //招待费报销审批
+        //private String Id;
+        //private String ApplyNo;
+        private String AccountName;
+        //private String Amount;
+        //private String Status;
+
+        //考察接待申请审批
+        private String ReceptionId;
+        //private String AccountName;
+        private String VisitName;
+        private String VisitNumber;
+        private String ComeTime;
+        //private String Status;
+        //private String OwnerName;
+        private String ApplyTime;
+
         //专项费用报销审批
         private String Id;
         //private String ApplyNo;
@@ -93,6 +117,15 @@ public class MyAuditListResponseBean extends BaseResponseBean{
         private String ApprovalPrice;
         private String StepNumber;
         private String AuditStatus;
+
+        //投标授权申请审批
+        private String TenderAuthorizationId;
+        //private String Name;
+        private String ProjectName;
+        private String OpenTendersTime;
+        //private String Status;
+        private String Quantity;
+        //private String OwnerName;
 
         //公共部分
         private String OwnerName;
@@ -232,6 +265,102 @@ public class MyAuditListResponseBean extends BaseResponseBean{
 
         public void setOccurTime(String occurTime) {
             OccurTime = occurTime;
+        }
+
+        public String getAccountName() {
+            return AccountName;
+        }
+
+        public void setAccountName(String accountName) {
+            AccountName = accountName;
+        }
+
+        public String getEntertainId() {
+            return EntertainId;
+        }
+
+        public void setEntertainId(String entertainId) {
+            EntertainId = entertainId;
+        }
+
+        public String getEstimateTotal() {
+            return EstimateTotal;
+        }
+
+        public void setEstimateTotal(String estimateTotal) {
+            EstimateTotal = estimateTotal;
+        }
+
+        public String getReceptionId() {
+            return ReceptionId;
+        }
+
+        public void setReceptionId(String receptionId) {
+            ReceptionId = receptionId;
+        }
+
+        public String getVisitName() {
+            return VisitName;
+        }
+
+        public void setVisitName(String visitName) {
+            VisitName = visitName;
+        }
+
+        public String getVisitNumber() {
+            return VisitNumber;
+        }
+
+        public void setVisitNumber(String visitNumber) {
+            VisitNumber = visitNumber;
+        }
+
+        public String getComeTime() {
+            return ComeTime;
+        }
+
+        public void setComeTime(String comeTime) {
+            ComeTime = comeTime;
+        }
+
+        public String getApplyTime() {
+            return ApplyTime;
+        }
+
+        public void setApplyTime(String applyTime) {
+            ApplyTime = applyTime;
+        }
+
+        public String getTenderAuthorizationId() {
+            return TenderAuthorizationId;
+        }
+
+        public void setTenderAuthorizationId(String tenderAuthorizationId) {
+            TenderAuthorizationId = tenderAuthorizationId;
+        }
+
+        public String getProjectName() {
+            return ProjectName;
+        }
+
+        public void setProjectName(String projectName) {
+            ProjectName = projectName;
+        }
+
+        public String getOpenTendersTime() {
+            return OpenTendersTime;
+        }
+
+        public void setOpenTendersTime(String openTendersTime) {
+            OpenTendersTime = openTendersTime;
+        }
+
+        public String getQuantity() {
+            return Quantity;
+        }
+
+        public void setQuantity(String quantity) {
+            Quantity = quantity;
         }
     }
 }
