@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -17,7 +15,6 @@ import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.fragment.common.PhotosFragment;
 import com.android.wandong.ui.widget.FixGridView;
 import com.android.wandong.utils.Tools;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
@@ -127,6 +124,9 @@ public class AnnouncementFragment extends BaseWorkPageFragment<AnnouncementFragm
         @ViewInject(id = R.id.content)
         protected TextView mViewContent;
 
+        @ViewInject(id = R.id.time)
+        protected TextView mViewTime;
+
         @ViewInject(id = R.id.photos)
         protected FixGridView mFixGridView;
 
@@ -140,8 +140,12 @@ public class AnnouncementFragment extends BaseWorkPageFragment<AnnouncementFragm
         public void bindingData(View convertView, final ItemData data) {
             /*ImageLoader.getInstance().displayImage(data.PersonalImage, mViewHeadPortrait, Tools.buildDisplayImageOptionsForAvatar());;*/
 
+            Tools.setTextView(mViewName, data.OwnerName);
             Tools.setTextView(mViewTitle, data.new_name);
             Tools.setTextView(mViewContent, data.new_appcontent);
+
+            long time = Tools.parseDateStrToLong(data.CreatedOn);
+            Tools.setTextView(mViewTime, Tools.parseTimeToChinaMonthMinutes(time));
 
             if(data.AttachmentsList.size()==0){
                 mFixGridView.setVisibility(View.GONE);

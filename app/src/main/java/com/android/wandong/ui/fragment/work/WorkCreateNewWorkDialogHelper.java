@@ -182,7 +182,7 @@ public class WorkCreateNewWorkDialogHelper implements AdapterView.OnItemClickLis
             showWorkReportDialog();
         } else if (workCategoryItem.getType().equals(AnnouncementFragment.TAB_TYPE)) {
             AnnouncementCreateFragment.launch(mActivity);
-        } else if (workCategoryItem.getType().equals(NoticeFragment.TAB_TYPE)) {
+        } else if (workCategoryItem.getType().equals(ShareFragment.TAB_TYPE)) {
             NoticeCreateFragment.launch(mActivity);
         } else if (workCategoryItem.getType().equals(ReportFormListFragment.TAB_TYPE)) {
 

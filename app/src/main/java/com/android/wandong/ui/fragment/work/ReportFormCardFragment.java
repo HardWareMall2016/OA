@@ -79,7 +79,7 @@ public class ReportFormCardFragment extends ABaseFragment {
         requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
 
         //Temp 数据
-        startFormRequest(ApiUrls.NOTICE_LIST, requestParams, new BaseHttpRequestTask<BaseResponseBean>() {
+        startFormRequest(ApiUrls.SHARE_LIST, requestParams, new BaseHttpRequestTask<BaseResponseBean>() {
             @Override
             public BaseResponseBean parseResponseToResult(String content) {
                 return Tools.parseJson(content, BaseResponseBean.class);

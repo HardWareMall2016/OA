@@ -49,7 +49,9 @@ public class ApiUrls {
     public static final String WORK_REPORT_LIST = "WorkReport/List.ashx";
 
     //公告通知-列表
-    public static final String NOTICE_LIST = "Notice/Notice/List.ashx";
+    public static final String NOTICE_LIST = "Notice/Notice/List.ashx ";
+    //公告通知-列表
+    public static final String SHARE_LIST = "Share/List.ashx";
     //新建公告—发布公告
     public static final String NOTICE_ADD = "Notice/Notice/Add.ashx";
     //新建公告－公告对象列表

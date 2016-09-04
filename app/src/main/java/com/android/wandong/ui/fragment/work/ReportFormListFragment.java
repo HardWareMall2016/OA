@@ -1,14 +1,11 @@
 package com.android.wandong.ui.fragment.work;
 
-import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.wandong.R;
@@ -17,8 +14,6 @@ import com.android.wandong.network.ApiUrls;
 import com.android.wandong.ui.widget.CircleView;
 import com.android.wandong.ui.widget.RoundProgressBar;
 import com.android.wandong.utils.Tools;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhan.framework.network.HttpRequestParams;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
@@ -82,7 +77,7 @@ public class ReportFormListFragment extends BaseWorkPageFragment<ReportFormListF
 
     @Override
     protected String getRequestApiUrl() {
-        return ApiUrls.NOTICE_LIST;
+        return ApiUrls.SHARE_LIST;
     }
 
     @Override

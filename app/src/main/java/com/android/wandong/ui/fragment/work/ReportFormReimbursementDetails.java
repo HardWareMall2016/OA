@@ -1,7 +1,6 @@
 package com.android.wandong.ui.fragment.work;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -80,7 +79,7 @@ public class ReportFormReimbursementDetails extends APullToRefreshListFragment<R
         requestParams.put("new_kind", 1);//类别（1为公告、2为通知）
 
         //Temp 数据
-        startFormRequest(ApiUrls.NOTICE_LIST, requestParams, new PagingTask<BaseResponseBean>(mode) {
+        startFormRequest(ApiUrls.SHARE_LIST, requestParams, new PagingTask<BaseResponseBean>(mode) {
             @Override
             public BaseResponseBean parseResponseToResult(String content) {
                 return Tools.parseJson(content, BaseResponseBean.class);

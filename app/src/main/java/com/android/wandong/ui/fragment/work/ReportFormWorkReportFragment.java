@@ -19,7 +19,6 @@ import com.zhan.framework.network.HttpRequestUtils;
 import com.zhan.framework.support.adapter.ABaseAdapter;
 import com.zhan.framework.support.inject.ViewInject;
 import com.zhan.framework.utils.PixelUtils;
-import com.zhan.framework.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +121,7 @@ public class ReportFormWorkReportFragment extends ABaseTabFragment<ReportFormWor
         requestParams.put("new_kind", 2);//类别（1为公告、2为通知）
 
         //Temp 数据
-        startFormRequest(ApiUrls.NOTICE_LIST, requestParams, new PagingTask<BaseResponseBean>(mode) {
+        startFormRequest(ApiUrls.SHARE_LIST, requestParams, new PagingTask<BaseResponseBean>(mode) {
             @Override
             public BaseResponseBean parseResponseToResult(String content) {
                 return Tools.parseJson(content, BaseResponseBean.class);

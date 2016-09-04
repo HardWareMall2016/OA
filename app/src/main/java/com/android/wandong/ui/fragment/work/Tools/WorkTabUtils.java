@@ -12,7 +12,7 @@ import com.android.wandong.ui.fragment.work.InspectionReceptionApplicationFragme
 import com.android.wandong.ui.fragment.work.MarketActivityApplicationFragment;
 import com.android.wandong.ui.fragment.work.MarketActivityReimbursementFragment;
 import com.android.wandong.ui.fragment.work.MyAuditListFragment;
-import com.android.wandong.ui.fragment.work.NoticeFragment;
+import com.android.wandong.ui.fragment.work.ShareFragment;
 import com.android.wandong.ui.fragment.work.OutdoorSignInFragment;
 import com.android.wandong.ui.fragment.work.SpecialDuesReimbursementFragment;
 import com.android.wandong.ui.fragment.work.TenderApplicationFragment;
@@ -120,10 +120,10 @@ public class WorkTabUtils {
 
             if (menuItem.getEntityName().equals(NEW_SHARE)) {
                 item = new WorkMain.WorkCategoryItem();
-                item.setTitle(NoticeFragment.TAB_NAME);
-                item.setType(NoticeFragment.TAB_TYPE);
+                item.setTitle(ShareFragment.TAB_NAME);
+                item.setType(ShareFragment.TAB_TYPE);
                 item.setCategoryDrawableRes(R.drawable.icon_category_tz);
-                item.setFragmentClass(NoticeFragment.class);
+                item.setFragmentClass(ShareFragment.class);
                 mTabs.add(item);
             }
 
