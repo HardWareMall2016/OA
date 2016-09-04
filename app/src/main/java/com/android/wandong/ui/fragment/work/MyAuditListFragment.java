@@ -225,6 +225,7 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                 MarketActivityReimbursementDetailsFragment.launch(getActivity(), data.CampaignId);
             }else if("new_contract".equals(data.entityName)){
                 //合同申请审批
+                //ContractApplicationDetailsFragment
             }else if("new_entertain".equals(data.entityName)){
                 //招待费申请审批
                 EntertainmentApplicationDetailsFragment.launch(getActivity(),data.EntertainId);
@@ -499,7 +500,19 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
                 AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_contract".equals(data.entityName)){
                 //合同申请审批
-                mImgIcon.setImageResource(R.drawable.icon_category_htsq);
+                mImgIcon.setImageResource(R.drawable.icon_new_contract);
+                mTitle1.setText(data.ContractName);
+                mTitle2.setText(data.ApplyNo);
+                mName.setText(data.OwnerName);
+                mViewTime.setText(data.CreatedOn);
+                double cost=0;
+                try{
+                    cost=Double.parseDouble(data.ContracTotal);
+                }catch (Exception ignored){
+
+                }
+                mViewNumber.setText(mMoneyDf.format(cost));
+                AuditStatusHelper.setImageViewByStatus(mImgStatus, Integer.parseInt(data.Status));
             }else if("new_entertain".equals(data.entityName)){
                 //招待费申请审批
                 mImgIcon.setImageResource(R.drawable.head_portrait_entertain_apply);
