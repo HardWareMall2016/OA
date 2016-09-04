@@ -219,31 +219,31 @@ public class MyAuditListFragment extends BaseWorkPageFragment<MyAuditListFragmen
 
             if("new_campaign".equals(data.entityName)){
                 //市场活动费申请审批
-                MarketActivityApplicationDetailsFragment.launch(getActivity(), data.CampaignId);
+                MarketActivityApplicationDetailsFragment.launch(getActivity(), data.CampaignId,data.Status);
             }else if("new_campaigncost".equals(data.entityName)){
                 //市场活动费报销审批
-                MarketActivityReimbursementDetailsFragment.launch(getActivity(), data.CampaignId);
+                MarketActivityReimbursementDetailsFragment.launch(getActivity(), data.CampaignId,data.Status);
             }else if("new_contract".equals(data.entityName)){
                 //合同申请审批
-                //ContractApplicationDetailsFragment
+                ContractApplicationDetailsFragment.launch(getActivity(),data.ContractId,data.Status);
             }else if("new_entertain".equals(data.entityName)){
                 //招待费申请审批
-                EntertainmentApplicationDetailsFragment.launch(getActivity(),data.EntertainId);
+                EntertainmentApplicationDetailsFragment.launch(getActivity(),data.EntertainId,data.Status);
             }else if("new_entertaincost".equals(data.entityName)){
                 //招待费报销审批
-                EntertainmentReimbursementDetailFragment.launch(getActivity(),data.Id);
+                EntertainmentReimbursementDetailFragment.launch(getActivity(),data.Id,data.Status);
             }else if("new_reception".equals(data.entityName)){
                 //考察接待申请审批
-                //InspectionReceptionApplicationDetailsFragment
+                InspectionReceptionApplicationDetailsFragment.launch(getActivity(), data.ReceptionId,data.Status);
             }else if("new_special_payment".equals(data.entityName)){
                 //专项费用报销审批
-                SpecialDuesReimbursementDetailsFragment.launch(getActivity(),data.Id);
+                SpecialDuesReimbursementDetailsFragment.launch(getActivity(),data.Id,data.Status);
             }else if("new_tenderauthorization".equals(data.entityName)){
                 //投标授权申请审批
-                TenderApplicationDetailsFragment.launch(getActivity(), data.TenderAuthorizationId);
+                TenderApplicationDetailsFragment.launch(getActivity(), data.TenderAuthorizationId,data.Status);
             }else if("new_travelcost".equals(data.entityName)){
                 //差旅费报销审批
-                //TravelExpenseReimbursementDetailsFragment.launch(getActivity(), content);
+                TravelExpenseReimbursementDetailsFragment.launch(getActivity(), data.TravelCostId,data.AuditStatus);
             }
         }
     };
